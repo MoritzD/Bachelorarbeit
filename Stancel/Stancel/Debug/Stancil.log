@@ -1,0 +1,4 @@
+﻿  Stancil.vcxproj -> C:\Users\Moritz\Documents\Bachelorarbeit code\Bachelorarbeit\Stancel\Debug\Stancel.exe
+  Das System kann die angegebene Datei nicht finden.
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppCommon.targets(134,5): error MSB3073: The command "copy Stancil_Kernel.cl "C:\Users\Moritz\Documents\Bachelorarbeit code\Bachelorarbeit\Stancel\Debug\Stancil_Kernel.cl" /Y
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppCommon.targets(134,5): error MSB3073: :VCEnd" exited with code 1.
