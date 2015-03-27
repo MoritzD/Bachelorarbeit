@@ -491,6 +491,7 @@ int readArgs(int argc, char* argv[]){
 	// Call base class Initialize to get default configuration
 	if (ComandArgs->initialize() != SDK_SUCCESS)
 	{
+		cout << "Read Command Arguments Failed!" << endl;
 		return SDK_FAILURE;
 	}
 	Option* wParam = new Option;
