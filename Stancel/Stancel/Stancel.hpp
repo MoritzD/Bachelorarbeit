@@ -52,6 +52,8 @@ int PrintDeviceInfo(int type);
 
 int runCpuImplementation();
 
-void buildProgram(cl_program *program);
+int buildProgram(cl_program *program);
 
 int readArgs(int argc, char* argv[]);
+
+void getKernelArgSetError(int status);

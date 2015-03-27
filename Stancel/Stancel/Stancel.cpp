@@ -51,10 +51,10 @@ int convertToString(const char *filename, std::string& s)
 
 int main(int argc, char* argv[])
 {
-	readArgs(argc, argv);
+	if(readArgs(argc, argv) == SDK_FAILURE){return FAILURE;}
 	sampleTimer = new SDKTimer();
 
-	
+
 	if (getPlatforms() == FAILURE){ return FAILURE; }
 
 	if (getDevice() == END){ return SUCCESS; }
@@ -76,7 +76,7 @@ int main(int argc, char* argv[])
 	if (VERBOSE){ cout << source << endl; }
 	cl_program program = clCreateProgramWithSource(context, 1, &source, sourceSize, NULL);
 
-	buildProgram(&program);
+	if(buildProgram(&program) != SUCCESS) {return FAILURE;}
 
 
 	cl_int *input = (cl_int*)malloc(sizeof(cl_int) * width * height);
@@ -92,7 +92,10 @@ int main(int argc, char* argv[])
 		sizeof(cl_int) * width * height,
 		input,
 		&status);
-	if (status != SUCCESS) fprintf(stderr, "clCreateBuffer failed. (BufferMatrixA)\n");
+	if (status != SUCCESS){ 
+		fprintf(stderr, "clCreateBuffer failed. (BufferMatrixA)\n");
+		return FAILURE;
+	}
 
 	// Create buffer for matrix B
 	cl_mem BufferMatrixB = clCreateBuffer(
@@ -101,24 +104,38 @@ int main(int argc, char* argv[])
 		sizeof(cl_int) * width * height,
 		NULL,
 		&status);
-	if (status != SUCCESS) fprintf(stderr, "clCreateBuffer failed. (BufferMatrixB) %i\n", status);
+	if (status != SUCCESS){
+		fprintf(stderr, "clCreateBuffer failed. (BufferMatrixB) %i\n", status);
+		return FAILURE;
+	}
 	
 	/*Step 8: Create kernel object */
-	cl_kernel kernel = clCreateKernel(program, "Stancel", NULL);
-	cl_kernel kernelBackwards = clCreateKernel(program, "Stancel", NULL);
+	cl_kernel kernel = clCreateKernel(program, "stancel", NULL);
+	cl_kernel kernelBackwards = clCreateKernel(program, "stancel", NULL);
 
 	/*Step 9: Sets Kernel arguments.*/
 	status = clSetKernelArg(kernel, 0, sizeof(cl_mem), (void *)&BufferMatrixA);
 	status = clSetKernelArg(kernel, 1, sizeof(cl_mem), (void *)&BufferMatrixB);
 	status = clSetKernelArg(kernel, 2, sizeof(cl_int), (void *)&width);
 	status = clSetKernelArg(kernel, 3, sizeof(cl_int), (void *)&height);
-	if (status != SUCCESS){	fprintf(stderr, "setting kernal arguments failed. \n");	}
+	if (status != SUCCESS){	
+		fprintf(stderr, "setting kernal arguments failed. \n");	
+		cout << status << endl;
+		getKernelArgSetError(status);
+		return FAILURE;
+	}
 
 	status = clSetKernelArg(kernelBackwards, 0, sizeof(cl_mem), (void *)&BufferMatrixB);
 	status = clSetKernelArg(kernelBackwards, 1, sizeof(cl_mem), (void *)&BufferMatrixA);
 	status = clSetKernelArg(kernelBackwards, 2, sizeof(cl_int), (void *)&width);
 	status = clSetKernelArg(kernelBackwards, 3, sizeof(cl_int), (void *)&height);
-	if (status != SUCCESS){	fprintf(stderr, "setting kernalBackwards arguments failed. \n");}
+	if (status != SUCCESS){	
+		fprintf(stderr, "setting kernalBackwards arguments failed. \n");
+		cout << status << endl;
+		getKernelArgSetError(status);
+		return FAILURE;
+	}
+
 	cout << "kernel Arguments are set; starting kernel now!" << endl;
 
 	/*Step 10: Running the kernel.*/
@@ -295,7 +312,7 @@ int getDevice(void){
 	}
 	cout << "99: Stupid CPU Implementation" << endl;
 	
-	if (numDevices > 1){
+	//if (numDevices > 1){
 
 		cout << "\nWitch Device should be used?" << endl;
 
@@ -306,7 +323,7 @@ int getDevice(void){
 			cout << "Please incert a Valid number betwen 0 and " << numDevices - 1 << endl;
 			cin >> DeviceToUse;
 		}
-	}
+	//}
 	if (DeviceToUse == 99){
 		runCpuImplementation();
 		return END;
@@ -420,7 +437,7 @@ int runCpuImplementation(){
 	return SUCCESS;
 }
 
-void buildProgram(cl_program *program){
+int buildProgram(cl_program *program){
 	/*Step 6: Build program. */
 	status = clBuildProgram(*program, 1, aktiveDevice, NULL, NULL, NULL);
 	if (status != SUCCESS){
@@ -460,8 +477,10 @@ void buildProgram(cl_program *program){
 			cout << "Unknown Error" << endl;
 			break;
 		}
+		return FAILURE;
 	}
 	else cout << "Building Programm Sucsessfull" << endl;
+	return SUCCESS;
 }
 
 int readArgs(int argc, char* argv[]){
@@ -507,4 +526,30 @@ int readArgs(int argc, char* argv[]){
 	ComandArgs->parseCommandLine(argc, argv);
 
 	cout << "\n" << width << " : " << height << " Iterations: " << iterations << endl;
+}
+
+void getKernelArgSetError(int status){
+	switch (status){
+		case CL_INVALID_KERNEL: 
+			cout << "Invalid Kernel" << endl;
+			break;
+		case CL_INVALID_ARG_INDEX:
+			cout << "Invalid ARG INDEX" << endl;
+			break;
+		case CL_INVALID_ARG_VALUE:
+			cout << "Invalid ARG Value" << endl;
+			break;
+		case CL_INVALID_MEM_OBJECT:
+			cout <<	"Invalid MEM Object" << endl;
+			break;
+		case CL_INVALID_SAMPLER:
+			cout << "Invalid Sampler" << endl;
+			break;
+		case CL_INVALID_ARG_SIZE:
+			cout << "Invalid ARG Size" << endl;
+			break;
+		default:
+			cout << "Unknown Error" << endl;
+			break;
+	}
 }
