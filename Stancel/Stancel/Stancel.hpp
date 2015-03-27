@@ -34,13 +34,30 @@ cl_uint DeviceToUse = 0;
 cl_uint width = WIDTH, height = HEIGHT;
 cl_uint iterations = ITERATIONS;
 
+cl_float *input = NULL;
+cl_float *output = NULL;
+
 SDKTimer *sampleTimer;
+int timer;
 
 cl_int eventStatus = CL_QUEUED;
 
 cl_event ndrEvt;
 
 CLCommandArgs   *ComandArgs;   /**< CLCommand argument class */
+
+struct timeStruct{
+	double kernelExecuting;
+	double buildProgram;
+	double setKernelArgs;
+	double writeBack;
+	double releaseKernel;
+	double total;
+	};
+
+struct timeStruct times;
+
+void freeResources();
 
 void StupidCPUimplementation(int* in, int* out, int width, int height);
 

@@ -51,13 +51,24 @@ int convertToString(const char *filename, std::string& s)
 
 int main(int argc, char* argv[])
 {
-	if(readArgs(argc, argv) == SDK_FAILURE){return FAILURE;}
 	sampleTimer = new SDKTimer();
+	timer = sampleTimer->createTimer();
+	
+	if(readArgs(argc, argv) == SDK_FAILURE){
+		freeResources();
+		return FAILURE;
+	}
 
 
-	if (getPlatforms() == FAILURE){ return FAILURE; }
+	if (getPlatforms() == FAILURE){ 
+		freeResources();
+		return FAILURE; 
+	}
 
-	if (getDevice() == END){ return SUCCESS; }
+	if (getDevice() == END){ 
+		freeResources();
+		return SUCCESS; 
+	}
 	
 	/*Step 3: Create context.*/
 	cl_context context = clCreateContext(NULL, 1, aktiveDevice, NULL, NULL, NULL);
@@ -67,6 +78,9 @@ int main(int argc, char* argv[])
 	cl_command_queue commandQueue = clCreateCommandQueue(context, *aktiveDevice, 0, NULL);
 
 	/*Step 5: Create program object */
+	sampleTimer->resetTimer(timer);
+	sampleTimer->startTimer(timer);
+
 	const char *filename = "Stancel_Kernel.cl";
 
 	string KernelSource;
@@ -76,24 +90,32 @@ int main(int argc, char* argv[])
 	if (VERBOSE){ cout << source << endl; }
 	cl_program program = clCreateProgramWithSource(context, 1, &source, sourceSize, NULL);
 
-	if(buildProgram(&program) != SUCCESS) {return FAILURE;}
+	if(buildProgram(&program) != SUCCESS) {
+		freeResources();
+		return FAILURE;
+	}
+	sampleTimer->stopTimer(timer);
+	times.buildProgram = sampleTimer->readTimer(timer);
 
 
-	cl_int *input = (cl_int*)malloc(sizeof(cl_int) * width * height);
-	fill(input, input + (width*height), 1);
+	input = (cl_float*)malloc(sizeof(cl_float) * width * height);
+	fill(input, input + (width*height), 1.0);
 	
-	cl_int *output = (cl_int*)malloc(sizeof(cl_int) * width * height);
-	memset(output, 0, sizeof(cl_int) * width * height);
+	output = (cl_float*)malloc(sizeof(cl_float) * width * height);
+	memset(output, 0, sizeof(cl_float) * width * height);
 
+	sampleTimer->resetTimer(timer);
+	sampleTimer->startTimer(timer);
 	// Create buffer for matrix A
 	cl_mem BufferMatrixA = clCreateBuffer(
 		context,
 		CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR,
-		sizeof(cl_int) * width * height,
+		sizeof(cl_float) * width * height,
 		input,
 		&status);
 	if (status != SUCCESS){ 
 		fprintf(stderr, "clCreateBuffer failed. (BufferMatrixA)\n");
+		freeResources();
 		return FAILURE;
 	}
 
@@ -101,11 +123,12 @@ int main(int argc, char* argv[])
 	cl_mem BufferMatrixB = clCreateBuffer(
 		context,
 		CL_MEM_READ_WRITE,
-		sizeof(cl_int) * width * height,
+		sizeof(cl_float) * width * height,
 		NULL,
 		&status);
 	if (status != SUCCESS){
 		fprintf(stderr, "clCreateBuffer failed. (BufferMatrixB) %i\n", status);
+		freeResources();
 		return FAILURE;
 	}
 	
@@ -119,9 +142,10 @@ int main(int argc, char* argv[])
 	status = clSetKernelArg(kernel, 2, sizeof(cl_int), (void *)&width);
 	status = clSetKernelArg(kernel, 3, sizeof(cl_int), (void *)&height);
 	if (status != SUCCESS){	
-		fprintf(stderr, "setting kernal arguments failed. \n");	
+		fprintf(stderr, "setting kernel arguments failed. \n");	
 		cout << status << endl;
 		getKernelArgSetError(status);
+		freeResources();
 		return FAILURE;
 	}
 
@@ -130,24 +154,27 @@ int main(int argc, char* argv[])
 	status = clSetKernelArg(kernelBackwards, 2, sizeof(cl_int), (void *)&width);
 	status = clSetKernelArg(kernelBackwards, 3, sizeof(cl_int), (void *)&height);
 	if (status != SUCCESS){	
-		fprintf(stderr, "setting kernalBackwards arguments failed. \n");
+		fprintf(stderr, "setting kernelBackwards arguments failed. \n");
 		cout << status << endl;
 		getKernelArgSetError(status);
+		freeResources();
 		return FAILURE;
 	}
+
+	sampleTimer->stopTimer(timer);
+	times.setKernelArgs = sampleTimer->readTimer(timer);
 
 	cout << "kernel Arguments are set; starting kernel now!" << endl;
 
 	/*Step 10: Running the kernel.*/
 	size_t global_work_size[1] = { width * height };
 
-	int timer = sampleTimer->createTimer();
 	sampleTimer->resetTimer(timer);
 	sampleTimer->startTimer(timer);
 
 	for (int e = 0; e < iterations; e++){
 		status = clEnqueueNDRangeKernel(commandQueue, kernel, 1, NULL, global_work_size, NULL, 0, NULL, &ndrEvt);
-		if (status != SUCCESS) fprintf(stderr, "executing kernal failed. \n");
+		if (status != SUCCESS) fprintf(stderr, "executing kernel failed. \n");
 		status = clFlush(commandQueue);
 
 		eventStatus = CL_QUEUED;
@@ -159,11 +186,15 @@ int main(int argc, char* argv[])
 				sizeof(cl_int),
 				&eventStatus,
 				NULL);
-			CHECK_OPENCL_ERROR(status, "clGetEventInfo failed.");
+			if (status != SUCCESS){
+			fprintf(stderr, "clGetEventInfo failed. %i\n", status);
+			freeResources();
+			return FAILURE;
+			}
 		}
 		 
 		status = clEnqueueNDRangeKernel(commandQueue, kernelBackwards, 1, NULL, global_work_size, NULL, 0, NULL, &ndrEvt);
-		if (status != SUCCESS) fprintf(stderr, "executing kernal simply just for the second try failed. \n");
+		if (status != SUCCESS) fprintf(stderr, "executing kernel simply just for the second try failed. \n");
 		status = clFlush(commandQueue);
 
 		eventStatus = CL_QUEUED;
@@ -175,17 +206,28 @@ int main(int argc, char* argv[])
 				sizeof(cl_int),
 				&eventStatus,
 				NULL);
-			CHECK_OPENCL_ERROR(status, "clGetEventInfo failed.");
+			if (status != SUCCESS){
+			fprintf(stderr, "clGetEventInfo failed. %i\n", status);
+			freeResources();
+			return FAILURE;
+		}
 		}
 	}
 
 	sampleTimer->stopTimer(timer);
-	cout << "Total time: " << sampleTimer->readTimer(timer) << endl;
+	times.kernelExecuting = sampleTimer->readTimer(timer);
+	cout << "Total time: " << times.kernelExecuting << endl;
 	cout << "so for every run thats: " << (sampleTimer->readTimer(timer) / iterations) << endl;
 
+	sampleTimer->resetTimer(timer);
+	sampleTimer->startTimer(timer);
 	/*Step 11: Read the cout put back to host memory.*/
-	status = clEnqueueReadBuffer(commandQueue, BufferMatrixA, CL_TRUE, 0, width * height * sizeof(cl_int), input, 0, NULL, NULL);
-	status = clEnqueueReadBuffer(commandQueue, BufferMatrixB, CL_TRUE, 0, width * height * sizeof(cl_int), output, 0, NULL, NULL);
+	status = clEnqueueReadBuffer(commandQueue, BufferMatrixA, CL_TRUE, 0, width * height * sizeof(cl_float), input, 0, NULL, NULL);
+	status = clEnqueueReadBuffer(commandQueue, BufferMatrixB, CL_TRUE, 0, width * height * sizeof(cl_float), output, 0, NULL, NULL);
+
+	sampleTimer->stopTimer(timer);
+	times.writeBack = sampleTimer->readTimer(timer);
+
 
 	if (VERBOSE){
 		cout << "Input:" << endl;
@@ -205,6 +247,9 @@ int main(int argc, char* argv[])
 	}
 
 	cout << "done; releasinng kernel now" << endl;
+	sampleTimer->resetTimer(timer);
+	sampleTimer->startTimer(timer);
+
 	status = clReleaseKernel(kernel);				//Release kernel.
 	status = clReleaseProgram(program);				//Release the program object.
 
@@ -213,6 +258,28 @@ int main(int argc, char* argv[])
 
 	status = clReleaseCommandQueue(commandQueue);	//Release  Command queue.
 	status = clReleaseContext(context);				//Release context.
+	
+	sampleTimer->stopTimer(timer);
+	times.releaseKernel = sampleTimer->readTimer(timer);
+	
+
+	freeResources();
+	cout << "Finisched!" << endl;
+	times.total= times.kernelExecuting + times.buildProgram + times.setKernelArgs + times.writeBack + times.releaseKernel;
+	cout << "\nTotal time: " << times.total << endl;
+	cout << "Summery times: " << endl;
+	cout << "Build Program: " << times.buildProgram << endl;
+	cout << "Set Kernel Args: " << times.setKernelArgs << endl;
+	cout << "Kernel executon: " << times.kernelExecuting << endl;
+	cout << "Get output back to host memory: " << times.writeBack << endl;
+	cout << "Ŕeleasing everything: " << times.releaseKernel << endl;
+
+	//int b;
+	//cin >> b;
+	return SUCCESS;
+}
+
+void freeResources(){ 
 
 	if (output != NULL)
 	{
@@ -230,12 +297,7 @@ int main(int argc, char* argv[])
 		free(devices);
 		devices = NULL;
 	}
-
-	cout << "Finisched!" << endl;
-	int b;
-	//cin >> b;
-	return SUCCESS;
-} 
+}
 
 void StupidCPUimplementation(int* in, int* out, int width, int height){
 	for (int num = 0; num < width*height; num++){
