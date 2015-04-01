@@ -5,13 +5,6 @@
 
 #include "Stancel.hpp"
 
-
-#define SUCCESS 0
-#define FAILURE 1 
-#define END 99
-
-
-#define VERBOSE false 
   
  
 using namespace std;
@@ -222,8 +215,8 @@ int main(int argc, char* argv[])
 	sampleTimer->resetTimer(timer);
 	sampleTimer->startTimer(timer);
 	/*Step 11: Read the cout put back to host memory.*/
-	status = clEnqueueReadBuffer(commandQueue, BufferMatrixA, CL_TRUE, 0, width * height * sizeof(cl_float), input, 0, NULL, NULL);
-	status = clEnqueueReadBuffer(commandQueue, BufferMatrixB, CL_TRUE, 0, width * height * sizeof(cl_float), output, 0, NULL, NULL);
+	status = clEnqueueReadBuffer(commandQueue, BufferMatrixA, CL_TRUE, 0, width * height * sizeof(cl_float), output, 0, NULL, NULL);
+	//status = clEnqueueReadBuffer(commandQueue, BufferMatrixB, CL_TRUE, 0, width * height * sizeof(cl_float), output, 0, NULL, NULL);
 
 	sampleTimer->stopTimer(timer);
 	times.writeBack = sampleTimer->readTimer(timer);
@@ -263,6 +256,11 @@ int main(int argc, char* argv[])
 	times.releaseKernel = sampleTimer->readTimer(timer);
 	
 
+	if(ComandArgs->verify){
+		checkAgainstCpuImplementation(input, output);
+	}
+
+
 	freeResources();
 	cout << "Finisched!" << endl;
 	times.total= times.kernelExecuting + times.buildProgram + times.setKernelArgs + times.writeBack + times.releaseKernel;
@@ -299,7 +297,7 @@ void freeResources(){
 	}
 }
 
-void StupidCPUimplementation(int* in, int* out, int width, int height){
+void StupidCPUimplementation(float *in, float *out, int width, int height){
 	for (int num = 0; num < width*height; num++){
 		if (num < width || (num % width) == 0 || (num % width) == width - 1 || num >= (width*height - width)){
 			out[num] = in[num];
@@ -441,11 +439,12 @@ int PrintDeviceInfo(int type){
 
 int runCpuImplementation(){
 	cout << "you selected the stupid cpu implementation!" << endl;
-	cl_int *input = (cl_int*)malloc(sizeof(cl_int) * width * height);
-	fill(input, input + (width*height), 1);
 
-	cl_int *output = (cl_int*)malloc(sizeof(cl_int) * width * height);
-	memset(output, 0, sizeof(cl_int) * width * height);
+	float *inputcpu = (float*)malloc(sizeof(float) * width * height);
+	fill(inputcpu, inputcpu + (width*height), 1.0);
+
+	float *outputcpu = (float*)malloc(sizeof(float) * width * height);
+	memset(outputcpu, 0, sizeof(float) * width * height);
 
 	int timer = sampleTimer->createTimer();
 	sampleTimer->resetTimer(timer);
@@ -453,8 +452,8 @@ int runCpuImplementation(){
 
 
 	for (int e = 0; e < iterations; e++){
-		StupidCPUimplementation(input, output, width, height);
-		StupidCPUimplementation(output, input, width, height);
+		StupidCPUimplementation(inputcpu, outputcpu, width, height);
+		StupidCPUimplementation(outputcpu, inputcpu, width, height);
 	}
 
 	sampleTimer->stopTimer(timer);
@@ -466,14 +465,14 @@ int runCpuImplementation(){
 		cout << "Input:" << endl;
 		for (int y = 0; y < height; y++){
 			for (int x = 0; x < width; x++){
-				cout << *(input + x + y*width);
+				cout << *(inputcpu + x + y*width);
 			}
 			cout << endl;
 		}
 		cout << endl << "Output:" << endl;
 		for (int y = 0; y < height; y++){
 			for (int x = 0; x < width; x++){
-				cout << *(output + x + y*width);
+				cout << *(outputcpu + x + y*width);
 			}
 			cout << endl;
 		}
@@ -488,6 +487,16 @@ int runCpuImplementation(){
 	{
 		free(input);
 		input = NULL;
+	}
+	if (outputcpu != NULL)
+	{
+		free(outputcpu);
+		outputcpu = NULL;
+	}
+	if (inputcpu != NULL)
+	{
+		free(inputcpu);
+		inputcpu = NULL;
 	}
 	if (devices != NULL)
 	{
@@ -547,6 +556,8 @@ int buildProgram(cl_program *program){
 
 int readArgs(int argc, char* argv[]){
 
+	//bool verify = false;
+
 	ComandArgs = new CLCommandArgs();
 	ComandArgs->sampleVerStr = SAMPLE_VERSION;
 
@@ -589,6 +600,7 @@ int readArgs(int argc, char* argv[]){
 	ComandArgs->parseCommandLine(argc, argv);
 
 	cout << "\n" << width << " : " << height << " Iterations: " << iterations << endl;
+	cout << ComandArgs->verify << endl;
 }
 
 void getKernelArgSetError(int status){
@@ -615,4 +627,78 @@ void getKernelArgSetError(int status){
 			cout << "Unknown Error" << endl;
 			break;
 	}
+}
+
+int checkAgainstCpuImplementation(float *origInput, float *clOutput){
+
+		cout << "\nChecking result against referance cpu implementation :" << endl;
+
+	float *inout = (float*)malloc(sizeof(float) * width * height);
+	memcpy(inout, origInput, sizeof(float) * width * height);
+
+	float *workmem = (float*)malloc(sizeof(float) * width * height);
+	memset(workmem, 0, sizeof(float) * width * height);
+
+/*
+	int timer = sampleTimer->createTimer();
+	sampleTimer->resetTimer(timer);
+	sampleTimer->startTimer(timer);
+*/
+	cout << "calculateing..." << endl;
+
+	for (int e = 0; e < iterations; e++){
+		StupidCPUimplementation(inout, workmem, width, height);
+		StupidCPUimplementation(workmem, inout, width, height);
+	}
+
+	if(VERBOSE){
+		cout << "referance output:" << endl;
+		for (int y = 0; y < height; y++){
+			for (int x = 0; x < width; x++){
+				cout << *(inout + x + y*width);
+			}
+			cout << endl;
+		}
+	}
+
+	if(memcmp(clOutput, inout , width * height * sizeof(float))==0){
+		cout << "\nPassed the test; results are equil.\n" << endl;
+	}
+	else{
+		cout << "\njFailed the test; results differ.\n" << endl;
+	}
+/* 
+	sampleTimer->stopTimer(timer);
+	cout << "Total time: " << sampleTimer->readTimer(timer) << endl;
+	cout << "so for every run thats: " << (sampleTimer->readTimer(timer) / iterations) << endl;
+*/
+
+
+	if (workmem != NULL)
+	{
+		free(workmem);
+		workmem = NULL;
+	}
+	if (inout != NULL)
+	{
+		free(inout);
+		inout = NULL;
+	}
+	if (output != NULL)
+	{
+		free(output);
+		output = NULL;
+	}
+	if (input != NULL)
+	{
+		free(input);
+		input = NULL;
+	}
+	if (devices != NULL)
+	{
+
+		free(devices);
+		devices = NULL;
+	}
+	return SDK_SUCCESS;
 }

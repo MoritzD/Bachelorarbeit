@@ -13,10 +13,19 @@
 
 using namespace appsdk;
 
-#define WIDTH  100
-#define HEIGHT 100
+
+
+#define SUCCESS 0
+#define FAILURE 1 
+#define END 99
+
+
+#define VERBOSE false 
+
+#define WIDTH  5
+#define HEIGHT 5
 #define SAMPLE_VERSION "sample"
-#define ITERATIONS 1000 
+#define ITERATIONS 100
 
 cl_uint numPlatforms = 0;	//the NO. of platforms
 cl_platform_id platform = NULL;	//the chosen platform
@@ -59,7 +68,7 @@ struct timeStruct times;
 
 void freeResources();
 
-void StupidCPUimplementation(int* in, int* out, int width, int height);
+void StupidCPUimplementation(float *in, float *out, int width, int height);
 
 int getPlatforms(void);
 
@@ -74,3 +83,5 @@ int buildProgram(cl_program *program);
 int readArgs(int argc, char* argv[]);
 
 void getKernelArgSetError(int status);
+
+int checkAgainstCpuImplementation(float *origInput, float *clOutput);

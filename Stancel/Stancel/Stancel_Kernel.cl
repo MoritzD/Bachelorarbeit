@@ -1,7 +1,7 @@
 /*
 * Primary kernel to execute calculations.
 */
-__kernel void stancel(__global int* in, __global int* out, 
+__kernel void stancel(__global float* in, __global float* out, 
 					int width, int height)
 {
 	int num = get_global_id(0);
