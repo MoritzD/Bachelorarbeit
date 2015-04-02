@@ -167,6 +167,8 @@ int main(int argc, char* argv[])
 	sampleTimer->startTimer(timer);
 	int timer2 = sampleTimer->createTimer();
 
+	double timer2value = 0;
+
 	for (int e = 0; e < iterations; e++){
 		if(SINGLETIME){
 			sampleTimer->resetTimer(timer2);
@@ -215,7 +217,8 @@ int main(int argc, char* argv[])
 
 		if(SINGLETIME){ 
 			sampleTimer->stopTimer(timer2);
-			cout << sampleTimer->readTimer(timer2) << endl;
+			timer2value = sampleTimer->readTimer(timer2);
+			cout << timer2value  << " \t " << ((width - 2)*(height - 2))/ timer2value << endl;
 		}
 	}
 
