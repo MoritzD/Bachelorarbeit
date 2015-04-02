@@ -22,10 +22,10 @@ using namespace appsdk;
 
 #define VERBOSE false 
 
-#define WIDTH  5
-#define HEIGHT 5
+#define WIDTH  500
+#define HEIGHT 500
 #define SAMPLE_VERSION "sample"
-#define ITERATIONS 100
+#define ITERATIONS 500
 
 cl_uint numPlatforms = 0;	//the NO. of platforms
 cl_platform_id platform = NULL;	//the chosen platform

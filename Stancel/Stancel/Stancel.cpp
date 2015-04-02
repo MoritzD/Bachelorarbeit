@@ -209,7 +209,7 @@ int main(int argc, char* argv[])
 
 	sampleTimer->stopTimer(timer);
 	times.kernelExecuting = sampleTimer->readTimer(timer);
-	cout << "Total time: " << times.kernelExecuting << endl;
+	cout << "Total executing time: " << times.kernelExecuting << endl;
 	cout << "so for every run thats: " << (sampleTimer->readTimer(timer) / iterations) << endl;
 
 	sampleTimer->resetTimer(timer);
@@ -260,8 +260,11 @@ int main(int argc, char* argv[])
 		checkAgainstCpuImplementation(input, output);
 	}
 
-
 	freeResources();
+
+	cout << "we had: " << (width - 2)*(height - 2) << " single Stancel calculations" << endl;
+	cout << "this makes: " << ((width - 2)*(height - 2))/times.kernelExecuting << " SPS (Stancels Per Second)\n" << endl;
+
 	cout << "Finisched!" << endl;
 	times.total= times.kernelExecuting + times.buildProgram + times.setKernelArgs + times.writeBack + times.releaseKernel;
 	cout << "\nTotal time: " << times.total << endl;
@@ -633,6 +636,8 @@ int checkAgainstCpuImplementation(float *origInput, float *clOutput){
 
 		cout << "\nChecking result against referance cpu implementation :" << endl;
 
+		double referanceTime = 0;
+
 	float *inout = (float*)malloc(sizeof(float) * width * height);
 	memcpy(inout, origInput, sizeof(float) * width * height);
 
@@ -645,11 +650,16 @@ int checkAgainstCpuImplementation(float *origInput, float *clOutput){
 	sampleTimer->startTimer(timer);
 */
 	cout << "calculateing..." << endl;
+	sampleTimer->resetTimer(timer);
+	sampleTimer->startTimer(timer);
 
 	for (int e = 0; e < iterations; e++){
 		StupidCPUimplementation(inout, workmem, width, height);
 		StupidCPUimplementation(workmem, inout, width, height);
 	}
+
+	sampleTimer->stopTimer(timer);
+	referanceTime = sampleTimer->readTimer(timer);
 
 	if(VERBOSE){
 		cout << "referance output:" << endl;
@@ -667,6 +677,9 @@ int checkAgainstCpuImplementation(float *origInput, float *clOutput){
 	else{
 		cout << "\njFailed the test; results differ.\n" << endl;
 	}
+
+	cout << "referance took " << referanceTime << " seconds" << endl;
+	cout << "so thats " << ((width - 2)*(height - 2))/referanceTime << " SPS" << endl; 
 /* 
 	sampleTimer->stopTimer(timer);
 	cout << "Total time: " << sampleTimer->readTimer(timer) << endl;
