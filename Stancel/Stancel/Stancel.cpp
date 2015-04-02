@@ -262,8 +262,10 @@ int main(int argc, char* argv[])
 
 	freeResources();
 
+	double SPS = ((width - 2)*(height - 2))/times.kernelExecuting;
+
 	cout << "we had: " << (width - 2)*(height - 2) << " single Stancel calculations" << endl;
-	cout << "this makes: " << ((width - 2)*(height - 2))/times.kernelExecuting << " SPS (Stancels Per Second)\n" << endl;
+	cout << "this makes: \n" << SPS << " SPS (Stancels Per Second)\n" << SPS/1000 << "KSPS (Kilo Stancels Per Second)\n" << SPS/1000000 << "MSPS (Mega Stancesl Per Second) \n" << endl;
 
 	cout << "Finisched!" << endl;
 	times.total= times.kernelExecuting + times.buildProgram + times.setKernelArgs + times.writeBack + times.releaseKernel;
@@ -273,7 +275,7 @@ int main(int argc, char* argv[])
 	cout << "Set Kernel Args: " << times.setKernelArgs << endl;
 	cout << "Kernel executon: " << times.kernelExecuting << endl;
 	cout << "Get output back to host memory: " << times.writeBack << endl;
-	cout << "Ŕeleasing everything: " << times.releaseKernel << endl;
+	cout << "Releasing everything: " << times.releaseKernel << endl;
 
 	//int b;
 	//cin >> b;
