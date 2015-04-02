@@ -20,7 +20,8 @@ using namespace appsdk;
 #define END 99
 
 
-#define VERBOSE false 
+#define VERBOSE false
+#define SINGLETIME true 
 
 #define WIDTH  500
 #define HEIGHT 500

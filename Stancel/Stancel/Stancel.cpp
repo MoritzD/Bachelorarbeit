@@ -6,6 +6,7 @@
 #include "Stancel.hpp"
 
   
+
  
 using namespace std;
 
@@ -164,8 +165,14 @@ int main(int argc, char* argv[])
 
 	sampleTimer->resetTimer(timer);
 	sampleTimer->startTimer(timer);
+	int timer2 = sampleTimer->createTimer();
 
 	for (int e = 0; e < iterations; e++){
+		if(SINGLETIME){
+			sampleTimer->resetTimer(timer2);
+			sampleTimer->startTimer(timer2);
+		}
+
 		status = clEnqueueNDRangeKernel(commandQueue, kernel, 1, NULL, global_work_size, NULL, 0, NULL, &ndrEvt);
 		if (status != SUCCESS) fprintf(stderr, "executing kernel failed. \n");
 		status = clFlush(commandQueue);
@@ -204,6 +211,11 @@ int main(int argc, char* argv[])
 			freeResources();
 			return FAILURE;
 		}
+		}
+
+		if(SINGLETIME){ 
+			sampleTimer->stopTimer(timer2);
+			cout << sampleTimer->readTimer(timer2) << endl;
 		}
 	}
 
@@ -267,7 +279,7 @@ int main(int argc, char* argv[])
 	cout << "Testoutput: this should be constant with different iterations!: " << (times.kernelExecuting/iterations) << endl;
 
 	cout << "we had: " << (width - 2)*(height - 2) << " single Stancel calculations" << endl;
-	cout << "this makes: \n" << SPS << " SPS (Stancels Per Second)\n" << SPS/1000 << " KSPS (Kilo Stancels Per Second)\n" << SPS/1000000 << " MSPS (Mega Stancels Per Second) \n" << endl;
+	cout << "this makes: \n" << SPS << " SPS (Stancels Per Second)\n" << SPS/1000 << " KSPS (Kilo Stancels Per Second)\n" << SPS/1000000 << " MSPS (Mega Stancels Per Second) \n" << SPS/1000000000 << " TSPS (Tera Stancels Per Second) \n" << endl;
 
 	cout << "Finisched!" << endl;
 	times.total= times.kernelExecuting + times.buildProgram + times.setKernelArgs + times.writeBack + times.releaseKernel;
