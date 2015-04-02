@@ -265,7 +265,7 @@ int main(int argc, char* argv[])
 	double SPS = ((width - 2)*(height - 2))/times.kernelExecuting;
 
 	cout << "we had: " << (width - 2)*(height - 2) << " single Stancel calculations" << endl;
-	cout << "this makes: \n" << SPS << " SPS (Stancels Per Second)\n" << SPS/1000 << "KSPS (Kilo Stancels Per Second)\n" << SPS/1000000 << "MSPS (Mega Stancesl Per Second) \n" << endl;
+	cout << "this makes: \n" << SPS << " SPS (Stancels Per Second)\n" << SPS/1000 << " KSPS (Kilo Stancels Per Second)\n" << SPS/1000000 << " MSPS (Mega Stancesl Per Second) \n" << endl;
 
 	cout << "Finisched!" << endl;
 	times.total= times.kernelExecuting + times.buildProgram + times.setKernelArgs + times.writeBack + times.releaseKernel;
