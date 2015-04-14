@@ -161,7 +161,7 @@ int main(int argc, char* argv[])
 	cout << "kernel Arguments are set; starting kernel now!" << endl;
 
 	/*Step 10: Running the kernel.*/
-	size_t global_work_size[1] = { width * height };
+	size_t global_work_size[1] = 			{ width * height };
 
 	sampleTimer->resetTimer(timer);
 	sampleTimer->startTimer(timer);
@@ -458,6 +458,17 @@ int PrintDeviceInfo(int type){
 		clGetDeviceInfo(tempDevices[j], CL_DRIVER_VERSION, valueSize, value, NULL);
 		printf("CL Driver version: %s\n", value);
 		free(value);
+/*
+		clGetDeviceInfo(tempDevices[j], CL_DEVICE_MAX_WORK_GROUP_SIZE, 0, NULL, &valueSize);
+		value = (char*)malloc(valueSize);
+		clGetDeviceInfo(tempDevices[j], CL_DEVICE_MAX_WORK_GROUP_SIZE, valueSize, value, NULL);
+		printf("CL Device Max Work Group Size: %s\n", value);
+		free(value);
+*/
+		clGetDeviceInfo(tempDevices[j], CL_DEVICE_MAX_WORK_GROUP_SIZE,
+			sizeof(maxComputeUnits), &maxComputeUnits, NULL);
+		printf("Max Work Group Size: %d \n", maxComputeUnits);
+		
 	}
 	free(tempDevices);
 	return SUCCESS;
@@ -677,6 +688,7 @@ int checkAgainstCpuImplementation(float *origInput, float *clOutput){
 	sampleTimer->startTimer(timer);
 
 	for (int e = 0; e < iterations; e++){
+
 		StupidCPUimplementation(inout, workmem, width, height);
 		StupidCPUimplementation(workmem, inout, width, height);
 	}
