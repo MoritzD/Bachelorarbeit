@@ -160,7 +160,13 @@ int main(int argc, char* argv[])
 
 	cout << "kernel Arguments are set; starting kernel now!" << endl;
 
+	KernelWorkGroupInfo kernelInfo;
+	status = kernelInfo.setKernelWorkGroupInfo(kernel, *aktiveDevice);
+    CHECK_ERROR(status,0, "setKernelWrkGroupInfo failed");
+    cout << "kernel work gorup size: " << kernelInfo.kernelWorkGroupSize << endl;
+
 	/*Step 10: Running the kernel.*/
+	size_t lokal_work_size = 0;
 	size_t global_work_size[1] = 			{ width * height };
 
 	sampleTimer->resetTimer(timer);
@@ -466,7 +472,8 @@ int PrintDeviceInfo(int type){
 		free(value);
 
 		maxComputeUnits = 0;
-		size_t maxWorkGroupSize = clGetDeviceInfo(tempDevices[j], CL_DEVICE_MAX_WORK_GROUP_SIZE,
+		size_t maxWorkGroupSize = 0;
+		maxWorkGroupSize = clGetDeviceInfo(tempDevices[j], CL_DEVICE_MAX_WORK_GROUP_SIZE,
 			sizeof(maxComputeUnits), &maxComputeUnits, NULL);
 		printf("Max Work Group Size: %d \n", maxComputeUnits);
 
