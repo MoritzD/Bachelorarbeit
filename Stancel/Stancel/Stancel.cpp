@@ -458,16 +458,20 @@ int PrintDeviceInfo(int type){
 		clGetDeviceInfo(tempDevices[j], CL_DRIVER_VERSION, valueSize, value, NULL);
 		printf("CL Driver version: %s\n", value);
 		free(value);
-/*
+
 		clGetDeviceInfo(tempDevices[j], CL_DEVICE_MAX_WORK_GROUP_SIZE, 0, NULL, &valueSize);
 		value = (char*)malloc(valueSize);
 		clGetDeviceInfo(tempDevices[j], CL_DEVICE_MAX_WORK_GROUP_SIZE, valueSize, value, NULL);
 		printf("CL Device Max Work Group Size: %s\n", value);
 		free(value);
-*/
-		clGetDeviceInfo(tempDevices[j], CL_DEVICE_MAX_WORK_GROUP_SIZE,
+
+		maxComputeUnits = 0;
+		size_t maxWorkGroupSize = clGetDeviceInfo(tempDevices[j], CL_DEVICE_MAX_WORK_GROUP_SIZE,
 			sizeof(maxComputeUnits), &maxComputeUnits, NULL);
 		printf("Max Work Group Size: %d \n", maxComputeUnits);
+
+		cout << "Max work Group size: " << maxWorkGroupSize << endl;
+
 		
 	}
 	free(tempDevices);
