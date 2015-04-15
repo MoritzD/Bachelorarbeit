@@ -18,13 +18,26 @@ __kernel void stancel(__global float* in, __global float* out,
 //	}
 }
 
-
-/*
-* Second kernel just for testing how to use a secondary kernel.
-*/
-__kernel void stancel2(__global int* in, __global int* out, 
+__kernel void stancel2(__global float* in, __global float* out, 
 					int width, int height)
 {
-	int num = get_global_id(0);
-	out[num] = num;
+	int globalID = get_global_id(0);
+	int localID = get_local_id(0);
+	int dim = get_work_dim();
+	int group = get_group_id(0);
+	int pos = (localID + 1 ) + ((group + 1) * width) ;//(num2 + 1) + ((num + 1) * width); 
+	
+	out[pos] = -4*in[pos]+in[pos-1]+in[pos+1]+in[pos-width]+in[pos+width]; 	
+}
+
+__kernel void copykernel(__global float* in, __global float* out, 
+					int width, int height)
+{
+	int globalID = get_global_id(0);
+	int localID = get_local_id(0);
+	int dim = get_work_dim();
+	int group = get_group_id(0);
+	int pos = (localID + 1 ) + ((group + 1) * width) ;//(num2 + 1) + ((num + 1) * width); 
+	
+	out[pos] = in[pos]; 	
 }

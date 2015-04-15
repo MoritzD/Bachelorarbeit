@@ -116,9 +116,9 @@ int main(int argc, char* argv[])
 	// Create buffer for matrix B
 	cl_mem BufferMatrixB = clCreateBuffer(
 		context,
-		CL_MEM_READ_WRITE,
+		CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR,
 		sizeof(cl_float) * width * height,
-		NULL,
+		input,
 		&status);
 	if (status != SUCCESS){
 		fprintf(stderr, "clCreateBuffer failed. (BufferMatrixB) %i\n", status);
@@ -127,8 +127,8 @@ int main(int argc, char* argv[])
 	}
 	
 	/*Step 8: Create kernel object */
-	cl_kernel kernel = clCreateKernel(program, "stancel", NULL);
-	cl_kernel kernelBackwards = clCreateKernel(program, "stancel", NULL);
+	cl_kernel kernel = clCreateKernel(program, "stancel2", NULL);
+	cl_kernel kernelBackwards = clCreateKernel(program, "stancel2", NULL);
 
 	/*Step 9: Sets Kernel arguments.*/
 	status = clSetKernelArg(kernel, 0, sizeof(cl_mem), (void *)&BufferMatrixA);
@@ -160,14 +160,22 @@ int main(int argc, char* argv[])
 
 	cout << "kernel Arguments are set; starting kernel now!" << endl;
 
+
+	/*Step 10: Running the kernel.*/
+	size_t global_work_size[1] = {(height - 2)*(width - 2)};			//{ width * height };
+	size_t lokal_work_size [1] = {global_work_size[0]/(height-2)};		//{2};				//{width - 2}; 
+	//global_work_size[2] = width -2;
+	cout <<" height  and    width     "<< height << " " << width << endl;
+
+	cout <<" global work size:     "<< global_work_size[0] << endl;
+
+	cout <<" lokal work size:     "<< lokal_work_size[0] << endl;
+
 	KernelWorkGroupInfo kernelInfo;
 	status = kernelInfo.setKernelWorkGroupInfo(kernel, *aktiveDevice);
     CHECK_ERROR(status,0, "setKernelWrkGroupInfo failed");
     cout << "kernel work gorup size: " << kernelInfo.kernelWorkGroupSize << endl;
 
-	/*Step 10: Running the kernel.*/
-	size_t lokal_work_size = 0;
-	size_t global_work_size[1] = 			{ width * height };
 
 	sampleTimer->resetTimer(timer);
 	sampleTimer->startTimer(timer);
@@ -185,8 +193,8 @@ int main(int argc, char* argv[])
 			sampleTimer->startTimer(timer2);
 		}
 
-		status = clEnqueueNDRangeKernel(commandQueue, kernel, 1, NULL, global_work_size, NULL, 0, NULL, &ndrEvt);
-		if (status != SUCCESS) fprintf(stderr, "executing kernel failed. \n");
+		status = clEnqueueNDRangeKernel(commandQueue, kernel, 1, NULL, global_work_size, lokal_work_size, 0, NULL, &ndrEvt);
+		if (status != SUCCESS) fprintf(stderr, "executing kernel failed. \n %i vgl %i\n ",status , CL_INVALID_WORK_ITEM_SIZE);
 		status = clFlush(commandQueue);
 
 		eventStatus = CL_QUEUED;
@@ -204,8 +212,8 @@ int main(int argc, char* argv[])
 			return FAILURE;
 			}
 		}
-		 
-		status = clEnqueueNDRangeKernel(commandQueue, kernelBackwards, 1, NULL, global_work_size, NULL, 0, NULL, &ndrEvt);
+		
+		status = clEnqueueNDRangeKernel(commandQueue, kernelBackwards, 1, NULL, global_work_size, lokal_work_size, 0, NULL, &ndrEvt);
 		if (status != SUCCESS) fprintf(stderr, "executing kernel simply just for the second try failed. \n");
 		status = clFlush(commandQueue);
 
@@ -721,7 +729,7 @@ int checkAgainstCpuImplementation(float *origInput, float *clOutput){
 		cout << "\nPassed the test; results are equil.\n" << endl;
 	}
 	else{
-		cout << "\njFailed the test; results differ.\n" << endl;
+		cout << "\nFailed the test; results differ.\n" << endl;
 	}
 
 	cout << "referance took " << referanceTime << " seconds" << endl;
