@@ -127,8 +127,8 @@ int main(int argc, char* argv[])
 	}
 	
 	/*Step 8: Create kernel object */
-	cl_kernel kernel = clCreateKernel(program, "stancel2", NULL);
-	cl_kernel kernelBackwards = clCreateKernel(program, "stancel2", NULL);
+	cl_kernel kernel = clCreateKernel(program, "stancel3", NULL);
+	cl_kernel kernelBackwards = clCreateKernel(program, "stancel3", NULL);
 
 	/*Step 9: Sets Kernel arguments.*/
 	status = clSetKernelArg(kernel, 0, sizeof(cl_mem), (void *)&BufferMatrixA);
@@ -162,19 +162,58 @@ int main(int argc, char* argv[])
 
 
 	/*Step 10: Running the kernel.*/
-	size_t global_work_size[1] = {(height - 2)*(width - 2)};			//{ width * height };
-	size_t lokal_work_size [1] = {global_work_size[0]/(height-2)};		//{2};				//{width - 2}; 
-	//global_work_size[2] = width -2;
-	cout <<" height  and    width     "<< height << " " << width << endl;
+	/*	Approach (1 and) 2 
+	*	cl_uint work_dim = 1;
+	*	size_t global_work_size[1] = {(height - 2)*(width - 2)};			//{ width * height };
+	*	size_t local_work_size [1] = {global_work_size[0]/(height-2)};		//{2};				//{width - 2}; 
+	*	
+	*	//global_work_size[2] = width -2;
+	*/																// first approach: every single stancel by itself
+																	// second approach: one line a a time; as one local work goup (making tourble with big matrices, as soon as it gets bigger than what can be managed as one work item)
+																	// third approach: picking 16 by 16 blocks (or what ever the hadware can handle) and calculate these at the same time. thervor using a work_dim of 2 (global and local) another benefit: posebilety to load buffer from global to local mem to gain performance
+	/* Approach 3 (I feel like this is it ;) )*/					// whats better? deviding Matrix in equaly sized blocks (with might not have optimal size) or bilding optimal sized blocks and check in rightmost block for out of bounce?
 
-	cout <<" global work size:     "<< global_work_size[0] << endl;
-
-	cout <<" lokal work size:     "<< lokal_work_size[0] << endl;
-
+	//Get maximum work goup size
 	KernelWorkGroupInfo kernelInfo;
 	status = kernelInfo.setKernelWorkGroupInfo(kernel, *aktiveDevice);
     CHECK_ERROR(status,0, "setKernelWrkGroupInfo failed");
-    cout << "kernel work gorup size: " << kernelInfo.kernelWorkGroupSize << endl;
+    cout << "Max kernel work gorup size: " << kernelInfo.kernelWorkGroupSize << endl;
+
+
+	cl_uint work_dim = 2;
+	size_t global_work_size [2] = {(width - 2),(height - 2)};
+	size_t local_work_size [2] = {4,4};
+	
+	for (int i = min(global_work_size[0], (size_t) 16); i > 0; i--)		//(size_t)(sqrt(kernelInfo.kernelWorkGroupSize)) in min
+	{
+			if(global_work_size[0]%i == 0){
+			local_work_size[0] = local_work_size[1] = i;
+			break; 
+		}
+	}
+	cout << "Using blocks of size: " << local_work_size[0] <<" ; "<< local_work_size[1] << endl;
+/*
+	if(kernelInfo.kernelWorkGroupSize >= 1024){ // use bloks of 32*32
+		local_work_size[0] = local_work_size [1] = 32;
+	}
+	else if(kernelInfo.kernelWorkGroupSize >= 256){ //use bloks of 16*16
+		local_work_size[0] = local_work_size [1] = 16;
+	}
+	else if(kernelInfo.kernelWorkGroupSize >= 64){ // use bloks of 8*8
+		local_work_size[0] = local_work_size [1] = 8;
+	}
+	//else{											// default case (16 should be supported anyway)
+	//	size_t local_work_size [2] = {4,4};
+	//}
+*/
+
+
+	cout <<" height  and    width     "<< height << " " << width << endl;
+
+	cout <<" global work size:  we ; he   "<< global_work_size[0] <<" ; "<< global_work_size[1] << endl;
+
+	cout <<" lokal work size:  we ; he   "<< local_work_size[0] <<" ; " << local_work_size[1] << endl;
+
 
 
 	sampleTimer->resetTimer(timer);
@@ -193,7 +232,7 @@ int main(int argc, char* argv[])
 			sampleTimer->startTimer(timer2);
 		}
 
-		status = clEnqueueNDRangeKernel(commandQueue, kernel, 1, NULL, global_work_size, lokal_work_size, 0, NULL, &ndrEvt);
+		status = clEnqueueNDRangeKernel(commandQueue, kernel, work_dim, NULL, global_work_size, local_work_size, 0, NULL, &ndrEvt);
 		if (status != SUCCESS) fprintf(stderr, "executing kernel failed. \n %i vgl %i\n ",status , CL_INVALID_WORK_ITEM_SIZE);
 		status = clFlush(commandQueue);
 
@@ -213,7 +252,7 @@ int main(int argc, char* argv[])
 			}
 		}
 		
-		status = clEnqueueNDRangeKernel(commandQueue, kernelBackwards, 1, NULL, global_work_size, lokal_work_size, 0, NULL, &ndrEvt);
+		status = clEnqueueNDRangeKernel(commandQueue, kernelBackwards, work_dim, NULL, global_work_size, local_work_size, 0, NULL, &ndrEvt);
 		if (status != SUCCESS) fprintf(stderr, "executing kernel simply just for the second try failed. \n");
 		status = clFlush(commandQueue);
 
