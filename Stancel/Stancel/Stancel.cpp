@@ -143,6 +143,7 @@ int main(int argc, char* argv[])
 		return FAILURE;
 	}
 
+
 	status = clSetKernelArg(kernelBackwards, 0, sizeof(cl_mem), (void *)&BufferMatrixB);
 	status = clSetKernelArg(kernelBackwards, 1, sizeof(cl_mem), (void *)&BufferMatrixA);
 	status = clSetKernelArg(kernelBackwards, 2, sizeof(cl_int), (void *)&width);
@@ -192,6 +193,13 @@ int main(int argc, char* argv[])
 		}
 	}
 	cout << "Using blocks of size: " << local_work_size[0] <<" ; "<< local_work_size[1] << endl;
+
+	/* Create local mem objects to cash blocks in */
+	status = clSetKernelArg(kernel, 4, (local_work_size[0] + 2) * (local_work_size[1] + 2) * sizeof(cl_float), NULL);
+    CHECK_OPENCL_ERROR(status, "clSetKernelArg failed. (local memory)");
+
+    status = clSetKernelArg(kernelBackwards, 4, (local_work_size[0] + 2) * (local_work_size[1] + 2) * sizeof(cl_float), NULL);
+    CHECK_OPENCL_ERROR(status, "clSetKernelArg failed. (local memory)");
 /*
 	if(kernelInfo.kernelWorkGroupSize >= 1024){ // use bloks of 32*32
 		local_work_size[0] = local_work_size [1] = 32;

@@ -19,7 +19,7 @@ __kernel void stancel(__global float* in, __global float* out,
 }
 
 __kernel void stancel3(__global float* in, __global float* out, 
-					int width, int height)
+					int width, int height, __local float* Buffer)
 {
 	int globalx = get_global_id(0);
 	int globaly = get_global_id(1);
@@ -34,18 +34,25 @@ __kernel void stancel3(__global float* in, __global float* out,
 	int groupx = get_group_id(0);
 	int groupy = get_group_id(1);
 	int numberOfGroupsx = (globalSizex/localSizex);
-	int pos = (globalx)+(globaly)*width;//(localID + 1 ) + ((group + 1) * width) ;//(num2 + 1) + ((num + 1) * width); 
-	int loadindex = localx + (localy * localSizex);
-	int startPos = groupx * localSizex + (groupy*localSizey)* (globalSizex+2); 
-	int endPos = startPos + localSizex+1 + (localSizey+1) * (globalSizex+2);
+	int pos = (globalx+1)+(globaly+1)*width;//(localID + 1 ) + ((group + 1) * width) ;//(num2 + 1) + ((num + 1) * width); 
+	int localPos = (localx+1) + (localy+1)*(localSizex+2);
+	int loadIndex = localx + (localy * localSizex);
+	int globalStartPos = groupx * localSizex + (groupy*localSizey)* (globalSizex+2); 
+	//int globalEndPos = globalStartPos + localSizex+1 + (localSizey+1) * (globalSizex+2);
+	int numcopys = (localSizex+2) * (localSizey+2);
+	int globalLoadIndex = 0; // globalStartPos + loadIndex + (loadIndex/(localSizex+2))*(globalSizex-localSizex);
 
-	//int count = 0;
-	//while(count < 2){
-	//	count = count +1;
-	//}
 	//local float Buffer[(localSizey+2)*(localSizex+2)];
+	
+	while(loadIndex < numcopys){
+		globalLoadIndex = globalStartPos + loadIndex + (loadIndex/(localSizex+2))*(globalSizex-localSizex);
+		Buffer[loadIndex] = in[globalLoadIndex];
+		loadIndex = loadIndex + (localSizex*localSizey);
+	}
 
-	out[pos] = pos; //(globalSize/localSizex); //group + group2 * (globalSize/localSizex); //-4*in[pos]+in[pos-1]+in[pos+1]+in[pos-width]+in[pos+width]; 	
+	barrier(CLK_LOCAL_MEM_FENCE);
+
+	out[pos] = -4*Buffer[localPos] + Buffer[localPos-1] + Buffer[localPos+1] + Buffer[localPos-(localSizex+2)] + Buffer[localPos+(localSizex+2)]; //loadIndex;//(localSizex+2); //(globalSize/localSizex); //group + group2 * (globalSize/localSizex); //-4*in[pos]+in[pos-1]+in[pos+1]+in[pos-width]+in[pos+width]; 	
 }
 
 __kernel void stancel2(__global float* in, __global float* out, 
