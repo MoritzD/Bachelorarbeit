@@ -1,0 +1,177 @@
+Platform 0 : Advanced Micro Devices, Inc.
+
+2000 : 2000 Iterations: 100
+0
+number of platformes found: 1 
+number of Devices found: 3
+
+List of Devices found:
+
+GPUs found:
+
+NAME: Tahiti 
+Max Clock Frequency: 900 
+Parallel compute units: 28 
+Hardware version: OpenCL 1.2 AMD-APP (1124.2) 
+CL Driver version: 1124.2 (VM)
+CL Device Max Work Group Size: 
+Max Work Group Size: 0 
+Max work Group size: 18446744073709551586
+
+NAME: Tahiti 
+Max Clock Frequency: 900 
+Parallel compute units: 28 
+Hardware version: OpenCL 1.2 AMD-APP (1124.2) 
+CL Driver version: 1124.2 (VM)
+CL Device Max Work Group Size: 
+Max Work Group Size: 0 
+Max work Group size: 18446744073709551586
+
+CPUs found:
+
+NAME: Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz 
+Max Clock Frequency: 2601 
+Parallel compute units: 32 
+Hardware version: OpenCL 1.2 AMD-APP (1124.2) 
+CL Driver version: 1124.2 (sse2,avx)
+CL Device Max Work Group Size: 
+Max Work Group Size: 0 
+Max work Group size: 18446744073709551586
+
+Total list (correct order):
+0: Tahiti 
+1: Tahiti 
+2: Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz 
+99: Stupid CPU Implementation
+
+Witch Device should be used?
+0
+you selected device number: 0
+Building Programm Sucsessfull
+kernel Arguments are set; starting kernel now!
+Max kernel work gorup size: 256
+Using blocks of size: 9 ; 9
+ height  and    width     2000 2000
+ global work size:  we ; he   1998 ; 1998
+ lokal work size:  we ; he   9 ; 9
+Time 		 SPS 
+0.030999 	 1.28778e+08
+0.00427808 	 9.33131e+08
+0.00330298 	 1.20861e+09
+0.00263794 	 1.5133e+09
+0.0026311 	 1.51724e+09
+0.00261914 	 1.52417e+09
+0.00262305 	 1.5219e+09
+0.00262793 	 1.51907e+09
+0.0026582 	 1.50177e+09
+0.00312988 	 1.27545e+09
+0.00258105 	 1.54666e+09
+0.00256885 	 1.55401e+09
+0.00258105 	 1.54666e+09
+0.00257397 	 1.55091e+09
+0.00259692 	 1.5372e+09
+0.00173315 	 2.30332e+09
+0.00149414 	 2.67177e+09
+0.00150586 	 2.65098e+09
+0.00149902 	 2.66307e+09
+0.00149097 	 2.67746e+09
+0.00149292 	 2.67396e+09
+0.00149707 	 2.66654e+09
+0.00149683 	 2.66698e+09
+0.0014729 	 2.7103e+09
+0.00151416 	 2.63645e+09
+0.00150195 	 2.65788e+09
+0.00148804 	 2.68273e+09
+0.00150415 	 2.65399e+09
+0.00148291 	 2.69201e+09
+0.00149805 	 2.66481e+09
+0.00148901 	 2.68097e+09
+0.00148389 	 2.69024e+09
+0.00149805 	 2.66481e+09
+0.00150195 	 2.65788e+09
+0.00151294 	 2.63857e+09
+0.00151001 	 2.64369e+09
+0.00150684 	 2.64926e+09
+0.00150903 	 2.64541e+09
+0.00150317 	 2.65572e+09
+0.00148901 	 2.68097e+09
+0.00148511 	 2.68802e+09
+0.00150391 	 2.65442e+09
+0.00150806 	 2.64712e+09
+0.00151294 	 2.63857e+09
+0.00150293 	 2.65615e+09
+0.00148682 	 2.68493e+09
+0.00151392 	 2.63687e+09
+0.00150317 	 2.65572e+09
+0.00150317 	 2.65572e+09
+0.00150586 	 2.65098e+09
+0.00149194 	 2.67571e+09
+0.00148315 	 2.69156e+09
+0.00148193 	 2.69378e+09
+0.00148193 	 2.69378e+09
+0.00150903 	 2.64541e+09
+0.00148999 	 2.67921e+09
+0.00148999 	 2.67921e+09
+0.00148291 	 2.69201e+09
+0.00147998 	 2.69734e+09
+0.00148096 	 2.69556e+09
+0.00147607 	 2.70447e+09
+0.00148291 	 2.69201e+09
+0.00147607 	 2.70447e+09
+0.00148804 	 2.68273e+09
+0.00151294 	 2.63857e+09
+0.00148804 	 2.68273e+09
+0.00149683 	 2.66698e+09
+0.00150708 	 2.64883e+09
+0.00151001 	 2.64369e+09
+0.00149707 	 2.66654e+09
+0.00152686 	 2.61453e+09
+0.00149609 	 2.66828e+09
+0.00152393 	 2.61955e+09
+0.00149292 	 2.67396e+09
+0.00150708 	 2.64883e+09
+0.0015 	 2.66134e+09
+0.00150415 	 2.65399e+09
+0.00148413 	 2.68979e+09
+0.00150879 	 2.64583e+09
+0.00148022 	 2.69689e+09
+0.00149487 	 2.67046e+09
+0.00148486 	 2.68847e+09
+0.00150513 	 2.65227e+09
+0.00150391 	 2.65442e+09
+0.00149707 	 2.66654e+09
+0.00148193 	 2.69378e+09
+0.0015 	 2.66134e+09
+0.00148096 	 2.69556e+09
+0.0014939 	 2.67221e+09
+0.00149805 	 2.66481e+09
+0.00148608 	 2.68626e+09
+0.00150098 	 2.6596e+09
+0.00149902 	 2.66307e+09
+0.00148486 	 2.68847e+09
+0.0015 	 2.66134e+09
+0.00147803 	 2.7009e+09
+0.00149902 	 2.66307e+09
+0.00148389 	 2.69024e+09
+0.00148901 	 2.68097e+09
+0.00149194 	 2.67571e+09
+Total executing time: 0.198904
+so for every run thats: 0.00198904
+done; releasinng kernel now
+Testoutput: this should be constant with different iterations!: 0.00198904
+we had: 3992004 single Stancel calculations
+this makes: 
+2.007e+09 SPS (Stancels Per Second)
+2.007e+06 KSPS (Kilo Stancels Per Second)
+2007 MSPS (Mega Stancels Per Second) 
+2.007 GSPS (Giga Stancels Per Second) 
+
+Finisched!
+
+Total time: 0.286504
+Summery times: 
+Build Program: 0.0615918
+Set Kernel Args: 0.0127649
+Kernel executon: 0.198904
+Get output back to host memory: 0.00885889
+Releasing everything: 0.00438501
