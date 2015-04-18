@@ -1,6 +1,5 @@
 
 #include <CL/cl.h>
-//#include <CL/cl.hpp>
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
