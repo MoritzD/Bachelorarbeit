@@ -6,6 +6,7 @@
 #include "Stancel.hpp"
 
   
+
  
 using namespace std;
 
@@ -115,9 +116,9 @@ int main(int argc, char* argv[])
 	// Create buffer for matrix B
 	cl_mem BufferMatrixB = clCreateBuffer(
 		context,
-		CL_MEM_READ_WRITE,
+		CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR,
 		sizeof(cl_float) * width * height,
-		NULL,
+		input,
 		&status);
 	if (status != SUCCESS){
 		fprintf(stderr, "clCreateBuffer failed. (BufferMatrixB) %i\n", status);
@@ -126,8 +127,8 @@ int main(int argc, char* argv[])
 	}
 	
 	/*Step 8: Create kernel object */
-	cl_kernel kernel = clCreateKernel(program, "stancel", NULL);
-	cl_kernel kernelBackwards = clCreateKernel(program, "stancel", NULL);
+	cl_kernel kernel = clCreateKernel(program, "stancel3", NULL);
+	cl_kernel kernelBackwards = clCreateKernel(program, "stancel3", NULL);
 
 	/*Step 9: Sets Kernel arguments.*/
 	status = clSetKernelArg(kernel, 0, sizeof(cl_mem), (void *)&BufferMatrixA);
@@ -159,15 +160,80 @@ int main(int argc, char* argv[])
 
 	cout << "kernel Arguments are set; starting kernel now!" << endl;
 
+
 	/*Step 10: Running the kernel.*/
-	size_t global_work_size[1] = { width * height };
+	/*	Approach (1 and) 2 
+	*	cl_uint work_dim = 1;
+	*	size_t global_work_size[1] = {(height - 2)*(width - 2)};			//{ width * height };
+	*	size_t local_work_size [1] = {global_work_size[0]/(height-2)};		//{2};				//{width - 2}; 
+	*	
+	*	//global_work_size[2] = width -2;
+	*/																// first approach: every single stancel by itself
+																	// second approach: one line a a time; as one local work goup (making tourble with big matrices, as soon as it gets bigger than what can be managed as one work item)
+																	// third approach: picking 16 by 16 blocks (or what ever the hadware can handle) and calculate these at the same time. thervor using a work_dim of 2 (global and local) another benefit: posebilety to load buffer from global to local mem to gain performance
+	/* Approach 3 (I feel like this is it ;) )*/					// whats better? deviding Matrix in equaly sized blocks (with might not have optimal size) or bilding optimal sized blocks and check in rightmost block for out of bounce?
+
+	//Get maximum work goup size
+	KernelWorkGroupInfo kernelInfo;
+	status = kernelInfo.setKernelWorkGroupInfo(kernel, *aktiveDevice);
+    CHECK_ERROR(status,0, "setKernelWrkGroupInfo failed");
+    cout << "Max kernel work gorup size: " << kernelInfo.kernelWorkGroupSize << endl;
+
+
+	cl_uint work_dim = 2;
+	size_t global_work_size [2] = {(width - 2),(height - 2)};
+	size_t local_work_size [2] = {4,4};
+	
+	for (int i = min(global_work_size[0], (size_t) 16); i > 0; i--)		//(size_t)(sqrt(kernelInfo.kernelWorkGroupSize)) in min
+	{
+			if(global_work_size[0]%i == 0){
+			local_work_size[0] = local_work_size[1] = i;
+			break; 
+		}
+	}
+	cout << "Using blocks of size: " << local_work_size[0] <<" ; "<< local_work_size[1] << endl;
+/*
+	if(kernelInfo.kernelWorkGroupSize >= 1024){ // use bloks of 32*32
+		local_work_size[0] = local_work_size [1] = 32;
+	}
+	else if(kernelInfo.kernelWorkGroupSize >= 256){ //use bloks of 16*16
+		local_work_size[0] = local_work_size [1] = 16;
+	}
+	else if(kernelInfo.kernelWorkGroupSize >= 64){ // use bloks of 8*8
+		local_work_size[0] = local_work_size [1] = 8;
+	}
+	//else{											// default case (16 should be supported anyway)
+	//	size_t local_work_size [2] = {4,4};
+	//}
+*/
+
+
+	cout <<" height  and    width     "<< height << " " << width << endl;
+
+	cout <<" global work size:  we ; he   "<< global_work_size[0] <<" ; "<< global_work_size[1] << endl;
+
+	cout <<" lokal work size:  we ; he   "<< local_work_size[0] <<" ; " << local_work_size[1] << endl;
+
+
 
 	sampleTimer->resetTimer(timer);
 	sampleTimer->startTimer(timer);
+	int timer2 = sampleTimer->createTimer();
+
+	double timer2value = 0;
+
+		if(SINGLETIME){ 
+			cout << "Time \t\t SPS " << endl;
+			} 
 
 	for (int e = 0; e < iterations; e++){
-		status = clEnqueueNDRangeKernel(commandQueue, kernel, 1, NULL, global_work_size, NULL, 0, NULL, &ndrEvt);
-		if (status != SUCCESS) fprintf(stderr, "executing kernel failed. \n");
+		if(SINGLETIME){
+			sampleTimer->resetTimer(timer2);
+			sampleTimer->startTimer(timer2);
+		}
+
+		status = clEnqueueNDRangeKernel(commandQueue, kernel, work_dim, NULL, global_work_size, local_work_size, 0, NULL, &ndrEvt);
+		if (status != SUCCESS) fprintf(stderr, "executing kernel failed. \n %i vgl %i\n ",status , CL_INVALID_WORK_ITEM_SIZE);
 		status = clFlush(commandQueue);
 
 		eventStatus = CL_QUEUED;
@@ -185,8 +251,8 @@ int main(int argc, char* argv[])
 			return FAILURE;
 			}
 		}
-		 
-		status = clEnqueueNDRangeKernel(commandQueue, kernelBackwards, 1, NULL, global_work_size, NULL, 0, NULL, &ndrEvt);
+		
+		status = clEnqueueNDRangeKernel(commandQueue, kernelBackwards, work_dim, NULL, global_work_size, local_work_size, 0, NULL, &ndrEvt);
 		if (status != SUCCESS) fprintf(stderr, "executing kernel simply just for the second try failed. \n");
 		status = clFlush(commandQueue);
 
@@ -205,11 +271,17 @@ int main(int argc, char* argv[])
 			return FAILURE;
 		}
 		}
+
+		if(SINGLETIME){ 
+			sampleTimer->stopTimer(timer2);
+			timer2value = sampleTimer->readTimer(timer2);
+			cout << timer2value  << " \t " << ((width - 2)*(height - 2))/ timer2value << endl;
+		}
 	}
 
 	sampleTimer->stopTimer(timer);
 	times.kernelExecuting = sampleTimer->readTimer(timer);
-	cout << "Total time: " << times.kernelExecuting << endl;
+	cout << "Total executing time: " << times.kernelExecuting << endl;
 	cout << "so for every run thats: " << (sampleTimer->readTimer(timer) / iterations) << endl;
 
 	sampleTimer->resetTimer(timer);
@@ -260,8 +332,15 @@ int main(int argc, char* argv[])
 		checkAgainstCpuImplementation(input, output);
 	}
 
-
 	freeResources();
+
+	double SPS = ((width - 2)*(height - 2))/(times.kernelExecuting/iterations);
+
+	cout << "Testoutput: this should be constant with different iterations!: " << (times.kernelExecuting/iterations) << endl;
+
+	cout << "we had: " << (width - 2)*(height - 2) << " single Stancel calculations" << endl;
+	cout << "this makes: \n" << SPS << " SPS (Stancels Per Second)\n" << SPS/1000 << " KSPS (Kilo Stancels Per Second)\n" << SPS/1000000 << " MSPS (Mega Stancels Per Second) \n" << SPS/1000000000 << " GSPS (Giga Stancels Per Second) \n" << endl;
+
 	cout << "Finisched!" << endl;
 	times.total= times.kernelExecuting + times.buildProgram + times.setKernelArgs + times.writeBack + times.releaseKernel;
 	cout << "\nTotal time: " << times.total << endl;
@@ -270,7 +349,7 @@ int main(int argc, char* argv[])
 	cout << "Set Kernel Args: " << times.setKernelArgs << endl;
 	cout << "Kernel executon: " << times.kernelExecuting << endl;
 	cout << "Get output back to host memory: " << times.writeBack << endl;
-	cout << "Ŕeleasing everything: " << times.releaseKernel << endl;
+	cout << "Releasing everything: " << times.releaseKernel << endl;
 
 	//int b;
 	//cin >> b;
@@ -432,6 +511,22 @@ int PrintDeviceInfo(int type){
 		clGetDeviceInfo(tempDevices[j], CL_DRIVER_VERSION, valueSize, value, NULL);
 		printf("CL Driver version: %s\n", value);
 		free(value);
+
+		clGetDeviceInfo(tempDevices[j], CL_DEVICE_MAX_WORK_GROUP_SIZE, 0, NULL, &valueSize);
+		value = (char*)malloc(valueSize);
+		clGetDeviceInfo(tempDevices[j], CL_DEVICE_MAX_WORK_GROUP_SIZE, valueSize, value, NULL);
+		printf("CL Device Max Work Group Size: %s\n", value);
+		free(value);
+
+		maxComputeUnits = 0;
+		size_t maxWorkGroupSize = 0;
+		maxWorkGroupSize = clGetDeviceInfo(tempDevices[j], CL_DEVICE_MAX_WORK_GROUP_SIZE,
+			sizeof(maxComputeUnits), &maxComputeUnits, NULL);
+		printf("Max Work Group Size: %d \n", maxComputeUnits);
+
+		cout << "Max work Group size: " << maxWorkGroupSize << endl;
+
+		
 	}
 	free(tempDevices);
 	return SUCCESS;
@@ -633,6 +728,8 @@ int checkAgainstCpuImplementation(float *origInput, float *clOutput){
 
 		cout << "\nChecking result against referance cpu implementation :" << endl;
 
+		double referanceTime = 0;
+
 	float *inout = (float*)malloc(sizeof(float) * width * height);
 	memcpy(inout, origInput, sizeof(float) * width * height);
 
@@ -645,11 +742,17 @@ int checkAgainstCpuImplementation(float *origInput, float *clOutput){
 	sampleTimer->startTimer(timer);
 */
 	cout << "calculateing..." << endl;
+	sampleTimer->resetTimer(timer);
+	sampleTimer->startTimer(timer);
 
 	for (int e = 0; e < iterations; e++){
+
 		StupidCPUimplementation(inout, workmem, width, height);
 		StupidCPUimplementation(workmem, inout, width, height);
 	}
+
+	sampleTimer->stopTimer(timer);
+	referanceTime = sampleTimer->readTimer(timer);
 
 	if(VERBOSE){
 		cout << "referance output:" << endl;
@@ -665,8 +768,11 @@ int checkAgainstCpuImplementation(float *origInput, float *clOutput){
 		cout << "\nPassed the test; results are equil.\n" << endl;
 	}
 	else{
-		cout << "\njFailed the test; results differ.\n" << endl;
+		cout << "\nFailed the test; results differ.\n" << endl;
 	}
+
+	cout << "referance took " << referanceTime << " seconds" << endl;
+	cout << "so thats " << ((width - 2)*(height - 2))/referanceTime << " SPS" << endl; 
 /* 
 	sampleTimer->stopTimer(timer);
 	cout << "Total time: " << sampleTimer->readTimer(timer) << endl;
