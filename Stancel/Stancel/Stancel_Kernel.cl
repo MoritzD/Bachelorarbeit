@@ -11,7 +11,7 @@ __kernel void stancel(__global float* in, __global float* out,
 	out[num] = in [num];
 	}
 	else{
-		out[num] = -4*in[num]+in[num-1]+in[num+1]+in[num-width]+in[num+width]; 
+		out[num] = (in[num-1]+in[num+1]+in[num-width]+in[num+width])/4;								//-4*in[num]+in[num-1]+in[num+1]+in[num-width]+in[num+width]; 
 	}
 //	for(int ding = 0; ding< 1000 ;ding++){   //10000 
 //		out[num] = out[num] * (out[num] + width);
@@ -52,7 +52,7 @@ __kernel void stancel3(__global float* in, __global float* out,
 
 	barrier(CLK_LOCAL_MEM_FENCE);
 
-	out[pos] = -4*Buffer[localPos] + Buffer[localPos-1] + Buffer[localPos+1] + Buffer[localPos-(localSizex+2)] + Buffer[localPos+(localSizex+2)]; //loadIndex;//(localSizex+2); //(globalSize/localSizex); //group + group2 * (globalSize/localSizex); //-4*in[pos]+in[pos-1]+in[pos+1]+in[pos-width]+in[pos+width]; 	
+	out[pos] = (Buffer[localPos-1] + Buffer[localPos+1] + Buffer[localPos-(localSizex+2)] + Buffer[localPos+(localSizex+2)])/4;           //-4*Buffer[localPos] + Buffer[localPos-1] + Buffer[localPos+1] + Buffer[localPos-(localSizex+2)] + Buffer[localPos+(localSizex+2)]; //loadIndex;//(localSizex+2); //(globalSize/localSizex); //group + group2 * (globalSize/localSizex); //-4*in[pos]+in[pos-1]+in[pos+1]+in[pos-width]+in[pos+width]; 	
 }
 
 __kernel void stancel2(__global float* in, __global float* out, 
@@ -64,5 +64,5 @@ __kernel void stancel2(__global float* in, __global float* out,
 	int group = get_group_id(0);
 	int pos = (localID + 1 ) + ((group + 1) * width) ;//(num2 + 1) + ((num + 1) * width); 
 	
-	out[pos] = -4*in[pos]+in[pos-1]+in[pos+1]+in[pos-width]+in[pos+width];
+	out[pos] = (in[pos-1]+in[pos+1]+in[pos-width]+in[pos+width])/4;	//-4*in[pos]+in[pos-1]+in[pos+1]+in[pos-width]+in[pos+width];
 }

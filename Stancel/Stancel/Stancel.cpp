@@ -91,9 +91,16 @@ int main(int argc, char* argv[])
 	sampleTimer->stopTimer(timer);
 	times.buildProgram = sampleTimer->readTimer(timer);
 
+	srand (static_cast <unsigned> (time(0)));
 
 	input = (cl_float*)malloc(sizeof(cl_float) * width * height);
 	fill(input, input + (width*height), 1.0);
+	for (int i = width; i < (width*height)-width; i++){
+		if(i%width == 0 || i%width == (width-1)){
+			continue;
+		}
+		input[i] = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/10));
+	}
 	
 	output = (cl_float*)malloc(sizeof(cl_float) * width * height);
 	memset(output, 0, sizeof(cl_float) * width * height);
@@ -306,14 +313,14 @@ int main(int argc, char* argv[])
 		cout << "Input:" << endl;
 		for (int y = 0; y < height; y++){
 			for (int x = 0; x < width; x++){
-				cout << *(input + x + y*width);
+				cout << *(input + x + y*width)<<" ";
 			}
 			cout << endl;
 		}
 		cout << endl << "Output:" << endl;
 		for (int y = 0; y < height; y++){
 			for (int x = 0; x < width; x++){
-				cout << *(output + x + y*width);
+				cout << *(output + x + y*width)<<" ";
 			}
 			cout << endl;
 		}
@@ -390,7 +397,7 @@ void StupidCPUimplementation(float *in, float *out, int width, int height){
 			out[num] = in[num];
 		}
 		else{
-			out[num] = -4 * in[num] + in[num - 1] + in[num + 1] + in[num - width] + in[num + width];
+			out[num] = (in[num - 1] + in[num + 1] + in[num - width] + in[num + width])/4; //-4 * in[num] + in[num - 1] + in[num + 1] + in[num - width] + in[num + width];
 		}
 	}
 }
@@ -568,14 +575,14 @@ int runCpuImplementation(){
 		cout << "Input:" << endl;
 		for (int y = 0; y < height; y++){
 			for (int x = 0; x < width; x++){
-				cout << *(inputcpu + x + y*width);
+				cout << *(inputcpu + x + y*width)<<" ";
 			}
 			cout << endl;
 		}
 		cout << endl << "Output:" << endl;
 		for (int y = 0; y < height; y++){
 			for (int x = 0; x < width; x++){
-				cout << *(outputcpu + x + y*width);
+				cout << *(outputcpu + x + y*width)<<" ";
 			}
 			cout << endl;
 		}
@@ -766,7 +773,7 @@ int checkAgainstCpuImplementation(float *origInput, float *clOutput){
 		cout << "referance output:" << endl;
 		for (int y = 0; y < height; y++){
 			for (int x = 0; x < width; x++){
-				cout << *(inout + x + y*width);
+				cout << *(inout + x + y*width)<<" ";
 			}
 			cout << endl;
 		}
