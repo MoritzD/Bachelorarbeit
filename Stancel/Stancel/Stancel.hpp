@@ -7,7 +7,6 @@
 #include <string>
 #include <fstream>
 #include <ctime>
-//#include <cstdlib>
 #include "CLUtil.hpp"
 
 
@@ -20,7 +19,7 @@ using namespace appsdk;
 #define END 99
 
 
-#define VERBOSE true
+#define VERBOSE false
 #define SINGLETIME true 
 
 #define WIDTH  500

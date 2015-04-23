@@ -378,7 +378,7 @@ int main(int argc, char* argv[])
 	times.releaseKernel = sampleTimer->readTimer(timer);
 	
 
-	if(ComandArgs->verify){
+	if(!ComandArgs->verify){
 		checkAgainstCpuImplementation(input, output);
 	}
 
