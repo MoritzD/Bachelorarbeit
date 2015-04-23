@@ -43,6 +43,7 @@ cl_uint maxComputeUnits;
 cl_uint DeviceToUse = 0;
 cl_uint width = WIDTH, height = HEIGHT;
 cl_uint iterations = ITERATIONS;
+cl_uint kernelVersion = 3;
 
 cl_float *input = NULL;
 cl_float *output = NULL;

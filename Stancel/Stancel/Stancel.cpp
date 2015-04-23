@@ -133,9 +133,25 @@ int main(int argc, char* argv[])
 		return FAILURE;
 	}
 	
+	cl_kernel 
+	kernel = NULL, 
+	kernelBackwards = NULL;
+	
 	/*Step 8: Create kernel object */
-	cl_kernel kernel = clCreateKernel(program, "stancel3", NULL);
-	cl_kernel kernelBackwards = clCreateKernel(program, "stancel3", NULL);
+	switch (kernelVersion){
+		case 1:
+			kernel = clCreateKernel(program, "stancel1", NULL);
+			kernelBackwards = clCreateKernel(program, "stancel1", NULL);
+		break;
+		case 2:
+			kernel = clCreateKernel(program, "stancel2", NULL);
+			kernelBackwards = clCreateKernel(program, "stancel2", NULL);
+		break;
+		case 3:
+			kernel = clCreateKernel(program, "stancel3", NULL);
+			kernelBackwards = clCreateKernel(program, "stancel3", NULL);
+		break;
+	}
 
 	/*Step 9: Sets Kernel arguments.*/
 	status = clSetKernelArg(kernel, 0, sizeof(cl_mem), (void *)&BufferMatrixA);
@@ -186,48 +202,67 @@ int main(int argc, char* argv[])
 	status = kernelInfo.setKernelWorkGroupInfo(kernel, *aktiveDevice);
     CHECK_ERROR(status,0, "setKernelWrkGroupInfo failed");
     cout << "Max kernel work gorup size: " << kernelInfo.kernelWorkGroupSize << endl;
-
-
-	cl_uint work_dim = 2;
-	size_t global_work_size [2] = {(width - 2),(height - 2)};
-	size_t local_work_size [2] = {4,4};
 	
-	for (int i = min(global_work_size[0], (size_t) 16); i > 0; i--)		//(size_t)(sqrt(kernelInfo.kernelWorkGroupSize)) in min
-	{
-			if(global_work_size[0]%i == 0){
-			local_work_size[0] = local_work_size[1] = i;
-			break; 
-		}
+	cl_uint work_dim;
+	size_t *global_work_size = (size_t*) malloc(2*sizeof(size_t));
+	size_t *local_work_size = (size_t*) malloc(2*sizeof(size_t));
+
+	switch (kernelVersion){
+		case 1:
+			work_dim = 1;
+			global_work_size[0] = width * height;
+			local_work_size = NULL;
+		break;
+
+		case 2:
+			work_dim = 1;
+			global_work_size[0] = (height - 2)*(width - 2);
+			local_work_size[0] = global_work_size[0]/(height-2);
+		break;
+
+		case 3:
+			work_dim = 2;
+			global_work_size[0] = (width - 2);
+			global_work_size[1] = (height - 2);
+			local_work_size[0] = local_work_size[1] = 4;
+			
+			for (int i = min(global_work_size[0], (size_t) 16); i > 0; i--)		//(size_t)(sqrt(kernelInfo.kernelWorkGroupSize)) in min
+			{
+					if(global_work_size[0]%i == 0){
+					local_work_size[0] = local_work_size[1] = i;
+					break; 
+				}
+			}
+			cout << "Using blocks of size: " << local_work_size[0] <<" ; "<< local_work_size[1] << endl;
+
+			/* Create local mem objects to cash blocks in */
+			status = clSetKernelArg(kernel, 4, (local_work_size[0] + 2) * (local_work_size[1] + 2) * sizeof(cl_float), NULL);
+		    CHECK_OPENCL_ERROR(status, "clSetKernelArg failed. (local memory)");
+
+		    status = clSetKernelArg(kernelBackwards, 4, (local_work_size[0] + 2) * (local_work_size[1] + 2) * sizeof(cl_float), NULL);
+		    CHECK_OPENCL_ERROR(status, "clSetKernelArg failed. (local memory)");
+		/*
+			if(kernelInfo.kernelWorkGroupSize >= 1024){ // use bloks of 32*32
+				local_work_size[0] = local_work_size [1] = 32;
+			}
+			else if(kernelInfo.kernelWorkGroupSize >= 256){ //use bloks of 16*16
+				local_work_size[0] = local_work_size [1] = 16;
+			}
+			else if(kernelInfo.kernelWorkGroupSize >= 64){ // use bloks of 8*8
+				local_work_size[0] = local_work_size [1] = 8;
+			}
+			//else{											// default case (16 should be supported anyway)
+			//	size_t local_work_size [2] = {4,4};
+			//}
+		*/
+
+
+			cout <<" height  and    width     "<< height << " " << width << endl;
+
+			cout <<" global work size:  we ; he   "<< global_work_size[0] <<" ; "<< global_work_size[1] << endl;
+
+			cout <<" lokal work size:  we ; he   "<< local_work_size[0] <<" ; " << local_work_size[1] << endl;
 	}
-	cout << "Using blocks of size: " << local_work_size[0] <<" ; "<< local_work_size[1] << endl;
-
-	/* Create local mem objects to cash blocks in */
-	status = clSetKernelArg(kernel, 4, (local_work_size[0] + 2) * (local_work_size[1] + 2) * sizeof(cl_float), NULL);
-    CHECK_OPENCL_ERROR(status, "clSetKernelArg failed. (local memory)");
-
-    status = clSetKernelArg(kernelBackwards, 4, (local_work_size[0] + 2) * (local_work_size[1] + 2) * sizeof(cl_float), NULL);
-    CHECK_OPENCL_ERROR(status, "clSetKernelArg failed. (local memory)");
-/*
-	if(kernelInfo.kernelWorkGroupSize >= 1024){ // use bloks of 32*32
-		local_work_size[0] = local_work_size [1] = 32;
-	}
-	else if(kernelInfo.kernelWorkGroupSize >= 256){ //use bloks of 16*16
-		local_work_size[0] = local_work_size [1] = 16;
-	}
-	else if(kernelInfo.kernelWorkGroupSize >= 64){ // use bloks of 8*8
-		local_work_size[0] = local_work_size [1] = 8;
-	}
-	//else{											// default case (16 should be supported anyway)
-	//	size_t local_work_size [2] = {4,4};
-	//}
-*/
-
-
-	cout <<" height  and    width     "<< height << " " << width << endl;
-
-	cout <<" global work size:  we ; he   "<< global_work_size[0] <<" ; "<< global_work_size[1] << endl;
-
-	cout <<" lokal work size:  we ; he   "<< local_work_size[0] <<" ; " << local_work_size[1] << endl;
 
 
 
@@ -707,10 +742,21 @@ int readArgs(int argc, char* argv[]){
 	ComandArgs->AddOption(iParam);
 	delete iParam;
 
+	Option* kvParam = new Option;
+	CHECK_ALLOCATION(kvParam, "Memory Allocation error.\n");
+	kvParam->_sVersion = "kv";
+	kvParam->_lVersion = "kernelversion";
+	kvParam->_description = "witch version of the kernel shold be used";
+	kvParam->_type = CA_ARG_INT;
+	kvParam->_value = &kernelVersion;
+	ComandArgs->AddOption(kvParam);
+	delete kvParam;
+
 	ComandArgs->parseCommandLine(argc, argv);
 
 	cout << "\n" << width << " : " << height << " Iterations: " << iterations << endl;
-	cout << ComandArgs->verify << endl;
+	//cout << ComandArgs->verify << endl;
+	cout << "using kernel version: " << kernelVersion << "\n" << endl;
 }
 
 void getKernelArgSetError(int status){
