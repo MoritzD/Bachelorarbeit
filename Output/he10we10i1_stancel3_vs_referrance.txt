@@ -1,0 +1,188 @@
+Platform 0 : Advanced Micro Devices, Inc.
+
+10 : 10 Iterations: 1
+1
+number of platformes found: 1 
+number of Devices found: 3
+
+List of Devices found:
+
+GPUs found:
+
+NAME: Tahiti 
+Max Clock Frequency: 900 
+Parallel compute units: 28 
+Hardware version: OpenCL 1.2 AMD-APP (1124.2) 
+CL Driver version: 1124.2 (VM)
+CL Device Max Work Group Size: 
+Max Work Group Size: 0 
+Max work Group size: 18446744073709551586
+
+NAME: Tahiti 
+Max Clock Frequency: 900 
+Parallel compute units: 28 
+Hardware version: OpenCL 1.2 AMD-APP (1124.2) 
+CL Driver version: 1124.2 (VM)
+CL Device Max Work Group Size: 
+Max Work Group Size: 0 
+Max work Group size: 18446744073709551586
+
+CPUs found:
+
+NAME: Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz 
+Max Clock Frequency: 2601 
+Parallel compute units: 32 
+Hardware version: OpenCL 1.2 AMD-APP (1124.2) 
+CL Driver version: 1124.2 (sse2,avx)
+CL Device Max Work Group Size: 
+Max Work Group Size: 0 
+Max work Group size: 18446744073709551586
+
+Total list (correct order):
+0: Tahiti 
+1: Tahiti 
+2: Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz 
+99: Stupid CPU Implementation
+
+Witch Device should be used?
+0
+you selected device number: 0
+/*
+* Primary kernel to execute calculations.
+*/
+__kernel void stancel(__global float* in, __global float* out, 
+					int width, int height)
+{
+	int num = get_global_id(0);
+	//for (int doit = 0; doit < 10000000; doit++){
+
+	if(num < width ||(num % width) == 0  || (num % width) == width-1 || num >= (width*height-width)){
+	out[num] = in [num];
+	}
+	else{
+		out[num] = -4*in[num]+in[num-1]+in[num+1]+in[num-width]+in[num+width]; 
+	}
+//	for(int ding = 0; ding< 1000 ;ding++){   //10000 
+//		out[num] = out[num] * (out[num] + width);
+//	}
+}
+
+__kernel void stancel3(__global float* in, __global float* out, 
+					int width, int height, __local float* Buffer)
+{
+	int globalx = get_global_id(0);
+	int globaly = get_global_id(1);
+	int localx = get_local_id(0);
+	int localy = get_local_id(1);
+	int localSizex = get_local_size(0);
+	int localSizey = get_local_size(1);
+	int globalSizex = get_global_size(0);
+	int globalSizey = get_global_size(1);
+
+	int dim = get_work_dim();
+	int groupx = get_group_id(0);
+	int groupy = get_group_id(1);
+	int numberOfGroupsx = (globalSizex/localSizex);
+	int pos = (globalx+1)+(globaly+1)*width;//(localID + 1 ) + ((group + 1) * width) ;//(num2 + 1) + ((num + 1) * width); 
+	int localPos = (localx+1) + (localy+1)*(localSizex+2);
+	int loadIndex = localx + (localy * localSizex);
+	int globalStartPos = groupx * localSizex + (groupy*localSizey)* (globalSizex+2); 
+	//int globalEndPos = globalStartPos + localSizex+1 + (localSizey+1) * (globalSizex+2);
+	int numcopys = (localSizex+2) * (localSizey+2);
+	int globalLoadIndex = 0; // globalStartPos + loadIndex + (loadIndex/(localSizex+2))*(globalSizex-localSizex);
+
+	//local float Buffer[(localSizey+2)*(localSizex+2)];
+	
+	while(loadIndex < numcopys){
+		globalLoadIndex = globalStartPos + loadIndex + (loadIndex/(localSizex+2))*(globalSizex-localSizex);
+		Buffer[loadIndex] = in[globalLoadIndex];
+		loadIndex = loadIndex + (localSizex*localSizey);
+	}
+
+	barrier(CLK_LOCAL_MEM_FENCE);
+
+	out[pos] = -4*Buffer[localPos] + Buffer[localPos-1] + Buffer[localPos+1] + Buffer[localPos-(localSizex+2)] + Buffer[localPos+(localSizex+2)]; //loadIndex;//(localSizex+2); //(globalSize/localSizex); //group + group2 * (globalSize/localSizex); //-4*in[pos]+in[pos-1]+in[pos+1]+in[pos-width]+in[pos+width]; 	
+}
+
+__kernel void stancel2(__global float* in, __global float* out, 
+					int width, int height)
+{
+	int globalID = get_global_id(0);
+	int localID = get_local_id(0);
+	int dim = get_work_dim();
+	int group = get_group_id(0);
+	int pos = (localID + 1 ) + ((group + 1) * width) ;//(num2 + 1) + ((num + 1) * width); 
+	
+	out[pos] = -4*in[pos]+in[pos-1]+in[pos+1]+in[pos-width]+in[pos+width];
+}
+Building Programm Sucsessfull
+kernel Arguments are set; starting kernel now!
+Max kernel work gorup size: 256
+Using blocks of size: 8 ; 8
+ height  and    width     10 10
+ global work size:  we ; he   8 ; 8
+ lokal work size:  we ; he   8 ; 8
+Time 		 SPS 
+0.00117383 	 54522.5
+Total executing time: 0.00120215
+so for every run thats: 0.00120215
+Input:
+1111111111
+1111111111
+1111111111
+1111111111
+1111111111
+1111111111
+1111111111
+1111111111
+1111111111
+1111111111
+
+Output:
+1111111111
+1211111121
+1100000011
+1100000011
+1100000011
+1100000011
+1100000011
+1100000011
+1211111121
+1111111111
+done; releasinng kernel now
+
+Checking result against referance cpu implementation :
+calculateing...
+referance output:
+1111111111
+1211111121
+1100000011
+1100000011
+1100000011
+1100000011
+1100000011
+1100000011
+1211111121
+1111111111
+
+Passed the test; results are equil.
+
+referance took 9.76563e-07 seconds
+so thats 6.5536e+07 SPS
+Testoutput: this should be constant with different iterations!: 0.00120215
+we had: 64 single Stancel calculations
+this makes: 
+53238 SPS (Stancels Per Second)
+53.238 KSPS (Kilo Stancels Per Second)
+0.053238 MSPS (Mega Stancels Per Second) 
+5.3238e-05 GSPS (Giga Stancels Per Second) 
+
+Finisched!
+
+Total time: 0.0766624
+Summery times: 
+Build Program: 0.0714351
+Set Kernel Args: 1.68457e-05
+Kernel executon: 0.00120215
+Get output back to host memory: 0.000119141
+Releasing everything: 0.00388916
