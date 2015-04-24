@@ -66,3 +66,18 @@ __kernel void stancel2(__global float* in, __global float* out,
 	
 	out[pos] = (in[pos-1]+in[pos+1]+in[pos-width]+in[pos+width])/4;	//-4*in[pos]+in[pos-1]+in[pos+1]+in[pos-width]+in[pos+width];
 }
+
+__kernel void stancel4(__global float* in, __global float* out, 
+					int width, int height)
+{
+	int globalID = get_global_id(0);
+	int localID = get_local_id(0);
+	int group = get_group_id(0);
+	int pos = 0; //globalID + 1 + width;
+
+	for(int line = 1; line < (height-1); line++){
+		pos = globalID + 1 + (width*line);
+		out[pos] = (in[pos-1]+in[pos+1]+in[pos-width]+in[pos+width])/4;	//-4*in[pos]+in[pos-1]+in[pos+1]+in[pos-width]+in[pos+width];
+		
+	}
+}

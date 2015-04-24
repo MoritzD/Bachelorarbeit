@@ -155,6 +155,10 @@ int main(int argc, char* argv[])
 			kernel = clCreateKernel(program, "stancel3", NULL);
 			kernelBackwards = clCreateKernel(program, "stancel3", NULL);
 		break;
+		case 4:
+			kernel = clCreateKernel(program, "stancel4", NULL);
+			kernelBackwards = clCreateKernel(program, "stancel4", NULL); 
+		break;
 	}
 
 	/*Step 9: Sets Kernel arguments.*/
@@ -266,6 +270,20 @@ int main(int argc, char* argv[])
 			cout <<" global work size:  we ; he   "<< global_work_size[0] <<" ; "<< global_work_size[1] << endl;
 
 			cout <<" lokal work size:  we ; he   "<< local_work_size[0] <<" ; " << local_work_size[1] << endl;
+		break;
+		case 4:
+			work_dim = 1;
+			global_work_size[0] = (width - 2);
+			//global_work_size[1] = (height - 2);
+			local_work_size[0] = min((cl_uint)64,(width-2));
+			//local_work_size[1] = 4;
+
+			cout <<" height  and    width     "<< height << " " << width << endl;
+
+			cout <<" global work size: "<< global_work_size[0]  << endl;
+
+			cout <<" lokal work size: "<< local_work_size[0]  << endl;
+		break;
 	}
 
 
@@ -287,7 +305,7 @@ int main(int argc, char* argv[])
 		}
 
 		status = clEnqueueNDRangeKernel(commandQueue, kernel, work_dim, NULL, global_work_size, local_work_size, 0, NULL, &ndrEvt);
-		if (status != SUCCESS) fprintf(stderr, "executing kernel failed. \n %i vgl %i\n ",status , CL_INVALID_WORK_ITEM_SIZE);
+		if (status != SUCCESS) fprintf(stderr, "executing kernel failed. \n %i vgl %i\n ",status , CL_INVALID_WORK_GROUP_SIZE);
 		status = clFlush(commandQueue);
 
 		eventStatus = CL_QUEUED;
