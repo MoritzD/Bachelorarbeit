@@ -85,3 +85,40 @@ __kernel void stancel4(__global float* in, __global float* out,
 		
 	}
 }
+
+
+
+
+
+
+__kernel void stancel4_1(__global float* in, __global float* out, 
+					int width, int height, __local float* Buffer)
+{
+	int globalIDx = get_global_id(0);
+	int localIDx = get_local_id(0);
+	//int localIDy = get_local_id(1);
+	int localWidth = get_local_size(0)+2;
+	int group = get_group_id(0);
+	int pos = globalIDx + 1 + width;
+	int localPos = localIDx + 1 + localWidth;
+
+	Buffer[localPos - localWidth] = in[pos - width];
+	Buffer[localPos] = in[pos];
+	Buffer[localPos + localWidth] = in[pos + width];
+	if(localIDx == 0 ){
+		Buffer[localPos - 1] = in[pos - 1];
+	}
+	else if(localIDx == (localWidth-3)){
+		Buffer[localPos + 1] = in[pos + 1];
+	}
+
+	barrier(CLK_LOCAL_MEM_FENCE);
+
+	//int line = from;
+	//for(int line = 1; line < height-1; line++){
+		//pos = globalIDx + 1 + (width*line);
+		//localPos = localIDx + 1 + (localWidth * line);
+		out[pos] = (Buffer[localPos-1]+Buffer[localPos+1]+Buffer[localPos-localWidth]+Buffer[localPos+localWidth])/4;	//-4*in[pos]+in[pos-1]+in[pos+1]+in[pos-width]+in[pos+width];
+		
+	//}
+}
