@@ -44,6 +44,14 @@ __kernel void stancel3(__global float* in, __global float* out,
 
 	//local float Buffer[(localSizey+2)*(localSizex+2)];
 	
+/*	
+	using: 
+	async_work_group_copy (	Buffer , in ,width*height, event);
+	instead is a VERY BAAAAAD IDEA!!!!!!
+	Time             SPS 
+	71.7796          226485 per iterration!! 
+*/	
+
 	while(loadIndex < numcopys){
 		globalLoadIndex = globalStartPos + loadIndex + (loadIndex/(localSizex+2))*(globalSizex-localSizex);
 		Buffer[loadIndex] = in[globalLoadIndex];
@@ -75,11 +83,11 @@ __kernel void stancel4(__global float* in, __global float* out,
 	int localIDy = get_local_id(1);
 	int group = get_group_id(0);
 	int pos = 0; //globalID + 1 + width;
-	int from = (((height-2)*localIDy)/4)+1;
-	int to = (((height-2)*(localIDy+1))/4);
+	//int from = (((height-2)*localIDy)/4)+1;
+	//int to = (((height-2)*(localIDy+1))/4);
 
 	//int line = from;
-	for(int line = from; line <= to; line++){
+	for(int line = 1; line < height-1; line++){
 		pos = globalIDx + 1 + (width*line);
 		out[pos] = (in[pos-1]+in[pos+1]+in[pos-width]+in[pos+width])/4;	//-4*in[pos]+in[pos-1]+in[pos+1]+in[pos-width]+in[pos+width];
 		
@@ -92,33 +100,64 @@ __kernel void stancel4(__global float* in, __global float* out,
 
 
 __kernel void stancel4_1(__global float* in, __global float* out, 
-					int width, int height, __local float* Buffer)
+					int width, int height,
+					 __local float* one, __local float* two, 
+					 __local float* three, __local float* prefetchSpace)//, __local float* Buffer)
 {
-	int globalIDx = get_global_id(0);
-	int localIDx = get_local_id(0);
-	//int localIDy = get_local_id(1);
 	int localWidth = get_local_size(0)+2;
+
+	/*__local float one[localWidth];
+	__local float two[localWidth];
+	__local float three[localWidth];
+	__local float prefetchSpace[localWidth];
+*/
+
+
+	int globalIDx = get_global_id(0);
+	int localIDx = get_local_id(0)+1;
+	//int localIDy = get_local_id(1);
 	int group = get_group_id(0);
 	int pos = globalIDx + 1 + width;
-	int localPos = localIDx + 1 + localWidth;
+	int localPos = localIDx + localWidth;
+	event_t event;
+	int helper;
 
-	Buffer[localPos - localWidth] = in[pos - width];
-	Buffer[localPos] = in[pos];
-	Buffer[localPos + localWidth] = in[pos + width];
+	/*one[localIDx] = in[pos - width];
+	two[localIDx] = in[pos];
+	three[localIDx] = in[pos + width];
 	if(localIDx == 0 ){
-		Buffer[localPos - 1] = in[pos - 1];
+		two[localPos - 1] = in[pos - 1];
 	}
 	else if(localIDx == (localWidth-3)){
-		Buffer[localPos + 1] = in[pos + 1];
+		two[localPos + 1] = in[pos + 1];
+	}
+	else if(localIDx == 1){
+		three[localPos - 2 + localWidth] = in[pos - 2 + width];
+	}
+	else if(localIDx == (localWidth-4)){
+		three[localPos + 2 + localWidth] = in[pos + 2 + width];
 	}
 
 	barrier(CLK_LOCAL_MEM_FENCE);
+ */
+
+	async_work_group_copy( one , in + group*(localWidth-2),localWidth, event);
+	async_work_group_copy( two , in + width + group*(localWidth-2),localWidth, event);
+	async_work_group_copy( three , in + width*2 + group*(localWidth-2),localWidth, event);
 
 	//int line = from;
-	//for(int line = 1; line < height-1; line++){
-		//pos = globalIDx + 1 + (width*line);
-		//localPos = localIDx + 1 + (localWidth * line);
-		out[pos] = (Buffer[localPos-1]+Buffer[localPos+1]+Buffer[localPos-localWidth]+Buffer[localPos+localWidth])/4;	//-4*in[pos]+in[pos-1]+in[pos+1]+in[pos-width]+in[pos+width];
+	for(int line = 1; line < height-1; line++){
+		async_work_group_copy( prefetchSpace , in + (width*(line+2)) + group*(localWidth-2) ,localWidth, event);
+	
+		pos = globalIDx + 1 + (width*line);
+		//localPos = localIDx + (localWidth * line);
+
+		out[pos] = (two[localIDx-1]+two[localIDx+1]+one[localIDx]+three[localIDx])/4;	//-4*in[pos]+in[pos-1]+in[pos+1]+in[pos-width]+in[pos+width];
 		
-	//}
+		helper = one;
+		one = two;
+		two = three;
+		three = prefetchSpace;
+		prefetchSpace = helper;
+	}
 }

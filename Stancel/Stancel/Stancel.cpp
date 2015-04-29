@@ -279,12 +279,34 @@ int main(int argc, char* argv[])
 			local_work_size[0] = min((cl_uint)64,(width-2));
 			//local_work_size[1] = 4;
 
-			status = clSetKernelArg(kernel, 4, (local_work_size[0] + 2) * height * sizeof(cl_float), NULL);
-		    CHECK_OPENCL_ERROR(status, "clSetKernelArg failed. (local memory)");
+			status = clSetKernelArg(kernel, 4, (local_work_size[0] + 2) * sizeof(cl_float), NULL);
+		    CHECK_OPENCL_ERROR(status, "clSetKernelArg failed. (local memory1)");
 
-		    status = clSetKernelArg(kernelBackwards, 4, (local_work_size[0] + 2) * height * sizeof(cl_float), NULL);
-		    CHECK_OPENCL_ERROR(status, "clSetKernelArg failed. (local memory)");
+			status = clSetKernelArg(kernel, 5, (local_work_size[0] + 2) * sizeof(cl_float), NULL);
+		    CHECK_OPENCL_ERROR(status, "clSetKernelArg failed. (local memory2)");
 
+		    status = clSetKernelArg(kernel, 6, (local_work_size[0] + 2) * sizeof(cl_float), NULL);
+		    CHECK_OPENCL_ERROR(status, "clSetKernelArg failed. (local memory3)");
+
+		    status = clSetKernelArg(kernel, 7, (local_work_size[0] + 2) * sizeof(cl_float), NULL);
+		    CHECK_OPENCL_ERROR(status, "clSetKernelArg failed. (local memory3)");
+
+
+
+		    status = clSetKernelArg(kernelBackwards, 4, (local_work_size[0] + 2) * sizeof(cl_float), NULL);
+		    CHECK_OPENCL_ERROR(status, "clSetKernelArg failed. (local memory4)");
+
+		    status = clSetKernelArg(kernelBackwards, 5, (local_work_size[0] + 2) * sizeof(cl_float), NULL);
+		    CHECK_OPENCL_ERROR(status, "clSetKernelArg failed. (local memory5)");
+
+		    status = clSetKernelArg(kernelBackwards, 6, (local_work_size[0] + 2) * sizeof(cl_float), NULL);
+		    CHECK_OPENCL_ERROR(status, "clSetKernelArg failed. (local memory6)");
+
+		    status = clSetKernelArg(kernelBackwards, 7, (local_work_size[0] + 2) * sizeof(cl_float), NULL);
+		    CHECK_OPENCL_ERROR(status, "clSetKernelArg failed. (local memory6)");
+
+
+ 
 			cout <<" height  and    width     "<< height << " " << width << endl;
 
 			cout <<" global work size:  we ; he   "<< global_work_size[0] <<" ; "<< global_work_size[1] << endl;
@@ -312,7 +334,12 @@ int main(int argc, char* argv[])
 		}
 
 		status = clEnqueueNDRangeKernel(commandQueue, kernel, work_dim, NULL, global_work_size, local_work_size, 0, NULL, &ndrEvt);
-		if (status != SUCCESS) fprintf(stderr, "executing kernel failed. \n %i vgl %i\n ",status , CL_INVALID_WORK_ITEM_SIZE   ); //CL_INVALID_EVENT_WAIT_LIST CL_MEM_OBJECT_ALLOCATION_FAILURE CL_MEM_OBJECT_ALLOCATION_FAILURE  CL_INVALID_WORK_DIMENSION
+		if (status != SUCCESS){
+			fprintf(stderr, "executing kernel failed. \n %i vgl %i\n ",status , CL_INVALID_WORK_ITEM_SIZE   ); //CL_INVALID_EVENT_WAIT_LIST CL_MEM_OBJECT_ALLOCATION_FAILURE CL_MEM_OBJECT_ALLOCATION_FAILURE  CL_INVALID_WORK_DIMENSION
+			getExecutionError(status);
+			freeResources();
+			return FAILURE;
+		}
 		status = clFlush(commandQueue);
 
 		eventStatus = CL_QUEUED;
@@ -897,4 +924,52 @@ int checkAgainstCpuImplementation(float *origInput, float *clOutput){
 		devices = NULL;
 	}
 	return SDK_SUCCESS;
+}
+
+void getExecutionError(int status){
+	switch (status){
+	case CL_INVALID_WORK_ITEM_SIZE:
+		cout << " Invailid work item size" << endl;
+	break;
+	case CL_INVALID_EVENT_WAIT_LIST:
+		cout << " Invailid event wait list" << endl;
+	break;
+	case CL_MEM_OBJECT_ALLOCATION_FAILURE:
+		cout << " mem object allocation failure" << endl;
+	break;
+	  
+	case CL_INVALID_WORK_DIMENSION:
+		cout << " Invaild work dimension" << endl;
+	break;
+	case CL_INVALID_PROGRAM_EXECUTABLE:
+		cout << " Invalid program executable" << endl;
+	break;
+	case CL_INVALID_COMMAND_QUEUE:
+		cout << " CL_INVALID_COMMAND_QUEUE" << endl;
+	break;
+	case CL_INVALID_KERNEL:
+		cout << " CL_INVALID_KERNEL" << endl;
+	break;
+	case CL_INVALID_CONTEXT:
+		cout << " CL_INVALID_CONTEXT" << endl;
+	break;
+	case CL_INVALID_KERNEL_ARGS:
+		cout << " CL_INVALID_KERNEL_ARGS" << endl;
+	break;
+	case CL_INVALID_WORK_GROUP_SIZE:
+		cout << " CL_INVALID_WORK_GROUP_SIZE" << endl;
+	break;
+	case CL_INVALID_GLOBAL_OFFSET:
+		cout << " CL_INVALID_GLOBAL_OFFSET" << endl;
+	break;
+	case CL_OUT_OF_HOST_MEMORY:
+		cout << " CL_OUT_OF_HOST_MEMORY" << endl;
+	break;
+	case CL_OUT_OF_RESOURCES:
+		cout << " CL_OUT_OF_RESOURCES" << endl;
+	break;
+	default:
+		cout <<" unknown error" << endl;
+	break;
+	}
 }

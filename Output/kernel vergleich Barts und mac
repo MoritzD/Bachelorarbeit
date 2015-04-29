@@ -1,0 +1,131 @@
+Barts:
+
+Stancel -we 4034 -he 4034 -i 100 -e -kv 1 
+
+8.56627e+07 SPS (Stancels Per Second)
+85662.7 KSPS (Kilo Stancels Per Second)
+85.6627 MSPS (Mega Stancels Per Second) 
+0.0856627 GSPS (Giga Stancels Per Second) 
+
+Finisched!
+
+Total time: 19.234	(21.5937)	18.9846		18.9192	18.9142		avg: 19.013
+Summery times: 
+Build Program: 0.0708511
+Set Kernel Args: 0.147981
+Kernel executon: 18.978
+Get output back to host memory: 0.0218391
+Releasing everything: 0.015333
+
+VGL: MAC ATI Tahiti:
+4.57056 GSPS
+Total time: 0.520798    execution: 0.35569   (CPU referance: 16.2531)
+
+MAC NVD Tesla:
+0.217234 GSPS
+Total time: 8.16725		execution: 7.48366		(CPU referance: 16.2811)
+
+
+Stancel -we 4034 -he 4034 -i 100 -e -kv 3
+
+7.6925e+08 SPS (Stancels Per Second)
+769250 KSPS (Kilo Stancels Per Second)
+769.25 MSPS (Mega Stancels Per Second) 
+0.76925 GSPS (Giga Stancels Per Second) 
+
+Finisched!
+
+Total time: 2.34929		(12.6732	12.4551		12.7145)	2.1296	2.21782		2.19737		2.40736	avg: 2.260288
+Summery times: 
+Build Program: 0.0717141
+Set Kernel Args: 0.132171
+Kernel executon: 2.11336
+Get output back to host memory: 0.0182581
+Releasing everything: 0.0137859
+
+VGL: MAC ATI Tahiti:
+3.40617 GSPS
+Total time: 0.646757	execution: 0.477281		(CPU refferance: 16.263)
+
+MAC NVD Tesla:
+2.69639 GSPS
+Total time: 0.692243	execution: 0.602919		(CPU refferance: 16.2737)
+
+
+Kernel 3 vs Kernel 1:
+Barts: 8.41176 times faster!
+Tahiti: 0.80525 times as fast (1.24186 times slower)
+Tesla: 11.79824 times faster!
+
+
+
+
+
+
+
+Stancel -we 4034 -he 4034 -i 100 -e -kv 4
+
+1.65828e+09 SPS (Stancels Per Second)
+1.65828e+06 KSPS (Kilo Stancels Per Second)
+1658.28 MSPS (Mega Stancels Per Second) 
+1.65828 GSPS (Giga Stancels Per Second) 
+
+Finisched!
+
+Total time: 1.19608
+Summery times: 
+Build Program: 0.0707009
+Set Kernel Args: 0.113257
+Kernel executon: 0.980353
+Get output back to host memory: 0.019468
+Releasing everything: 0.0123049
+
+
+
+
+
+
+
+MAC:
+			each 100 iterations
+10050 kv1
+3,46473S		1,98236 pure executon time
+
+5,09303 GSPs
+
+kv3
+4,32427			2,6806
+
+3,76641 GSPS
+
+
+kv4 (64)
+3,91829		2,26629
+
+4,45496 GSPS
+
+kv4 (optimized; keep everything working)
+5,02731
+
+2,97234 GSPS
+
+
+
+
+10114 kv1
+3,56428			2,01293
+
+5,07978 GSPS
+
+kv4 (128)
+4,07138
+
+
+10242 kv1
+3,63105
+5,43222 GSPS
+
+kv4 (256)
+
+4,12811
+4,22954 GSPS

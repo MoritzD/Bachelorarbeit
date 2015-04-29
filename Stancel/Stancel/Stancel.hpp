@@ -19,7 +19,7 @@ using namespace appsdk;
 #define END 99
 
 
-#define VERBOSE true
+#define VERBOSE false
 #define SINGLETIME true 
 
 #define WIDTH  500
@@ -86,3 +86,5 @@ int readArgs(int argc, char* argv[]);
 void getKernelArgSetError(int status);
 
 int checkAgainstCpuImplementation(float *origInput, float *clOutput);
+
+void getExecutionError(int status);
