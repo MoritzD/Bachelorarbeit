@@ -21,25 +21,37 @@ __kernel void stancel1(__global float* in, __global float* out,
 __kernel void stancel3(__global float* in, __global float* out, 
 					int width, int height, __local float* Buffer)
 {
-	int globalx = get_global_id(0);
-	int globaly = get_global_id(1);
-	int localx = get_local_id(0);
+
+	//int globalx = get_global_id(0);
+	//int globaly = get_global_id(1);
+	/*int localx = get_local_id(0);
 	int localy = get_local_id(1);
 	int localSizex = get_local_size(0);
 	int localSizey = get_local_size(1);
 	int globalSizex = get_global_size(0);
 	int globalSizey = get_global_size(1);
+*/
+	int2 globalID = (int2) (get_global_id(0), get_global_id(1));
+	int2 localID = (int2) (get_local_id(0),get_local_id(1));
+	int2 localSize = (int2) (get_local_size(0),get_local_size(1));
+	int2 globalSize = (int2) (get_global_size(0),get_global_size(1));
+
+/*	int groupx = get_group_id(0);
+	int groupy = get_group_id(1);
+*/
+	
+	int2 group = (int2) (get_group_id(0),get_group_id(1));
+
+
 
 	int dim = get_work_dim();
-	int groupx = get_group_id(0);
-	int groupy = get_group_id(1);
-	int numberOfGroupsx = (globalSizex/localSizex);
-	int pos = (globalx+1)+(globaly+1)*width;//(localID + 1 ) + ((group + 1) * width) ;//(num2 + 1) + ((num + 1) * width); 
-	int localPos = (localx+1) + (localy+1)*(localSizex+2);
-	int loadIndex = localx + (localy * localSizex);
-	int globalStartPos = groupx * localSizex + (groupy*localSizey)* (globalSizex+2); 
+	int numberOfGroupsx = (globalSize.x/localSize.x);
+	int pos = (globalID.x+1)+(globalID.y+1)*width;//(localID + 1 ) + ((group + 1) * width) ;//(num2 + 1) + ((num + 1) * width); 
+	int localPos = (localID.x+1) + (localID.y+1)*(localSize.x+2);
+	int loadIndex = localID.x + (localID.y * localSize.x);
+	int globalStartPos = group.x * localSize.x + (group.y*localSize.y)* (globalSize.x+2); 
 	//int globalEndPos = globalStartPos + localSizex+1 + (localSizey+1) * (globalSizex+2);
-	int numcopys = (localSizex+2) * (localSizey+2);
+	int numcopys = (localSize.x+2) * (localSize.y+2);
 	int globalLoadIndex = 0; // globalStartPos + loadIndex + (loadIndex/(localSizex+2))*(globalSizex-localSizex);
 
 	//local float Buffer[(localSizey+2)*(localSizex+2)];
@@ -53,14 +65,15 @@ __kernel void stancel3(__global float* in, __global float* out,
 */	
 
 	while(loadIndex < numcopys){
-		globalLoadIndex = globalStartPos + loadIndex + (loadIndex/(localSizex+2))*(globalSizex-localSizex);
+		globalLoadIndex = globalStartPos + loadIndex + (loadIndex/(localSize.x+2))*(globalSize.x-localSize.x);
 		Buffer[loadIndex] = in[globalLoadIndex];
-		loadIndex = loadIndex + (localSizex*localSizey);
+		loadIndex = loadIndex + (localSize.x*localSize.y);
 	}
 
 	barrier(CLK_LOCAL_MEM_FENCE);
 
-	out[pos] = (Buffer[localPos-1] + Buffer[localPos+1] + Buffer[localPos-(localSizex+2)] + Buffer[localPos+(localSizex+2)])/4;           //-4*Buffer[localPos] + Buffer[localPos-1] + Buffer[localPos+1] + Buffer[localPos-(localSizex+2)] + Buffer[localPos+(localSizex+2)]; //loadIndex;//(localSizex+2); //(globalSize/localSizex); //group + group2 * (globalSize/localSizex); //-4*in[pos]+in[pos-1]+in[pos+1]+in[pos-width]+in[pos+width]; 	
+	out[pos] = (Buffer[localPos-1] + Buffer[localPos+1] + Buffer[localPos-(localSize.x+2)] + Buffer[localPos+(localSize.x+2)])/4;           //-4*Buffer[localPos] + Buffer[localPos-1] + Buffer[localPos+1] + Buffer[localPos-(localSizex+2)] + Buffer[localPos+(localSizex+2)]; //loadIndex;//(localSizex+2); //(globalSize/localSizex); //group + group2 * (globalSize/localSizex); //-4*in[pos]+in[pos-1]+in[pos+1]+in[pos-width]+in[pos+width]; 	
+
 }
 
 __kernel void stancel2(__global float* in, __global float* out, 
@@ -118,7 +131,7 @@ __kernel void stancel4_1(__global float* in, __global float* out,
 	//int localIDy = get_local_id(1);
 	int group = get_group_id(0);
 	int pos = globalIDx + 1 + width;
-	int localPos = localIDx + localWidth;
+	//int localPos = localIDx + localWidth;
 	event_t event;
 	int helper;
 
