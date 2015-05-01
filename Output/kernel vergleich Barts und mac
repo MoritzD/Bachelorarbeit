@@ -94,6 +94,31 @@ Kernel executon: 0.658168
 Get output back to host memory: 0.0195459
 Releasing everything: 0.0139348
 
+
+
+on MAC ATI 04 (Tahiti) :
+
+4.82109e+09 SPS (Stancels Per Second)
+4.82109e+06 KSPS (Kilo Stancels Per Second)
+4821.09 MSPS (Mega Stancels Per Second) 
+4.82109 GSPS (Giga Stancels Per Second) 
+
+Finisched!
+
+Total time: 0.540139		0.52397	0.522633	0.686984	0.521279	0.52294
+Summery times: 
+Build Program: 0.135532
+Set Kernel Args: 0.0512461
+Kernel executon: 0.337206
+Get output back to host memory: 0.0106399
+Releasing everything: 0.00551489
+
+
+
+
+
+
+
 Stancel -we 4034 -he 4034 -i 100 -e -kv 5				// Using Kernel 4_1  work dim 1 and local work size 64 with loading to local mem
 
 7.56614e+08 SPS (Stancels Per Second)
@@ -222,3 +247,29 @@ Max Clock Frequency: 900
 Parallel compute units: 28 
 Hardware version: OpenCL 1.2 AMD-APP (1113.2) 
 CL Driver version: 1113.2 (VM)
+
+
+
+
+Tahiti KV 4
+Time             SPS 
+0.0365771        4.44458e+08
+0.00301807       5.38657e+09
+0.0029729        5.46841e+09
+0.00300806       5.40449e+09
+0.00301196       5.39748e+09
+0.00294702       5.51643e+09
+0.00299316       5.43138e+09
+0.0029231        5.56158e+09
+
+Tahiti KV 1
+Time             SPS 
+0.045261         3.59184e+08
+0.00343311       4.73537e+09
+0.00333594       4.8733e+09
+0.00334302       4.86298e+09
+0.00315894       5.14636e+09
+0.00318896       5.0979e+09
+0.00314209       5.17395e+09
+0.00323901       5.01913e+09
+0.00314111       5.17556e+09
