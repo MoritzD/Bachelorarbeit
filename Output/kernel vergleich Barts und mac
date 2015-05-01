@@ -59,23 +59,42 @@ Tesla: 11.79824 times faster!
 
 
 
-Stancel -we 4034 -he 4034 -i 100 -e -kv 4
+Stancel -we 4034 -he 4034 -i 100 -e -kv 4		//with work dim 1 and local work size 64 
 
-6.24522e+08 SPS (Stancels Per Second)
-624522 KSPS (Kilo Stancels Per Second)
-624.522 MSPS (Mega Stancels Per Second) 
-0.624522 GSPS (Giga Stancels Per Second) 
+1.76164e+09 SPS (Stancels Per Second)
+1.76164e+06 KSPS (Kilo Stancels Per Second)
+1761.64 MSPS (Mega Stancels Per Second) 
+1.76164 GSPS (Giga Stancels Per Second) 
 
 Finisched!
 
-Total time: 2.78431	2.77773	2.75262
+Total time: 1.10844	1.1032	1.11739
 Summery times: 
-Build Program: 0.0972471
-Set Kernel Args: 0.0587959
-Kernel executon: 2.60311
+Build Program: 0.0943259
+Set Kernel Args: 0.058467
+Kernel executon: 0.922837
+Get output back to host memory: 0.0201382
+Releasing everything: 0.012668
 
 
-Stancel -we 4034 -he 4034 -i 100 -e -kv 5				// Using Kernel 4_1
+Stancel -we 4034 -he 4034 -i 100  -kv 4		//with work dim 2 local work size: 64*4
+
+2.47004e+09 SPS (Stancels Per Second)
+2.47004e+06 KSPS (Kilo Stancels Per Second)
+2470.04 MSPS (Mega Stancels Per Second) 
+2.47004 GSPS (Giga Stancels Per Second) 
+
+Finisched!
+
+Total time: 0.850354	0.842024	 0.840035
+Summery times: 
+Build Program: 0.100314
+Set Kernel Args: 0.0583911
+Kernel executon: 0.658168
+Get output back to host memory: 0.0195459
+Releasing everything: 0.0139348
+
+Stancel -we 4034 -he 4034 -i 100 -e -kv 5				// Using Kernel 4_1  work dim 1 and local work size 64 with loading to local mem
 
 7.56614e+08 SPS (Stancels Per Second)
 756614 KSPS (Kilo Stancels Per Second)
@@ -167,3 +186,39 @@ kv4 (256)
 
 4,12811
 4,22954 GSPS
+
+
+
+
+
+
+http://developer.amd.com/tools-and-sdks/opencl-zone/amd-accelerated-parallel-processing-app-sdk/#
+
+http://developer.amd.com/tools-and-sdks/opencl-zone/amd-accelerated-parallel-processing-app-sdk/#
+
+
+
+NAME: Tahiti 
+Max Clock Frequency: 900 
+Parallel compute units: 28 
+Hardware version: OpenCL 1.2 AMD-APP (1642.5) 
+CL Driver version: 1642.5 (VM)
+CL Device Max Work Group Size: 
+Max Work Group Size: 0 
+Max work Group size: 18446744073709551586
+
+
+mac-ati04:
+
+NAME: Tahiti 
+Max Clock Frequency: 900 
+Parallel compute units: 28 
+Hardware version: OpenCL 1.2 AMD-APP (1642.5) 
+CL Driver version: 1642.5 (VM)
+
+mac-ati03:
+NAME: Tahiti 
+Max Clock Frequency: 900 
+Parallel compute units: 28 
+Hardware version: OpenCL 1.2 AMD-APP (1113.2) 
+CL Driver version: 1113.2 (VM)
