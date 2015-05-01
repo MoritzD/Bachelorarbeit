@@ -1,11 +1,10 @@
 /*
-* Primary kernel to execute calculations.
+* Primary kernel to execute calculations. (not very efficient exept ATI FirePro W8000)
 */
 __kernel void stancel1(__global float* in, __global float* out, 
 					int width, int height)
 {
 	int num = get_global_id(0);
-	//for (int doit = 0; doit < 10000000; doit++){
 
 	if(num < width ||(num % width) == 0  || (num % width) == width-1 || num >= (width*height-width)){
 	out[num] = in [num];
@@ -13,35 +12,19 @@ __kernel void stancel1(__global float* in, __global float* out,
 	else{
 		out[num] = (in[num-1]+in[num+1]+in[num-width]+in[num+width])/4;								//-4*in[num]+in[num-1]+in[num+1]+in[num-width]+in[num+width]; 
 	}
-//	for(int ding = 0; ding< 1000 ;ding++){   //10000 
-//		out[num] = out[num] * (out[num] + width);
-//	}
 }
-
+/*
+*	Optimized kernel vor better performance on most devices! (exept ATI FirePro W8000)
+*/
 __kernel void stancel3(__global float* in, __global float* out, 
 					int width, int height, __local float* Buffer)
 {
-
-	//int globalx = get_global_id(0);
-	//int globaly = get_global_id(1);
-	/*int localx = get_local_id(0);
-	int localy = get_local_id(1);
-	int localSizex = get_local_size(0);
-	int localSizey = get_local_size(1);
-	int globalSizex = get_global_size(0);
-	int globalSizey = get_global_size(1);
-*/
 	int2 globalID = (int2) (get_global_id(0), get_global_id(1));
 	int2 localID = (int2) (get_local_id(0),get_local_id(1));
 	int2 localSize = (int2) (get_local_size(0),get_local_size(1));
 	int2 globalSize = (int2) (get_global_size(0),get_global_size(1));
 
-/*	int groupx = get_group_id(0);
-	int groupy = get_group_id(1);
-*/
-	
 	int2 group = (int2) (get_group_id(0),get_group_id(1));
-
 
 
 	int dim = get_work_dim();
@@ -50,11 +33,8 @@ __kernel void stancel3(__global float* in, __global float* out,
 	int localPos = (localID.x+1) + (localID.y+1)*(localSize.x+2);
 	int loadIndex = localID.x + (localID.y * localSize.x);
 	int globalStartPos = group.x * localSize.x + (group.y*localSize.y)* (globalSize.x+2); 
-	//int globalEndPos = globalStartPos + localSizex+1 + (localSizey+1) * (globalSizex+2);
 	int numcopys = (localSize.x+2) * (localSize.y+2);
 	int globalLoadIndex = 0; // globalStartPos + loadIndex + (loadIndex/(localSizex+2))*(globalSizex-localSizex);
-
-	//local float Buffer[(localSizey+2)*(localSizex+2)];
 	
 /*	
 	using: 
@@ -75,7 +55,9 @@ __kernel void stancel3(__global float* in, __global float* out,
 	out[pos] = (Buffer[localPos-1] + Buffer[localPos+1] + Buffer[localPos-(localSize.x+2)] + Buffer[localPos+(localSize.x+2)])/4;           //-4*Buffer[localPos] + Buffer[localPos-1] + Buffer[localPos+1] + Buffer[localPos-(localSizex+2)] + Buffer[localPos+(localSizex+2)]; //loadIndex;//(localSizex+2); //(globalSize/localSizex); //group + group2 * (globalSize/localSizex); //-4*in[pos]+in[pos-1]+in[pos+1]+in[pos-width]+in[pos+width]; 	
 
 }
-
+/*
+*	First approach of a more optimized kernel but it's not working to good (and jutst to matrix sizes of 258)
+*/
 __kernel void stancel2(__global float* in, __global float* out, 
 					int width, int height)
 {
@@ -88,6 +70,9 @@ __kernel void stancel2(__global float* in, __global float* out,
 	out[pos] = (in[pos-1]+in[pos+1]+in[pos-width]+in[pos+width])/4;	//-4*in[pos]+in[pos-1]+in[pos+1]+in[pos-width]+in[pos+width];
 }
 
+/*
+*	latest approach of a Optimized code, but does not seems to be way better than #3
+*/
 __kernel void stancel4(__global float* in, __global float* out, 
 					int width, int height) //, __local float* Buffer)
 {
@@ -110,7 +95,10 @@ __kernel void stancel4(__global float* in, __global float* out,
 
 
 
-
+/*
+*	latest approach of a even more optimized version of #4 using local memory
+*	performance has to be tested!
+*/
 
 __kernel void stancel4_1(__global float* in, __global float* out, 
 					int width, int height,
@@ -173,4 +161,22 @@ __kernel void stancel4_1(__global float* in, __global float* out,
 		three = prefetchSpace;
 		prefetchSpace = helper;
 	}
+}
+
+
+__kernel void dynamicstancel1(__global float* in, __global float* out, 
+					int width, int height, __global int* positions, __global float* weights){
+
+
+	int2 globalID = (int2) (get_global_id(0), get_global_id(1));
+	int2 localID = (int2) (get_local_id(0),get_local_id(1));
+	int2 localSize = (int2) (get_local_size(0),get_local_size(1));
+	int2 globalSize = (int2) (get_global_size(0),get_global_size(1));
+
+	int2 group = (int2) (get_group_id(0),get_group_id(1));
+
+/*	ToDo:
+*			Insert algorithm to calculate a dynamic defiend Stancel!!
+/*
+
 }
