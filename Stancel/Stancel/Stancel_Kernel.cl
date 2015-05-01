@@ -165,7 +165,7 @@ __kernel void stancel4_1(__global float* in, __global float* out,
 
 
 __kernel void dynamicstancel1(__global float* in, __global float* out, 
-					int width, int height, __global int* positions, __global float* weights){
+					int width, int height, __global int* positions, __global float* weights, int numberPoints){
 
 
 	int2 globalID = (int2) (get_global_id(0), get_global_id(1));
@@ -178,5 +178,19 @@ __kernel void dynamicstancel1(__global float* in, __global float* out,
 /*	ToDo:
 *			Insert algorithm to calculate a dynamic defiend Stancel!!
 */
+/*
+Psoydo code:
+
+	do for all points:
+
+	sum = 0;
+	for(int i = 0; i < numberPoints; i++){
+			sum += (pos+positition) * weight 
+		if (pos+positition) outOfBounce
+			abbord
+			
+	}
+	out[pos] = sum/numberPoints;
+*/	
 
 }

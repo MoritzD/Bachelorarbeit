@@ -86,7 +86,7 @@ Stancel -we 4034 -he 4034 -i 100  -kv 4		//with work dim 2 local work size: 64*4
 
 Finisched!
 
-Total time: 0.850354	0.842024	 0.840035
+Total time: 0.850354	0.842024	 0.840035			Avg.:	0.8441376667
 Summery times: 
 Build Program: 0.100314
 Set Kernel Args: 0.0583911
@@ -105,7 +105,7 @@ on MAC ATI 04 (Tahiti) :
 
 Finisched!
 
-Total time: 0.540139		0.52397	0.522633	0.686984	0.521279	0.52294
+Total time: 0.540139		0.52397	0.522633	(0.686984)	0.521279	0.52294		Avg.:	0.5261922
 Summery times: 
 Build Program: 0.135532
 Set Kernel Args: 0.0512461
@@ -113,8 +113,13 @@ Kernel executon: 0.337206
 Get output back to host memory: 0.0106399
 Releasing everything: 0.00551489
 
+Nvidia Tesla unfortunatly not available at the moment... :(
 
+so:
 
+kernel 4 vs Kernel 1:
+Barts: 22.524 Times Faster!!
+Tahiti:	0,9897486 times as fast.  ~ 4 is as fast as 1 
 
 
 
