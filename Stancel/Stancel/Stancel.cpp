@@ -156,6 +156,10 @@ int main(int argc, char* argv[])
 			kernelBackwards = clCreateKernel(program, "stancel3", NULL);
 		break;
 		case 4:
+			kernel = clCreateKernel(program, "stancel4", NULL);
+			kernelBackwards = clCreateKernel(program, "stancel4", NULL); 
+		break;
+		case 5:
 			kernel = clCreateKernel(program, "stancel4_1", NULL);
 			kernelBackwards = clCreateKernel(program, "stancel4_1", NULL); 
 		break;
@@ -272,6 +276,21 @@ int main(int argc, char* argv[])
 			cout <<" lokal work size:  we ; he   "<< local_work_size[0] <<" ; " << local_work_size[1] << endl;
 		break;
 		case 4:
+			work_dim = 2;
+			
+			global_work_size[0] = (width - 2);
+			global_work_size[1] = 4;
+			local_work_size[0] = min((cl_uint)64,(width-2));
+			local_work_size[1] = 4;
+
+			cout <<" height  and    width     "<< height << " " << width << endl;
+
+			cout <<" global work size:  we ; he   "<< global_work_size[0] <<" ; "<< global_work_size[1] << endl;
+ 
+			cout <<" lokal work size:  we ; he   "<< local_work_size[0] <<" ; " << local_work_size[1] << endl;
+
+		break;
+		case 5:
 			//work_dim = 2;
 			work_dim = 1;
 			global_work_size[0] = (width - 2);
@@ -309,9 +328,9 @@ int main(int argc, char* argv[])
  
 			cout <<" height  and    width     "<< height << " " << width << endl;
 
-			cout <<" global work size:  we ; he   "<< global_work_size[0] <<" ; "<< global_work_size[1] << endl;
+			cout <<" global work size:  we "<< global_work_size[0] << endl;
  
-			cout <<" lokal work size:  we ; he   "<< local_work_size[0] <<" ; " << local_work_size[1] << endl;
+			cout <<" lokal work size:  we "<< local_work_size[0] << endl;
 		break;
 	}
 

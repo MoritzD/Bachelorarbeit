@@ -35,7 +35,7 @@ Stancel -we 4034 -he 4034 -i 100 -e -kv 3
 
 Finisched!
 
-Total time: 2.34929		(12.6732	12.4551		12.7145)	2.1296	2.21782		2.19737		2.40736	avg: 2.260288
+Total time: 2.34929		(12.6732	12.4551		12.7145)	2.1296	2.21782		2.19737		2.40736	avg: 2.260288	2.15306
 Summery times: 
 Build Program: 0.0717141
 Set Kernel Args: 0.132171
@@ -56,6 +56,44 @@ Kernel 3 vs Kernel 1:
 Barts: 8.41176 times faster!
 Tahiti: 0.80525 times as fast (1.24186 times slower)
 Tesla: 11.79824 times faster!
+
+
+
+Stancel -we 4034 -he 4034 -i 100 -e -kv 4
+
+6.24522e+08 SPS (Stancels Per Second)
+624522 KSPS (Kilo Stancels Per Second)
+624.522 MSPS (Mega Stancels Per Second) 
+0.624522 GSPS (Giga Stancels Per Second) 
+
+Finisched!
+
+Total time: 2.78431	2.77773	2.75262
+Summery times: 
+Build Program: 0.0972471
+Set Kernel Args: 0.0587959
+Kernel executon: 2.60311
+
+
+Stancel -we 4034 -he 4034 -i 100 -e -kv 5				// Using Kernel 4_1
+
+7.56614e+08 SPS (Stancels Per Second)
+756614 KSPS (Kilo Stancels Per Second)
+756.614 MSPS (Mega Stancels Per Second) 
+0.756614 GSPS (Giga Stancels Per Second) 
+
+Finisched!
+
+Total time: 2.33107		2.35205		2.35205		2.48147	2.30158
+Summery times: 
+Build Program: 0.098073
+Set Kernel Args: 0.0583801
+Kernel executon: 2.14866
+Get output back to host memory: 0.019479
+Releasing everything: 0.00648608
+
+
+
 
 
 
