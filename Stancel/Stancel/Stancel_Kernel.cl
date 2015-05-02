@@ -61,11 +61,11 @@ __kernel void stancel3(__global float* in, __global float* out,
 __kernel void stancel2(__global float* in, __global float* out, 
 					int width, int height)
 {
-	int globalID = get_global_id(0);
-	int localID = get_local_id(0);
-	int dim = get_work_dim();
-	int group = get_group_id(0);
-	int pos = (localID + 1 ) + ((group + 1) * width) ;//(num2 + 1) + ((num + 1) * width); 
+	int2 globalID = (int2) (get_global_id(0), get_global_id(1));
+	//int localID = get_local_id(0);
+	//int dim = get_work_dim();
+	//int group = get_group_id(0);
+	int pos = globalID.x + 1 + (globalID.y+1)* width;//(num2 + 1) + ((num + 1) * width); 
 	
 	out[pos] = (in[pos-1]+in[pos+1]+in[pos-width]+in[pos+width])/4;	//-4*in[pos]+in[pos-1]+in[pos+1]+in[pos-width]+in[pos+width];
 }
@@ -185,12 +185,27 @@ Psoydo code:
 
 	sum = 0;
 	for(int i = 0; i < numberPoints; i++){
-			sum += (pos+positition) * weight 
-		if (pos+positition) outOfBounce
+			sum += (pos+posititions[i]) * weights[i] 
+		if (pos+positition[i]) outOfBounce
 			abbord
 			
 	}
 	out[pos] = sum/numberPoints;
 */	
+	int pos = globalID.x + 1 + (globalID.y+1)*width;
+
+	float sum = 0;
+	int lookAt = 0;
+	int MaxPoint = height * width;
+	for(int i = 0; i < numberPoints; i++){
+		lookAt = pos+positions[i];
+		if (lookAt < 0 || lookAt > MaxPoint){
+			//sum = 0;
+			//break;
+			return;
+		}
+		sum += in[lookAt] * weights[i];
+	}
+	out[pos] = sum/numberPoints;
 
 }

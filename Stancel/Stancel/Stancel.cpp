@@ -163,6 +163,11 @@ int main(int argc, char* argv[])
 			kernel = clCreateKernel(program, "stancel4_1", NULL);
 			kernelBackwards = clCreateKernel(program, "stancel4_1", NULL); 
 		break;
+		case 6:
+			kernel = clCreateKernel(program, "dynamicstancel1", NULL);
+			kernelBackwards = clCreateKernel(program, "dynamicstancel1", NULL); 
+		break;
+		
 	}
 
 	/*Step 9: Sets Kernel arguments.*/
@@ -227,9 +232,10 @@ int main(int argc, char* argv[])
 		break;
 
 		case 2:
-			work_dim = 1;
-			global_work_size[0] = (height - 2)*(width - 2);
-			local_work_size[0] = global_work_size[0]/(height-2);
+			work_dim = 2;
+			global_work_size[0] = width - 2;
+			global_work_size[1] = height - 2;
+			local_work_size = NULL;//global_work_size[0]/(height-2);
 		break;
 
 		case 3:
@@ -332,6 +338,49 @@ int main(int argc, char* argv[])
  
 			cout <<" lokal work size:  we "<< local_work_size[0] << endl;
 		break;
+		case 6:
+			work_dim = 2;
+			global_work_size[0] = width - 2;
+			global_work_size[1] = height - 2;
+			local_work_size = NULL;//min((cl_uint)64,(width-2));
+
+			cl_int positions[4] = {-width,-1,1,width}; 
+			cl_float weights[4] = {1.0f,1.0f,1.0f,1.0f}; 
+			cl_int numberPoints = 4;
+
+			cl_mem BufferPositions = clCreateBuffer(
+				context,
+				CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR,
+				sizeof(cl_int) * numberPoints,
+				positions,
+				&status);
+			if (status != SUCCESS){
+				fprintf(stderr, "clCreateBuffer failed. (BufferPositions) %i\n", status);
+				freeResources();
+				return FAILURE;
+			}
+
+			cl_mem BufferWeights = clCreateBuffer(
+				context,
+				CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR,
+				sizeof(cl_float) * numberPoints,
+				weights,
+				&status);
+			if (status != SUCCESS){
+				fprintf(stderr, "clCreateBuffer failed. (BufferWeights) %i\n", status);
+				freeResources();
+				return FAILURE;
+			}
+
+			status = clSetKernelArg(kernel, 4, sizeof(cl_mem), (void *)&BufferPositions);
+			status = clSetKernelArg(kernel, 5, sizeof(cl_mem), (void *)&BufferWeights);
+			status = clSetKernelArg(kernel, 6, sizeof(cl_int), (void *)&numberPoints);
+
+			status = clSetKernelArg(kernelBackwards, 4, sizeof(cl_mem), (void *)&BufferPositions);
+			status = clSetKernelArg(kernelBackwards, 5, sizeof(cl_mem), (void *)&BufferWeights);
+			status = clSetKernelArg(kernelBackwards, 6, sizeof(cl_int), (void *)&numberPoints);
+
+			break;
 	}
 
 
@@ -904,7 +953,13 @@ int checkAgainstCpuImplementation(float *origInput, float *clOutput){
 		cout << "\nPassed the test; results are equil.\n" << endl;
 	}
 	else{
-		cout << "\nFailed the test; results differ.\n" << endl;
+		cout << "\nFailed the test; results differ." << endl;
+		if(chekMemSimilar(clOutput, inout, width * height ) == 0){
+			cout <<" But Results are similar; should be ok! \n" << endl;
+		}
+		else{
+			cout <<" Not even close! \n" << endl;
+		}
 	}
 
 	cout << "referance took " << referanceTime << " seconds" << endl;
@@ -991,4 +1046,15 @@ void getExecutionError(int status){
 		cout <<" unknown error" << endl;
 	break;
 	}
+}
+
+int chekMemSimilar(float* openCl, float* referance, int length){
+	float test;
+	for(int i = 0; i < length;i++){
+		test = openCl[i] - referance[i];
+		if(test > 0.000001f || test < -0.000001f){
+			return -1;
+		}
+	}
+	return 0;
 }

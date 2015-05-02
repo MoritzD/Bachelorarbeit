@@ -88,3 +88,5 @@ void getKernelArgSetError(int status);
 int checkAgainstCpuImplementation(float *origInput, float *clOutput);
 
 void getExecutionError(int status);
+
+int chekMemSimilar(float* openCl, float* referance, int length);
