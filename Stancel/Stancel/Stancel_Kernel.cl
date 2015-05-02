@@ -166,7 +166,11 @@ __kernel void stancel4_1(__global float* in, __global float* out,
 
 __kernel void dynamicstancel1(__global float* in, __global float* out, 
 					int width, int height, __global int* positions, __global float* weights, int numberPoints){
-
+/*
+*	Problem with the way the positions are handeld: when is a possition allowet to be in anoter line and when not?
+*	idea vor a better way: set up a Struct or whatever to goup two int values together to one coordinate ->
+*	its clear now wether a possition is ment to be in a diffrent line ore not (overflow)
+*/
 
 	int2 globalID = (int2) (get_global_id(0), get_global_id(1));
 	int2 localID = (int2) (get_local_id(0),get_local_id(1));
@@ -199,7 +203,7 @@ Psoydo code:
 	int MaxPoint = height * width;
 	for(int i = 0; i < numberPoints; i++){
 		lookAt = pos+positions[i];
-		if (lookAt < 0 || lookAt > MaxPoint){
+		if (lookAt < 0 || lookAt > MaxPoint || (lookAt/width) != (pos/width)){
 			//sum = 0;
 			//break;
 			return;
@@ -208,4 +212,17 @@ Psoydo code:
 	}
 	out[pos] = sum/numberPoints;
 
+}
+
+/*
+*	Not doing any aktual work; just vor testing.
+*/
+
+__kernel void dynamicstancel1_Copy_kernel(__global float* in, __global float* out, 
+					int width, int height, __global int* positions, __global float* weights, int numberPoints){
+
+	int2 globalID = (int2) (get_global_id(0), get_global_id(1));
+
+	int pos = globalID.x + 1 + (globalID.y+1)*width;
+	out[pos] = in[pos];
 }
