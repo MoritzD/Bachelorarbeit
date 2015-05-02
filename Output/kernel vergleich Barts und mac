@@ -2,20 +2,20 @@ Barts:
 
 Stancel -we 4034 -he 4034 -i 100 -e -kv 1 
 
-8.56627e+07 SPS (Stancels Per Second)
-85662.7 KSPS (Kilo Stancels Per Second)
-85.6627 MSPS (Mega Stancels Per Second) 
-0.0856627 GSPS (Giga Stancels Per Second) 
+	8.56627e+07 SPS (Stancels Per Second)
+	85662.7 KSPS (Kilo Stancels Per Second)
+	85.6627 MSPS (Mega Stancels Per Second) 
+	0.0856627 GSPS (Giga Stancels Per Second) 
 
-Finisched!
+	Finisched!
 
-Total time: 19.234	(21.5937)	18.9846		18.9192	18.9142		avg: 19.013
-Summery times: 
-Build Program: 0.0708511
-Set Kernel Args: 0.147981
-Kernel executon: 18.978
-Get output back to host memory: 0.0218391
-Releasing everything: 0.015333
+	Total time: 19.234	(21.5937)	18.9846		18.9192	18.9142		avg: 19.013
+	Summery times: 
+	Build Program: 0.0708511
+	Set Kernel Args: 0.147981
+	Kernel executon: 18.978
+	Get output back to host memory: 0.0218391
+	Releasing everything: 0.015333
 
 VGL: MAC ATI Tahiti:
 4.57056 GSPS
@@ -28,20 +28,20 @@ Total time: 8.16725		execution: 7.48366		(CPU referance: 16.2811)
 
 Stancel -we 4034 -he 4034 -i 100 -e -kv 3
 
-7.6925e+08 SPS (Stancels Per Second)
-769250 KSPS (Kilo Stancels Per Second)
-769.25 MSPS (Mega Stancels Per Second) 
-0.76925 GSPS (Giga Stancels Per Second) 
+	7.6925e+08 SPS (Stancels Per Second)
+	769250 KSPS (Kilo Stancels Per Second)
+	769.25 MSPS (Mega Stancels Per Second) 
+	0.76925 GSPS (Giga Stancels Per Second) 
 
-Finisched!
+	Finisched!
 
-Total time: 2.34929		(12.6732	12.4551		12.7145)	2.1296	2.21782		2.19737		2.40736	avg: 2.260288	2.15306
-Summery times: 
-Build Program: 0.0717141
-Set Kernel Args: 0.132171
-Kernel executon: 2.11336
-Get output back to host memory: 0.0182581
-Releasing everything: 0.0137859
+	Total time: 2.34929		(12.6732	12.4551		12.7145)	2.1296	2.21782		2.19737		2.40736	avg: 2.260288	2.15306
+	Summery times: 
+	Build Program: 0.0717141
+	Set Kernel Args: 0.132171
+	Kernel executon: 2.11336
+	Get output back to host memory: 0.0182581
+	Releasing everything: 0.0137859
 
 VGL: MAC ATI Tahiti:
 3.40617 GSPS
@@ -61,57 +61,77 @@ Tesla: 11.79824 times faster!
 
 Stancel -we 4034 -he 4034 -i 100 -e -kv 4		//with work dim 1 and local work size 64 
 
-1.76164e+09 SPS (Stancels Per Second)
-1.76164e+06 KSPS (Kilo Stancels Per Second)
-1761.64 MSPS (Mega Stancels Per Second) 
-1.76164 GSPS (Giga Stancels Per Second) 
+	1.76164e+09 SPS (Stancels Per Second)
+	1.76164e+06 KSPS (Kilo Stancels Per Second)
+	1761.64 MSPS (Mega Stancels Per Second) 
+	1.76164 GSPS (Giga Stancels Per Second) 
 
-Finisched!
+	Finisched!
 
-Total time: 1.10844	1.1032	1.11739
-Summery times: 
-Build Program: 0.0943259
-Set Kernel Args: 0.058467
-Kernel executon: 0.922837
-Get output back to host memory: 0.0201382
-Releasing everything: 0.012668
+	Total time: 1.10844	1.1032	1.11739
+	Summery times: 
+	Build Program: 0.0943259
+	Set Kernel Args: 0.058467
+	Kernel executon: 0.922837
+	Get output back to host memory: 0.0201382
+	Releasing everything: 0.012668
+
+Mac Tahiti:
+
+	2.41606e+09 SPS (Stancels Per Second)
+	2.41606e+06 KSPS (Kilo Stancels Per Second)
+	2416.06 MSPS (Mega Stancels Per Second) 
+	2.41606 GSPS (Giga Stancels Per Second) 
+
+	Finisched!
+
+	Total time: 1.01107	1.0242	1.0322	1.01348
+	Summery times: 
+	Build Program: 0.125858
+	Set Kernel Args: 0.0512439
+	Kernel executon: 0.672873
+	Get output back to host memory: 0.155444
+	Releasing everything: 0.005646
+
+
+
 
 
 Stancel -we 4034 -he 4034 -i 100  -kv 4		//with work dim 2 local work size: 64*4
 
-2.47004e+09 SPS (Stancels Per Second)
-2.47004e+06 KSPS (Kilo Stancels Per Second)
-2470.04 MSPS (Mega Stancels Per Second) 
-2.47004 GSPS (Giga Stancels Per Second) 
+	2.47004e+09 SPS (Stancels Per Second)
+	2.47004e+06 KSPS (Kilo Stancels Per Second)
+	2470.04 MSPS (Mega Stancels Per Second) 
+	2.47004 GSPS (Giga Stancels Per Second) 
 
-Finisched!
+	Finisched!
 
-Total time: 0.850354	0.842024	 0.840035			Avg.:	0.8441376667
-Summery times: 
-Build Program: 0.100314
-Set Kernel Args: 0.0583911
-Kernel executon: 0.658168
-Get output back to host memory: 0.0195459
-Releasing everything: 0.0139348
+	Total time: 0.850354	0.842024	 0.840035			Avg.:	0.8441376667
+	Summery times: 
+	Build Program: 0.100314
+	Set Kernel Args: 0.0583911
+	Kernel executon: 0.658168
+	Get output back to host memory: 0.0195459
+	Releasing everything: 0.0139348
 
 
 
 on MAC ATI 04 (Tahiti) :
 
-4.82109e+09 SPS (Stancels Per Second)
-4.82109e+06 KSPS (Kilo Stancels Per Second)
-4821.09 MSPS (Mega Stancels Per Second) 
-4.82109 GSPS (Giga Stancels Per Second) 
+	4.82109e+09 SPS (Stancels Per Second)
+	4.82109e+06 KSPS (Kilo Stancels Per Second)
+	4821.09 MSPS (Mega Stancels Per Second) 
+	4.82109 GSPS (Giga Stancels Per Second) 
 
-Finisched!
+	Finisched!
 
-Total time: 0.540139		0.52397	0.522633	(0.686984)	0.521279	0.52294		Avg.:	0.5261922
-Summery times: 
-Build Program: 0.135532
-Set Kernel Args: 0.0512461
-Kernel executon: 0.337206
-Get output back to host memory: 0.0106399
-Releasing everything: 0.00551489
+	Total time: 0.540139		0.52397	0.522633	(0.686984)	0.521279	0.52294		Avg.:	0.5261922
+	Summery times: 
+	Build Program: 0.135532
+	Set Kernel Args: 0.0512461
+	Kernel executon: 0.337206
+	Get output back to host memory: 0.0106399
+	Releasing everything: 0.00551489
 
 Nvidia Tesla unfortunatly not available at the moment... :(
 
@@ -126,49 +146,104 @@ Tahiti:	0,9897486 times as fast.  ~ 4 is as fast as 1
 
 Stancel -we 4034 -he 4034 -i 100 -e -kv 5				// Using Kernel 4_1  work dim 1 and local work size 64 with loading to local mem
 
-7.56614e+08 SPS (Stancels Per Second)
-756614 KSPS (Kilo Stancels Per Second)
-756.614 MSPS (Mega Stancels Per Second) 
-0.756614 GSPS (Giga Stancels Per Second) 
+	7.56614e+08 SPS (Stancels Per Second)
+	756614 KSPS (Kilo Stancels Per Second)
+	756.614 MSPS (Mega Stancels Per Second) 
+	0.756614 GSPS (Giga Stancels Per Second) 
 
-Finisched!
+	Finisched!
 
-Total time: 2.33107		2.35205		2.35205		2.48147	2.30158
-Summery times: 
-Build Program: 0.098073
-Set Kernel Args: 0.0583801
-Kernel executon: 2.14866
-Get output back to host memory: 0.019479
-Releasing everything: 0.00648608
+	Total time: 2.33107		2.35205		2.35205		2.48147	2.30158
+	Summery times: 
+	Build Program: 0.098073
+	Set Kernel Args: 0.0583801
+	Kernel executon: 2.14866
+	Get output back to host memory: 0.019479
+	Releasing everything: 0.00648608
 
-
-
-
+=> even slower as when not using local mem!
 
 
 
 
+MAC Tahiti:
+
+	1.43545e+09 SPS (Stancels Per Second)
+	1.43545e+06 KSPS (Kilo Stancels Per Second)
+	1435.45 MSPS (Mega Stancels Per Second) 
+	1.43545 GSPS (Giga Stancels Per Second) 
+
+	Finisched!
+
+	Total time: 1.4547	1.47025	1.49688
+	Summery times: 
+	Build Program: 0.125178
+	Set Kernel Args: 0.0513411
+	Kernel executon: 1.13254
+	Get output back to host memory: 0.140077
+	Releasing everything: 0.00556689
 
 
-Stancel -we 4034 -he 4034 -i 100 -e -kv 4
-
-1.65828e+09 SPS (Stancels Per Second)
-1.65828e+06 KSPS (Kilo Stancels Per Second)
-1658.28 MSPS (Mega Stancels Per Second) 
-1.65828 GSPS (Giga Stancels Per Second) 
-
-Finisched!
-
-Total time: 1.19608
-Summery times: 
-Build Program: 0.0707009
-Set Kernel Args: 0.113257
-Kernel executon: 0.980353
-Get output back to host memory: 0.019468
-Releasing everything: 0.0123049
 
 
 
+
+
+
+	Stancel -we 4034 -he 4034 -i 100 -e -kv 4
+
+	1.65828e+09 SPS (Stancels Per Second)
+	1.65828e+06 KSPS (Kilo Stancels Per Second)
+	1658.28 MSPS (Mega Stancels Per Second) 
+	1.65828 GSPS (Giga Stancels Per Second) 
+
+	Finisched!
+
+	Total time: 1.19608
+	Summery times: 
+	Build Program: 0.0707009
+	Set Kernel Args: 0.113257
+	Kernel executon: 0.980353
+	Get output back to host memory: 0.019468
+	Releasing everything: 0.0123049
+
+
+
+
+Barts KV 2 // Global work space width-2 X heiht-2 no local work space!
+
+	2.72108e+09 SPS (Stancels Per Second)
+	2.72108e+06 KSPS (Kilo Stancels Per Second)
+	2721.08 MSPS (Mega Stancels Per Second) 
+	2.72108 GSPS (Giga Stancels Per Second) 
+
+	Finisched!
+
+	Total time: 0.78498	0.775378	0.766959	0.791788
+	Summery times: 
+	Build Program: 0.101055
+	Set Kernel Args: 0.0603301
+	Kernel executon: 0.597447
+	Get output back to host memory: 0.017687
+	Releasing everything: 0.00846094
+
+
+MAC Tahiti: KV2
+
+	6.83258e+09 SPS (Stancels Per Second)
+	6.83258e+06 KSPS (Kilo Stancels Per Second)
+	6832.58 MSPS (Mega Stancels Per Second) 
+	6.83258 GSPS (Giga Stancels Per Second) 
+
+	Finisched!
+
+	Total time: 0.463107	0.420902	0.432269	0.416002
+	Summery times: 
+	Build Program: 0.157622
+	Set Kernel Args: 0.0513059
+	Kernel executon: 0.237934
+	Get output back to host memory: 0.0106191
+	Releasing everything: 0.00562598
 
 
 
@@ -222,12 +297,6 @@ kv4 (256)
 
 
 
-http://developer.amd.com/tools-and-sdks/opencl-zone/amd-accelerated-parallel-processing-app-sdk/#
-
-http://developer.amd.com/tools-and-sdks/opencl-zone/amd-accelerated-parallel-processing-app-sdk/#
-
-
-
 NAME: Tahiti 
 Max Clock Frequency: 900 
 Parallel compute units: 28 
@@ -278,3 +347,16 @@ Time             SPS
 0.00314209       5.17395e+09
 0.00323901       5.01913e+09
 0.00314111       5.17556e+09
+
+Tahiti KV 2
+Time             SPS 
+0.0355698        4.57045e+08
+0.00191309       8.4978e+09
+0.00192187       8.45894e+09
+0.00190112       8.55127e+09
+0.00187305       8.67945e+09
+0.00187402       8.67493e+09
+0.00187598       8.6659e+09
+0.00187085       8.68965e+09
+0.00185205       8.77785e+09
+0.00181006       8.98149e+09

@@ -1050,11 +1050,18 @@ void getExecutionError(int status){
 
 int chekMemSimilar(float* openCl, float* referance, int length){
 	float test;
+	float maxDiff = 0;
 	for(int i = 0; i < length;i++){
 		test = openCl[i] - referance[i];
-		if(test > 0.000001f || test < -0.000001f){
-			return -1;
-		}
+		//if(test > 0.000001f || test < -0.000001f){
+			if(abs(test) > maxDiff){
+				maxDiff = abs(test);
+			}
+		//}
+	}
+	cout << "Max difference is: "<< maxDiff << endl;
+	if(maxDiff > 0.001f){
+		return -1;
 	}
 	return 0;
 }
