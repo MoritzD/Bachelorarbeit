@@ -167,9 +167,12 @@ __kernel void stancel4_1(__global float* in, __global float* out,
 __kernel void dynamicstancel1(__global float* in, __global float* out, 
 					int width, int height, __global int* positions, __global float* weights, int numberPoints){
 /*
+*	__global int* positions, __global float* weights, int numberPoints)
 *	Problem with the way the positions are handeld: when is a possition allowet to be in anoter line and when not?
 *	idea vor a better way: set up a Struct or whatever to goup two int values together to one coordinate ->
 *	its clear now wether a possition is ment to be in a diffrent line ore not (overflow)
+*	new Way the position list is handeld: {x1,y1, x2,y2, x3,y3, x4,y4} wehre x and y are always the difference from the 
+*	output point. e.g.: "normal" Stancel would be: {0,-1, -1,0, 1,0, 0,1}
 */
 
 	int2 globalID = (int2) (get_global_id(0), get_global_id(1));
