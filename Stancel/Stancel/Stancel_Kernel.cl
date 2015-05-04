@@ -176,8 +176,8 @@ __kernel void dynamicstancel1(__global float* in, __global float* out,
 */
 
 	int2 globalID = (int2) (get_global_id(0), get_global_id(1));
-	int2 localID = (int2) (get_local_id(0),get_local_id(1));
-	int2 localSize = (int2) (get_local_size(0),get_local_size(1));
+	//int2 localID = (int2) (get_local_id(0),get_local_id(1));
+	//int2 localSize = (int2) (get_local_size(0),get_local_size(1));
 	int2 globalSize = (int2) (get_global_size(0),get_global_size(1));
 
 	int2 group = (int2) (get_group_id(0),get_group_id(1));
@@ -204,16 +204,32 @@ Psoydo code:
 	float sum = 0;
 	int lookAt = 0;
 	int MaxPoint = height * width;
-	for(int i = 0; i < numberPoints; i++){
-		lookAt = pos+positions[i];
-		if (lookAt < 0 || lookAt > MaxPoint || (lookAt/width) != (pos/width)){
+	bool valid = true;
+
+	for(int i = 0; i < numberPoints*2; i = i + 2){
+		lookAt = pos + positions[i] + positions[i+1]*width;
+		if (lookAt < 0 || lookAt > MaxPoint ){		//Bottom ore top out of bounce
 			//sum = 0;
 			//break;
-			return;
+			//out[pos] = -99;//lookAt;
+			//out[pos] = lookAt;
+			valid = false;
+			break;
+			//return;	<= appears not to be working!! ends whole work groupe or something.
 		}
-		sum += in[lookAt] * weights[i];
+		if((globalID.x+1 + positions[i]) >= width || (globalID.x + positions[i]) < -1){		//Left or Right out of bounce
+			//out[pos] = -1;
+			valid = false;
+			break;
+			//return;
+		}
+		sum += in[lookAt] * weights[i/2];
 	}
-	out[pos] = sum/numberPoints;
+	if(valid){
+		out[pos] = sum/numberPoints;
+	}else{
+		out[pos] = in[pos];
+	}
 
 }
 

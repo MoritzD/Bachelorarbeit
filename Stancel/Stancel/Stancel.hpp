@@ -19,7 +19,7 @@ using namespace appsdk;
 #define END 99
 
 
-#define VERBOSE true
+#define VERBOSE false
 #define SINGLETIME true 
 
 #define WIDTH  500
@@ -47,9 +47,10 @@ cl_uint kernelVersion = 3;
 cl_float *input = NULL;
 cl_float *output = NULL;
 
-cl_int* dynamicPos;
-cl_float* dynamicWeight;
-cl_int dynamicNumberPoints;
+cl_int numberPoints = 4;
+cl_int positions[8] = {0,-1, -1,0, 1,0, 0,1}; 
+cl_float weights[4] = {1.0f,1.0f,1.0f,1.0f,}; 
+
 
 
 SDKTimer *sampleTimer;

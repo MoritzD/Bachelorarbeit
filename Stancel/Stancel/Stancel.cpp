@@ -97,9 +97,10 @@ int main(int argc, char* argv[])
 	fill(input, input + (width*height), 1.0);
 	//input[5] = 10;
 	//input[14] = 5;
-	input[29] = 50;
+	//input[29] = 50;
+	//input[30] = 4;
 	//input[25] = 10;
-	/*for (int i = width; i < (width*height)-width; i++){
+	for (int i = width; i < (width*height)-width; i++){
 		if(i%width == 0 || i%width == (width-1)){
 			continue;
 		}
@@ -107,8 +108,8 @@ int main(int argc, char* argv[])
 			input[i] = 100;
 			continue;
 		}*/
-	//	input[i] = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/10));
-	//}
+		input[i] = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/10));
+	}
 	
 	output = (cl_float*)malloc(sizeof(cl_float) * width * height);
 	memset(output, 0, sizeof(cl_float) * width * height);
@@ -227,6 +228,7 @@ int main(int argc, char* argv[])
 	cl_uint work_dim;
 	size_t *global_work_size = (size_t*) malloc(2*sizeof(size_t));
 	size_t *local_work_size = (size_t*) malloc(2*sizeof(size_t));
+
 
 	switch (kernelVersion){
 		case 1:
@@ -348,18 +350,18 @@ int main(int argc, char* argv[])
 			global_work_size[1] = height - 2;
 			local_work_size = NULL;//min((cl_uint)64,(width-2));
 
-			cl_int positions[6] = {-width,-2,-1,1,2,width}; 
-			cl_float weights[6] = {1.0f,1.0f,1.0f,1.0f,1.0f,1.0f}; 
-			cl_int numberPoints = 6;
+			/*cl_int numberPoints = 6;
+			positions[numberPoints*2] = {0,-1, -2,0, -1,0, 1,0, 2,0, 0,1}; 
+			weights[numberPoints] = {1.0f,1.0f,1.0f,1.0f,1.0f,1.0f}; 
 
 			dynamicPos = positions;
 			dynamicWeight = weights;
 			dynamicNumberPoints = numberPoints;
-
+*/
 			cl_mem BufferPositions = clCreateBuffer(
 				context,
 				CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR,
-				sizeof(cl_int) * numberPoints,
+				sizeof(cl_int) * numberPoints*2,
 				positions,
 				&status);
 			if (status != SUCCESS){
@@ -518,7 +520,7 @@ int main(int argc, char* argv[])
 
 	double SPS = ((width - 2)*(height - 2))/(times.kernelExecuting/iterations);
 
-	cout << "Testoutput: this should be constant with different iterations!: " << (times.kernelExecuting/iterations) << endl;
+	//cout << "Testoutput: this should be constant with different iterations!: " << (times.kernelExecuting/iterations) << endl;
 
 	cout << "we had: " << (width - 2)*(height - 2) << " single Stancel calculations" << endl;
 	cout << "this makes: \n" << SPS << " SPS (Stancels Per Second)\n" << SPS/1000 << " KSPS (Kilo Stancels Per Second)\n" << SPS/1000000 << " MSPS (Mega Stancels Per Second) \n" << SPS/1000000000 << " GSPS (Giga Stancels Per Second) \n" << endl;
@@ -569,30 +571,41 @@ void StupidCPUimplementation(float *in, float *out, int width, int height){
 	}
 }
 void StupidDynamicCPUImplementation(float *in, float *out, 
-					int width, int height, int *positions, float *weights, int numberPoints){
+					int width, int height, cl_int *positions, cl_float *allWeights, cl_int numberPoints){
+
+	//cout << positions[0] <<","<< positions[1] <<" "<< positions[2] <<","<< positions[3] << endl;
+
 	float sum;
 	int lookAt;
 	bool valid;
 	for (int num = 0; num < width*height; num++){
-		if (num < width || (num % width) == 0 || (num % width) == width - 1 || num >= (width*height - width)){
+		/*if (num < width || (num % width) == 0 || (num % width) == width - 1 || num >= (width*height - width)){
 			out[num] = in[num];
 		}
-		else{
+		else{*/
 			sum = 0;
 			lookAt = 0;
 			valid = true;
-			for (int i = 0; i < numberPoints; i++){
-				lookAt = num+positions[i];
-				if(lookAt < 0 || lookAt > width*height){
+			for (int i = 0; i < numberPoints*2; i = i + 2){
+				lookAt = num + positions[i] + positions[i+1]*width;
+				if(lookAt < 0 || lookAt > width*height){		//top ore bottom out of bounce
 					valid = false;
 					break;
 				}
-				sum += in[lookAt] * weights[i];
+				if(num/width != (num+positions[i])/width){		// left ore right out of bounce
+					//out[num] = -1;
+					valid = false;
+					break;
+				}
+				sum += in[lookAt] * allWeights[i/2];
 			}
 			if(valid){
-				out[num] = num; //sum/numberPoints;
+				out[num] = sum/numberPoints;
 			}
-		}
+			else{
+					out[num] = in[num];
+			}
+		//}
 	}
 }
 int getPlatforms(void){
@@ -966,8 +979,9 @@ int checkAgainstCpuImplementation(float *origInput, float *clOutput){
 
 	if(kernelVersion == 6){
 		for (int e = 0; e < iterations; e++){
-			StupidDynamicCPUImplementation(inout, workmem, width, height, dynamicPos, dynamicWeight, dynamicNumberPoints);
-			StupidDynamicCPUImplementation(workmem, inout, width, height, dynamicPos, dynamicWeight, dynamicNumberPoints);
+			StupidDynamicCPUImplementation(inout, workmem, width, height, positions, weights, numberPoints);
+			StupidDynamicCPUImplementation(workmem, inout, width, height, positions, weights, numberPoints);
+			//inout=workmem;
 		}
 	}
 	else{

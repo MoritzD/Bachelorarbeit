@@ -360,3 +360,23 @@ Time             SPS
 0.00187085       8.68965e+09
 0.00185205       8.77785e+09
 0.00181006       8.98149e+09
+
+
+
+Interresannt:
+
+dynamischer Stancil: es wird der klassische stancil berechnet, beim vergleich mit der angepassten CPU Refferance 
+stimmen die ergebnisse byteweise überein, also jedes einzelne byte!
+wenn nun gegen die standard berechnung geprüft wird gibt es geringfügige unterschiede, und die bytweise überprüfung 
+scheitert; nun greift die selbst implementierte differenz überprüfung, die den größten unterschied ausgibt, und 
+demnach ihr ok gitbt.
+
+
+Failed the test; results differ.
+Max difference is: 9.53674e-07
+ But Results are similar; should be ok! 
+
+
+vs.
+
+Passed the test; results are equil.
