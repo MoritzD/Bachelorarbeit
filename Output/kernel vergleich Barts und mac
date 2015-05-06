@@ -18,8 +18,8 @@ Stancel -we 4034 -he 4034 -i 100 -e -kv 1
 	Releasing everything: 0.015333
 
 VGL: MAC ATI Tahiti:
-4.57056 GSPS
-Total time: 0.520798    execution: 0.35569   (CPU referance: 16.2531)
+4.57056 GSPs 4.53409 	5.67008			avg:
+Total time: 0.520798    0.573826  0.5001  execution: 0.35569   (CPU referance: 16.2531)		avg: 
 
 MAC NVD Tesla:
 0.217234 GSPS
@@ -44,8 +44,8 @@ Stancel -we 4034 -he 4034 -i 100 -e -kv 3
 	Releasing everything: 0.0137859
 
 VGL: MAC ATI Tahiti:
-3.40617 GSPS
-Total time: 0.646757	execution: 0.477281		(CPU refferance: 16.263)
+3.40617 GSPS 	3.49038		3.49245			avg: 3,46300
+Total time: 0.646757	0.675871	0.763077 	avg:	0,69524		execution: 0.477281		(CPU refferance: 16.263)
 
 MAC NVD Tesla:
 2.69639 GSPS
@@ -68,7 +68,7 @@ Stancel -we 4034 -he 4034 -i 100 -e -kv 4		//with work dim 1 and local work size
 
 	Finisched!
 
-	Total time: 1.10844	1.1032	1.11739
+	Total time: 1.10844	1.1032	1.11739		
 	Summery times: 
 	Build Program: 0.0943259
 	Set Kernel Args: 0.058467
@@ -219,7 +219,7 @@ Barts KV 2 // Global work space width-2 X heiht-2 no local work space!
 
 	Finisched!
 
-	Total time: 0.78498	0.775378	0.766959	0.791788
+	Total time: 0.78498	0.775378	0.766959	0.791788		avg:	0.77977625
 	Summery times: 
 	Build Program: 0.101055
 	Set Kernel Args: 0.0603301
