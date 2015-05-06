@@ -380,3 +380,26 @@ Max difference is: 9.53674e-07
 vs.
 
 Passed the test; results are equil.
+
+
+
+
+KV 6 Dynamic kernel (calculating 5-point Stancel) testet on the MAC Tahiti // NOT optimized version (including if/else blocks!)
+
+	2.70144e+09 SPS (Stancels Per Second)
+	2.70144e+06 KSPS (Kilo Stancels Per Second)
+	2701.44 MSPS (Mega Stancels Per Second) 
+	2.70144 GSPS (Giga Stancels Per Second) 2.57728 GSPs 	2.74695 GSPs 	2.72133 GSPS
+
+	Finisched!
+
+	Total time: 0.855306	0.890471	0.896922	0.853341
+	Summery times: 
+	Build Program: 0.133163
+	Set Kernel Args: 0.0611421
+	Kernel executon: 0.601791
+	Get output back to host memory: 0.01347
+	Releasing everything: 0.04574
+
+	// test against specilised CPU algorithm is Byte ok
+	// test against first stupid cpu implementation has some differences but is ok: Max difference is: 2.38419e-06

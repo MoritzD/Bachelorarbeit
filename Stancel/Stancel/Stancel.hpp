@@ -8,6 +8,7 @@
 #include <fstream>
 #include <ctime>
 #include "CLUtil.hpp"
+#include <algorithm>
 
 
 using namespace appsdk;
@@ -43,13 +44,14 @@ cl_uint DeviceToUse = 0;
 cl_uint width = WIDTH, height = HEIGHT;
 cl_uint iterations = ITERATIONS;
 cl_uint kernelVersion = 3;
+std::string stancilDefinition = "";
 
 cl_float *input = NULL;
 cl_float *output = NULL;
 
 cl_int numberPoints = 4;
-cl_int positions[8] = {0,-1, -1,0, 1,0, 0,1}; 
-cl_float weights[4] = {1.0f,1.0f,1.0f,1.0f,}; 
+cl_int* positions;//[8] = {0,-1, -1,0, 1,0, 0,1}; 
+cl_float* weights;//[4] = {1.0f,1.0f,1.0f,1.0f,}; 
 
 
 
@@ -96,3 +98,9 @@ int checkAgainstCpuImplementation(float *origInput, float *clOutput);
 void getExecutionError(int status);
 
 int chekMemSimilar(float* openCl, float* referance, int length);
+
+cl_int parseStringToPositions(std::string str);
+
+
+//ToDo:
+// make Stupid CPU implementation available via command line;  check if dynamic stancel via command line is working

@@ -58,10 +58,13 @@ int main(int argc, char* argv[])
 		freeResources();
 		return FAILURE; 
 	}
-
-	if (getDevice() == END){ 
+	status = getDevice();
+	if (status == END){ 
 		freeResources();
 		return SUCCESS; 
+	}else if(status == FAILURE){
+		freeResources();
+		return FAILURE;
 	}
 	
 	/*Step 3: Create context.*/
@@ -345,6 +348,8 @@ int main(int argc, char* argv[])
 			cout <<" lokal work size:  we "<< local_work_size[0] << endl;
 		break;
 		case 6:
+			numberPoints = parseStringToPositions(stancilDefinition);
+
 			work_dim = 2;
 			global_work_size[0] = width - 2;
 			global_work_size[1] = height - 2;
@@ -554,9 +559,18 @@ void freeResources(){
 	}
 	if (devices != NULL)
 	{
-
 		free(devices);
 		devices = NULL;
+	}
+	if (positions != NULL)
+	{
+		free(positions);
+		positions = NULL;
+	}
+	if (weights != NULL)
+	{
+		free(weights);
+		weights = NULL;
 	}
 }
 
@@ -647,36 +661,54 @@ int getPlatforms(void){
 
 int getDevice(void){
 	/*Step 2:Query the platform and choose the first GPU device if has one.Otherwise use the CPU as device.*/
-	status = clGetDeviceIDs(platform, CL_DEVICE_TYPE_ALL, 0, NULL, &numDevices);
-	fprintf(stdout, "number of Devices found: %u\n\n", numDevices);
-
-	devices = (cl_device_id*)malloc(numDevices * sizeof(cl_device_id));
-	status = clGetDeviceIDs(platform, CL_DEVICE_TYPE_ALL, numDevices, devices, NULL);
-	cout << "List of Devices found:" << endl;
-	cout << "\nGPUs found:" << endl;
-
-	PrintDeviceInfo(CL_DEVICE_TYPE_GPU);
-
-	cout << "\nCPUs found:" << endl;
-	PrintDeviceInfo(CL_DEVICE_TYPE_CPU);
-
-	cout << "\nTotal list (correct order):" << endl;
-
-	for (j = 0; j < numDevices; j++){
-		//print device name
-		clGetDeviceInfo(devices[j], CL_DEVICE_NAME, 0, NULL, &valueSize);
-		value = (char*)malloc(valueSize);
-		clGetDeviceInfo(devices[j], CL_DEVICE_NAME, valueSize, value, NULL);
-		printf("%u: %s \n",j, value);
-		free(value);
+	if(ComandArgs->deviceType.compare("cpu") == 0){
+		status = clGetDeviceIDs(platform, CL_DEVICE_TYPE_CPU, 0, NULL, &numDevices);
+		fprintf(stdout, "\nusing CPU; found: %u device(s)\n", numDevices);
+		devices = (cl_device_id*)malloc(numDevices * sizeof(cl_device_id));
+		status = clGetDeviceIDs(platform, CL_DEVICE_TYPE_CPU, numDevices, devices, NULL);
+	}else{
+		status = clGetDeviceIDs(platform, CL_DEVICE_TYPE_GPU, 0, NULL, &numDevices);
+		if(numDevices == 0){
+			cout << "\nNo GPU was found; falling back to CPU" << endl;
+			status = clGetDeviceIDs(platform, CL_DEVICE_TYPE_CPU, 0, NULL, &numDevices);
+			fprintf(stdout, "using CPU; found: %u device(s)\n", numDevices);
+			devices = (cl_device_id*)malloc(numDevices * sizeof(cl_device_id));
+			status = clGetDeviceIDs(platform, CL_DEVICE_TYPE_CPU, numDevices, devices, NULL);
+		}else{
+			fprintf(stdout, "\nusing GPU; found: %u device(s)\n", numDevices);
+			devices = (cl_device_id*)malloc(numDevices * sizeof(cl_device_id));
+			status = clGetDeviceIDs(platform, CL_DEVICE_TYPE_GPU, numDevices, devices, NULL);
+		}
 	}
-	cout << "99: Stupid CPU Implementation" << endl;
+
+	if(VERBOSE){
+		cout << "List of all Devices found:" << endl;
+		cout << "\nGPUs found:" << endl;
+
+		PrintDeviceInfo(CL_DEVICE_TYPE_GPU);
+
+		cout << "\nCPUs found:" << endl;
+		PrintDeviceInfo(CL_DEVICE_TYPE_CPU);
+
+		cout << "\nTotal list (correct order):" << endl;
+
+		for (j = 0; j < numDevices; j++){
+			//print device name
+			clGetDeviceInfo(devices[j], CL_DEVICE_NAME, 0, NULL, &valueSize);
+			value = (char*)malloc(valueSize);
+			clGetDeviceInfo(devices[j], CL_DEVICE_NAME, valueSize, value, NULL);
+			printf("%u: %s \n",j, value);
+			free(value);
+		}
+	}
+	//cout << "99: Stupid CPU Implementation" << endl;
+
 	
 	//if (numDevices > 1){
 
-		cout << "\nWitch Device should be used?" << endl;
+		//cout << "\nWitch Device should be used?" << endl;
 
-		cin >> DeviceToUse;
+	/*	cin >> DeviceToUse;
 		cout << DeviceToUse << endl;
 		while (DeviceToUse >= numDevices || DeviceToUse < 0){
 			if (DeviceToUse == 99) break;
@@ -689,8 +721,19 @@ int getDevice(void){
 		return END;
 	}
 	cout << "you selected device number: " << DeviceToUse << endl;
+	*/
+	if(numDevices == 0){
+		cout << "Fatal error; no device was found" << endl;
+		return FAILURE;
+	}
+	cout << "\nusing: " << endl;
+	clGetDeviceInfo(devices[0], CL_DEVICE_NAME, 0, NULL, &valueSize);
+		value = (char*)malloc(valueSize);
+		clGetDeviceInfo(devices[0], CL_DEVICE_NAME, valueSize, value, NULL);
+		printf("%s \n\n", value);
+		free(value);
 
-	aktiveDevice = devices + DeviceToUse;
+	aktiveDevice = &devices[0];
 	return SUCCESS;
 }
 
@@ -923,11 +966,23 @@ int readArgs(int argc, char* argv[]){
 	ComandArgs->AddOption(kvParam);
 	delete kvParam;
 
+	Option* stParam = new Option;
+	CHECK_ALLOCATION(stParam, "Memory Allocation error.\n");
+	stParam->_sVersion = "st";
+	stParam->_lVersion = "stancil";
+	stParam->_description = "define what kind of stanil should be used";
+	stParam->_type = CA_ARG_STRING;
+	stParam->_value = &stancilDefinition;
+	ComandArgs->AddOption(stParam);
+	delete stParam;
+
+
 	ComandArgs->parseCommandLine(argc, argv);
 
 	cout << "\n" << width << " : " << height << " Iterations: " << iterations << endl;
 	//cout << ComandArgs->verify << endl;
 	cout << "using kernel version: " << kernelVersion << "\n" << endl;
+
 }
 
 void getKernelArgSetError(int status){
@@ -1108,15 +1163,59 @@ int chekMemSimilar(float* openCl, float* referance, int length){
 	float maxDiff = 0;
 	for(int i = 0; i < length;i++){
 		test = openCl[i] - referance[i];
-		//if(test > 0.000001f || test < -0.000001f){
 			if(abs(test) > maxDiff){
 				maxDiff = abs(test);
 			}
-		//}
 	}
 	cout << "Max difference is: "<< maxDiff << endl;
-	if(maxDiff > 0.0001f){
+	if(maxDiff > 0.00001f){
 		return -1;
 	}
 	return 0;
+}
+
+cl_int parseStringToPositions(std::string str){
+	str.erase(std::remove(str.begin(), str.end(), ' ') 
+		,str.end());
+
+	cl_int *helper = (cl_int*)malloc(sizeof(cl_int) * str.size());
+
+	cl_int i = 0, e = 0;
+	bool negativ;
+	int result;
+
+	while(i < str.size()){
+		negativ = false;
+		result = 0;
+
+		while(str[i] != ','){
+			if (str[i] == '-'){
+				negativ = true;
+				i++;
+				continue;
+			}
+			result = result * 10;
+			result += str[i] - '0';
+			i++;
+			if(i == str.size()){
+				break;
+			}
+		}
+		if (negativ)	result = -result;
+
+		//cout << "single number is: " << result <<"and i: " << i << endl;
+
+		helper[e] = result;
+		e++;
+		i++;
+	}
+
+	positions = (cl_int*)malloc(sizeof(cl_int) * e);
+
+	memcpy(positions, helper, sizeof(cl_int) * e);
+
+	free(helper);
+
+	cout << "first 4 numbers are:: " << positions[0] << " " << positions[1] << " " << positions[2] << " " << positions[3] << endl;
+	return e/2;
 }
