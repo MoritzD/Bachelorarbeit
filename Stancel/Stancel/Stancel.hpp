@@ -20,7 +20,6 @@ using namespace appsdk;
 #define END 99
 
 
-#define VERBOSE false
 #define SINGLETIME true 
 
 #define WIDTH  500
@@ -44,7 +43,11 @@ cl_uint DeviceToUse = 0;
 cl_uint width = WIDTH, height = HEIGHT;
 cl_uint iterations = ITERATIONS;
 cl_uint kernelVersion = 3;
-std::string stancilDefinition = "";
+std::string stancilDefinition = "0,-1, -1,0, 1,0, 0,1";
+std::string device = "gpu";
+bool VERBOSE = false;
+bool VERBOSEMATRIX = false;
+bool VERBOSEKERNEL = false;
 
 cl_float *input = NULL;
 cl_float *output = NULL;
@@ -101,6 +104,7 @@ int chekMemSimilar(float* openCl, float* referance, int length);
 
 cl_int parseStringToPositions(std::string str);
 
+void createKernels(cl_kernel* kernel, cl_kernel* kernelBackwards, cl_program* program);
 
-//ToDo:
-// make Stupid CPU implementation available via command line;  check if dynamic stancel via command line is working
+int setWorkSizes(cl_uint* work_dim, size_t *global_work_size, size_t *local_work_size, cl_context* context,
+				cl_kernel* kernel, cl_kernel* kernelBackwards);

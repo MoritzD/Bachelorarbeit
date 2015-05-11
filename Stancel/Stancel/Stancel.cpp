@@ -45,6 +45,7 @@ int convertToString(const char *filename, std::string& s)
 
 int main(int argc, char* argv[])
 {
+	
 	sampleTimer = new SDKTimer();
 	timer = sampleTimer->createTimer();
 	
@@ -84,7 +85,7 @@ int main(int argc, char* argv[])
 	status = convertToString(filename, KernelSource);
 	const char *source = KernelSource.c_str();
 	size_t sourceSize[] = { strlen(source) };
-	if (VERBOSE){ cout << source << endl; }
+	if (VERBOSEKERNEL){ cout << source << endl; }
 	cl_program program = clCreateProgramWithSource(context, 1, &source, sourceSize, NULL);
 
 	if(buildProgram(&program) != SUCCESS) {
@@ -148,35 +149,9 @@ int main(int argc, char* argv[])
 	cl_kernel 
 	kernel = NULL, 
 	kernelBackwards = NULL;
-	
+
 	/*Step 8: Create kernel object */
-	switch (kernelVersion){
-		case 1:
-			kernel = clCreateKernel(program, "stancel1", NULL);
-			kernelBackwards = clCreateKernel(program, "stancel1", NULL);
-		break;
-		case 2:
-			kernel = clCreateKernel(program, "stancel2", NULL);
-			kernelBackwards = clCreateKernel(program, "stancel2", NULL);
-		break;
-		case 3:
-			kernel = clCreateKernel(program, "stancel3", NULL);
-			kernelBackwards = clCreateKernel(program, "stancel3", NULL);
-		break;
-		case 4:
-			kernel = clCreateKernel(program, "stancel4", NULL);
-			kernelBackwards = clCreateKernel(program, "stancel4", NULL); 
-		break;
-		case 5:
-			kernel = clCreateKernel(program, "stancel4_1", NULL);
-			kernelBackwards = clCreateKernel(program, "stancel4_1", NULL); 
-		break;
-		case 6:
-			kernel = clCreateKernel(program, "dynamicstancel1", NULL);
-			kernelBackwards = clCreateKernel(program, "dynamicstancel1", NULL); 
-		break;
-		
-	}
+	createKernels(&kernel, &kernelBackwards, &program);
 
 	/*Step 9: Sets Kernel arguments.*/
 	status = clSetKernelArg(kernel, 0, sizeof(cl_mem), (void *)&BufferMatrixA);
@@ -207,7 +182,10 @@ int main(int argc, char* argv[])
 	sampleTimer->stopTimer(timer);
 	times.setKernelArgs = sampleTimer->readTimer(timer);
 
-	cout << "kernel Arguments are set; starting kernel now!" << endl;
+	if(!ComandArgs->quiet){
+		cout << "kernel Arguments are set; starting kernel now!" << endl;
+	}
+
 
 
 	/*Step 10: Running the kernel.*/
@@ -226,13 +204,20 @@ int main(int argc, char* argv[])
 	KernelWorkGroupInfo kernelInfo;
 	status = kernelInfo.setKernelWorkGroupInfo(kernel, *aktiveDevice);
     CHECK_ERROR(status,0, "setKernelWrkGroupInfo failed");
-    cout << "Max kernel work gorup size: " << kernelInfo.kernelWorkGroupSize << endl;
-	
+    
+    if(!ComandArgs->quiet){
+    	cout << "Max kernel work gorup size: " << kernelInfo.kernelWorkGroupSize << endl;
+	}
 	cl_uint work_dim;
 	size_t *global_work_size = (size_t*) malloc(2*sizeof(size_t));
 	size_t *local_work_size = (size_t*) malloc(2*sizeof(size_t));
 
 
+	setWorkSizes(&work_dim, global_work_size, local_work_size, &context,
+				&kernel, &kernelBackwards);
+
+
+/*
 	switch (kernelVersion){
 		case 1:
 			work_dim = 1;
@@ -260,10 +245,11 @@ int main(int argc, char* argv[])
 					break; 
 				}
 			}
-			cout << "Using blocks of size: " << local_work_size[0] <<" ; "<< local_work_size[1] << endl;
-
+			if(!ComandArgs->quiet){
+				cout << "Using blocks of size: " << local_work_size[0] <<" ; "<< local_work_size[1] << endl;
+			}
 			/* Create local mem objects to cash blocks in */
-			status = clSetKernelArg(kernel, 4, (local_work_size[0] + 2) * (local_work_size[1] + 2) * sizeof(cl_float), NULL);
+/*			status = clSetKernelArg(kernel, 4, (local_work_size[0] + 2) * (local_work_size[1] + 2) * sizeof(cl_float), NULL);
 		    CHECK_OPENCL_ERROR(status, "clSetKernelArg failed. (local memory)");
 
 		    status = clSetKernelArg(kernelBackwards, 4, (local_work_size[0] + 2) * (local_work_size[1] + 2) * sizeof(cl_float), NULL);
@@ -283,12 +269,13 @@ int main(int argc, char* argv[])
 			//}
 		*/
 
+/*			if(!ComandArgs->quiet){
+				cout <<" height  and    width     "<< height << " " << width << endl;
 
-			cout <<" height  and    width     "<< height << " " << width << endl;
+				cout <<" global work size:  we ; he   "<< global_work_size[0] <<" ; "<< global_work_size[1] << endl;
 
-			cout <<" global work size:  we ; he   "<< global_work_size[0] <<" ; "<< global_work_size[1] << endl;
-
-			cout <<" lokal work size:  we ; he   "<< local_work_size[0] <<" ; " << local_work_size[1] << endl;
+				cout <<" lokal work size:  we ; he   "<< local_work_size[0] <<" ; " << local_work_size[1] << endl;
+			}
 		break;
 		case 4:
 			work_dim = 2;
@@ -297,13 +284,13 @@ int main(int argc, char* argv[])
 			global_work_size[1] = 4;
 			local_work_size[0] = min((cl_uint)64,(width-2));
 			local_work_size[1] = 4;
+			if(!ComandArgs->quiet){
+				cout <<" height  and    width     "<< height << " " << width << endl;
 
-			cout <<" height  and    width     "<< height << " " << width << endl;
-
-			cout <<" global work size:  we ; he   "<< global_work_size[0] <<" ; "<< global_work_size[1] << endl;
- 
-			cout <<" lokal work size:  we ; he   "<< local_work_size[0] <<" ; " << local_work_size[1] << endl;
-
+				cout <<" global work size:  we ; he   "<< global_work_size[0] <<" ; "<< global_work_size[1] << endl;
+	 
+				cout <<" lokal work size:  we ; he   "<< local_work_size[0] <<" ; " << local_work_size[1] << endl;
+			}
 		break;
 		case 5:
 			//work_dim = 2;
@@ -340,12 +327,13 @@ int main(int argc, char* argv[])
 		    CHECK_OPENCL_ERROR(status, "clSetKernelArg failed. (local memory6)");
 
 
- 
-			cout <<" height  and    width     "<< height << " " << width << endl;
+ 			if(!ComandArgs->quiet){
+				cout <<" height  and    width     "<< height << " " << width << endl;
 
-			cout <<" global work size:  we "<< global_work_size[0] << endl;
- 
-			cout <<" lokal work size:  we "<< local_work_size[0] << endl;
+				cout <<" global work size:  we "<< global_work_size[0] << endl;
+	 
+				cout <<" lokal work size:  we "<< local_work_size[0] << endl;
+			}
 		break;
 		case 6:
 			numberPoints = parseStringToPositions(stancilDefinition);
@@ -363,7 +351,7 @@ int main(int argc, char* argv[])
 			dynamicWeight = weights;
 			dynamicNumberPoints = numberPoints;
 */
-			cl_mem BufferPositions = clCreateBuffer(
+/*			cl_mem BufferPositions = clCreateBuffer(
 				context,
 				CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR,
 				sizeof(cl_int) * numberPoints*2,
@@ -398,7 +386,7 @@ int main(int argc, char* argv[])
 			break;
 	}
 
-
+*/
 
 	sampleTimer->resetTimer(timer);
 	sampleTimer->startTimer(timer);
@@ -406,7 +394,7 @@ int main(int argc, char* argv[])
 
 	double timer2value = 0;
 
-		if(SINGLETIME){ 
+		if(SINGLETIME && !ComandArgs->quiet){ 
 			cout << "Time \t\t SPS " << endl;
 			} 
 
@@ -464,18 +452,22 @@ int main(int argc, char* argv[])
 		if(SINGLETIME){ 
 			sampleTimer->stopTimer(timer2);
 			timer2value = sampleTimer->readTimer(timer2);
-			cout << timer2value  << " \t " << ((width - 2)*(height - 2))/ timer2value << endl;
+			if(!ComandArgs->quiet){
+				cout << timer2value  << " \t " << ((width - 2)*(height - 2))/ timer2value << endl;
+			}
 		}
 	}
 
 	sampleTimer->stopTimer(timer);
 	times.kernelExecuting = sampleTimer->readTimer(timer);
-	cout << "Total executing time: " << times.kernelExecuting << endl;
-	cout << "so for every run thats: " << (sampleTimer->readTimer(timer) / iterations) << endl;
+	if(!ComandArgs->quiet){
+		cout << "Total executing time: " << times.kernelExecuting << endl;
+		cout << "so for every run thats: " << (sampleTimer->readTimer(timer) / iterations) << endl;
+	}
 
 	sampleTimer->resetTimer(timer);
 	sampleTimer->startTimer(timer);
-	/*Step 11: Read the cout put back to host memory.*/
+	/*Step 11: Read the output back to host memory.*/
 	status = clEnqueueReadBuffer(commandQueue, BufferMatrixA, CL_TRUE, 0, width * height * sizeof(cl_float), output, 0, NULL, NULL);
 	//status = clEnqueueReadBuffer(commandQueue, BufferMatrixB, CL_TRUE, 0, width * height * sizeof(cl_float), output, 0, NULL, NULL);
 
@@ -483,7 +475,7 @@ int main(int argc, char* argv[])
 	times.writeBack = sampleTimer->readTimer(timer);
 
 
-	if (VERBOSE){
+	if (VERBOSEMATRIX){
 		cout << "Input:" << endl;
 		for (int y = 0; y < height; y++){
 			for (int x = 0; x < width; x++){
@@ -499,8 +491,9 @@ int main(int argc, char* argv[])
 			cout << endl;
 		}
 	}
-
-	cout << "done; releasinng kernel now" << endl;
+	if(!ComandArgs->quiet){
+		cout << "done; releasinng kernel now" << endl;
+	}
 	sampleTimer->resetTimer(timer);
 	sampleTimer->startTimer(timer);
 
@@ -526,11 +519,14 @@ int main(int argc, char* argv[])
 	double SPS = ((width - 2)*(height - 2))/(times.kernelExecuting/iterations);
 
 	//cout << "Testoutput: this should be constant with different iterations!: " << (times.kernelExecuting/iterations) << endl;
-
-	cout << "we had: " << (width - 2)*(height - 2) << " single Stancel calculations" << endl;
-	cout << "this makes: \n" << SPS << " SPS (Stancels Per Second)\n" << SPS/1000 << " KSPS (Kilo Stancels Per Second)\n" << SPS/1000000 << " MSPS (Mega Stancels Per Second) \n" << SPS/1000000000 << " GSPS (Giga Stancels Per Second) \n" << endl;
-
-	cout << "Finisched!" << endl;
+	if(!ComandArgs->quiet){
+		cout << "we had: " << (width - 2)*(height - 2) << " single Stancel calculations" << endl;
+		cout << "this makes: ";
+	}
+	cout <<"\n"<< SPS << " SPS (Stancels Per Second)\n" << SPS/1000 << " KSPS (Kilo Stancels Per Second)\n" << SPS/1000000 << " MSPS (Mega Stancels Per Second) \n" << SPS/1000000000 << " GSPS (Giga Stancels Per Second) \n" << endl;
+	if(!ComandArgs->quiet){
+		cout << "Finisched!" << endl;
+	}
 	times.total= times.kernelExecuting + times.buildProgram + times.setKernelArgs + times.writeBack + times.releaseKernel;
 	cout << "\nTotal time: " << times.total << endl;
 	cout << "Summery times: " << endl;
@@ -625,7 +621,6 @@ void StupidDynamicCPUImplementation(float *in, float *out,
 int getPlatforms(void){
 	/*Step1: Getting platforms and choose an available one.*/
 
-
 	status = clGetPlatformIDs(0, NULL, &numPlatforms);
 
 	if (status != CL_SUCCESS)
@@ -633,8 +628,9 @@ int getPlatforms(void){
 		cout << "Error: Getting platforms!" << endl;
 		return FAILURE;
 	}
-
-	fprintf(stdout, "number of platformes found: %u \n", numPlatforms);
+	if(!ComandArgs->quiet){
+		cout << "number of platformes found: " << numPlatforms << endl;
+	}
 	/*choose the an available platform. */
 	if (numPlatforms > 0)
 	{
@@ -661,21 +657,37 @@ int getPlatforms(void){
 
 int getDevice(void){
 	/*Step 2:Query the platform and choose the first GPU device if has one.Otherwise use the CPU as device.*/
-	if(ComandArgs->deviceType.compare("cpu") == 0){
+	if(device.compare("cpu") == 0){
 		status = clGetDeviceIDs(platform, CL_DEVICE_TYPE_CPU, 0, NULL, &numDevices);
-		fprintf(stdout, "\nusing CPU; found: %u device(s)\n", numDevices);
+		if(!ComandArgs->quiet){
+			cout << "\nusing CPU; found: " << numDevices << " device(s)" << endl;
+		}
 		devices = (cl_device_id*)malloc(numDevices * sizeof(cl_device_id));
 		status = clGetDeviceIDs(platform, CL_DEVICE_TYPE_CPU, numDevices, devices, NULL);
-	}else{
+	}
+	else if(device.compare("stupid") == 0){
+		if(!ComandArgs->quiet){
+			cout << "\nyou selected the stupid CPU implementation" << endl;
+		}
+		runCpuImplementation();
+		return END;
+	}
+	else{
 		status = clGetDeviceIDs(platform, CL_DEVICE_TYPE_GPU, 0, NULL, &numDevices);
 		if(numDevices == 0){
-			cout << "\nNo GPU was found; falling back to CPU" << endl;
+			if(!ComandArgs->quiet){
+				cout << "\nNo GPU was found; falling back to CPU" << endl;
+			}
 			status = clGetDeviceIDs(platform, CL_DEVICE_TYPE_CPU, 0, NULL, &numDevices);
-			fprintf(stdout, "using CPU; found: %u device(s)\n", numDevices);
+			if(!ComandArgs->quiet){
+				cout << "using CPU; found: " << numDevices << " device(s)" << endl;
+			}
 			devices = (cl_device_id*)malloc(numDevices * sizeof(cl_device_id));
 			status = clGetDeviceIDs(platform, CL_DEVICE_TYPE_CPU, numDevices, devices, NULL);
 		}else{
-			fprintf(stdout, "\nusing GPU; found: %u device(s)\n", numDevices);
+			if(!ComandArgs->quiet){
+				cout << "\nusing GPU; found: " << numDevices << " device(s)" << endl;
+			}
 			devices = (cl_device_id*)malloc(numDevices * sizeof(cl_device_id));
 			status = clGetDeviceIDs(platform, CL_DEVICE_TYPE_GPU, numDevices, devices, NULL);
 		}
@@ -726,13 +738,14 @@ int getDevice(void){
 		cout << "Fatal error; no device was found" << endl;
 		return FAILURE;
 	}
-	cout << "\nusing: " << endl;
-	clGetDeviceInfo(devices[0], CL_DEVICE_NAME, 0, NULL, &valueSize);
-		value = (char*)malloc(valueSize);
-		clGetDeviceInfo(devices[0], CL_DEVICE_NAME, valueSize, value, NULL);
-		printf("%s \n\n", value);
-		free(value);
-
+	if(!ComandArgs->quiet){
+		cout << "\nusing: " << endl;
+		clGetDeviceInfo(devices[0], CL_DEVICE_NAME, 0, NULL, &valueSize);
+			value = (char*)malloc(valueSize);
+			clGetDeviceInfo(devices[0], CL_DEVICE_NAME, valueSize, value, NULL);
+			printf("%s \n\n", value);
+			free(value);
+	}
 	aktiveDevice = &devices[0];
 	return SUCCESS;
 }
@@ -797,7 +810,9 @@ int PrintDeviceInfo(int type){
 }
 
 int runCpuImplementation(){
-	cout << "you selected the stupid cpu implementation!" << endl;
+	if(!ComandArgs->quiet){
+		cout << "you selected the stupid cpu implementation!" << endl;
+	}
 
 	float *inputcpu = (float*)malloc(sizeof(float) * width * height);
 	fill(inputcpu, inputcpu + (width*height), 1.0);
@@ -909,7 +924,11 @@ int buildProgram(cl_program *program){
 		}
 		return FAILURE;
 	}
-	else cout << "Building Programm Sucsessfull" << endl;
+	else{
+		if(!ComandArgs->quiet){
+	 		cout << "Building Programm Sucsessfull" << endl;
+		}
+	}
 	return SUCCESS;
 }
 
@@ -926,6 +945,31 @@ int readArgs(int argc, char* argv[]){
 		cout << "Read Command Arguments Failed!" << endl;
 		return SDK_FAILURE;
 	}
+	// delete default Options i don't ned
+	Option* tParam = new Option;
+	CHECK_ALLOCATION(tParam, "Memory Allocation error.\n");
+	tParam->_sVersion = "t";
+	ComandArgs->DeleteOption(tParam);
+	tParam->_sVersion = "p";	
+	ComandArgs->DeleteOption(tParam);
+	tParam->_sVersion = "d";
+	ComandArgs->DeleteOption(tParam);
+	tParam->_sVersion = "v";
+	ComandArgs->DeleteOption(tParam);
+	delete tParam;
+
+	Option* longParam = new Option;
+	CHECK_ALLOCATION(longParam, "Memory Allocation error.\n");
+	longParam->_lVersion = "dump";
+	ComandArgs->DeleteOption(longParam);
+	longParam->_lVersion = "load";
+	ComandArgs->DeleteOption(longParam);
+	longParam->_lVersion = "flags";
+	ComandArgs->DeleteOption(longParam);
+	delete longParam;
+	
+
+	// add special Options that i do ned
 	Option* wParam = new Option;
 	CHECK_ALLOCATION(wParam, "Memory Allocation error.\n");
 	wParam->_sVersion = "we";
@@ -976,13 +1020,53 @@ int readArgs(int argc, char* argv[]){
 	ComandArgs->AddOption(stParam);
 	delete stParam;
 
+	Option* deviceParam = new Option;
+	CHECK_ALLOCATION(deviceParam, "Memory Allocation error.\n");
+	deviceParam->_sVersion = "d";
+	deviceParam->_lVersion = "device";
+	deviceParam->_description = "define what kind of device should be used";
+	deviceParam->_type = CA_ARG_STRING;
+	deviceParam->_value = &device;
+	deviceParam->_usage = " [gpu | cpu | all | stupid]";
+	ComandArgs->AddOption(deviceParam);
+	delete deviceParam;
+
+	Option* verboseParam = new Option;
+	CHECK_ALLOCATION(verboseParam, "Memory Allocation error.\n");
+	verboseParam->_sVersion = "V";
+	verboseParam->_lVersion = "verbose";
+	verboseParam->_description = "get more output";
+	verboseParam->_type = CA_NO_ARGUMENT;
+	verboseParam->_value = &VERBOSE;
+	ComandArgs->AddOption(verboseParam);
+	delete verboseParam;
+
+	Option* verbosemaParam = new Option;
+	CHECK_ALLOCATION(verbosemaParam, "Memory Allocation error.\n");
+	verbosemaParam->_sVersion = "VM";
+	verbosemaParam->_lVersion = "verbosematirx";
+	verbosemaParam->_description = "print out calculated matrix";
+	verbosemaParam->_type = CA_NO_ARGUMENT;
+	verbosemaParam->_value = &VERBOSEMATRIX;
+	ComandArgs->AddOption(verbosemaParam);
+	delete verbosemaParam;
+
+	Option* verbosekeParam = new Option;
+	CHECK_ALLOCATION(verbosekeParam, "Memory Allocation error.\n");
+	verbosekeParam->_sVersion = "VK";
+	verbosekeParam->_lVersion = "verbosekernel";
+	verbosekeParam->_description = "print out kernel file";
+	verbosekeParam->_type = CA_NO_ARGUMENT;
+	verbosekeParam->_value = &VERBOSEKERNEL;
+	ComandArgs->AddOption(verbosekeParam);
+	delete verbosekeParam;
 
 	ComandArgs->parseCommandLine(argc, argv);
 
-	cout << "\n" << width << " : " << height << " Iterations: " << iterations << endl;
-	//cout << ComandArgs->verify << endl;
-	cout << "using kernel version: " << kernelVersion << "\n" << endl;
-
+	if(!ComandArgs->quiet){
+		cout << "\n" << width << " : " << height << " Iterations: " << iterations << endl;
+		cout << "using kernel version: " << kernelVersion << "\n" << endl;
+	}
 }
 
 void getKernelArgSetError(int status){
@@ -1012,10 +1096,10 @@ void getKernelArgSetError(int status){
 }
 
 int checkAgainstCpuImplementation(float *origInput, float *clOutput){
-
+	if(!ComandArgs->quiet){
 		cout << "\nChecking result against referance cpu implementation :" << endl;
-
-		double referanceTime = 0;
+	}
+	double referanceTime = 0;
 
 	float *inout = (float*)malloc(sizeof(float) * width * height);
 	memcpy(inout, origInput, sizeof(float) * width * height);
@@ -1028,7 +1112,9 @@ int checkAgainstCpuImplementation(float *origInput, float *clOutput){
 	sampleTimer->resetTimer(timer);
 	sampleTimer->startTimer(timer);
 */
-	cout << "calculateing..." << endl;
+	if(!ComandArgs->quiet){
+		cout << "calculateing..." << endl;
+	}
 	sampleTimer->resetTimer(timer);
 	sampleTimer->startTimer(timer);
 
@@ -1049,7 +1135,7 @@ int checkAgainstCpuImplementation(float *origInput, float *clOutput){
 	sampleTimer->stopTimer(timer);
 	referanceTime = sampleTimer->readTimer(timer);
 
-	if(VERBOSE){
+	if(VERBOSEMATRIX){
 		cout << "referance output:" << endl;
 		for (int y = 0; y < height; y++){
 			for (int x = 0; x < width; x++){
@@ -1216,6 +1302,189 @@ cl_int parseStringToPositions(std::string str){
 
 	free(helper);
 
-	cout << "first 4 numbers are:: " << positions[0] << " " << positions[1] << " " << positions[2] << " " << positions[3] << endl;
+	//cout << "first 4 numbers are:: " << positions[0] << " " << positions[1] << " " << positions[2] << " " << positions[3] << endl;
 	return e/2;
+}
+
+
+void createKernels(cl_kernel* kernel, cl_kernel* kernelBackwards, cl_program* program){
+	/*Step 8: Create kernel object */
+	switch (kernelVersion){
+		case 1:
+			*kernel = clCreateKernel(*program, "stancel1", NULL);
+			*kernelBackwards = clCreateKernel(*program, "stancel1", NULL);
+		break;
+		case 2:
+			*kernel = clCreateKernel(*program, "stancel2", NULL);
+			*kernelBackwards = clCreateKernel(*program, "stancel2", NULL);
+		break;
+		case 3:
+			*kernel = clCreateKernel(*program, "stancel3", NULL);
+			*kernelBackwards = clCreateKernel(*program, "stancel3", NULL);
+		break;
+		case 4:
+			*kernel = clCreateKernel(*program, "stancel4", NULL);
+			*kernelBackwards = clCreateKernel(*program, "stancel4", NULL); 
+		break;
+		case 5:
+			*kernel = clCreateKernel(*program, "stancel4_1", NULL);
+			*kernelBackwards = clCreateKernel(*program, "stancel4_1", NULL); 
+		break;
+		case 6:
+			*kernel = clCreateKernel(*program, "dynamicstancel1", NULL);
+			*kernelBackwards = clCreateKernel(*program, "dynamicstancel1", NULL); 
+		break;
+	}
+}
+
+int setWorkSizes(cl_uint* work_dim, size_t *global_work_size, size_t *local_work_size, cl_context* context,
+				cl_kernel* kernel, cl_kernel* kernelBackwards){
+
+	switch (kernelVersion){
+		case 1:
+			*work_dim = 1;
+			global_work_size[0] = width * height;
+			local_work_size = NULL;
+		break;
+
+		case 2:
+			*work_dim = 2;
+			global_work_size[0] = width - 2;
+			global_work_size[1] = height - 2;
+			local_work_size = NULL;//global_work_size[0]/(height-2);
+		break;
+
+		case 3:
+			*work_dim = 2;
+			global_work_size[0] = (width - 2);
+			global_work_size[1] = (height - 2);
+			local_work_size[0] = local_work_size[1] = 4;
+			
+			for (int i = min(global_work_size[0], (size_t) 16); i > 0; i--)		//(size_t)(sqrt(kernelInfo.kernelWorkGroupSize)) in min
+			{
+					if(global_work_size[0]%i == 0){
+					local_work_size[0] = local_work_size[1] = i;
+					break; 
+				}
+			}
+			if(!ComandArgs->quiet){
+				cout << "Using blocks of size: " << local_work_size[0] <<" ; "<< local_work_size[1] << endl;
+			}
+			/* Create local mem objects to cash blocks in */
+			status = clSetKernelArg(*kernel, 4, (local_work_size[0] + 2) * (local_work_size[1] + 2) * sizeof(cl_float), NULL);
+		    CHECK_OPENCL_ERROR(status, "clSetKernelArg failed. (local memory)");
+
+		    status = clSetKernelArg(*kernelBackwards, 4, (local_work_size[0] + 2) * (local_work_size[1] + 2) * sizeof(cl_float), NULL);
+		    CHECK_OPENCL_ERROR(status, "clSetKernelArg failed. (local memory)");
+
+			if(!ComandArgs->quiet){
+				cout <<" height  and    width     "<< height << " " << width << endl;
+
+				cout <<" global work size:  we ; he   "<< global_work_size[0] <<" ; "<< global_work_size[1] << endl;
+
+				cout <<" lokal work size:  we ; he   "<< local_work_size[0] <<" ; " << local_work_size[1] << endl;
+			}
+		break;
+		case 4:
+			*work_dim = 2;
+			
+			global_work_size[0] = (width - 2);
+			global_work_size[1] = 4;
+			local_work_size[0] = min((cl_uint)64,(width-2));
+			local_work_size[1] = 4;
+			if(!ComandArgs->quiet){
+				cout <<" height  and    width     "<< height << " " << width << endl;
+
+				cout <<" global work size:  we ; he   "<< global_work_size[0] <<" ; "<< global_work_size[1] << endl;
+	 
+				cout <<" lokal work size:  we ; he   "<< local_work_size[0] <<" ; " << local_work_size[1] << endl;
+			}
+		break;
+		case 5:
+			//work_dim = 2;
+			*work_dim = 1;
+			global_work_size[0] = (width - 2);
+			//global_work_size[1] = 4;
+			local_work_size[0] = min((cl_uint)64,(width-2));
+			//local_work_size[1] = 4;
+
+			status = clSetKernelArg(*kernel, 4, (local_work_size[0] + 2) * sizeof(cl_float), NULL);
+		    CHECK_OPENCL_ERROR(status, "clSetKernelArg failed. (local memory1)");
+
+			status = clSetKernelArg(*kernel, 5, (local_work_size[0] + 2) * sizeof(cl_float), NULL);
+		    CHECK_OPENCL_ERROR(status, "clSetKernelArg failed. (local memory2)");
+
+		    status = clSetKernelArg(*kernel, 6, (local_work_size[0] + 2) * sizeof(cl_float), NULL);
+		    CHECK_OPENCL_ERROR(status, "clSetKernelArg failed. (local memory3)");
+
+		    status = clSetKernelArg(*kernel, 7, (local_work_size[0] + 2) * sizeof(cl_float), NULL);
+		    CHECK_OPENCL_ERROR(status, "clSetKernelArg failed. (local memory3)");
+
+
+
+		    status = clSetKernelArg(*kernelBackwards, 4, (local_work_size[0] + 2) * sizeof(cl_float), NULL);
+		    CHECK_OPENCL_ERROR(status, "clSetKernelArg failed. (local memory4)");
+
+		    status = clSetKernelArg(*kernelBackwards, 5, (local_work_size[0] + 2) * sizeof(cl_float), NULL);
+		    CHECK_OPENCL_ERROR(status, "clSetKernelArg failed. (local memory5)");
+
+		    status = clSetKernelArg(*kernelBackwards, 6, (local_work_size[0] + 2) * sizeof(cl_float), NULL);
+		    CHECK_OPENCL_ERROR(status, "clSetKernelArg failed. (local memory6)");
+
+		    status = clSetKernelArg(*kernelBackwards, 7, (local_work_size[0] + 2) * sizeof(cl_float), NULL);
+		    CHECK_OPENCL_ERROR(status, "clSetKernelArg failed. (local memory6)");
+
+
+ 			if(!ComandArgs->quiet){
+				cout <<" height  and    width     "<< height << " " << width << endl;
+
+				cout <<" global work size:  we "<< global_work_size[0] << endl;
+	 
+				cout <<" lokal work size:  we "<< local_work_size[0] << endl;
+			}
+		break;
+		case 6:
+			numberPoints = parseStringToPositions(stancilDefinition);
+
+			*work_dim = 2;
+			global_work_size[0] = width - 2;
+			global_work_size[1] = height - 2;
+			local_work_size = NULL;//min((cl_uint)64,(width-2));
+
+			cl_mem BufferPositions = clCreateBuffer(
+				*context,
+				CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR,
+				sizeof(cl_int) * numberPoints*2,
+				positions,
+				&status);
+			if (status != SUCCESS){
+				fprintf(stderr, "clCreateBuffer failed. (BufferPositions) %i\n VGL: %i numberPoints: %i \n", 
+					status, CL_INVALID_BUFFER_SIZE, numberPoints);
+				freeResources();
+				return FAILURE;
+			}
+
+			cl_mem BufferWeights = clCreateBuffer(
+				*context,
+				CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR,
+				sizeof(cl_float) * numberPoints,
+				weights,
+				&status);
+			if (status != SUCCESS){
+				fprintf(stderr, "clCreateBuffer failed. (BufferWeights) %i\nVGL: %i numberPoints: %i \n", status,CL_INVALID_HOST_PTR, numberPoints);
+				freeResources();
+				return FAILURE;
+			}
+
+			status = clSetKernelArg(*kernel, 4, sizeof(cl_mem), (void *)&BufferPositions);
+			status = clSetKernelArg(*kernel, 5, sizeof(cl_mem), (void *)&BufferWeights);
+			status = clSetKernelArg(*kernel, 6, sizeof(cl_int), (void *)&numberPoints);
+
+			status = clSetKernelArg(*kernelBackwards, 4, sizeof(cl_mem), (void *)&BufferPositions);
+			status = clSetKernelArg(*kernelBackwards, 5, sizeof(cl_mem), (void *)&BufferWeights);
+			status = clSetKernelArg(*kernelBackwards, 6, sizeof(cl_int), (void *)&numberPoints);
+
+			break;
+	}
+	return SUCCESS;
 }
