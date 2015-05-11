@@ -44,6 +44,7 @@ cl_uint width = WIDTH, height = HEIGHT;
 cl_uint iterations = ITERATIONS;
 cl_uint kernelVersion = 3;
 std::string stancilDefinition = "0,-1, -1,0, 1,0, 0,1";
+std::string stancilWeights = "default";
 std::string device = "gpu";
 bool VERBOSE = false;
 bool VERBOSEMATRIX = false;
@@ -104,7 +105,9 @@ int chekMemSimilar(float* openCl, float* referance, int length);
 
 cl_int parseStringToPositions(std::string str);
 
+cl_int parseStringToWeights(std::string str);
+
 void createKernels(cl_kernel* kernel, cl_kernel* kernelBackwards, cl_program* program);
 
-int setWorkSizes(cl_uint* work_dim, size_t *global_work_size, size_t *local_work_size, cl_context* context,
+int setWorkSizes(cl_uint* work_dim, size_t *global_work_size, size_t **local_work_size, cl_context* context,
 				cl_kernel* kernel, cl_kernel* kernelBackwards);

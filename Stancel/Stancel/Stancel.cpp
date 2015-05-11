@@ -213,9 +213,12 @@ int main(int argc, char* argv[])
 	size_t *local_work_size = (size_t*) malloc(2*sizeof(size_t));
 
 
-	setWorkSizes(&work_dim, global_work_size, local_work_size, &context,
+	status = setWorkSizes(&work_dim, global_work_size, &local_work_size, &context,
 				&kernel, &kernelBackwards);
-
+	if (status == FAILURE){
+		cout << "Abording!" << endl;
+		return FAILURE;
+	}
 
 /*
 	switch (kernelVersion){
@@ -387,6 +390,20 @@ int main(int argc, char* argv[])
 	}
 
 */
+
+
+	if(VERBOSE){
+		cout <<"\n after the method; at caller: " << endl;
+		cout <<" working dimension: " << work_dim << endl;
+		cout <<" height  and    width     "<< height << " " << width << endl;
+
+		cout <<" global work size:  we; he "<< global_work_size[0]<< global_work_size[1] << endl;
+
+		cout <<" lokal work size:  we "<< local_work_size << endl;
+	}
+
+
+
 
 	sampleTimer->resetTimer(timer);
 	sampleTimer->startTimer(timer);
@@ -1020,6 +1037,16 @@ int readArgs(int argc, char* argv[]){
 	ComandArgs->AddOption(stParam);
 	delete stParam;
 
+	Option* stwParam = new Option;
+	CHECK_ALLOCATION(stwParam, "Memory Allocation error.\n");
+	stwParam->_sVersion = "w";
+	stwParam->_lVersion = "weights";
+	stwParam->_description = "define weights for every point in the dynamic stancil";
+	stwParam->_type = CA_ARG_STRING;
+	stwParam->_value = &stancilWeights;
+	ComandArgs->AddOption(stwParam);
+	delete stwParam;
+
 	Option* deviceParam = new Option;
 	CHECK_ALLOCATION(deviceParam, "Memory Allocation error.\n");
 	deviceParam->_sVersion = "d";
@@ -1067,6 +1094,8 @@ int readArgs(int argc, char* argv[]){
 		cout << "\n" << width << " : " << height << " Iterations: " << iterations << endl;
 		cout << "using kernel version: " << kernelVersion << "\n" << endl;
 	}
+
+
 }
 
 void getKernelArgSetError(int status){
@@ -1296,6 +1325,8 @@ cl_int parseStringToPositions(std::string str){
 		i++;
 	}
 
+
+
 	positions = (cl_int*)malloc(sizeof(cl_int) * e);
 
 	memcpy(positions, helper, sizeof(cl_int) * e);
@@ -1304,6 +1335,73 @@ cl_int parseStringToPositions(std::string str){
 
 	//cout << "first 4 numbers are:: " << positions[0] << " " << positions[1] << " " << positions[2] << " " << positions[3] << endl;
 	return e/2;
+}
+
+cl_int parseStringToWeights(std::string str){
+
+	cout << " using String for weights: " << str << endl;
+	str.erase(std::remove(str.begin(), str.end(), ' ') 
+		,str.end());
+
+	cout << " String wihtout witespaces: " << str << endl;
+
+	
+	cl_float *helper = (cl_float*)malloc(sizeof(cl_float) * str.size());
+
+	cl_int i = 0, e = 0, dotcount;
+	bool negativ, dot;
+	cl_float result;
+
+	while(i < str.size()){
+		negativ = dot = false;
+		result = 0;
+		dotcount = 0;
+
+		while(str[i] != ','){
+			if (str[i] == '-'){
+				negativ = true;
+				i++;
+				continue;
+			}
+			if (str[i] == '.'){
+				if(dot == true){
+					cout << "ERROR while pasing weights string: number with multiple dots; maybe you missed a ," << endl;
+					return FAILURE;
+				} 
+				dot = true;
+				i++;
+				continue;
+			}
+			result = result * 10;
+			result += str[i] - '0';
+			i++;
+			if(dot) dotcount++;
+			if(i == str.size()){
+				break;
+			}
+		}
+		if (dot){
+		//	cout << "result " << result << " 10^dotcount " << (pow(10,dotcount)) << " dotcount: " << dotcount << endl;
+			result = result/ pow(10,dotcount);	
+		} 
+		if (negativ)	result = -result;
+
+		cout << "single number is: " << result <<"and i: " << i << endl;
+
+		helper[e] = result;
+		e++;
+		i++;
+	}
+	weights = (cl_float*)malloc(sizeof(cl_float) * e);
+
+	memcpy(weights, helper, sizeof(cl_float) * e);
+
+	free(helper);
+	cout << " nubmer of weights: "<< e << endl;
+	cout << " first 4 numbers are: " << weights[0] << " " << weights[1] << " " << weights[2] << " " << weights[3] << endl;
+
+	return e;
+
 }
 
 
@@ -1337,44 +1435,44 @@ void createKernels(cl_kernel* kernel, cl_kernel* kernelBackwards, cl_program* pr
 	}
 }
 
-int setWorkSizes(cl_uint* work_dim, size_t *global_work_size, size_t *local_work_size, cl_context* context,
+int setWorkSizes(cl_uint* work_dim, size_t *global_work_size, size_t **local_work_size, cl_context* context,
 				cl_kernel* kernel, cl_kernel* kernelBackwards){
 
 	switch (kernelVersion){
 		case 1:
 			*work_dim = 1;
 			global_work_size[0] = width * height;
-			local_work_size = NULL;
+			*local_work_size = NULL;
 		break;
 
 		case 2:
 			*work_dim = 2;
 			global_work_size[0] = width - 2;
 			global_work_size[1] = height - 2;
-			local_work_size = NULL;//global_work_size[0]/(height-2);
+			*local_work_size = NULL;//global_work_size[0]/(height-2);
 		break;
 
 		case 3:
 			*work_dim = 2;
 			global_work_size[0] = (width - 2);
 			global_work_size[1] = (height - 2);
-			local_work_size[0] = local_work_size[1] = 4;
+			*local_work_size[0] = *local_work_size[1] = 4;
 			
 			for (int i = min(global_work_size[0], (size_t) 16); i > 0; i--)		//(size_t)(sqrt(kernelInfo.kernelWorkGroupSize)) in min
 			{
 					if(global_work_size[0]%i == 0){
-					local_work_size[0] = local_work_size[1] = i;
+					*local_work_size[0] = *local_work_size[1] = i;
 					break; 
 				}
 			}
 			if(!ComandArgs->quiet){
-				cout << "Using blocks of size: " << local_work_size[0] <<" ; "<< local_work_size[1] << endl;
+				cout << "Using blocks of size: " << *local_work_size[0] <<" ; "<< *local_work_size[1] << endl;
 			}
 			/* Create local mem objects to cash blocks in */
-			status = clSetKernelArg(*kernel, 4, (local_work_size[0] + 2) * (local_work_size[1] + 2) * sizeof(cl_float), NULL);
+			status = clSetKernelArg(*kernel, 4, (*local_work_size[0] + 2) * (*local_work_size[1] + 2) * sizeof(cl_float), NULL);
 		    CHECK_OPENCL_ERROR(status, "clSetKernelArg failed. (local memory)");
 
-		    status = clSetKernelArg(*kernelBackwards, 4, (local_work_size[0] + 2) * (local_work_size[1] + 2) * sizeof(cl_float), NULL);
+		    status = clSetKernelArg(*kernelBackwards, 4, (*local_work_size[0] + 2) * (*local_work_size[1] + 2) * sizeof(cl_float), NULL);
 		    CHECK_OPENCL_ERROR(status, "clSetKernelArg failed. (local memory)");
 
 			if(!ComandArgs->quiet){
@@ -1382,7 +1480,7 @@ int setWorkSizes(cl_uint* work_dim, size_t *global_work_size, size_t *local_work
 
 				cout <<" global work size:  we ; he   "<< global_work_size[0] <<" ; "<< global_work_size[1] << endl;
 
-				cout <<" lokal work size:  we ; he   "<< local_work_size[0] <<" ; " << local_work_size[1] << endl;
+				cout <<" lokal work size:  we ; he   "<< *local_work_size[0] <<" ; " << *local_work_size[1] << endl;
 			}
 		break;
 		case 4:
@@ -1390,14 +1488,14 @@ int setWorkSizes(cl_uint* work_dim, size_t *global_work_size, size_t *local_work
 			
 			global_work_size[0] = (width - 2);
 			global_work_size[1] = 4;
-			local_work_size[0] = min((cl_uint)64,(width-2));
-			local_work_size[1] = 4;
+			*local_work_size[0] = min((cl_uint)64,(width-2));
+			*local_work_size[1] = 4;
 			if(!ComandArgs->quiet){
 				cout <<" height  and    width     "<< height << " " << width << endl;
 
 				cout <<" global work size:  we ; he   "<< global_work_size[0] <<" ; "<< global_work_size[1] << endl;
 	 
-				cout <<" lokal work size:  we ; he   "<< local_work_size[0] <<" ; " << local_work_size[1] << endl;
+				cout <<" lokal work size:  we ; he   "<< *local_work_size[0] <<" ; " << *local_work_size[1] << endl;
 			}
 		break;
 		case 5:
@@ -1405,33 +1503,33 @@ int setWorkSizes(cl_uint* work_dim, size_t *global_work_size, size_t *local_work
 			*work_dim = 1;
 			global_work_size[0] = (width - 2);
 			//global_work_size[1] = 4;
-			local_work_size[0] = min((cl_uint)64,(width-2));
+			*local_work_size[0] = min((cl_uint)64,(width-2));
 			//local_work_size[1] = 4;
 
-			status = clSetKernelArg(*kernel, 4, (local_work_size[0] + 2) * sizeof(cl_float), NULL);
+			status = clSetKernelArg(*kernel, 4, (*local_work_size[0] + 2) * sizeof(cl_float), NULL);
 		    CHECK_OPENCL_ERROR(status, "clSetKernelArg failed. (local memory1)");
 
-			status = clSetKernelArg(*kernel, 5, (local_work_size[0] + 2) * sizeof(cl_float), NULL);
+			status = clSetKernelArg(*kernel, 5, (*local_work_size[0] + 2) * sizeof(cl_float), NULL);
 		    CHECK_OPENCL_ERROR(status, "clSetKernelArg failed. (local memory2)");
 
-		    status = clSetKernelArg(*kernel, 6, (local_work_size[0] + 2) * sizeof(cl_float), NULL);
+		    status = clSetKernelArg(*kernel, 6, (*local_work_size[0] + 2) * sizeof(cl_float), NULL);
 		    CHECK_OPENCL_ERROR(status, "clSetKernelArg failed. (local memory3)");
 
-		    status = clSetKernelArg(*kernel, 7, (local_work_size[0] + 2) * sizeof(cl_float), NULL);
+		    status = clSetKernelArg(*kernel, 7, (*local_work_size[0] + 2) * sizeof(cl_float), NULL);
 		    CHECK_OPENCL_ERROR(status, "clSetKernelArg failed. (local memory3)");
 
 
 
-		    status = clSetKernelArg(*kernelBackwards, 4, (local_work_size[0] + 2) * sizeof(cl_float), NULL);
+		    status = clSetKernelArg(*kernelBackwards, 4, (*local_work_size[0] + 2) * sizeof(cl_float), NULL);
 		    CHECK_OPENCL_ERROR(status, "clSetKernelArg failed. (local memory4)");
 
-		    status = clSetKernelArg(*kernelBackwards, 5, (local_work_size[0] + 2) * sizeof(cl_float), NULL);
+		    status = clSetKernelArg(*kernelBackwards, 5, (*local_work_size[0] + 2) * sizeof(cl_float), NULL);
 		    CHECK_OPENCL_ERROR(status, "clSetKernelArg failed. (local memory5)");
 
-		    status = clSetKernelArg(*kernelBackwards, 6, (local_work_size[0] + 2) * sizeof(cl_float), NULL);
+		    status = clSetKernelArg(*kernelBackwards, 6, (*local_work_size[0] + 2) * sizeof(cl_float), NULL);
 		    CHECK_OPENCL_ERROR(status, "clSetKernelArg failed. (local memory6)");
 
-		    status = clSetKernelArg(*kernelBackwards, 7, (local_work_size[0] + 2) * sizeof(cl_float), NULL);
+		    status = clSetKernelArg(*kernelBackwards, 7, (*local_work_size[0] + 2) * sizeof(cl_float), NULL);
 		    CHECK_OPENCL_ERROR(status, "clSetKernelArg failed. (local memory6)");
 
 
@@ -1440,16 +1538,36 @@ int setWorkSizes(cl_uint* work_dim, size_t *global_work_size, size_t *local_work
 
 				cout <<" global work size:  we "<< global_work_size[0] << endl;
 	 
-				cout <<" lokal work size:  we "<< local_work_size[0] << endl;
+				cout <<" lokal work size:  we "<< *local_work_size[0] << endl;
 			}
 		break;
 		case 6:
 			numberPoints = parseStringToPositions(stancilDefinition);
 
+			if(stancilWeights.compare("default") == 0){
+				cout << "no weights specifyed; assuming there all 1.0" << endl;
+				weights = (cl_float*)malloc(sizeof(cl_float) * numberPoints);
+				fill(weights, weights + numberPoints, 1.0);
+			}
+			else{
+				cl_int numberWeights = parseStringToWeights(stancilWeights);
+
+
+				if(numberWeights == FAILURE){
+					return FAILURE;
+				}
+				if(numberPoints != numberWeights){
+					cout << "ERROR: number of points and number of weights differ!"<< endl;
+					cout << "numberPoints = "<< numberPoints << " and numberWeights = " << numberWeights << endl;
+					return FAILURE;
+				}
+			}
+
 			*work_dim = 2;
 			global_work_size[0] = width - 2;
 			global_work_size[1] = height - 2;
-			local_work_size = NULL;//min((cl_uint)64,(width-2));
+			//free(local_work_size);
+			*local_work_size = NULL;//min((cl_uint)64,(width-2));
 
 			cl_mem BufferPositions = clCreateBuffer(
 				*context,
@@ -1483,7 +1601,15 @@ int setWorkSizes(cl_uint* work_dim, size_t *global_work_size, size_t *local_work
 			status = clSetKernelArg(*kernelBackwards, 4, sizeof(cl_mem), (void *)&BufferPositions);
 			status = clSetKernelArg(*kernelBackwards, 5, sizeof(cl_mem), (void *)&BufferWeights);
 			status = clSetKernelArg(*kernelBackwards, 6, sizeof(cl_int), (void *)&numberPoints);
+			
+			if(VERBOSE){
+				cout <<" working dimension: " << *work_dim << endl;
+				cout <<" height  and    width     "<< height << " " << width << endl;
 
+				cout <<" global work size:  we; he "<< global_work_size[0]<< global_work_size[1] << endl;
+	 
+				cout <<" lokal work size:  we "<< *local_work_size << endl;
+			}
 			break;
 	}
 	return SUCCESS;
