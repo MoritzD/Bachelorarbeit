@@ -98,12 +98,14 @@ __kernel void stancel4(__global float* in, __global float* out,
 /*
 *	latest approach of a even more optimized version of #4 using local memory
 *	performance has to be tested!
+*
+*	Note: Not working in the moment; i have no idea whats the problem... spent several hours trying to fix it... still no idea
 */
 
 __kernel void stancel4_1(__global float* in, __global float* out, 
 					int width, int height,
 					 __local float* one, __local float* two, 
-					 __local float* three, __local float* prefetchSpace)//, __local float* Buffer)
+					 __local float* three, __local float* prefetchSpace, __local float* helper)//, __local float* Buffer)
 {
 	int localWidth = get_local_size(0)+2;
 
@@ -121,7 +123,7 @@ __kernel void stancel4_1(__global float* in, __global float* out,
 	int pos = globalIDx + 1 + width;
 	//int localPos = localIDx + localWidth;
 	event_t event;
-	int helper;
+	//float* helper;
 
 	/*one[localIDx] = in[pos - width];
 	two[localIDx] = in[pos];
@@ -142,17 +144,18 @@ __kernel void stancel4_1(__global float* in, __global float* out,
 	barrier(CLK_LOCAL_MEM_FENCE);
  */
 
-	async_work_group_copy( one , in + group*(localWidth-2),localWidth, event);
+	async_work_group_copy( one , in + (group*(localWidth-2) ) ,localWidth, event);
 	async_work_group_copy( two , in + width + group*(localWidth-2),localWidth, event);
 	async_work_group_copy( three , in + width*2 + group*(localWidth-2),localWidth, event);
 
-	//int line = from;
-	for(int line = 1; line < height-1; line++){
+	//int line = from;	height-1
+	for(int line = 1; line < 3; line++){
 		async_work_group_copy( prefetchSpace , in + (width*(line+2)) + group*(localWidth-2) ,localWidth, event);
 	
 		pos = globalIDx + 1 + (width*line);
 		//localPos = localIDx + (localWidth * line);
-
+		//helper = one;
+		
 		out[pos] = (two[localIDx-1]+two[localIDx+1]+one[localIDx]+three[localIDx])/4;	//-4*in[pos]+in[pos-1]+in[pos+1]+in[pos-width]+in[pos+width];
 		
 		helper = one;
@@ -165,7 +168,8 @@ __kernel void stancel4_1(__global float* in, __global float* out,
 
 
 __kernel void dynamicstancel1(__global float* in, __global float* out, 
-					int width, int height, __global int* positions, __global float* weights, int numberPoints){
+					int width, int height, __global int* positions, __global float* weights,
+					int numberPoints, int edgewith){
 /*
 *	__global int* positions, __global float* weights, int numberPoints)
 *	Problem with the way the positions are handeld: when is a possition allowet to be in anoter line and when not?
@@ -175,16 +179,7 @@ __kernel void dynamicstancel1(__global float* in, __global float* out,
 *	output point. e.g.: "normal" Stancel would be: {0,-1, -1,0, 1,0, 0,1}
 */
 
-	int2 globalID = (int2) (get_global_id(0), get_global_id(1));
-	//int2 localID = (int2) (get_local_id(0),get_local_id(1));
-	//int2 localSize = (int2) (get_local_size(0),get_local_size(1));
-	int2 globalSize = (int2) (get_global_size(0),get_global_size(1));
 
-	int2 group = (int2) (get_group_id(0),get_group_id(1));
-
-/*	ToDo:
-*			Insert algorithm to calculate a dynamic defiend Stancel!!
-*/
 /*
 Psoydo code:
 
@@ -199,38 +194,16 @@ Psoydo code:
 	}
 	out[pos] = sum/numberPoints;
 */	
-	int pos = globalID.x + 1 + (globalID.y+1)*width;
+	int pos = get_global_id(0) + edgewith + (get_global_id(1)+edgewith)*width;
 
 	float sum = 0;
 	int lookAt = 0;
-	int MaxPoint = height * width;
-	bool valid = true;
 
 	for(int i = 0; i < numberPoints*2; i = i + 2){
 		lookAt = pos + positions[i] + positions[i+1]*width;
-		if (lookAt < 0 || lookAt > MaxPoint ){		//Bottom ore top out of bounce
-			//sum = 0;
-			//break;
-			//out[pos] = -99;//lookAt;
-			//out[pos] = lookAt;
-			valid = false;
-			break;
-			//return;	<= appears not to be working!! ends whole work groupe or something.
-		}
-		if((globalID.x+1 + positions[i]) >= width || (globalID.x + positions[i]) < -1){		//Left or Right out of bounce
-			//out[pos] = -1;
-			valid = false;
-			break;
-			//return;
-		}
 		sum += in[lookAt] * weights[i/2];
 	}
-	if(valid){
-		out[pos] = sum/numberPoints;
-	}else{
-		out[pos] = in[pos];
-	}
-
+	out[pos] = sum/numberPoints;
 }
 
 /*

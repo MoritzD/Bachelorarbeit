@@ -35,6 +35,10 @@ int PlatformToUse = 1;
 cl_uint				numDevices = 0;
 cl_device_id        *devices;
 cl_device_id		*aktiveDevice;
+
+cl_mem BufferMatrixA;
+cl_mem BufferMatrixB;
+
 size_t valueSize;
 char* value;
 cl_uint memsize, j;
@@ -45,6 +49,7 @@ cl_uint iterations = ITERATIONS;
 cl_uint kernelVersion = 3;
 std::string stancilDefinition = "0,-1, -1,0, 1,0, 0,1";
 std::string stancilWeights = "default";
+cl_int edgewith = 1;
 std::string device = "gpu";
 bool VERBOSE = false;
 bool VERBOSEMATRIX = false;
@@ -79,9 +84,15 @@ struct timeStruct{
 
 struct timeStruct times;
 
+int convertToString(const char *filename, std::string& s);
+
 void freeResources();
 
 void StupidCPUimplementation(float *in, float *out, int width, int height);
+
+void StupidDynamicCPUImplementation(float *in, float *out, int width, int height, 
+					cl_int *positions, cl_float *allWeights, 
+					cl_int numberPoints, cl_int edgewith);
 
 int getPlatforms(void);
 
@@ -107,7 +118,20 @@ cl_int parseStringToPositions(std::string str);
 
 cl_int parseStringToWeights(std::string str);
 
-void createKernels(cl_kernel* kernel, cl_kernel* kernelBackwards, cl_program* program);
+int createKernels(cl_kernel* kernel, cl_kernel* kernelBackwards, cl_program* program);
 
-int setWorkSizes(cl_uint* work_dim, size_t *global_work_size, size_t **local_work_size, cl_context* context,
-				cl_kernel* kernel, cl_kernel* kernelBackwards);
+int setWorkSizes(cl_uint* work_dim, size_t *global_work_size, size_t **local_work_size, 
+				cl_context* context, cl_kernel* kernel, cl_kernel* kernelBackwards);
+
+cl_int getEdgeWidth();
+
+void setInputEdgesToOne(cl_int edgewith);
+
+void initilizeHostBuffers();
+
+int setBufferKernelArgs(cl_kernel *kernel, cl_kernel *kernelBackwards, cl_context *context);
+
+int runKernels(cl_kernel* kernel, cl_kernel* kernelBackwards, cl_command_queue* commandQueue, 
+				size_t work_dim, size_t *global_work_size, size_t *local_work_size);
+
+void printStats();
