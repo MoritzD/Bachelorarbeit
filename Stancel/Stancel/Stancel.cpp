@@ -1285,11 +1285,11 @@ void initilizeHostBuffers(){
 		if(i%width == 0 || i%width == (width-1)){
 			continue;
 		}
-		if(i == (width/2+(height/2)*width)){
+		/*if(i == (width/2+(height/2)*width)){
 			input[i] = 100;
 			continue;
-		}
-		input[i] = 1;//static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/10));
+		}*/
+		input[i] = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/10));
 	}
 	
 	output = (cl_float*)malloc(sizeof(cl_float) * width * height);
