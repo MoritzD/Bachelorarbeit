@@ -93,6 +93,23 @@ Mac Tahiti:
 	Get output back to host memory: 0.155444
 	Releasing everything: 0.005646
 
+Mac Tesla:
+
+	2.88008e+09 SPS (Stancels Per Second)
+	2.88008e+06 KSPS (Kilo Stancels Per Second)
+	2880.08 MSPS (Mega Stancels Per Second) 
+	(2.88008 GSPS) (Giga Stancels Per Second) 2.85531 GSPs 	2.85449 GSPS 	2.84999 GSPS	2.85231 GSPS
+
+	Finisched!
+
+	Total time: (1.25619)	0.661035	0.660433	0.660824	0.657562
+	Summery times: 
+	Build Program: 0.621516		0.0110869
+	Set Kernel Args: 0.0524329	0.0627419
+	Kernel executon: 0.564464	0.569361
+	Get output back to host memory: 0.017519	0.0175769
+	Releasing everything: 0.000261963	0.000267822
+
 
 
 
@@ -133,7 +150,24 @@ on MAC ATI 04 (Tahiti) :
 	Get output back to host memory: 0.0106399
 	Releasing everything: 0.00551489
 
-Nvidia Tesla unfortunatly not available at the moment... :(
+MAC NVD 04 (Tesla):
+
+	2.01356e+09 SPS (Stancels Per Second)
+	2.01356e+06 KSPS (Kilo Stancels Per Second)
+	2013.56 MSPS (Mega Stancels Per Second) 
+	2.01356 GSPS (Giga Stancels Per Second) 2.01146 GSPS 2.01594 GSPS 	2.01455 GSPS
+
+	Finisched!
+
+	Total time: 0.899913	0.899776	0.895833	0.90112
+	Summery times: 
+	Build Program: 0.011541
+	Set Kernel Args: 0.0631929
+	Kernel executon: 0.807376
+	Get output back to host memory: 0.017519
+	Releasing everything: 0.000283936
+
+
 
 so:
 
@@ -184,7 +218,7 @@ MAC Tahiti:
 	Releasing everything: 0.00556689
 
 
-
+MAC Tesla: unfortunatly Kernel5 Broken at the moment... not realy shure why...
 
 
 
@@ -245,6 +279,23 @@ MAC Tahiti: KV2
 	Get output back to host memory: 0.0106191
 	Releasing everything: 0.00562598
 
+MAC Tesla: KV2
+
+3.34028e+09 SPS (Stancels Per Second)
+3.34028e+06 KSPS (Kilo Stancels Per Second)
+3340.28 MSPS (Mega Stancels Per Second) 
+3.34028 GSPS (Giga Stancels Per Second) 3.34108 GSPs 	3.33607 GSPs 	3.33492 GSPS
+
+Finisched!
+
+Total time: 0.57981		0.57683	0.581912	0.578102
+Summery times: 
+Build Program: 0.0124041
+Set Kernel Args: 0.062884
+Kernel executon: 0.486697
+Get output back to host memory: 0.0175481
+Releasing everything: 0.000276855
+
 
 
 
@@ -292,9 +343,44 @@ kv4 (256)
 4,12811
 4,22954 GSPS
 
+KV6:
+Tahiti MAC cluster    Stancel -we 4034 -he 4034 -i 100 -kv 6
+
+	3.2118e+09 SPS (Stancels Per Second)
+	3.2118e+06 KSPS (Kilo Stancels Per Second)
+	3211.8 MSPS (Mega Stancels Per Second) 
+	3.2118 GSPS (Giga Stancels Per Second) 	3.39012 GSPS 	3.24621 GSPS 	3.25011 GSPS
+
+	Finisched!
+
+	Total time: 0.809555	0.799533	0.817558	0.817221	
+	Summery times: 
+	Build Program: 0.117279
+	Set Kernel Args: 0.131141
+	Kernel executon: 0.506165
+	Get output back to host memory: 0.00985596
+	Releasing everything: 0.045114
+
+Tesla MAC cluster:
+
+	2.2326e+09 SPS (Stancels Per Second)
+	2.2326e+06 KSPS (Kilo Stancels Per Second)
+	2232.6 MSPS (Mega Stancels Per Second) 
+	2.2326 GSPS (Giga Stancels Per Second) 2.23164 GSPS 	2.2322 GSPs 	2.23178 GSPS
+
+	Finisched!
+
+	Total time: 0.917866	0.92266		0.918336	0.916579
+	Summery times: 
+	Build Program: 0.00873193
+	Set Kernel Args: 0.163182
+	Kernel executon: 0.728165
+	Get output back to host memory: 0.0175908
+	Releasing everything: 0.000196045
 
 
 
+./Stancel/bin/x86_64/Release/Stancel: /lrz/sys/parallel/opencl/nvidia/lib64/libOpenCL.so.1: no version information available (required by ./Stancel/bin/x86_64/Release/Stancel)
 
 
 NAME: Tahiti 
@@ -403,3 +489,23 @@ KV 6 Dynamic kernel (calculating 5-point Stancel) testet on the MAC Tahiti // NO
 
 	// test against specilised CPU algorithm is Byte ok
 	// test against first stupid cpu implementation has some differences but is ok: Max difference is: 2.38419e-06
+
+
+
+
+
+
+
+	
+
+	/*Step 10: Running the kernel.*/
+	/*	Approach (1 and) 2 
+	*	cl_uint work_dim = 1;
+	*	size_t global_work_size[1] = {(height - 2)*(width - 2)};			//{ width * height };
+	*	size_t local_work_size [1] = {global_work_size[0]/(height-2)};		//{2};				//{width - 2}; 
+	*	
+	*	//global_work_size[2] = width -2;
+	*/																// first approach: every single stancel by itself
+																	// second approach: one line a a time; as one local work goup (making tourble with big matrices, as soon as it gets bigger than what can be managed as one work item)
+																	// third approach: picking 16 by 16 blocks (or what ever the hadware can handle) and calculate these at the same time. thervor using a work_dim of 2 (global and local) another benefit: posebilety to load buffer from global to local mem to gain performance
+	/* Approach 3 (I feel like this is it ;) )*/					// whats better? deviding Matrix in equaly sized blocks (with might not have optimal size) or bilding optimal sized blocks and check in rightmost block for out of bounce?
