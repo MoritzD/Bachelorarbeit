@@ -378,6 +378,22 @@ Tesla MAC cluster:
 	Get output back to host memory: 0.0175908
 	Releasing everything: 0.000196045
 
+Bats:
+
+	8.26045e+08 SPS (Stancels Per Second)
+	826045 KSPS (Kilo Stancels Per Second)
+	826.045 MSPS (Mega Stancels Per Second) 
+	0.826045 GSPS (Giga Stancels Per Second) 	0.82276 GSPS 	0.831475 GSPS 	0.832828 GSPS
+
+	Finisched!
+
+	Total time: 2.9264	2.94111	2.91605 2.91507
+	Summery times: 
+	Build Program: 0.106612
+	Set Kernel Args: 0.8267
+	Kernel executon: 1.96806
+	Get output back to host memory: 0.0161172
+	Releasing everything: 0.00891699
 
 
 ./Stancel/bin/x86_64/Release/Stancel: /lrz/sys/parallel/opencl/nvidia/lib64/libOpenCL.so.1: no version information available (required by ./Stancel/bin/x86_64/Release/Stancel)
