@@ -705,7 +705,7 @@ int readArgs(int argc, char* argv[]){
 		cout << "using kernel version: " << kernelVersion << "\n" << endl;
 	}
 
-
+	return SUCCESS;
 }
 
 void getKernelArgSetError(int status){
@@ -1045,7 +1045,19 @@ int createKernels(cl_kernel* kernel, cl_kernel* kernelBackwards, cl_program* pro
 			*kernel = clCreateKernel(*program, "dynamicstancel1", NULL);
 			*kernelBackwards = clCreateKernel(*program, "dynamicstancel1", NULL); 
 			
-			numberPoints = parseStringToPositions(stancilDefinition);
+			if(stancilWeights.compare("default") == 0){
+				cout << "no positions specifyed; using the default 5-Point-Stancil" << endl;
+				positions = (cl_int*)malloc(sizeof(cl_int) * 8);
+				positions[0] =  0;	positions[1] = -1;
+				positions[2] = -1;	positions[3] =  0;
+				positions[4] =  1;	positions[5] =  0;
+				positions[6] =  0;	positions[7] =  1;
+
+			//	0,-1, -1,0, 1,0, 0,1
+			}
+			else{
+				numberPoints = parseStringToPositions(stancilDefinition);
+			}
 
 			if(stancilWeights.compare("default") == 0){
 				cout << "no weights specifyed; assuming there all 1.0" << endl;
@@ -1296,20 +1308,15 @@ void initilizeHostBuffers(){
 	//memset(output, 0, sizeof(cl_float) * width * height);
 	memcpy(output, input, sizeof(cl_float) * width * height);
 
-	cout << "Input:" << endl;
+	if(VERBOSEMATRIX){
+	cout << "Initional Input Matrix:" << endl;
 		for (int y = 0; y < height; y++){
 			for (int x = 0; x < width; x++){
 				cout << *(input + x + y*width)<<" ";
 			}
 			cout << endl;
 		}
-		cout << endl << "Output:" << endl;
-		for (int y = 0; y < height; y++){
-			for (int x = 0; x < width; x++){
-				cout << *(output + x + y*width)<<" ";
-			}
-			cout << endl;
-		}
+	}
 }
 
 int setBufferKernelArgs(cl_kernel* kernel, cl_kernel* kernelBackwards, cl_context* context){

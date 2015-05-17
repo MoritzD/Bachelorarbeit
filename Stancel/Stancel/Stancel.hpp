@@ -47,7 +47,7 @@ cl_uint DeviceToUse = 0;
 cl_uint width = WIDTH, height = HEIGHT;
 cl_uint iterations = ITERATIONS;
 cl_uint kernelVersion = 3;
-std::string stancilDefinition = "0,-1, -1,0, 1,0, 0,1";
+std::string stancilDefinition = "default";
 std::string stancilWeights = "default";
 cl_int edgewith = 1;
 std::string device = "gpu";
