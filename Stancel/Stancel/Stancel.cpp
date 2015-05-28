@@ -118,7 +118,8 @@ int main(int argc, char* argv[])
 	sampleTimer->resetTimer(timer);
 	sampleTimer->startTimer(timer);
 	/*Step 11: Read the output back to host memory.*/
-	status = clEnqueueReadBuffer(commandQueue, BufferMatrixA, CL_TRUE, 0, width * height * sizeof(cl_float), output, 0, NULL, NULL);
+	status = clEnqueueReadBuffer(commandQueue, BufferMatrixA, CL_TRUE, 0, 
+		width * height * sizeof(cl_float), output, 0, NULL, NULL);
 
 	sampleTimer->stopTimer(timer);
 	times.writeBack = sampleTimer->readTimer(timer);
@@ -235,7 +236,8 @@ void StupidCPUimplementation(float *in, float *out, int width, int height){
 			out[num] = in[num];
 		}
 		else{
-			out[num] = (in[num - 1] + in[num + 1] + in[num - width] + in[num + width])/4; //-4 * in[num] + in[num - 1] + in[num + 1] + in[num - width] + in[num + width];
+			out[num] = (in[num - 1] + in[num + 1] + in[num - width] + in[num + width])/4; 
+			//-4 * in[num] + in[num - 1] + in[num + 1] + in[num - width] + in[num + width];
 		}
 	}
 }
@@ -512,6 +514,21 @@ int runCpuImplementation(){
 int buildProgram(cl_program *program){
 	/*Step 6: Build program. */
 	status = clBuildProgram(*program, 1, aktiveDevice, NULL, NULL, NULL);
+	
+	if(!ComandArgs->quiet || status != SUCCESS){
+		// Get log information
+	    size_t log_size;
+	    clGetProgramBuildInfo(*program, *aktiveDevice, CL_PROGRAM_BUILD_LOG, 0, NULL, &log_size);
+
+	    char *log; 
+	    log = (char *) malloc(log_size);
+
+	    clGetProgramBuildInfo(*program, *aktiveDevice, CL_PROGRAM_BUILD_LOG, log_size, log, NULL);
+
+	    printf("%s\n", log);
+	    free(log);
+	}
+
 	if (status != SUCCESS){
 		fprintf(stderr, "Building Program failed. error code: ");
 		cout << status << endl;
@@ -541,6 +558,7 @@ int buildProgram(cl_program *program){
 		case CL_BUILD_PROGRAM_FAILURE:
 			cout << "Build Program Failure" << endl;
 			break;
+
 		case CL_OUT_OF_HOST_MEMORY:
 			cout << "Out Of Host Memory" << endl;
 			break;
@@ -549,6 +567,7 @@ int buildProgram(cl_program *program){
 			cout << "Unknown Error" << endl;
 			break;
 		}
+
 		return FAILURE;
 	}
 	else{
@@ -945,7 +964,8 @@ cl_int parseStringToPositions(std::string str){
 
 	free(helper);
 
-	//cout << "first 4 numbers are:: " << positions[0] << " " << positions[1] << " " << positions[2] << " " << positions[3] << endl;
+	//cout << "first 4 numbers are:: " << positions[0] << " " << positions[1] << " " 
+									//<< positions[2] << " " << positions[3] << endl;
 	return e/2;
 }
 
@@ -977,7 +997,8 @@ cl_int parseStringToWeights(std::string str){
 			}
 			if (str[i] == '.'){
 				if(dot == true){
-					cout << "ERROR while pasing weights string: number with multiple dots; maybe you missed a ," << endl;
+					cout << "ERROR while pasing weights string: number with "
+								<< "multiple dots; maybe you missed a ," << endl;
 					return FAILURE;
 				} 
 				dot = true;
@@ -993,7 +1014,8 @@ cl_int parseStringToWeights(std::string str){
 			}
 		}
 		if (dot){
-		//	cout << "result " << result << " 10^dotcount " << (pow(10,dotcount)) << " dotcount: " << dotcount << endl;
+		//	cout << "result " << result << " 10^dotcount " << (pow(10,dotcount)) 
+							//<< " dotcount: " << dotcount << endl;
 			result = result/ pow(10,dotcount);	
 		} 
 		if (negativ)	result = -result;
@@ -1010,7 +1032,8 @@ cl_int parseStringToWeights(std::string str){
 
 	free(helper);
 	cout << " nubmer of weights: "<< e << endl;
-	cout << " first 4 numbers are: " << weights[0] << " " << weights[1] << " " << weights[2] << " " << weights[3] << endl;
+	cout << " first 4 numbers are: " << weights[0] << " " << weights[1] << " " 
+									 << weights[2] << " " << weights[3] << endl;
 
 	return e;
 
@@ -1111,8 +1134,9 @@ int setWorkSizes(cl_uint* work_dim, size_t *global_work_size, size_t **local_wor
 			(*local_work_size)[0] = 4;
 			(*local_work_size)[1] = 4;
 			
-			for (int i = min(global_work_size[0], (size_t) 16); i > 0; i--)		//(size_t)(sqrt(kernelInfo.kernelWorkGroupSize)) in min
+			for (int i = min(global_work_size[0], (size_t) 16); i > 0; i--)		
 			{
+				//(size_t)(sqrt(kernelInfo.kernelWorkGroupSize)) in min
 					if(global_work_size[0]%i == 0){
 					(*local_work_size)[0] = (*local_work_size)[1] = i;
 					break; 
@@ -1231,7 +1255,8 @@ int setWorkSizes(cl_uint* work_dim, size_t *global_work_size, size_t **local_wor
 				weights,
 				&status);
 			if (status != SUCCESS){
-				fprintf(stderr, "clCreateBuffer failed. (BufferWeights) %i\nVGL: %i numberPoints: %i \n", status,CL_INVALID_HOST_PTR, numberPoints);
+				fprintf(stderr, "clCreateBuffer failed. (BufferWeights) %i\nVGL: %i numberPoints: %i \n", 
+														status,CL_INVALID_HOST_PTR, numberPoints);
 				freeResources();
 				return FAILURE;
 			}
@@ -1377,7 +1402,8 @@ int setBufferKernelArgs(cl_kernel* kernel, cl_kernel* kernelBackwards, cl_contex
 }
 
 
-int runKernels(cl_kernel* kernel, cl_kernel* kernelBackwards, cl_command_queue* commandQueue, size_t work_dim, size_t *global_work_size, size_t *local_work_size){
+int runKernels(cl_kernel* kernel, cl_kernel* kernelBackwards, cl_command_queue* commandQueue,
+						 size_t work_dim, size_t *global_work_size, size_t *local_work_size){
 	sampleTimer->resetTimer(timer);
 	sampleTimer->startTimer(timer);
 	int timer2 = sampleTimer->createTimer();
@@ -1394,9 +1420,11 @@ int runKernels(cl_kernel* kernel, cl_kernel* kernelBackwards, cl_command_queue* 
 			sampleTimer->startTimer(timer2);
 		}
 
-		status = clEnqueueNDRangeKernel(*commandQueue, *kernel, work_dim, NULL, global_work_size, local_work_size, 0, NULL, &ndrEvt);
+		status = clEnqueueNDRangeKernel(*commandQueue, *kernel, work_dim, NULL, 
+								global_work_size, local_work_size, 0, NULL, &ndrEvt);
 		if (status != SUCCESS){
-			fprintf(stderr, "executing kernel failed. \n %i vgl %i\n ",status , CL_INVALID_WORK_ITEM_SIZE   ); //CL_INVALID_EVENT_WAIT_LIST CL_MEM_OBJECT_ALLOCATION_FAILURE CL_MEM_OBJECT_ALLOCATION_FAILURE  CL_INVALID_WORK_DIMENSION
+			fprintf(stderr, "executing kernel failed. \n %i vgl %i\n ",status , CL_INVALID_WORK_ITEM_SIZE   ); 
+			//CL_INVALID_EVENT_WAIT_LIST CL_MEM_OBJECT_ALLOCATION_FAILURE CL_MEM_OBJECT_ALLOCATION_FAILURE  CL_INVALID_WORK_DIMENSION
 			getExecutionError(status);
 			freeResources();
 			return FAILURE;
@@ -1419,7 +1447,8 @@ int runKernels(cl_kernel* kernel, cl_kernel* kernelBackwards, cl_command_queue* 
 			}
 		}
 		
-		status = clEnqueueNDRangeKernel(*commandQueue, *kernelBackwards, work_dim, NULL, global_work_size, local_work_size, 0, NULL, &ndrEvt);
+		status = clEnqueueNDRangeKernel(*commandQueue, *kernelBackwards, work_dim, NULL, 
+										global_work_size, local_work_size, 0, NULL, &ndrEvt);
 		if (status != SUCCESS) fprintf(stderr, "executing kernel simply just for the second try failed. \n");
 		status = clFlush(*commandQueue);
 
@@ -1463,12 +1492,14 @@ void printStats(){
 
 	double SPS = ((width - 2)*(height - 2))/(times.kernelExecuting/iterations);
 
-	//cout << "Testoutput: this should be constant with different iterations!: " << (times.kernelExecuting/iterations) << endl;
+	//cout << "Testoutput: this should be constant with different iterations!: " 
+								//<< (times.kernelExecuting/iterations) << endl;
 	if(!ComandArgs->quiet){
 		cout << "we had: " << (width - 2)*(height - 2) << " single Stancel calculations" << endl;
 		cout << "this makes: ";
 	}
-	cout <<"\n"<< SPS << " SPS (Stancels Per Second)\n" << SPS/1000 << " KSPS (Kilo Stancels Per Second)\n" << SPS/1000000 << " MSPS (Mega Stancels Per Second) \n" << SPS/1000000000 << " GSPS (Giga Stancels Per Second) \n" << endl;
+	cout <<"\n"<< SPS << " SPS (Stancels Per Second)\n" << SPS/1000 << " KSPS (Kilo Stancels Per Second)\n" << SPS/1000000 
+			<< " MSPS (Mega Stancels Per Second) \n" << SPS/1000000000 << " GSPS (Giga Stancels Per Second) \n" << endl;
 	if(!ComandArgs->quiet){
 		cout << "Finisched!" << endl;
 	}

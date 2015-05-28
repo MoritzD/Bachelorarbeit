@@ -28,7 +28,7 @@ __kernel void stancel3(__global float* in, __global float* out,
 
 
 	int dim = get_work_dim();
-	int numberOfGroupsx = (globalSize.x/localSize.x);
+	//int numberOfGroupsx = (globalSize.x/localSize.x);
 	int pos = (globalID.x+1)+(globalID.y+1)*width;//(localID + 1 ) + ((group + 1) * width) ;//(num2 + 1) + ((num + 1) * width); 
 	int localPos = (localID.x+1) + (localID.y+1)*(localSize.x+2);
 	int loadIndex = localID.x + (localID.y * localSize.x);
@@ -122,7 +122,7 @@ __kernel void stancel4_1(__global float* in, __global float* out,
 	int group = get_group_id(0);
 	int pos = globalIDx + 1 + width;
 	//int localPos = localIDx + localWidth;
-	event_t event;
+	event_t event = 0;
 	//float* helper;
 
 	/*one[localIDx] = in[pos - width];
