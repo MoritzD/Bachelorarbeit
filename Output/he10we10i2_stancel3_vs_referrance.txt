@@ -50,7 +50,7 @@ you selected device number: 0
 /*
 * Primary kernel to execute calculations.
 */
-__kernel void stancel(__global float* in, __global float* out, 
+__kernel void Stancil(__global float* in, __global float* out, 
 					int width, int height)
 {
 	int num = get_global_id(0);
@@ -67,7 +67,7 @@ __kernel void stancel(__global float* in, __global float* out,
 //	}
 }
 
-__kernel void stancel3(__global float* in, __global float* out, 
+__kernel void Stancil3(__global float* in, __global float* out, 
 					int width, int height, __local float* Buffer)
 {
 	int globalx = get_global_id(0);
@@ -104,7 +104,7 @@ __kernel void stancel3(__global float* in, __global float* out,
 	out[pos] = -4*Buffer[localPos] + Buffer[localPos-1] + Buffer[localPos+1] + Buffer[localPos-(localSizex+2)] + Buffer[localPos+(localSizex+2)]; //loadIndex;//(localSizex+2); //(globalSize/localSizex); //group + group2 * (globalSize/localSizex); //-4*in[pos]+in[pos-1]+in[pos+1]+in[pos-width]+in[pos+width]; 	
 }
 
-__kernel void stancel2(__global float* in, __global float* out, 
+__kernel void Stancil2(__global float* in, __global float* out, 
 					int width, int height)
 {
 	int globalID = get_global_id(0);
@@ -171,12 +171,12 @@ Passed the test; results are equil.
 referance took 2.92969e-06 seconds
 so thats 2.18453e+07 SPS
 Testoutput: this should be constant with different iterations!: 0.000904907
-we had: 64 single Stancel calculations
+we had: 64 single Stancil calculations
 this makes: 
-70725.5 SPS (Stancels Per Second)
-70.7255 KSPS (Kilo Stancels Per Second)
-0.0707255 MSPS (Mega Stancels Per Second) 
-7.07255e-05 GSPS (Giga Stancels Per Second) 
+70725.5 SPS (Stancils Per Second)
+70.7255 KSPS (Kilo Stancils Per Second)
+0.0707255 MSPS (Mega Stancils Per Second) 
+7.07255e-05 GSPS (Giga Stancils Per Second) 
 
 Finisched!
 

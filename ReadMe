@@ -2,7 +2,7 @@ ReadMe
 
 example call:
 
-./Stancel -we 4034 -he 4034 -i 100 -kv 2
+./Stancil -we 4034 -he 4034 -i 100 -kv 2
 	using Matrix of size 4034 x 4034 
 	run 100 iterrations
 	using kernel 2

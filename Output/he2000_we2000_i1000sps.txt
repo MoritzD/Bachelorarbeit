@@ -1044,12 +1044,12 @@ Total executing time: 0.667397
 so for every run thats: 0.000667397
 done; releasinng kernel now
 Testoutput: this should be constant with different iterations!: 0.000667397
-we had: 3992004 single Stancel calculations
+we had: 3992004 single Stancil calculations
 this makes: 
-5.98145e+09 SPS (Stancels Per Second)
-5.98145e+06 KSPS (Kilo Stancels Per Second)
-5981.45 MSPS (Mega Stancels Per Second) 
-5.98145 GSPS (Giga Stancels Per Second) 
+5.98145e+09 SPS (Stancils Per Second)
+5.98145e+06 KSPS (Kilo Stancils Per Second)
+5981.45 MSPS (Mega Stancils Per Second) 
+5.98145 GSPS (Giga Stancils Per Second) 
 
 Finisched!
 
