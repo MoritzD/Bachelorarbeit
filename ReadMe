@@ -1,6 +1,18 @@
-ReadMe
+# Stancil 
+## calculations for OpenCL
 
-example call:
+### Required software:
+
+1. a OpenCL implementation
+2. cmake and make
+
+### How to Compile:
+from the base directroy of this project:
+
+1. create the Makefile using cmake: run cmake -G "Unix Makefiles" Stancil/
+2. Built the project by runing: make
+
+### Example Call:
 
 ./Stancil -we 4034 -he 4034 -i 100 -kv 2
 	using Matrix of size 4034 x 4034 
@@ -8,7 +20,8 @@ example call:
 	using kernel 2
 
 
-Usage:
+### Usage:
+
 -h, --help   
 			Prints out a help text
 

@@ -28,7 +28,7 @@ __kernel void Stancil3(__global float* in, __global float* out,
 
 
 	int dim = get_work_dim();
-	int numberOfGroupsx = (globalSize.x/localSize.x);
+	//int numberOfGroupsx = (globalSize.x/localSize.x);
 	int pos = (globalID.x+1)+(globalID.y+1)*width;//(localID + 1 ) + ((group + 1) * width) ;//(num2 + 1) + ((num + 1) * width); 
 	int localPos = (localID.x+1) + (localID.y+1)*(localSize.x+2);
 	int loadIndex = localID.x + (localID.y * localSize.x);
@@ -65,8 +65,7 @@ __kernel void Stancil2(__global float* in, __global float* out,
 	//int localID = get_local_id(0);
 	//int dim = get_work_dim();
 	//int group = get_group_id(0);
-	int pos = globalID.x + 1 + (globalID.y+1)* width;//(num2 + 1) + ((num + 1) * width); 
-	
+	int pos = globalID.x + 1 + (globalID.y+1)* width;//(num2 + 1) + ((num + 1) * width); 	
 	out[pos] = (in[pos-1]+in[pos+1]+in[pos-width]+in[pos+width])/4;	//-4*in[pos]+in[pos-1]+in[pos+1]+in[pos-width]+in[pos+width];
 }
 
@@ -100,6 +99,7 @@ __kernel void Stancil4(__global float* in, __global float* out,
 *	performance has to be tested!
 *
 *	Note: Not working in the moment; i have no idea whats the problem... spent several hours trying to fix it... still no idea
+* Jens version
 */
 
 __kernel void Stancil4_1(__global float* in, __global float* out, 
@@ -108,61 +108,33 @@ __kernel void Stancil4_1(__global float* in, __global float* out,
 					 __local float* three, __local float* prefetchSpace, __local float* helper)//, __local float* Buffer)
 {
 	int localWidth = get_local_size(0)+2;
-
-	/*__local float one[localWidth];
-	__local float two[localWidth];
-	__local float three[localWidth];
-	__local float prefetchSpace[localWidth];
-*/
-
-
 	int globalIDx = get_global_id(0);
 	int localIDx = get_local_id(0)+1;
-	//int localIDy = get_local_id(1);
 	int group = get_group_id(0);
 	int pos = globalIDx + 1 + width;
-	//int localPos = localIDx + localWidth;
-	event_t event;
-	//float* helper;
 
-	/*one[localIDx] = in[pos - width];
-	two[localIDx] = in[pos];
-	three[localIDx] = in[pos + width];
-	if(localIDx == 0 ){
-		two[localPos - 1] = in[pos - 1];
-	}
-	else if(localIDx == (localWidth-3)){
-		two[localPos + 1] = in[pos + 1];
-	}
-	else if(localIDx == 1){
-		three[localPos - 2 + localWidth] = in[pos - 2 + width];
-	}
-	else if(localIDx == (localWidth-4)){
-		three[localPos + 2 + localWidth] = in[pos + 2 + width];
-	}
+	__local float* temp = 0;
 
-	barrier(CLK_LOCAL_MEM_FENCE);
- */
 
-	async_work_group_copy( one , in + (group*(localWidth-2) ) ,localWidth, event);
+	event_t event = async_work_group_copy( one , in + (group*(localWidth-2) ) ,localWidth, 0);
 	async_work_group_copy( two , in + width + group*(localWidth-2),localWidth, event);
 	async_work_group_copy( three , in + width*2 + group*(localWidth-2),localWidth, event);
 
-	//int line = from;	height-1
 	for(int line = 1; line < 3; line++){
-		async_work_group_copy( prefetchSpace , in + (width*(line+2)) + group*(localWidth-2) ,localWidth, event);
-	
+		barrier(CLK_LOCAL_MEM_FENCE);
+		wait_group_events (&event, 1);
+		event = async_work_group_copy( prefetchSpace , in + (width*(line+2)) + group*(localWidth-2) ,localWidth, 0);
+
 		pos = globalIDx + 1 + (width*line);
-		//localPos = localIDx + (localWidth * line);
-		//helper = one;
-		
+
+
 		out[pos] = (two[localIDx-1]+two[localIDx+1]+one[localIDx]+three[localIDx])/4;	//-4*in[pos]+in[pos-1]+in[pos+1]+in[pos-width]+in[pos+width];
-		
-		helper = one;
+
+		temp = one;
 		one = two;
 		two = three;
 		three = prefetchSpace;
-		prefetchSpace = helper;
+		prefetchSpace = temp;
 	}
 }
 
