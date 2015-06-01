@@ -61,28 +61,10 @@ int main(int argc, char* argv[])
 	sampleTimer->resetTimer(timer);
 	sampleTimer->startTimer(timer);
 	
-
+	/*Step 8: Create kernel object */
 	cl_kernel 
 	kernel = NULL, 
 	kernelBackwards = NULL;
-
-	/*Step 8: Create kernel object */
-/*	status = createKernels(&kernel, &kernelBackwards, &program);
-	if(status != SUCCESS){
-		cout << "Abording!" << endl;
-		freeResources();
-		return FAILURE;
-	}
-
-	status = setBufferKernelArgs(&kernel, &kernelBackwards, &context);
-	if(status != SUCCESS){
-		cout << "Abording!" << endl;
-		freeResources();
-		return FAILURE;
-	}
-*/
-	sampleTimer->stopTimer(timer);
-	times.setKernelArgs = sampleTimer->readTimer(timer);
 
 	cl_uint work_dim;
 	size_t *global_work_size = (size_t*) malloc(2*sizeof(size_t));
@@ -96,13 +78,9 @@ int main(int argc, char* argv[])
 		return FAILURE;
 	}
 
-	/*status = setWorkSizes(&work_dim, global_work_size, &local_work_size, &context,
-				&kernel, &kernelBackwards);
-	if (status == FAILURE){
-		cout << "Abording!" << endl;
-		freeResources();
-		return FAILURE;
-	}*/
+	sampleTimer->stopTimer(timer);
+	times.setKernelArgs = sampleTimer->readTimer(timer);
+
 	if(!ComandArgs->quiet){
 		cout << "kernel Arguments are set; starting kernel now!" << endl;
 
@@ -1020,11 +998,12 @@ int setupKernelSpesificStuff(cl_uint* work_dim, size_t *global_work_size, size_t
 				return FAILURE;
 			}
 
-			*work_dim = 2;	
+			//*work_dim = 2;
+			*work_dim = 1;	
 			global_work_size[0] = (width - 2);
-			global_work_size[1] = 4;
-			(*local_work_size)[0] = min((cl_uint)64,(width-2));
-			(*local_work_size)[1] = 4;
+			//global_work_size[1] = 4;
+			(*local_work_size)[0] = min((cl_uint)64,(width-2)); //64
+			//(*local_work_size)[1] = 4;
 			if(!ComandArgs->quiet){
 				cout <<" height  and    width     "<< height << " " << width << endl;
 
