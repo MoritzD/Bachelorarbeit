@@ -1,0 +1,905 @@
+TraceFileVersion=2.5
+ProfilerVersion=2.5.1804
+Application=/home/hpc/pr87du/di73xog/Bachelorarbeit/Stancil/bin/x86_64/Release/Stancil
+ApplicationArgs=-we 20 -he 20 -i 4 -kv 2 -q
+OsVersion=
+UserTimer=Not Set
+=====AMD APP Profiler Trace Output=====
+12532
+446
+CL_SUCCESS = clGetPlatformInfo ( 0x2b9dc22d5e80;CL_PLATFORM_ICD_SUFFIX_KHR;0;NULL;[4] )
+CL_SUCCESS = clGetPlatformInfo ( 0x2b9dc22d5e80;CL_PLATFORM_ICD_SUFFIX_KHR;4;["AMD"];NULL )
+CL_SUCCESS = clGetPlatformInfo ( 0x2b9dc22d5e80;CL_PLATFORM_VENDOR;100;["Advanced Micro Devices, Inc."];NULL )
+CL_SUCCESS = clGetPlatformInfo ( 0x2b9dc22d5e80;CL_PLATFORM_VENDOR;100;["Advanced Micro Devices, Inc."];NULL )
+CL_SUCCESS = clGetPlatformInfo ( 0x2b9dc22d5e80;CL_PLATFORM_VENDOR;100;["Advanced Micro Devices, Inc."];NULL )
+0x615530 = clCreateContextFromType ( [{CL_CONTEXT_PLATFORM,47956567613056,NULL}];CL_DEVICE_TYPE_GPU;NULL;NULL;[CL_SUCCESS] )
+CL_SUCCESS = clReleaseContext ( 0x615530 )
+CL_SUCCESS = clGetDeviceIDs ( 0x2b9dc22d5e80;CL_DEVICE_TYPE_GPU;0;NULL;[2] )
+CL_SUCCESS = clGetDeviceIDs ( 0x2b9dc22d5e80;CL_DEVICE_TYPE_GPU;0;NULL;[2] )
+CL_SUCCESS = clGetDeviceIDs ( 0x2b9dc22d5e80;CL_DEVICE_TYPE_GPU;2;[0xcca040,0x12104b0];NULL )
+0xcd54f0 = clCreateContext ( NULL;1;[0xcca040];NULL;NULL;NULL )
+CL_SUCCESS = clGetCommandQueueInfo ( 0xdab3d0;CL_QUEUE_DEVICE;8;[0xcca040];NULL )
+CL_SUCCESS = clGetDeviceInfo ( 0xcca040;CL_DEVICE_TYPE;8;[CL_DEVICE_TYPE_GPU];NULL )
+CL_SUCCESS = clGetDeviceInfo ( 0xcca040;CL_DEVICE_NAME;1024;["Tahiti"];NULL )
+CL_SUCCESS = clGetDeviceInfo ( 0xcca040;CL_DEVICE_VENDOR_ID;4;[4098];NULL )
+CL_SUCCESS = clGetCommandQueueInfo ( 0xdab3d0;CL_QUEUE_DEVICE;8;[0xcca040];NULL )
+0xdab3d0 = clCreateCommandQueue ( 0xcd54f0;0xcca040;0;NULL )
+0x1369030 = clCreateProgramWithSource ( 0xcd54f0;1;0x7fff4fd86e98;0x7fff4fd86e90;NULL )
+CL_SUCCESS = clBuildProgram ( 0x1369030;1;[0xcca040];NULL;NULL;NULL )
+0x2b9dc8027320 = clCreateKernel ( 0x1369030;"Stancil2";NULL )
+0x2b9dc8000ba0 = clCreateKernel ( 0x1369030;"Stancil2";NULL )
+0x2b9dc8026150 = clCreateBuffer ( 0xcd54f0;CL_MEM_READ_WRITE|CL_MEM_COPY_HOST_PTR;1600;0x2b9dc803bfa0;[CL_SUCCESS] )
+0x2b9dc8036410 = clCreateBuffer ( 0xcd54f0;CL_MEM_READ_WRITE|CL_MEM_COPY_HOST_PTR;1600;0x2b9dc803bfa0;[CL_SUCCESS] )
+CL_SUCCESS = clSetKernelArg ( 0x2b9dc8027320;0;8;[0xffffffffc8026150] )
+CL_SUCCESS = clSetKernelArg ( 0x2b9dc8027320;1;8;[0xffffffffc8036410] )
+CL_SUCCESS = clSetKernelArg ( 0x2b9dc8027320;2;4;0x613334 )
+CL_SUCCESS = clSetKernelArg ( 0x2b9dc8027320;3;4;0x613338 )
+CL_SUCCESS = clSetKernelArg ( 0x2b9dc8000ba0;0;8;[0xffffffffc8036410] )
+CL_SUCCESS = clSetKernelArg ( 0x2b9dc8000ba0;1;8;[0xffffffffc8026150] )
+CL_SUCCESS = clSetKernelArg ( 0x2b9dc8000ba0;2;4;0x613334 )
+CL_SUCCESS = clSetKernelArg ( 0x2b9dc8000ba0;3;4;0x613338 )
+CL_SUCCESS = clGetCommandQueueInfo ( 0xdab3d0;CL_QUEUE_DEVICE;8;[0xcca040];NULL )
+CL_SUCCESS = clGetDeviceInfo ( 0xcca040;CL_DEVICE_TYPE;8;[CL_DEVICE_TYPE_GPU];NULL )
+CL_SUCCESS = clGetDeviceInfo ( 0xcca040;CL_DEVICE_NAME;1024;["Tahiti"];NULL )
+CL_SUCCESS = clGetDeviceInfo ( 0xcca040;CL_DEVICE_VENDOR_ID;4;[4098];NULL )
+CL_SUCCESS = clGetCommandQueueInfo ( 0xdab3d0;CL_QUEUE_DEVICE;8;[0xcca040];NULL )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc803d710] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc803d710] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc803d710] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc803d710] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc803d710] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc803d710] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc803d710] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc803d710] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc803d710] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc803d710] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc803d710] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc803d710] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc803d710] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc803d710] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc803d710] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc803d710] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc803d710] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc803d710] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc803d710] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc803d710] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc803d710] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc803d710] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc803d710] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc803d710] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc803d710] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc803d710] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc803d710] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc803d710] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc803d710] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc803d710] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc8010da0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc8010da0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc8010da0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc8010da0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc8010da0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc8010da0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc8010da0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc8010da0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc8010da0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc8010da0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc8010da0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc8010da0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc8010da0] )
+CL_SUCCESS = clEnqueueNDRangeKernel ( 0xdab3d0;0x2b9dc8027320;2;NULL;[18,18];NULL;0;NULL;[0x2b9dc8044e60] )
+CL_SUCCESS = clFlush ( 0xdab3d0 )
+CL_SUCCESS = clGetEventInfo ( 0x2b9dc8044e60;CL_EVENT_COMMAND_EXECUTION_STATUS;4;[CL_COMPLETE];NULL )
+CL_SUCCESS = clGetCommandQueueInfo ( 0xdab3d0;CL_QUEUE_DEVICE;8;[0xcca040];NULL )
+CL_SUCCESS = clGetDeviceInfo ( 0xcca040;CL_DEVICE_TYPE;8;[CL_DEVICE_TYPE_GPU];NULL )
+CL_SUCCESS = clGetDeviceInfo ( 0xcca040;CL_DEVICE_NAME;1024;["Tahiti"];NULL )
+CL_SUCCESS = clGetDeviceInfo ( 0xcca040;CL_DEVICE_VENDOR_ID;4;[4098];NULL )
+CL_SUCCESS = clGetCommandQueueInfo ( 0xdab3d0;CL_QUEUE_DEVICE;8;[0xcca040];NULL )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc801eb70] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc801eb70] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc801eb70] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc801eb70] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc801eb70] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc801eb70] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc801eb70] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc801eb70] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc801eb70] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc801eb70] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc801eb70] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc801eb70] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc801eb70] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc801eb70] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc801eb70] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc801eb70] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc801eb70] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc801eb70] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc801eb70] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc801eb70] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc801eb70] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc801eb70] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc801eb70] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc801eb70] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc801eb70] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc801eb70] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc801eb70] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc801eb70] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc801eb70] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc801eb70] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc80202f0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc80202f0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc80202f0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc80202f0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc80202f0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc80202f0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc80202f0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc80202f0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc80202f0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc80202f0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc80202f0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc80202f0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc80202f0] )
+CL_SUCCESS = clEnqueueNDRangeKernel ( 0xdab3d0;0x2b9dc8000ba0;2;NULL;[18,18];NULL;0;NULL;[0x2b9dc801e950] )
+CL_SUCCESS = clFlush ( 0xdab3d0 )
+CL_SUCCESS = clGetEventInfo ( 0x2b9dc801e950;CL_EVENT_COMMAND_EXECUTION_STATUS;4;[CL_COMPLETE];NULL )
+CL_SUCCESS = clGetCommandQueueInfo ( 0xdab3d0;CL_QUEUE_DEVICE;8;[0xcca040];NULL )
+CL_SUCCESS = clGetDeviceInfo ( 0xcca040;CL_DEVICE_TYPE;8;[CL_DEVICE_TYPE_GPU];NULL )
+CL_SUCCESS = clGetDeviceInfo ( 0xcca040;CL_DEVICE_NAME;1024;["Tahiti"];NULL )
+CL_SUCCESS = clGetDeviceInfo ( 0xcca040;CL_DEVICE_VENDOR_ID;4;[4098];NULL )
+CL_SUCCESS = clGetCommandQueueInfo ( 0xdab3d0;CL_QUEUE_DEVICE;8;[0xcca040];NULL )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1866b90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1866b90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1866b90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1866b90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1866b90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1866b90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1866b90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1866b90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1866b90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1866b90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1866b90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1866b90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1866b90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1866b90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1866b90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1866b90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1866b90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1866b90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1866b90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1866b90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1866b90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1866b90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1866b90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1866b90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1866b90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1866b90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1866b90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1866b90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1866b90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1866b90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc8002230] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc8002230] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc8002230] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc8002230] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc8002230] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc8002230] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc8002230] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc8002230] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc8002230] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc8002230] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc8002230] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc8002230] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x2b9dc8002230] )
+CL_SUCCESS = clEnqueueNDRangeKernel ( 0xdab3d0;0x2b9dc8027320;2;NULL;[18,18];NULL;0;NULL;[0x2b9dc8043470] )
+CL_SUCCESS = clFlush ( 0xdab3d0 )
+CL_SUCCESS = clGetEventInfo ( 0x2b9dc8043470;CL_EVENT_COMMAND_EXECUTION_STATUS;4;[CL_COMPLETE];NULL )
+CL_SUCCESS = clGetCommandQueueInfo ( 0xdab3d0;CL_QUEUE_DEVICE;8;[0xcca040];NULL )
+CL_SUCCESS = clGetDeviceInfo ( 0xcca040;CL_DEVICE_TYPE;8;[CL_DEVICE_TYPE_GPU];NULL )
+CL_SUCCESS = clGetDeviceInfo ( 0xcca040;CL_DEVICE_NAME;1024;["Tahiti"];NULL )
+CL_SUCCESS = clGetDeviceInfo ( 0xcca040;CL_DEVICE_VENDOR_ID;4;[4098];NULL )
+CL_SUCCESS = clGetCommandQueueInfo ( 0xdab3d0;CL_QUEUE_DEVICE;8;[0xcca040];NULL )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ff30] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ff30] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ff30] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ff30] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ff30] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ff30] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ff30] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ff30] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ff30] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ff30] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ff30] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ff30] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ff30] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ff30] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ff30] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ff30] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ff30] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ff30] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ff30] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ff30] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ff30] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ff30] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ff30] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ff30] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ff30] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ff30] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ff30] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ff30] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ff30] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ff30] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b280] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b280] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b280] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b280] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b280] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b280] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b280] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b280] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b280] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b280] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b280] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b280] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b280] )
+CL_SUCCESS = clEnqueueNDRangeKernel ( 0xdab3d0;0x2b9dc8000ba0;2;NULL;[18,18];NULL;0;NULL;[0x1289aa0] )
+CL_SUCCESS = clFlush ( 0xdab3d0 )
+CL_SUCCESS = clGetEventInfo ( 0x1289aa0;CL_EVENT_COMMAND_EXECUTION_STATUS;4;[CL_COMPLETE];NULL )
+CL_SUCCESS = clGetCommandQueueInfo ( 0xdab3d0;CL_QUEUE_DEVICE;8;[0xcca040];NULL )
+CL_SUCCESS = clGetDeviceInfo ( 0xcca040;CL_DEVICE_TYPE;8;[CL_DEVICE_TYPE_GPU];NULL )
+CL_SUCCESS = clGetDeviceInfo ( 0xcca040;CL_DEVICE_NAME;1024;["Tahiti"];NULL )
+CL_SUCCESS = clGetDeviceInfo ( 0xcca040;CL_DEVICE_VENDOR_ID;4;[4098];NULL )
+CL_SUCCESS = clGetCommandQueueInfo ( 0xdab3d0;CL_QUEUE_DEVICE;8;[0xcca040];NULL )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128ce10] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128ce10] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128ce10] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128ce10] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128ce10] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128ce10] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128ce10] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128ce10] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128ce10] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128ce10] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128ce10] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128ce10] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128ce10] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128ce10] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128ce10] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128ce10] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128ce10] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128ce10] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128ce10] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128ce10] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128ce10] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128ce10] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128ce10] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128ce10] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128ce10] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128ce10] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128ce10] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128ce10] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128ce10] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128ce10] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128f590] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128f590] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128f590] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128f590] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128f590] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128f590] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128f590] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128f590] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128f590] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128f590] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128f590] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128f590] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128f590] )
+CL_SUCCESS = clEnqueueNDRangeKernel ( 0xdab3d0;0x2b9dc8027320;2;NULL;[18,18];NULL;0;NULL;[0x18693c0] )
+CL_SUCCESS = clFlush ( 0xdab3d0 )
+CL_SUCCESS = clGetEventInfo ( 0x18693c0;CL_EVENT_COMMAND_EXECUTION_STATUS;4;[CL_COMPLETE];NULL )
+CL_SUCCESS = clGetCommandQueueInfo ( 0xdab3d0;CL_QUEUE_DEVICE;8;[0xcca040];NULL )
+CL_SUCCESS = clGetDeviceInfo ( 0xcca040;CL_DEVICE_TYPE;8;[CL_DEVICE_TYPE_GPU];NULL )
+CL_SUCCESS = clGetDeviceInfo ( 0xcca040;CL_DEVICE_NAME;1024;["Tahiti"];NULL )
+CL_SUCCESS = clGetDeviceInfo ( 0xcca040;CL_DEVICE_VENDOR_ID;4;[4098];NULL )
+CL_SUCCESS = clGetCommandQueueInfo ( 0xdab3d0;CL_QUEUE_DEVICE;8;[0xcca040];NULL )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187f940] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187f940] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187f940] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187f940] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187f940] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187f940] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187f940] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187f940] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187f940] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187f940] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187f940] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187f940] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187f940] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187f940] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187f940] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187f940] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187f940] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187f940] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187f940] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187f940] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187f940] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187f940] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187f940] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187f940] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187f940] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187f940] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187f940] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187f940] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187f940] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187f940] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1877e60] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1877e60] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1877e60] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1877e60] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1877e60] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1877e60] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1877e60] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1877e60] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1877e60] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1877e60] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1877e60] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1877e60] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x1877e60] )
+CL_SUCCESS = clEnqueueNDRangeKernel ( 0xdab3d0;0x2b9dc8000ba0;2;NULL;[18,18];NULL;0;NULL;[0x1877c30] )
+CL_SUCCESS = clFlush ( 0xdab3d0 )
+CL_SUCCESS = clGetEventInfo ( 0x1877c30;CL_EVENT_COMMAND_EXECUTION_STATUS;4;[CL_COMPLETE];NULL )
+CL_SUCCESS = clGetCommandQueueInfo ( 0xdab3d0;CL_QUEUE_DEVICE;8;[0xcca040];NULL )
+CL_SUCCESS = clGetDeviceInfo ( 0xcca040;CL_DEVICE_TYPE;8;[CL_DEVICE_TYPE_GPU];NULL )
+CL_SUCCESS = clGetDeviceInfo ( 0xcca040;CL_DEVICE_NAME;1024;["Tahiti"];NULL )
+CL_SUCCESS = clGetDeviceInfo ( 0xcca040;CL_DEVICE_VENDOR_ID;4;[4098];NULL )
+CL_SUCCESS = clGetCommandQueueInfo ( 0xdab3d0;CL_QUEUE_DEVICE;8;[0xcca040];NULL )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b6a0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b6a0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b6a0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b6a0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b6a0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b6a0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b6a0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b6a0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b6a0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b6a0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b6a0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b6a0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b6a0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b6a0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b6a0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b6a0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b6a0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b6a0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b6a0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b6a0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b6a0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b6a0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b6a0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b6a0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b6a0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b6a0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b6a0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b6a0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b6a0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x128b6a0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ae00] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ae00] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ae00] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ae00] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ae00] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ae00] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ae00] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ae00] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ae00] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ae00] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ae00] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ae00] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187ae00] )
+CL_SUCCESS = clEnqueueNDRangeKernel ( 0xdab3d0;0x2b9dc8027320;2;NULL;[18,18];NULL;0;NULL;[0x186d510] )
+CL_SUCCESS = clFlush ( 0xdab3d0 )
+CL_SUCCESS = clGetEventInfo ( 0x186d510;CL_EVENT_COMMAND_EXECUTION_STATUS;4;[CL_COMPLETE];NULL )
+CL_SUCCESS = clGetCommandQueueInfo ( 0xdab3d0;CL_QUEUE_DEVICE;8;[0xcca040];NULL )
+CL_SUCCESS = clGetDeviceInfo ( 0xcca040;CL_DEVICE_TYPE;8;[CL_DEVICE_TYPE_GPU];NULL )
+CL_SUCCESS = clGetDeviceInfo ( 0xcca040;CL_DEVICE_NAME;1024;["Tahiti"];NULL )
+CL_SUCCESS = clGetDeviceInfo ( 0xcca040;CL_DEVICE_VENDOR_ID;4;[4098];NULL )
+CL_SUCCESS = clGetCommandQueueInfo ( 0xdab3d0;CL_QUEUE_DEVICE;8;[0xcca040];NULL )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187a8d0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187a8d0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187a8d0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187a8d0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187a8d0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187a8d0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187a8d0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187a8d0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187a8d0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187a8d0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187a8d0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187a8d0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187a8d0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187a8d0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187a8d0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187a8d0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187a8d0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187a8d0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187a8d0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187a8d0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187a8d0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187a8d0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187a8d0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187a8d0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187a8d0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187a8d0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187a8d0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187a8d0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187a8d0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187a8d0] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187da90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187da90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187da90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187da90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187da90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187da90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187da90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187da90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187da90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187da90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187da90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187da90] )
+CL_SUCCESS = clWaitForEvents ( 1;[0x187da90] )
+CL_SUCCESS = clEnqueueNDRangeKernel ( 0xdab3d0;0x2b9dc8000ba0;2;NULL;[18,18];NULL;0;NULL;[0x187a630] )
+CL_SUCCESS = clFlush ( 0xdab3d0 )
+CL_SUCCESS = clGetEventInfo ( 0x187a630;CL_EVENT_COMMAND_EXECUTION_STATUS;4;[CL_COMPLETE];NULL )
+CL_SUCCESS = clEnqueueReadBuffer ( 0xdab3d0;0x2b9dc8026150;CL_TRUE;0;1600;0x2b9dc803c5f0;0;NULL;NULL )
+CL_SUCCESS = clReleaseKernel ( 0x2b9dc8027320 )
+CL_SUCCESS = clReleaseProgram ( 0x1369030 )
+CL_SUCCESS = clReleaseMemObject ( 0x2b9dc8026150 )
+CL_SUCCESS = clReleaseMemObject ( 0x2b9dc8036410 )
+CL_SUCCESS = clReleaseCommandQueue ( 0xdab3d0 )
+CL_SUCCESS = clReleaseContext ( 0xcd54f0 )
+=====AMD APP Profiler Timestamp Output=====
+12532
+446
+1    clGetPlatformInfo                            4830966371959520     4830966371969742     
+1    clGetPlatformInfo                            4830966372052525     4830966372053829     
+1    clGetPlatformInfo                            4830966372099192     4830966372099755     
+1    clGetPlatformInfo                            4830966372113239     4830966372113670     
+1    clGetPlatformInfo                            4830966372114674     4830966372114798     
+5    clCreateContextFromType                      4830966372117451     4830966372132912     
+7    clReleaseContext                             4830966372143922     4830966372154638     
+2    clGetDeviceIDs                               4830966376563043     4830966376564505     
+2    clGetDeviceIDs                               4830966376572386     4830966376572598     
+2    clGetDeviceIDs                               4830966376573086     4830966376573921     
+4    clCreateContext                              4830966376576311     4830966376581932     
+12   clGetCommandQueueInfo                        4830966389763548     4830966389765036     
+3    clGetDeviceInfo                              4830966389766867     4830966389767582     
+3    clGetDeviceInfo                              4830966389767937     4830966389768755     
+3    clGetDeviceInfo                              4830966389777477     4830966389778012     
+12   clGetCommandQueueInfo                        4830966389789983     4830966389790148     
+9    clCreateCommandQueue                         4830966376583857     4830966392384365     
+27   clCreateProgramWithSource                    4830966393324294     4830966393332187     
+31   clBuildProgram                               4830966393334608     4830966495352795     
+35   clCreateKernel                               4830966495390800     4830966495408212     
+35   clCreateKernel                               4830966495417243     4830966495418125     
+13   clCreateBuffer                               4830966495419342     4830966495438156     
+13   clCreateBuffer                               4830966495438638     4830966495439870     
+39   clSetKernelArg                               4830966495442358     4830966495461600     
+39   clSetKernelArg                               4830966495462154     4830966495462647     
+39   clSetKernelArg                               4830966495462959     4830966495463130     
+39   clSetKernelArg                               4830966495463385     4830966495463512     
+39   clSetKernelArg                               4830966495463776     4830966495464095     
+39   clSetKernelArg                               4830966495464363     4830966495464681     
+39   clSetKernelArg                               4830966495464965     4830966495465155     
+39   clSetKernelArg                               4830966495465404     4830966495465545     
+12   clGetCommandQueueInfo                        4830966495515927     4830966495516717     
+3    clGetDeviceInfo                              4830966495517560     4830966495518588     
+3    clGetDeviceInfo                              4830966495518957     4830966495519936     
+3    clGetDeviceInfo                              4830966495529432     4830966495529800     
+12   clGetCommandQueueInfo                        4830966495533364     4830966495533470     
+42   clWaitForEvents                              4830966497971549     4830966498299370     
+42   clWaitForEvents                              4830966498320774     4830966498321332     
+42   clWaitForEvents                              4830966498323518     4830966498323607     
+42   clWaitForEvents                              4830966498324147     4830966498324234     
+42   clWaitForEvents                              4830966498324651     4830966498324738     
+42   clWaitForEvents                              4830966498325211     4830966498325301     
+42   clWaitForEvents                              4830966498325666     4830966498325755     
+42   clWaitForEvents                              4830966498326214     4830966498326302     
+42   clWaitForEvents                              4830966498326668     4830966498326758     
+42   clWaitForEvents                              4830966498327121     4830966498327208     
+42   clWaitForEvents                              4830966498327559     4830966498327647     
+42   clWaitForEvents                              4830966498328585     4830966498328671     
+42   clWaitForEvents                              4830966498329372     4830966498329465     
+42   clWaitForEvents                              4830966498330407     4830966498330496     
+42   clWaitForEvents                              4830966498331122     4830966498331210     
+42   clWaitForEvents                              4830966498331772     4830966498331859     
+42   clWaitForEvents                              4830966498332427     4830966498332514     
+42   clWaitForEvents                              4830966498333080     4830966498333168     
+42   clWaitForEvents                              4830966498333732     4830966498333825     
+42   clWaitForEvents                              4830966498334634     4830966498334723     
+42   clWaitForEvents                              4830966498335276     4830966498335366     
+42   clWaitForEvents                              4830966498335907     4830966498335994     
+42   clWaitForEvents                              4830966498336549     4830966498336637     
+42   clWaitForEvents                              4830966498336997     4830966498337086     
+42   clWaitForEvents                              4830966498337406     4830966498337494     
+42   clWaitForEvents                              4830966498337799     4830966498337886     
+42   clWaitForEvents                              4830966498338212     4830966498338299     
+42   clWaitForEvents                              4830966498338599     4830966498338686     
+42   clWaitForEvents                              4830966498339002     4830966498339089     
+42   clWaitForEvents                              4830966498339429     4830966498339516     
+42   clWaitForEvents                              4830966498869207     4830966499085493     
+42   clWaitForEvents                              4830966499095645     4830966499096108     
+42   clWaitForEvents                              4830966499096874     4830966499096962     
+42   clWaitForEvents                              4830966499097340     4830966499097429     
+42   clWaitForEvents                              4830966499097757     4830966499097845     
+42   clWaitForEvents                              4830966499098157     4830966499098243     
+42   clWaitForEvents                              4830966499098698     4830966499098784     
+42   clWaitForEvents                              4830966499099128     4830966499099212     
+42   clWaitForEvents                              4830966499099576     4830966499099661     
+42   clWaitForEvents                              4830966499100064     4830966499100149     
+42   clWaitForEvents                              4830966499100505     4830966499100594     
+42   clWaitForEvents                              4830966499100914     4830966499101003     
+42   clWaitForEvents                              4830966499101308     4830966499101397     
+66   clEnqueueNDRangeKernel                       4830966495473913     4830966501683058     4592    CL_COMMAND_NDRANGE_KERNEL               4830966498864598     4830966498910239     4830966499061026     4830966499078655     0         0xdab3d0                 1         0xcd54f0                 Tahiti                        0x2b9dc8027320           Stancil2      {18,18}     {NULL}
+50   clFlush                                      4830966501708310     4830966501712214     
+43   clGetEventInfo                               4830966501715100     4830966501715984     
+12   clGetCommandQueueInfo                        4830966501744770     4830966501745315     
+3    clGetDeviceInfo                              4830966501749773     4830966501750093     
+3    clGetDeviceInfo                              4830966501750490     4830966501750752     
+3    clGetDeviceInfo                              4830966501754948     4830966501755172     
+12   clGetCommandQueueInfo                        4830966501756952     4830966501757072     
+42   clWaitForEvents                              4830966502936025     4830966503246413     
+42   clWaitForEvents                              4830966503258473     4830966503258951     
+42   clWaitForEvents                              4830966503260974     4830966503261073     
+42   clWaitForEvents                              4830966503261560     4830966503261648     
+42   clWaitForEvents                              4830966503262099     4830966503262185     
+42   clWaitForEvents                              4830966503262722     4830966503262809     
+42   clWaitForEvents                              4830966503263196     4830966503263283     
+42   clWaitForEvents                              4830966503263672     4830966503263759     
+42   clWaitForEvents                              4830966503264153     4830966503264242     
+42   clWaitForEvents                              4830966503264654     4830966503264745     
+42   clWaitForEvents                              4830966503265210     4830966503265300     
+42   clWaitForEvents                              4830966503266429     4830966503266520     
+42   clWaitForEvents                              4830966503267390     4830966503267478     
+42   clWaitForEvents                              4830966503268181     4830966503268269     
+42   clWaitForEvents                              4830966503268916     4830966503269005     
+42   clWaitForEvents                              4830966503269848     4830966503269939     
+42   clWaitForEvents                              4830966503270590     4830966503270679     
+42   clWaitForEvents                              4830966503271272     4830966503271363     
+42   clWaitForEvents                              4830966503271988     4830966503272077     
+42   clWaitForEvents                              4830966503272690     4830966503272781     
+42   clWaitForEvents                              4830966503273348     4830966503273437     
+42   clWaitForEvents                              4830966503273979     4830966503274065     
+42   clWaitForEvents                              4830966503274597     4830966503274686     
+42   clWaitForEvents                              4830966503274997     4830966503275085     
+42   clWaitForEvents                              4830966503275427     4830966503275516     
+42   clWaitForEvents                              4830966503275911     4830966503276000     
+42   clWaitForEvents                              4830966503276330     4830966503276421     
+42   clWaitForEvents                              4830966503276746     4830966503276836     
+42   clWaitForEvents                              4830966503277185     4830966503277272     
+42   clWaitForEvents                              4830966503277679     4830966503277767     
+42   clWaitForEvents                              4830966503800494     4830966504022465     
+42   clWaitForEvents                              4830966504033360     4830966504033842     
+42   clWaitForEvents                              4830966504034637     4830966504034726     
+42   clWaitForEvents                              4830966504035098     4830966504035190     
+42   clWaitForEvents                              4830966504035522     4830966504035611     
+42   clWaitForEvents                              4830966504035935     4830966504036022     
+42   clWaitForEvents                              4830966504036456     4830966504036543     
+42   clWaitForEvents                              4830966504036858     4830966504036949     
+42   clWaitForEvents                              4830966504037240     4830966504037328     
+42   clWaitForEvents                              4830966504037659     4830966504037749     
+42   clWaitForEvents                              4830966504038064     4830966504038153     
+42   clWaitForEvents                              4830966504038453     4830966504038541     
+42   clWaitForEvents                              4830966504038844     4830966504038932     
+66   clEnqueueNDRangeKernel                       4830966501721133     4830966505020496     4592    CL_COMMAND_NDRANGE_KERNEL               4830966503796354     4830966503840702     4830966503998754     4830966504016384     0         0xdab3d0                 1         0xcd54f0                 Tahiti                        0x2b9dc8000ba0           Stancil2      {18,18}     {NULL}
+50   clFlush                                      4830966505023341     4830966505026574     
+43   clGetEventInfo                               4830966505027207     4830966505027983     
+12   clGetCommandQueueInfo                        4830966505052331     4830966505052856     
+3    clGetDeviceInfo                              4830966505053971     4830966505054281     
+3    clGetDeviceInfo                              4830966505054777     4830966505055081     
+3    clGetDeviceInfo                              4830966505059405     4830966505059630     
+12   clGetCommandQueueInfo                        4830966505061516     4830966505061630     
+42   clWaitForEvents                              4830966506247988     4830966506547573     
+42   clWaitForEvents                              4830966506558984     4830966506559475     
+42   clWaitForEvents                              4830966506561474     4830966506561573     
+42   clWaitForEvents                              4830966506562029     4830966506562118     
+42   clWaitForEvents                              4830966506562514     4830966506562605     
+42   clWaitForEvents                              4830966506563011     4830966506563099     
+42   clWaitForEvents                              4830966506563507     4830966506563595     
+42   clWaitForEvents                              4830966506563913     4830966506564003     
+42   clWaitForEvents                              4830966506564412     4830966506564500     
+42   clWaitForEvents                              4830966506564860     4830966506564947     
+42   clWaitForEvents                              4830966506565267     4830966506565355     
+42   clWaitForEvents                              4830966506566287     4830966506566377     
+42   clWaitForEvents                              4830966506567234     4830966506567324     
+42   clWaitForEvents                              4830966506568007     4830966506568097     
+42   clWaitForEvents                              4830966506568781     4830966506568870     
+42   clWaitForEvents                              4830966506569548     4830966506569637     
+42   clWaitForEvents                              4830966506570307     4830966506570396     
+42   clWaitForEvents                              4830966506571035     4830966506571126     
+42   clWaitForEvents                              4830966506571806     4830966506571895     
+42   clWaitForEvents                              4830966506572502     4830966506572591     
+42   clWaitForEvents                              4830966506573282     4830966506573371     
+42   clWaitForEvents                              4830966506574030     4830966506574121     
+42   clWaitForEvents                              4830966506574728     4830966506574819     
+42   clWaitForEvents                              4830966506575192     4830966506575284     
+42   clWaitForEvents                              4830966506575695     4830966506575784     
+42   clWaitForEvents                              4830966506576113     4830966506576205     
+42   clWaitForEvents                              4830966506576534     4830966506576623     
+42   clWaitForEvents                              4830966506577141     4830966506577230     
+42   clWaitForEvents                              4830966506577592     4830966506577683     
+42   clWaitForEvents                              4830966506578029     4830966506578118     
+42   clWaitForEvents                              4830966507091718     4830966507307935     
+42   clWaitForEvents                              4830966507318304     4830966507318790     
+42   clWaitForEvents                              4830966507319752     4830966507319840     
+42   clWaitForEvents                              4830966507320220     4830966507320307     
+42   clWaitForEvents                              4830966507320705     4830966507320794     
+42   clWaitForEvents                              4830966507321222     4830966507321310     
+42   clWaitForEvents                              4830966507321673     4830966507321761     
+42   clWaitForEvents                              4830966507322137     4830966507322226     
+42   clWaitForEvents                              4830966507322573     4830966507322664     
+42   clWaitForEvents                              4830966507323106     4830966507323195     
+42   clWaitForEvents                              4830966507323619     4830966507323708     
+42   clWaitForEvents                              4830966507324076     4830966507324166     
+42   clWaitForEvents                              4830966507324511     4830966507324599     
+66   clEnqueueNDRangeKernel                       4830966505029653     4830966508141279     4592    CL_COMMAND_NDRANGE_KERNEL               4830966507087558     4830966507132463     4830966507284117     4830966507302043     0         0xdab3d0                 1         0xcd54f0                 Tahiti                        0x2b9dc8027320           Stancil2      {18,18}     {NULL}
+50   clFlush                                      4830966508144154     4830966508147475     
+43   clGetEventInfo                               4830966508148129     4830966508148842     
+12   clGetCommandQueueInfo                        4830966508176839     4830966508177383     
+3    clGetDeviceInfo                              4830966508178580     4830966508178873     
+3    clGetDeviceInfo                              4830966508179224     4830966508179513     
+3    clGetDeviceInfo                              4830966508183661     4830966508183868     
+12   clGetCommandQueueInfo                        4830966508185673     4830966508185786     
+42   clWaitForEvents                              4830966509369368     4830966509673327     
+42   clWaitForEvents                              4830966509685097     4830966509685585     
+42   clWaitForEvents                              4830966509687729     4830966509687820     
+42   clWaitForEvents                              4830966509688211     4830966509688298     
+42   clWaitForEvents                              4830966509688695     4830966509688782     
+42   clWaitForEvents                              4830966509689223     4830966509689315     
+42   clWaitForEvents                              4830966509689808     4830966509689897     
+42   clWaitForEvents                              4830966509690341     4830966509690428     
+42   clWaitForEvents                              4830966509690852     4830966509690939     
+42   clWaitForEvents                              4830966509691359     4830966509691447     
+42   clWaitForEvents                              4830966509691899     4830966509691986     
+42   clWaitForEvents                              4830966509692939     4830966509693028     
+42   clWaitForEvents                              4830966509693986     4830966509694074     
+42   clWaitForEvents                              4830966509694808     4830966509694897     
+42   clWaitForEvents                              4830966509695559     4830966509695649     
+42   clWaitForEvents                              4830966509696267     4830966509696360     
+42   clWaitForEvents                              4830966509697148     4830966509697239     
+42   clWaitForEvents                              4830966509697809     4830966509697899     
+42   clWaitForEvents                              4830966509698561     4830966509698648     
+42   clWaitForEvents                              4830966509699201     4830966509699289     
+42   clWaitForEvents                              4830966509699874     4830966509699961     
+42   clWaitForEvents                              4830966509700511     4830966509700598     
+42   clWaitForEvents                              4830966509701220     4830966509701306     
+42   clWaitForEvents                              4830966509701646     4830966509701738     
+42   clWaitForEvents                              4830966509702056     4830966509702148     
+42   clWaitForEvents                              4830966509702454     4830966509702542     
+42   clWaitForEvents                              4830966509702851     4830966509702939     
+42   clWaitForEvents                              4830966509703244     4830966509703333     
+42   clWaitForEvents                              4830966509703912     4830966509703999     
+42   clWaitForEvents                              4830966509704554     4830966509704642     
+42   clWaitForEvents                              4830966510226603     4830966510440529     
+42   clWaitForEvents                              4830966510450971     4830966510451419     
+42   clWaitForEvents                              4830966510452223     4830966510452309     
+42   clWaitForEvents                              4830966510452725     4830966510452812     
+42   clWaitForEvents                              4830966510453163     4830966510453248     
+42   clWaitForEvents                              4830966510453559     4830966510453646     
+42   clWaitForEvents                              4830966510454110     4830966510454196     
+42   clWaitForEvents                              4830966510454536     4830966510454623     
+42   clWaitForEvents                              4830966510454949     4830966510455036     
+42   clWaitForEvents                              4830966510455363     4830966510455448     
+42   clWaitForEvents                              4830966510455765     4830966510455852     
+42   clWaitForEvents                              4830966510456189     4830966510456276     
+42   clWaitForEvents                              4830966510456586     4830966510456672     
+66   clEnqueueNDRangeKernel                       4830966508150594     4830966513171326     4592    CL_COMMAND_NDRANGE_KERNEL               4830966510222260     4830966510266442     4830966510417273     4830966510435051     0         0xdab3d0                 1         0xcd54f0                 Tahiti                        0x2b9dc8000ba0           Stancil2      {18,18}     {NULL}
+50   clFlush                                      4830966513174567     4830966513178286     
+43   clGetEventInfo                               4830966513178895     4830966513179818     
+12   clGetCommandQueueInfo                        4830966513212554     4830966513213160     
+3    clGetDeviceInfo                              4830966513214369     4830966513214709     
+3    clGetDeviceInfo                              4830966513215060     4830966513215377     
+3    clGetDeviceInfo                              4830966513219690     4830966513219912     
+12   clGetCommandQueueInfo                        4830966513221773     4830966513221901     
+42   clWaitForEvents                              4830966514513159     4830966514830068     
+42   clWaitForEvents                              4830966514842070     4830966514842555     
+42   clWaitForEvents                              4830966514844562     4830966514844671     
+42   clWaitForEvents                              4830966514845424     4830966514845508     
+42   clWaitForEvents                              4830966514846044     4830966514846131     
+42   clWaitForEvents                              4830966514846600     4830966514846685     
+42   clWaitForEvents                              4830966514847124     4830966514847210     
+42   clWaitForEvents                              4830966514847670     4830966514847760     
+42   clWaitForEvents                              4830966514848207     4830966514848297     
+42   clWaitForEvents                              4830966514848771     4830966514848861     
+42   clWaitForEvents                              4830966514849315     4830966514849402     
+42   clWaitForEvents                              4830966514850473     4830966514850560     
+42   clWaitForEvents                              4830966514851383     4830966514851469     
+42   clWaitForEvents                              4830966514852303     4830966514852389     
+42   clWaitForEvents                              4830966514852987     4830966514853074     
+42   clWaitForEvents                              4830966514853622     4830966514853709     
+42   clWaitForEvents                              4830966514854497     4830966514854584     
+42   clWaitForEvents                              4830966514855219     4830966514855304     
+42   clWaitForEvents                              4830966514855977     4830966514856063     
+42   clWaitForEvents                              4830966514856603     4830966514856689     
+42   clWaitForEvents                              4830966514857233     4830966514857319     
+42   clWaitForEvents                              4830966514857875     4830966514857960     
+42   clWaitForEvents                              4830966514858570     4830966514858661     
+42   clWaitForEvents                              4830966514859020     4830966514859108     
+42   clWaitForEvents                              4830966514859435     4830966514859523     
+42   clWaitForEvents                              4830966514859836     4830966514859925     
+42   clWaitForEvents                              4830966514860245     4830966514860336     
+42   clWaitForEvents                              4830966514860644     4830966514860735     
+42   clWaitForEvents                              4830966514861064     4830966514861152     
+42   clWaitForEvents                              4830966514861691     4830966514861781     
+42   clWaitForEvents                              4830966515391715     4830966515609297     
+42   clWaitForEvents                              4830966515620244     4830966515620716     
+42   clWaitForEvents                              4830966515621419     4830966515621509     
+42   clWaitForEvents                              4830966515621840     4830966515621929     
+42   clWaitForEvents                              4830966515622249     4830966515622336     
+42   clWaitForEvents                              4830966515622798     4830966515622885     
+42   clWaitForEvents                              4830966515623242     4830966515623329     
+42   clWaitForEvents                              4830966515623703     4830966515623790     
+42   clWaitForEvents                              4830966515624134     4830966515624224     
+42   clWaitForEvents                              4830966515624534     4830966515624625     
+42   clWaitForEvents                              4830966515624935     4830966515625026     
+42   clWaitForEvents                              4830966515625412     4830966515625500     
+42   clWaitForEvents                              4830966515625800     4830966515625889     
+66   clEnqueueNDRangeKernel                       4830966513181439     4830966516763979     4592    CL_COMMAND_NDRANGE_KERNEL               4830966515387470     4830966515432507     4830966515585760     4830966515603389     0         0xdab3d0                 1         0xcd54f0                 Tahiti                        0x2b9dc8027320           Stancil2      {18,18}     {NULL}
+50   clFlush                                      4830966516766940     4830966516770276     
+43   clGetEventInfo                               4830966516770859     4830966516771583     
+12   clGetCommandQueueInfo                        4830966516802590     4830966516803162     
+3    clGetDeviceInfo                              4830966516804323     4830966516804628     
+3    clGetDeviceInfo                              4830966516805040     4830966516805377     
+3    clGetDeviceInfo                              4830966516809637     4830966516809845     
+12   clGetCommandQueueInfo                        4830966516811636     4830966516811745     
+42   clWaitForEvents                              4830966517999267     4830966518312043     
+42   clWaitForEvents                              4830966518323568     4830966518324038     
+42   clWaitForEvents                              4830966518325906     4830966518326010     
+42   clWaitForEvents                              4830966518326739     4830966518326827     
+42   clWaitForEvents                              4830966518327255     4830966518327358     
+42   clWaitForEvents                              4830966518327837     4830966518327926     
+42   clWaitForEvents                              4830966518328331     4830966518328420     
+42   clWaitForEvents                              4830966518328852     4830966518328941     
+42   clWaitForEvents                              4830966518329344     4830966518329437     
+42   clWaitForEvents                              4830966518329876     4830966518329965     
+42   clWaitForEvents                              4830966518330377     4830966518330467     
+42   clWaitForEvents                              4830966518331487     4830966518331574     
+42   clWaitForEvents                              4830966518332572     4830966518332660     
+42   clWaitForEvents                              4830966518333537     4830966518333630     
+42   clWaitForEvents                              4830966518334568     4830966518334658     
+42   clWaitForEvents                              4830966518335346     4830966518335435     
+42   clWaitForEvents                              4830966518336101     4830966518336191     
+42   clWaitForEvents                              4830966518337083     4830966518337170     
+42   clWaitForEvents                              4830966518337817     4830966518337904     
+42   clWaitForEvents                              4830966518338512     4830966518338599     
+42   clWaitForEvents                              4830966518339136     4830966518339223     
+42   clWaitForEvents                              4830966518339745     4830966518339834     
+42   clWaitForEvents                              4830966518340457     4830966518340543     
+42   clWaitForEvents                              4830966518340869     4830966518340956     
+42   clWaitForEvents                              4830966518341287     4830966518341372     
+42   clWaitForEvents                              4830966518341712     4830966518341800     
+42   clWaitForEvents                              4830966518342273     4830966518342360     
+42   clWaitForEvents                              4830966518342743     4830966518342829     
+42   clWaitForEvents                              4830966518343293     4830966518343379     
+42   clWaitForEvents                              4830966518343843     4830966518343929     
+42   clWaitForEvents                              4830966518866982     4830966519082726     
+42   clWaitForEvents                              4830966519093200     4830966519093647     
+42   clWaitForEvents                              4830966519094558     4830966519094646     
+42   clWaitForEvents                              4830966519095010     4830966519095096     
+42   clWaitForEvents                              4830966519095408     4830966519095495     
+42   clWaitForEvents                              4830966519095846     4830966519095933     
+42   clWaitForEvents                              4830966519096390     4830966519096474     
+42   clWaitForEvents                              4830966519096800     4830966519096889     
+42   clWaitForEvents                              4830966519097225     4830966519097314     
+42   clWaitForEvents                              4830966519097643     4830966519097731     
+42   clWaitForEvents                              4830966519098050     4830966519098139     
+42   clWaitForEvents                              4830966519098470     4830966519098560     
+42   clWaitForEvents                              4830966519098897     4830966519098985     
+66   clEnqueueNDRangeKernel                       4830966516772801     4830966519966427     4592    CL_COMMAND_NDRANGE_KERNEL               4830966518862953     4830966518907400     4830966519059898     4830966519077380     0         0xdab3d0                 1         0xcd54f0                 Tahiti                        0x2b9dc8000ba0           Stancil2      {18,18}     {NULL}
+50   clFlush                                      4830966519969290     4830966519972508     
+43   clGetEventInfo                               4830966519973186     4830966519973865     
+12   clGetCommandQueueInfo                        4830966520016839     4830966520017406     
+3    clGetDeviceInfo                              4830966520018607     4830966520018925     
+3    clGetDeviceInfo                              4830966520019201     4830966520019522     
+3    clGetDeviceInfo                              4830966520023925     4830966520024138     
+12   clGetCommandQueueInfo                        4830966520025986     4830966520026095     
+42   clWaitForEvents                              4830966521213939     4830966521518902     
+42   clWaitForEvents                              4830966521530306     4830966521530771     
+42   clWaitForEvents                              4830966521532800     4830966521532889     
+42   clWaitForEvents                              4830966521533395     4830966521533484     
+42   clWaitForEvents                              4830966521533953     4830966521534043     
+42   clWaitForEvents                              4830966521534489     4830966521534579     
+42   clWaitForEvents                              4830966521535045     4830966521535135     
+42   clWaitForEvents                              4830966521535518     4830966521535605     
+42   clWaitForEvents                              4830966521535990     4830966521536079     
+42   clWaitForEvents                              4830966521536550     4830966521536638     
+42   clWaitForEvents                              4830966521537086     4830966521537175     
+42   clWaitForEvents                              4830966521538078     4830966521538167     
+42   clWaitForEvents                              4830966521538901     4830966521538990     
+42   clWaitForEvents                              4830966521539958     4830966521540047     
+42   clWaitForEvents                              4830966521540762     4830966521540851     
+42   clWaitForEvents                              4830966521541578     4830966521541668     
+42   clWaitForEvents                              4830966521542361     4830966521542452     
+42   clWaitForEvents                              4830966521543058     4830966521543146     
+42   clWaitForEvents                              4830966521543766     4830966521543856     
+42   clWaitForEvents                              4830966521544445     4830966521544536     
+42   clWaitForEvents                              4830966521545077     4830966521545166     
+42   clWaitForEvents                              4830966521545784     4830966521545873     
+42   clWaitForEvents                              4830966521546433     4830966521546524     
+42   clWaitForEvents                              4830966521546895     4830966521546985     
+42   clWaitForEvents                              4830966521547306     4830966521547395     
+42   clWaitForEvents                              4830966521547718     4830966521547807     
+42   clWaitForEvents                              4830966521548126     4830966521548212     
+42   clWaitForEvents                              4830966521548551     4830966521548639     
+42   clWaitForEvents                              4830966521548955     4830966521549041     
+42   clWaitForEvents                              4830966521549344     4830966521549431     
+42   clWaitForEvents                              4830966522058640     4830966522274317     
+42   clWaitForEvents                              4830966522284840     4830966522285283     
+42   clWaitForEvents                              4830966522285937     4830966522286027     
+42   clWaitForEvents                              4830966522286428     4830966522286515     
+42   clWaitForEvents                              4830966522286834     4830966522286920     
+42   clWaitForEvents                              4830966522287396     4830966522287480     
+42   clWaitForEvents                              4830966522287819     4830966522287909     
+42   clWaitForEvents                              4830966522288211     4830966522288297     
+42   clWaitForEvents                              4830966522288633     4830966522288719     
+42   clWaitForEvents                              4830966522289136     4830966522289225     
+42   clWaitForEvents                              4830966522289559     4830966522289644     
+42   clWaitForEvents                              4830966522289996     4830966522290083     
+42   clWaitForEvents                              4830966522290434     4830966522290520     
+66   clEnqueueNDRangeKernel                       4830966519975382     4830966523315945     4592    CL_COMMAND_NDRANGE_KERNEL               4830966522054362     4830966522099311     4830966522251067     4830966522268697     0         0xdab3d0                 1         0xcd54f0                 Tahiti                        0x2b9dc8027320           Stancil2      {18,18}     {NULL}
+50   clFlush                                      4830966523318870     4830966523322083     
+43   clGetEventInfo                               4830966523322731     4830966523323620     
+12   clGetCommandQueueInfo                        4830966523354626     4830966523355229     
+3    clGetDeviceInfo                              4830966523356428     4830966523356759     
+3    clGetDeviceInfo                              4830966523357015     4830966523357331     
+3    clGetDeviceInfo                              4830966523361724     4830966523361939     
+12   clGetCommandQueueInfo                        4830966523363790     4830966523363909     
+42   clWaitForEvents                              4830966524565812     4830966524871733     
+42   clWaitForEvents                              4830966524883165     4830966524883627     
+42   clWaitForEvents                              4830966524885486     4830966524885575     
+42   clWaitForEvents                              4830966524886228     4830966524886320     
+42   clWaitForEvents                              4830966524886849     4830966524886938     
+42   clWaitForEvents                              4830966524887453     4830966524887540     
+42   clWaitForEvents                              4830966524888010     4830966524888097     
+42   clWaitForEvents                              4830966524888562     4830966524888649     
+42   clWaitForEvents                              4830966524889082     4830966524889171     
+42   clWaitForEvents                              4830966524889591     4830966524889682     
+42   clWaitForEvents                              4830966524890081     4830966524890170     
+42   clWaitForEvents                              4830966524891127     4830966524891217     
+42   clWaitForEvents                              4830966524892076     4830966524892166     
+42   clWaitForEvents                              4830966524892920     4830966524893008     
+42   clWaitForEvents                              4830966524893888     4830966524893978     
+42   clWaitForEvents                              4830966524894740     4830966524894826     
+42   clWaitForEvents                              4830966524895418     4830966524895505     
+42   clWaitForEvents                              4830966524896296     4830966524896384     
+42   clWaitForEvents                              4830966524897045     4830966524897131     
+42   clWaitForEvents                              4830966524897740     4830966524897828     
+42   clWaitForEvents                              4830966524898665     4830966524898752     
+42   clWaitForEvents                              4830966524899349     4830966524899437     
+42   clWaitForEvents                              4830966524900018     4830966524900104     
+42   clWaitForEvents                              4830966524900491     4830966524900579     
+42   clWaitForEvents                              4830966524900909     4830966524900999     
+42   clWaitForEvents                              4830966524901306     4830966524901397     
+42   clWaitForEvents                              4830966524901717     4830966524901804     
+42   clWaitForEvents                              4830966524902119     4830966524902209     
+42   clWaitForEvents                              4830966524902586     4830966524902675     
+42   clWaitForEvents                              4830966524902992     4830966524903080     
+42   clWaitForEvents                              4830966525426297     4830966525642581     
+42   clWaitForEvents                              4830966525653196     4830966525653659     
+42   clWaitForEvents                              4830966525654374     4830966525654459     
+42   clWaitForEvents                              4830966525654789     4830966525654878     
+42   clWaitForEvents                              4830966525655206     4830966525655295     
+42   clWaitForEvents                              4830966525655791     4830966525655880     
+42   clWaitForEvents                              4830966525656230     4830966525656318     
+42   clWaitForEvents                              4830966525656629     4830966525656716     
+42   clWaitForEvents                              4830966525657054     4830966525657141     
+42   clWaitForEvents                              4830966525657455     4830966525657542     
+42   clWaitForEvents                              4830966525657850     4830966525657936     
+42   clWaitForEvents                              4830966525658244     4830966525658330     
+42   clWaitForEvents                              4830966525658655     4830966525658740     
+66   clEnqueueNDRangeKernel                       4830966523324695     4830966526478804     4592    CL_COMMAND_NDRANGE_KERNEL               4830966525422153     4830966525466457     4830966525619389     4830966525637018     0         0xdab3d0                 1         0xcd54f0                 Tahiti                        0x2b9dc8000ba0           Stancil2      {18,18}     {NULL}
+50   clFlush                                      4830966526481746     4830966526484963     
+43   clGetEventInfo                               4830966526485570     4830966526486297     
+52   clEnqueueReadBuffer                          4830966526496309     4830966526801040     4595    CL_COMMAND_READ_BUFFER                  4830966526497850     4830966526501599     4830966526653704     4830966526795704     0         0xdab3d0                 1         0xcd54f0                 Tahiti                        1600                
+38   clReleaseKernel                              4830966526807217     4830966526817951     
+30   clReleaseProgram                             4830966526818992     4830966526819322     
+18   clReleaseMemObject                           4830966526820170     4830966526837545     
+18   clReleaseMemObject                           4830966526838067     4830966526842146     
+11   clReleaseCommandQueue                        4830966526843017     4830966531310572     
+7    clReleaseContext                             4830966531313129     4830966532573946     
+
