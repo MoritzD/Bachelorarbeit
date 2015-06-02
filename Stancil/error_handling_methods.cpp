@@ -1,3 +1,5 @@
+#include "CLPerfMarker.h"
+
 using namespace std;
 
 void buildProgramError(int status){
@@ -111,4 +113,17 @@ void getExecutionError(int status){
 		cout <<" unknown error" << endl;
 	break;
 	}
+}
+
+void getAppProfilerInitError(int status){
+	
+	switch (status){
+	case AP_FINALIZED_PERF_MARKER:
+		cout << " Finalized Perf Makrer:	clFinalizePerfMarker has already been called." << endl;
+	break;
+ 	case AP_APP_PROFILER_NOT_DETECTED:
+		cout << " App Profiler Not Detected:	The application has not been run with the AMD APP Profiler." << endl;
+	break;
+	}
+
 }

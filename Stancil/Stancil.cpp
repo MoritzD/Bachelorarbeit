@@ -2,6 +2,7 @@
 //
 #include "Stancil.hpp"
 
+
 using namespace std;
 
 int main(int argc, char* argv[])
@@ -9,6 +10,17 @@ int main(int argc, char* argv[])
 	
 	sampleTimer = new SDKTimer();
 	timer = sampleTimer->createTimer();
+
+	if(PROFILE){
+		status = clInitializePerfMarkerAMD();
+		if( status != AP_SUCCESS){
+			cout << "Initilasation of App Profiler failed: " << status << endl;
+			getAppProfilerInitError(status);
+		}
+		if(clBeginPerfMarkerAMD( "KernelProfiler", "Group1") != AP_SUCCESS){
+			cout << "Begin of App Profiler failed" << endl;
+		}
+	}
 	
 	if(readArgs(argc, argv) == SDK_FAILURE){
 		freeResources();
@@ -137,6 +149,15 @@ int main(int argc, char* argv[])
 	sampleTimer->stopTimer(timer);
 	times.releaseKernel = sampleTimer->readTimer(timer);
 	
+	if(PROFILE){
+		if( clEndPerfMarkerAMD() != AP_SUCCESS){
+			cout << "Error ending Profiler" << endl;
+		}
+		if( clFinalizePerfMarkerAMD() != AP_SUCCESS){
+			cout << "Error ending Profiler" << endl;
+		}
+
+	}
 
 	if(!ComandArgs->verify){
 		checkAgainstCpuImplementation(input, output);

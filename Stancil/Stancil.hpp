@@ -10,12 +10,10 @@
 #include "CLUtil.hpp"
 #include <algorithm>
 #include "error_handling_methods.cpp"
-
+#include "CLPerfMarker.h"
 
 
 using namespace appsdk;
-
-
 
 #define SUCCESS 0
 #define FAILURE 1 
@@ -23,6 +21,7 @@ using namespace appsdk;
 
 
 #define SINGLETIME true 
+#define PROFILE true
 
 #define WIDTH  500
 #define HEIGHT 500
