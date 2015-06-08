@@ -1,0 +1,163 @@
+TraceFileVersion=2.5
+ProfilerVersion=2.5.1804
+Application=/home/hpc/pr87du/di73xog/Bachelorarbeit/Stancil/bin/x86_64/Release/Stancil
+ApplicationArgs=-we 4034 -he 4034 -i 4 -kv 4 -q -e
+OsVersion=
+UserTimer=Not Set
+=====AMD APP Profiler Trace Output=====
+29066
+75
+CL_SUCCESS = clGetPlatformInfo ( 0x2b68da4d6e80;CL_PLATFORM_ICD_SUFFIX_KHR;0;NULL;[4] )
+CL_SUCCESS = clGetPlatformInfo ( 0x2b68da4d6e80;CL_PLATFORM_ICD_SUFFIX_KHR;4;["AMD"];NULL )
+CL_SUCCESS = clGetPlatformInfo ( 0x2b68da4d6e80;CL_PLATFORM_VENDOR;100;["Advanced Micro Devices, Inc."];NULL )
+CL_SUCCESS = clGetPlatformInfo ( 0x2b68da4d6e80;CL_PLATFORM_VENDOR;100;["Advanced Micro Devices, Inc."];NULL )
+CL_SUCCESS = clGetPlatformInfo ( 0x2b68da4d6e80;CL_PLATFORM_VENDOR;100;["Advanced Micro Devices, Inc."];NULL )
+0x6155a0 = clCreateContextFromType ( [{CL_CONTEXT_PLATFORM,47729339100800,NULL}];CL_DEVICE_TYPE_GPU;NULL;NULL;[CL_SUCCESS] )
+CL_SUCCESS = clReleaseContext ( 0x6155a0 )
+CL_SUCCESS = clGetDeviceIDs ( 0x2b68da4d6e80;CL_DEVICE_TYPE_GPU;0;NULL;[2] )
+CL_SUCCESS = clGetDeviceIDs ( 0x2b68da4d6e80;CL_DEVICE_TYPE_GPU;0;NULL;[2] )
+CL_SUCCESS = clGetDeviceIDs ( 0x2b68da4d6e80;CL_DEVICE_TYPE_GPU;2;[0xcc9fc0,0xda7670];NULL )
+0x6154a0 = clCreateContext ( NULL;1;[0xcc9fc0];NULL;NULL;NULL )
+0xd71660 = clCreateCommandQueue ( 0x6154a0;0xcc9fc0;0;NULL )
+0x1359990 = clCreateProgramWithSource ( 0x6154a0;1;0x7fff78c186e8;0x7fff78c186e0;NULL )
+CL_SUCCESS = clBuildProgram ( 0x1359990;1;[0xcc9fc0];NULL;NULL;NULL )
+0x186d1e0 = clCreateKernel ( 0x1359990;"Stancil4";NULL )
+0x181a120 = clCreateKernel ( 0x1359990;"Stancil4";NULL )
+0x183b940 = clCreateBuffer ( 0x6154a0;CL_MEM_READ_WRITE|CL_MEM_COPY_HOST_PTR;65092624;0x2b68e4000010;[CL_SUCCESS] )
+0x1866f80 = clCreateBuffer ( 0x6154a0;CL_MEM_READ_WRITE|CL_MEM_COPY_HOST_PTR;65092624;0x2b68e4000010;[CL_SUCCESS] )
+CL_SUCCESS = clSetKernelArg ( 0x186d1e0;0;8;[0x183b940] )
+CL_SUCCESS = clSetKernelArg ( 0x186d1e0;1;8;[0x1866f80] )
+CL_SUCCESS = clSetKernelArg ( 0x186d1e0;2;4;0x613334 )
+CL_SUCCESS = clSetKernelArg ( 0x186d1e0;3;4;0x613338 )
+CL_SUCCESS = clSetKernelArg ( 0x181a120;0;8;[0x1866f80] )
+CL_SUCCESS = clSetKernelArg ( 0x181a120;1;8;[0x183b940] )
+CL_SUCCESS = clSetKernelArg ( 0x181a120;2;4;0x613334 )
+CL_SUCCESS = clSetKernelArg ( 0x181a120;3;4;0x613338 )
+CL_SUCCESS = clEnqueueNDRangeKernel ( 0xd71660;0x186d1e0;1;NULL;[4032];[64];0;NULL;[0x18652a0] )
+CL_SUCCESS = clFlush ( 0xd71660 )
+CL_SUCCESS = clGetEventInfo ( 0x18652a0;CL_EVENT_COMMAND_EXECUTION_STATUS;4;[CL_SUBMITTED];NULL /*15123 consecutive calls*/ )
+CL_SUCCESS = clGetEventInfo ( 0x18652a0;CL_EVENT_COMMAND_EXECUTION_STATUS;4;[CL_RUNNING];NULL /*15 consecutive calls*/ )
+CL_SUCCESS = clGetEventInfo ( 0x18652a0;CL_EVENT_COMMAND_EXECUTION_STATUS;4;[CL_COMPLETE];NULL )
+CL_SUCCESS = clEnqueueNDRangeKernel ( 0xd71660;0x181a120;1;NULL;[4032];[64];0;NULL;[0x184ca20] )
+CL_SUCCESS = clFlush ( 0xd71660 )
+CL_SUCCESS = clGetEventInfo ( 0x184ca20;CL_EVENT_COMMAND_EXECUTION_STATUS;4;[CL_SUBMITTED];NULL /*11002 consecutive calls*/ )
+CL_SUCCESS = clGetEventInfo ( 0x184ca20;CL_EVENT_COMMAND_EXECUTION_STATUS;4;[CL_RUNNING];NULL /*18 consecutive calls*/ )
+CL_SUCCESS = clGetEventInfo ( 0x184ca20;CL_EVENT_COMMAND_EXECUTION_STATUS;4;[CL_COMPLETE];NULL )
+CL_SUCCESS = clEnqueueNDRangeKernel ( 0xd71660;0x186d1e0;1;NULL;[4032];[64];0;NULL;[0x2b68e0001440] )
+CL_SUCCESS = clFlush ( 0xd71660 )
+CL_SUCCESS = clGetEventInfo ( 0x2b68e0001440;CL_EVENT_COMMAND_EXECUTION_STATUS;4;[CL_SUBMITTED];NULL /*9792 consecutive calls*/ )
+CL_SUCCESS = clGetEventInfo ( 0x2b68e0001440;CL_EVENT_COMMAND_EXECUTION_STATUS;4;[CL_RUNNING];NULL /*10 consecutive calls*/ )
+CL_SUCCESS = clGetEventInfo ( 0x2b68e0001440;CL_EVENT_COMMAND_EXECUTION_STATUS;4;[CL_COMPLETE];NULL )
+CL_SUCCESS = clEnqueueNDRangeKernel ( 0xd71660;0x181a120;1;NULL;[4032];[64];0;NULL;[0x2b68e00044c0] )
+CL_SUCCESS = clFlush ( 0xd71660 )
+CL_SUCCESS = clGetEventInfo ( 0x2b68e00044c0;CL_EVENT_COMMAND_EXECUTION_STATUS;4;[CL_SUBMITTED];NULL /*8833 consecutive calls*/ )
+CL_SUCCESS = clGetEventInfo ( 0x2b68e00044c0;CL_EVENT_COMMAND_EXECUTION_STATUS;4;[CL_RUNNING];NULL /*2409 consecutive calls*/ )
+CL_SUCCESS = clGetEventInfo ( 0x2b68e00044c0;CL_EVENT_COMMAND_EXECUTION_STATUS;4;[CL_COMPLETE];NULL )
+CL_SUCCESS = clEnqueueNDRangeKernel ( 0xd71660;0x186d1e0;1;NULL;[4032];[64];0;NULL;[0x2b68e00010a0] )
+CL_SUCCESS = clFlush ( 0xd71660 )
+CL_SUCCESS = clGetEventInfo ( 0x2b68e00010a0;CL_EVENT_COMMAND_EXECUTION_STATUS;4;[CL_SUBMITTED];NULL /*10119 consecutive calls*/ )
+CL_SUCCESS = clGetEventInfo ( 0x2b68e00010a0;CL_EVENT_COMMAND_EXECUTION_STATUS;4;[CL_RUNNING];NULL /*19 consecutive calls*/ )
+CL_SUCCESS = clGetEventInfo ( 0x2b68e00010a0;CL_EVENT_COMMAND_EXECUTION_STATUS;4;[CL_COMPLETE];NULL )
+CL_SUCCESS = clEnqueueNDRangeKernel ( 0xd71660;0x181a120;1;NULL;[4032];[64];0;NULL;[0x2b68e0001f40] )
+CL_SUCCESS = clFlush ( 0xd71660 )
+CL_SUCCESS = clGetEventInfo ( 0x2b68e0001f40;CL_EVENT_COMMAND_EXECUTION_STATUS;4;[CL_QUEUED];NULL /*69 consecutive calls*/ )
+CL_SUCCESS = clGetEventInfo ( 0x2b68e0001f40;CL_EVENT_COMMAND_EXECUTION_STATUS;4;[CL_SUBMITTED];NULL /*10158 consecutive calls*/ )
+CL_SUCCESS = clGetEventInfo ( 0x2b68e0001f40;CL_EVENT_COMMAND_EXECUTION_STATUS;4;[CL_RUNNING];NULL /*16 consecutive calls*/ )
+CL_SUCCESS = clGetEventInfo ( 0x2b68e0001f40;CL_EVENT_COMMAND_EXECUTION_STATUS;4;[CL_COMPLETE];NULL )
+CL_SUCCESS = clEnqueueNDRangeKernel ( 0xd71660;0x186d1e0;1;NULL;[4032];[64];0;NULL;[0x2b68e0002470] )
+CL_SUCCESS = clFlush ( 0xd71660 )
+CL_SUCCESS = clGetEventInfo ( 0x2b68e0002470;CL_EVENT_COMMAND_EXECUTION_STATUS;4;[CL_SUBMITTED];NULL /*10238 consecutive calls*/ )
+CL_SUCCESS = clGetEventInfo ( 0x2b68e0002470;CL_EVENT_COMMAND_EXECUTION_STATUS;4;[CL_RUNNING];NULL /*20 consecutive calls*/ )
+CL_SUCCESS = clGetEventInfo ( 0x2b68e0002470;CL_EVENT_COMMAND_EXECUTION_STATUS;4;[CL_COMPLETE];NULL )
+CL_SUCCESS = clEnqueueNDRangeKernel ( 0xd71660;0x181a120;1;NULL;[4032];[64];0;NULL;[0x2b68e0002f60] )
+CL_SUCCESS = clFlush ( 0xd71660 )
+CL_SUCCESS = clGetEventInfo ( 0x2b68e0002f60;CL_EVENT_COMMAND_EXECUTION_STATUS;4;[CL_QUEUED];NULL )
+CL_SUCCESS = clGetEventInfo ( 0x2b68e0002f60;CL_EVENT_COMMAND_EXECUTION_STATUS;4;[CL_SUBMITTED];NULL /*10246 consecutive calls*/ )
+CL_SUCCESS = clGetEventInfo ( 0x2b68e0002f60;CL_EVENT_COMMAND_EXECUTION_STATUS;4;[CL_RUNNING];NULL /*22 consecutive calls*/ )
+CL_SUCCESS = clGetEventInfo ( 0x2b68e0002f60;CL_EVENT_COMMAND_EXECUTION_STATUS;4;[CL_COMPLETE];NULL )
+CL_SUCCESS = clEnqueueReadBuffer ( 0xd71660;0x183b940;CL_TRUE;0;65092624;0x2b68e7e14010;0;NULL;NULL )
+CL_SUCCESS = clReleaseKernel ( 0x186d1e0 )
+CL_SUCCESS = clReleaseProgram ( 0x1359990 )
+CL_SUCCESS = clReleaseMemObject ( 0x183b940 )
+CL_SUCCESS = clReleaseMemObject ( 0x1866f80 )
+CL_SUCCESS = clReleaseCommandQueue ( 0xd71660 )
+CL_SUCCESS = clReleaseContext ( 0x6154a0 )
+=====AMD APP Profiler Timestamp Output=====
+29066
+75
+1    clGetPlatformInfo                            5374458081151903     5374458081154221     
+1    clGetPlatformInfo                            5374458081167338     5374458081167521     
+1    clGetPlatformInfo                            5374458081190086     5374458081190403     
+1    clGetPlatformInfo                            5374458081206579     5374458081206797     
+1    clGetPlatformInfo                            5374458081208210     5374458081208310     
+5    clCreateContextFromType                      5374458081210566     5374458081215708     
+7    clReleaseContext                             5374458081234630     5374458081243216     
+2    clGetDeviceIDs                               5374458084365095     5374458084372921     
+2    clGetDeviceIDs                               5374458084385348     5374458084385488     
+2    clGetDeviceIDs                               5374458084386088     5374458084386850     
+4    clCreateContext                              5374458084388981     5374458084389707     
+9    clCreateCommandQueue                         5374458084391620     5374458096841077     
+27   clCreateProgramWithSource                    5374458097467344     5374458097486863     
+31   clBuildProgram                               5374458097494155     5374458198559176     
+35   clCreateKernel                               5374458554212135     5374458554218383     
+35   clCreateKernel                               5374458554239614     5374458554241427     
+13   clCreateBuffer                               5374458554247398     5374458579860027     
+13   clCreateBuffer                               5374458579864532     5374458605963031     
+39   clSetKernelArg                               5374458605974537     5374458605979669     
+39   clSetKernelArg                               5374458605980522     5374458605980650     
+39   clSetKernelArg                               5374458605982112     5374458605982220     
+39   clSetKernelArg                               5374458605982778     5374458605982812     
+39   clSetKernelArg                               5374458605983411     5374458605983609     
+39   clSetKernelArg                               5374458605984434     5374458605984481     
+39   clSetKernelArg                               5374458605985386     5374458605985429     
+39   clSetKernelArg                               5374458605985908     5374458605985942     
+66   clEnqueueNDRangeKernel                       5374458606002066     5374458686964426     4592    CL_COMMAND_NDRANGE_KERNEL               5374458686878538     5374458686965862     5374458688239360     5374458690904101     0         0xd71660                 1         0x6154a0                 Tahiti                        0x186d1e0                Stancil4      {4032}     {64}
+50   clFlush                                      5374458687005718     5374458687008540     
+43   clGetEventInfo                               5374458687011948     5374458690904073     
+43   clGetEventInfo                               5374458690904288     5374458690909386     
+43   clGetEventInfo                               5374458690909708     5374458690909903     
+66   clEnqueueNDRangeKernel                       5374458690911591     5374458690940898     4592    CL_COMMAND_NDRANGE_KERNEL               5374458690919867     5374458690946017     5374458691112950     5374458693775173     0         0xd71660                 1         0x6154a0                 Tahiti                        0x181a120                Stancil4      {4032}     {64}
+50   clFlush                                      5374458690947482     5374458690948605     
+43   clGetEventInfo                               5374458690949107     5374458693776657     
+43   clGetEventInfo                               5374458693776874     5374458693782480     
+43   clGetEventInfo                               5374458693782703     5374458693782880     
+66   clEnqueueNDRangeKernel                       5374458693785633     5374458693793128     4592    CL_COMMAND_NDRANGE_KERNEL               5374458693788154     5374458693791463     5374458693958251     5374458696414844     0         0xd71660                 1         0x6154a0                 Tahiti                        0x186d1e0                Stancil4      {4032}     {64}
+50   clFlush                                      5374458693796099     5374458693796963     
+43   clGetEventInfo                               5374458693797330     5374458696416428     
+43   clGetEventInfo                               5374458696416686     5374458696420323     
+43   clGetEventInfo                               5374458696435633     5374458696435976     
+66   clEnqueueNDRangeKernel                       5374458696438883     5374458696452632     4592    CL_COMMAND_NDRANGE_KERNEL               5374458696443926     5374458696449568     5374458696613581     5374458699073581     0         0xd71660                 1         0x6154a0                 Tahiti                        0x181a120                Stancil4      {4032}     {64}
+50   clFlush                                      5374458696456248     5374458696457446     
+43   clGetEventInfo                               5374458696457995     5374458699074723     
+43   clGetEventInfo                               5374458699074940     5374458699722614     
+43   clGetEventInfo                               5374458699722939     5374458699723163     
+66   clEnqueueNDRangeKernel                       5374458699724782     5374458699742467     4592    CL_COMMAND_NDRANGE_KERNEL               5374458699730103     5374458699739430     5374458699917596     5374458702374781     0         0xd71660                 1         0x6154a0                 Tahiti                        0x186d1e0                Stancil4      {4032}     {64}
+50   clFlush                                      5374458699746662     5374458699748157     
+43   clGetEventInfo                               5374458699748440     5374458702376307     
+43   clGetEventInfo                               5374458702376525     5374458702383446     
+43   clGetEventInfo                               5374458702383666     5374458702383860     
+66   clEnqueueNDRangeKernel                       5374458702384467     5374458702408623     4592    CL_COMMAND_NDRANGE_KERNEL               5374458702386820     5374458702463766     5374458702646845     5374458705108474     0         0xd71660                 1         0x6154a0                 Tahiti                        0x181a120                Stancil4      {4032}     {64}
+50   clFlush                                      5374458702411610     5374458702412545     
+43   clGetEventInfo                               5374458702413075     5374458702455559     
+43   clGetEventInfo                               5374458702465093     5374458705109975     
+43   clGetEventInfo                               5374458705110194     5374458705115573     
+43   clGetEventInfo                               5374458705115794     5374458705116460     
+66   clEnqueueNDRangeKernel                       5374458705117664     5374458705127969     4592    CL_COMMAND_NDRANGE_KERNEL               5374458705121085     5374458705126853     5374458705312741     5374458707770371     0         0xd71660                 1         0x6154a0                 Tahiti                        0x186d1e0                Stancil4      {4032}     {64}
+50   clFlush                                      5374458705130663     5374458705131701     
+43   clGetEventInfo                               5374458705131966     5374458707771824     
+43   clGetEventInfo                               5374458707772044     5374458707778536     
+43   clGetEventInfo                               5374458707778870     5374458707779085     
+66   clEnqueueNDRangeKernel                       5374458707779443     5374458707789033     4592    CL_COMMAND_NDRANGE_KERNEL               5374458707781764     5374458707796400     5374458707970285     5374458710427915     0         0xd71660                 1         0x6154a0                 Tahiti                        0x181a120                Stancil4      {4032}     {64}
+50   clFlush                                      5374458707792687     5374458707795300     
+43   clGetEventInfo                               5374458707795783     5374458707796455     
+43   clGetEventInfo                               5374458707798529     5374458710429127     
+43   clGetEventInfo                               5374458710429343     5374458710436260     
+43   clGetEventInfo                               5374458710436480     5374458710436758     
+52   clEnqueueReadBuffer                          5374458710446032     5374458813133521     4595    CL_COMMAND_READ_BUFFER                  5374458710453652     5374458710475841     5374458713020194     5374458813112194     0         0xd71660                 1         0x6154a0                 Tahiti                        65092624            
+38   clReleaseKernel                              5374458813152837     5374458813154890     
+30   clReleaseProgram                             5374458813159010     5374458813159477     
+18   clReleaseMemObject                           5374458813161730     5374458813183772     
+18   clReleaseMemObject                           5374458813184812     5374458815427528     
+11   clReleaseCommandQueue                        5374458815433192     5374458828253174     
+7    clReleaseContext                             5374458828255296     5374458829155766     
+

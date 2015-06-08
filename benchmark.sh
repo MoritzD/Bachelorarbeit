@@ -35,9 +35,9 @@ if [  $# -eq 2 ]
 					echo "Creating full profiling of all kernels"
 					for i in `seq 1 6`
 					do
-					./include/x86_64/sprofile -o "/home/moe/Dokumente/Bachelorarbeit/Output/AppProfilerOutputBarts/CSV/$1_KV$i.csv" "Stancil/bin/x86_64/Release/Stancil" -we 4034 -he 4034 -i 4 -kv $i -q -e
-					./include/x86_64/sprofile -o "Output/AppProfilerOutputBarts/$1_KV$i.atp" -t -O "Stancil/bin/x86_64/Release/Stancil" -we 4034 -he 4034 -i 4 -kv $i -q -e
-					./include/x86_64/sprofile -a "Output/AppProfilerOutputBarts/$1_KV$i.atp" -T
+./include/x86_64/sprofile -o "/home/hpc/pr87du/di73xog/Bachelorarbeit/$1_KV$i.csv" "Stancil/bin/x86_64/Release/Stancil" -we 4034 -he 4034 -i 4 -kv $i -q -e
+					./include/x86_64/sprofile -o "$1_KV$i.atp" -t -O "Stancil/bin/x86_64/Release/Stancil" -we 4034 -he 4034 -i 4 -kv $i -q -e
+					./include/x86_64/sprofile -a "$1_KV$i.atp" -T
 					done
 					echo "Done."
 					exit 0
