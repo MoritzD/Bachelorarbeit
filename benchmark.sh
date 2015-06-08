@@ -30,6 +30,17 @@ if [  $# -eq 2 ]
 				echo "Benchmark results from: "	> $1
 				date >> $1
 
+			elif [ $2 == profile ]
+				then
+					echo "Creating full profiling of all kernels"
+					for i in `seq 1 6`
+					do
+					./include/x86_64/sprofile -o "/home/moe/Dokumente/Bachelorarbeit/Output/AppProfilerOutputBarts/CSV/$1_KV$i.csv" "Stancil/bin/x86_64/Release/Stancil" -we 4034 -he 4034 -i 4 -kv $i -q -e
+					./include/x86_64/sprofile -o "Output/AppProfilerOutputBarts/$1_KV$i.atp" -t -O "Stancil/bin/x86_64/Release/Stancil" -we 4034 -he 4034 -i 4 -kv $i -q -e
+					./include/x86_64/sprofile -a "Output/AppProfilerOutputBarts/$1_KV$i.atp" -T
+					done
+					echo "Done."
+					exit 0
 			else
 				echo "Adding to file if existing"
 				echo "Benchmark results from: "	>> $1

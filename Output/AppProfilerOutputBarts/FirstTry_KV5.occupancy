@@ -1,0 +1,12 @@
+# ProfilerVersion=2.5.1804
+# Application=/home/moe/Dokumente/Bachelorarbeit/Stancil/bin/x86_64/Release/Stancil
+# ApplicationArg=-we 4034 -he 4034 -i 4 -kv 5 -q -e
+Thread ID,Kernel Name,Device Name,Number of compute units,Max. number of wavefronts per CU,Max. number of work-group per CU,Max. number of VGPR,Max. number of SGPR,Max. amount of LDS,Number of VGPR used,Number of SGPR used,Amount of LDS used,Size of wavefront,Work-group size,Wavefronts per work-group,Max work-group size,Max wavefronts per work-group,Global work size,Maximum global work size,Nbr VGPR-limited waves,Nbr SGPR-limited waves,Nbr LDS-limited waves,Nbr of WG limited waves,Kernel occupancy
+4619,Stancil4_1,Barts,28,32,8,248,0,32768,6,0,1544,64,64,1,256,4,4032,16777216,8,0,8,8,25
+4619,Stancil4_1,Barts,28,32,8,248,0,32768,6,0,1544,64,64,1,256,4,4032,16777216,8,0,8,8,25
+4619,Stancil4_1,Barts,28,32,8,248,0,32768,6,0,1544,64,64,1,256,4,4032,16777216,8,0,8,8,25
+4619,Stancil4_1,Barts,28,32,8,248,0,32768,6,0,1544,64,64,1,256,4,4032,16777216,8,0,8,8,25
+4619,Stancil4_1,Barts,28,32,8,248,0,32768,6,0,1544,64,64,1,256,4,4032,16777216,8,0,8,8,25
+4619,Stancil4_1,Barts,28,32,8,248,0,32768,6,0,1544,64,64,1,256,4,4032,16777216,8,0,8,8,25
+4619,Stancil4_1,Barts,28,32,8,248,0,32768,6,0,1544,64,64,1,256,4,4032,16777216,8,0,8,8,25
+4619,Stancil4_1,Barts,28,32,8,248,0,32768,6,0,1544,64,64,1,256,4,4032,16777216,8,0,8,8,25

@@ -1,0 +1,25 @@
+# ProfilerVersion=2.5.1804
+# Application=/home/moe/Dokumente/Bachelorarbeit/Stancil/bin/x86_64/Release/Stancil
+# ApplicationArgs=-we 4034 -he 4034 -i 4 -kv 3 -q -e
+# Device AMD Phenom(tm) II X6 1090T Processor PlatformVendor=Advanced Micro Devices, Inc.
+# Device AMD Phenom(tm) II X6 1090T Processor PlatformName=AMD Accelerated Parallel Processing
+# Device AMD Phenom(tm) II X6 1090T Processor PlatformVersion=OpenCL 1.2 AMD-APP (1445.5)
+# Device AMD Phenom(tm) II X6 1090T Processor CLDriverVersion=1445.5 (sse2)
+# Device AMD Phenom(tm) II X6 1090T Processor CLRuntimeVersion=OpenCL 1.2 AMD-APP (1445.5)
+# Device AMD Phenom(tm) II X6 1090T Processor NumberAppAddressBits=64
+# Device Barts PlatformVendor=Advanced Micro Devices, Inc.
+# Device Barts PlatformName=AMD Accelerated Parallel Processing
+# Device Barts PlatformVersion=OpenCL 1.2 AMD-APP (1445.5)
+# Device Barts CLDriverVersion=1445.5
+# Device Barts CLRuntimeVersion=OpenCL 1.2 AMD-APP (1445.5)
+# Device Barts NumberAppAddressBits=32
+# OS=Ubuntu 15.04 \n \l
+Method , ExecutionOrder , ThreadID , CallIndex , GlobalWorkSize , WorkGroupSize , Time , LocalMemSize , VGPRs , SGPRs , ScratchRegs , FCStacks , Wavefronts , ALUInsts , FetchInsts , WriteInsts , LDSFetchInsts , LDSWriteInsts , ALUBusy , ALUFetchRatio , ALUPacking , FetchSize , CacheHit , FetchUnitBusy , FetchUnitStalled , WriteUnitStalled , FastPath , CompletePath , PathUtilization , LDSBankConflict
+Stancil3__k1_Barts1 ,     1 , 4514 , 28 , {   4032    4032       1} , {   16    16     1} ,        51.75344 ,        1296 ,     7 , NA ,     0 ,     2 ,    254016.00 ,        65.00 ,         1.50 ,         1.00 ,         2.00 ,         1.50 ,         8.49 ,        43.33 ,        36.15 ,     64210.81 ,        55.06 ,         1.44 ,         0.09 ,        18.30 ,     38350.94 ,         0.00 ,       100.00 ,         0.26
+Stancil3__k2_Barts1 ,     2 , 4514 , 30 , {   4032    4032       1} , {   16    16     1} ,        43.71444 ,        1296 ,     7 , NA ,     0 ,     2 ,    254016.00 ,        65.00 ,         1.50 ,         1.00 ,         2.00 ,         1.50 ,        10.59 ,        43.33 ,        36.15 ,     64217.69 ,        55.06 ,         1.79 ,         0.10 ,        16.09 ,     35194.06 ,         0.00 ,       100.00 ,         0.33
+Stancil3__k1_Barts1 ,     3 , 4514 , 32 , {   4032    4032       1} , {   16    16     1} ,        29.10678 ,        1296 ,     7 , NA ,     0 ,     2 ,    254016.00 ,        65.00 ,         1.50 ,         1.00 ,         2.00 ,         1.50 ,         7.04 ,        43.33 ,        36.15 ,     64225.62 ,        55.05 ,         1.19 ,         0.06 ,         7.71 ,     41283.75 ,         0.00 ,       100.00 ,         0.22
+Stancil3__k2_Barts1 ,     4 , 4514 , 34 , {   4032    4032       1} , {   16    16     1} ,        39.61422 ,        1296 ,     7 , NA ,     0 ,     2 ,    254016.00 ,        65.00 ,         1.50 ,         1.00 ,         2.00 ,         1.50 ,         9.16 ,        43.33 ,        36.15 ,     64236.00 ,        55.04 ,         1.56 ,         0.10 ,        11.39 ,     37027.81 ,         0.00 ,       100.00 ,         0.28
+Stancil3__k1_Barts1 ,     5 , 4514 , 36 , {   4032    4032       1} , {   16    16     1} ,        44.62144 ,        1296 ,     7 , NA ,     0 ,     2 ,    254016.00 ,        65.00 ,         1.50 ,         1.00 ,         2.00 ,         1.50 ,         9.34 ,        43.33 ,        36.15 ,     64210.81 ,        55.06 ,         1.58 ,         0.09 ,        16.96 ,     36964.94 ,         0.00 ,       100.00 ,         0.29
+Stancil3__k2_Barts1 ,     6 , 4514 , 38 , {   4032    4032       1} , {   16    16     1} ,        42.17911 ,        1296 ,     7 , NA ,     0 ,     2 ,    254016.00 ,        65.00 ,         1.50 ,         1.00 ,         2.00 ,         1.50 ,         6.93 ,        43.33 ,        36.15 ,     64239.62 ,        55.04 ,         1.17 ,         0.07 ,         4.97 ,     41276.62 ,         0.00 ,       100.00 ,         0.21
+Stancil3__k1_Barts1 ,     7 , 4514 , 40 , {   4032    4032       1} , {   16    16     1} ,        32.51756 ,        1296 ,     7 , NA ,     0 ,     2 ,    254016.00 ,        65.00 ,         1.50 ,         1.00 ,         2.00 ,         1.50 ,         8.70 ,        43.33 ,        36.15 ,     64224.50 ,        55.05 ,         1.46 ,         0.08 ,        11.03 ,     37878.94 ,         0.00 ,       100.00 ,         0.27
+Stancil3__k2_Barts1 ,     8 , 4514 , 42 , {   4032    4032       1} , {   16    16     1} ,        34.61467 ,        1296 ,     7 , NA ,     0 ,     2 ,    254016.00 ,        65.00 ,         1.50 ,         1.00 ,         2.00 ,         1.50 ,         8.57 ,        43.33 ,        36.15 ,     64229.44 ,        55.05 ,         1.44 ,         0.08 ,        11.64 ,     38000.44 ,         0.00 ,       100.00 ,         0.26
