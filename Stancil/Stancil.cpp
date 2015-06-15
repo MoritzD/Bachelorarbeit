@@ -1308,6 +1308,7 @@ cl_int getEdgeWidth(){
 }
 
 void setInputEdgesToOne(cl_int edgewith){
+	if(edgewith == 1){return;}
 	for (int i = 0; i < height*width; i++){
 		if(i/width < edgewith || i/width > height - edgewith - 1){
 			input[i] = 1;

@@ -343,79 +343,101 @@ kv4 (256)
 4,12811
 4,22954 GSPS
 
+				KV6:
+				Tahiti MAC cluster    Stancil -we 4034 -he 4034 -i 100 -kv 6		OLD VALUES!
+
+					3.2118e+09 SPS (Stancils Per Second)
+					3.2118e+06 KSPS (Kilo Stancils Per Second)
+					3211.8 MSPS (Mega Stancils Per Second) 
+					3.2118 GSPS (Giga Stancils Per Second) 	3.39012 GSPS 	3.24621 GSPS 	3.25011 GSPS
+
+					Finisched!
+
+					Total time: 0.809555	0.799533	0.817558	0.817221	
+					Summery times: 
+					Build Program: 0.117279
+					Set Kernel Args: 0.131141
+					Kernel executon: 0.506165
+					Get output back to host memory: 0.00985596
+					Releasing everything: 0.045114
+
+				Tesla MAC cluster:
+
+					2.2326e+09 SPS (Stancils Per Second)
+					2.2326e+06 KSPS (Kilo Stancils Per Second)
+					2232.6 MSPS (Mega Stancils Per Second) 
+					2.2326 GSPS (Giga Stancils Per Second) 2.23164 GSPS 	2.2322 GSPs 	2.23178 GSPS
+
+					Finisched!
+
+					Total time: 0.917866	0.92266		0.918336	0.916579
+					Summery times: 
+					Build Program: 0.00873193
+					Set Kernel Args: 0.163182
+					Kernel executon: 0.728165
+					Get output back to host memory: 0.0175908
+					Releasing everything: 0.000196045
+
+				Bats:
+
+					8.26045e+08 SPS (Stancils Per Second)
+					826045 KSPS (Kilo Stancils Per Second)
+					826.045 MSPS (Mega Stancils Per Second) 
+					0.826045 GSPS (Giga Stancils Per Second) 	0.82276 GSPS 	0.831475 GSPS 	0.832828 GSPS
+
+					Finisched!
+
+					Total time: 2.9264	2.94111	2.91605 2.91507
+					Summery times: 
+					Build Program: 0.106612
+					Set Kernel Args: 0.8267
+					Kernel executon: 1.96806
+					Get output back to host memory: 0.0161172
+					Releasing everything: 0.00891699
+
+
 KV6:
-Tahiti MAC cluster    Stancil -we 4034 -he 4034 -i 100 -kv 6
+	Barts    Stancil -we 4034 -he 4034 -i 100 -kv 6 Performance IMPROVED version (for default stancil only10)
 
-	3.2118e+09 SPS (Stancils Per Second)
-	3.2118e+06 KSPS (Kilo Stancils Per Second)
-	3211.8 MSPS (Mega Stancils Per Second) 
-	3.2118 GSPS (Giga Stancils Per Second) 	3.39012 GSPS 	3.24621 GSPS 	3.25011 GSPS
-
-	Finisched!
-
-	Total time: 0.809555	0.799533	0.817558	0.817221	
-	Summery times: 
-	Build Program: 0.117279
-	Set Kernel Args: 0.131141
-	Kernel executon: 0.506165
-	Get output back to host memory: 0.00985596
-	Releasing everything: 0.045114
-
-Tesla MAC cluster:
-
-	2.2326e+09 SPS (Stancils Per Second)
-	2.2326e+06 KSPS (Kilo Stancils Per Second)
-	2232.6 MSPS (Mega Stancils Per Second) 
-	2.2326 GSPS (Giga Stancils Per Second) 2.23164 GSPS 	2.2322 GSPs 	2.23178 GSPS
+	7.22009e+08 SPS (Stancils Per Second)
+	722009 KSPS (Kilo Stancils Per Second)
+	722.009 MSPS (Mega Stancils Per Second) 
+	0.722009 GSPS (Giga Stancils Per Second) 	0.794159 GSPS 	0.795563 GSPS 	0.790121 GSPS
 
 	Finisched!
 
-	Total time: 0.917866	0.92266		0.918336	0.916579
+	Total time: 2.56391	2.31429	2.30321	2.32148
 	Summery times: 
-	Build Program: 0.00873193
-	Set Kernel Args: 0.163182
-	Kernel executon: 0.728165
-	Get output back to host memory: 0.0175908
-	Releasing everything: 0.000196045
-
-Bats:
-
-	8.26045e+08 SPS (Stancils Per Second)
-	826045 KSPS (Kilo Stancils Per Second)
-	826.045 MSPS (Mega Stancils Per Second) 
-	0.826045 GSPS (Giga Stancils Per Second) 	0.82276 GSPS 	0.831475 GSPS 	0.832828 GSPS
-
-	Finisched!
-
-	Total time: 2.9264	2.94111	2.91605 2.91507
-	Summery times: 
-	Build Program: 0.106612
-	Set Kernel Args: 0.8267
-	Kernel executon: 1.96806
-	Get output back to host memory: 0.0161172
-	Releasing everything: 0.00891699
+	Build Program: 0.105996	0.1212	0.109957	0.11341
+	Set Kernel Args: 0.170992	0.115653	0.11062	0.119621
+	Kernel executon: 2.25164	2.04707		2.04346	2.05754
+	Get output back to host memory: 0.022395	0.0199431	0.0224558	0.018991
+	Releasing everything: 0.0128931	0.0104189	0.016719	0.0119199
 
 
+
+
+
+
+
+
+BARTS:
 Stancil -we 4034 -he 4034 -i 100 -kv 7
 
-	2.80269e+09 SPS (Stancils Per Second)
-	2.80269e+06 KSPS (Kilo Stancils Per Second)
-	2802.69 MSPS (Mega Stancils Per Second) 
-	2.80269 GSPS (Giga Stancils Per Second) 2.8233 GSPs 	2.73687 GSPs 	2.87092 GSPS
+	2.78492e+09 SPS (Stancils Per Second)
+	2.78492e+06 KSPS (Kilo Stancils Per Second)
+	2784.92 MSPS (Mega Stancils Per Second) 
+	2.78492 GSPS (Giga Stancils Per Second) 2.71566 GSPs 	2.71721 GSPs	2.73853 GSPS
 
 	Finisched!
 
-	Total time: 0.91694	0.909428 0.926995	0.903609
+	Total time: 0.770456	0.80318	0.798453	0.802236
 	Summery times: 
-	Build Program: 0.0398889	0.043606	0.0469121	0.038885
-	Set Kernel Args: 0.266638	0.26338		0.261212	0.275577
-	Kernel executon: 0.58005	0.575817	0.594001	0.566265
-	Get output back to host memory: 0.0225889	0.0188379	0.016707	0.015981
-	Releasing everything: 0.00777417	0.00778711	0.00816284	0.00690088
-
-
-
-
+	Build Program: 0.0459829	0.044283	0.0414009	0.044116
+	Set Kernel Args: 0.106629	0.122171	0.124217	0.128353
+	Kernel executon: 0.583752	0.598641	0.598298	0.59364
+	Get output back to host memory: 0.019304	0.0201238	0.0155061	0.017343
+	Releasing everything: 0.0147881	0.0179612	0.019031	0.0187839
 
 
 KV 2 as comparison
@@ -428,7 +450,7 @@ KV 2 as comparison
 	Get output back to host memory: 0.017687
 	Releasing everything: 0.00846094
 
-
+MAC Tahiti:
 
 
 
