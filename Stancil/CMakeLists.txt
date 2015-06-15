@@ -16,7 +16,7 @@
 
 
 set( SAMPLE_NAME Stancil)
-set( SOURCE_FILES Stancil.cpp )
+set( SOURCE_FILES Stancil.cpp kernel_generator.cpp)
 set( EXTRA_FILES Stancil_Kernel.cl )
 
 ############################################################################

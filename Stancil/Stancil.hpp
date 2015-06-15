@@ -11,6 +11,7 @@
 #include <algorithm>
 #include "error_handling_methods.cpp"
 #include "CLPerfMarker.h"
+#include "kernel_generator.hpp"
 
 
 using namespace appsdk;
@@ -21,13 +22,13 @@ using namespace appsdk;
 
 
 #define SINGLETIME true 
-#define PROFILE true
 
 #define WIDTH  500
 #define HEIGHT 500
 #define SAMPLE_VERSION "sample"
 #define ITERATIONS 500
 
+bool PROFILE = true;
 cl_uint numPlatforms = 0;	//the NO. of platforms
 cl_platform_id platform = NULL;	//the chosen platform
 cl_int	status = 0;
@@ -47,7 +48,7 @@ cl_uint maxComputeUnits;
 cl_uint DeviceToUse = 0;
 cl_uint width = WIDTH, height = HEIGHT;
 cl_uint iterations = ITERATIONS;
-cl_uint kernelVersion = 3;
+cl_uint kernelVersion = 2;
 std::string stancilDefinition = "default";
 std::string stancilWeights = "default";
 cl_int edgewith = 1;
@@ -89,9 +90,9 @@ int convertToString(const char *filename, std::string& s);
 
 void freeResources();
 
-void StupidCPUimplementation(float *in, float *out, int width, int height);
+void StupidCPUimplementation(cl_float *in, cl_float *out, int width, int height);
 
-void StupidDynamicCPUImplementation(float *in, float *out, int width, int height, 
+void StupidDynamicCPUImplementation(cl_float *in, cl_float *out, int width, int height, 
 					cl_int *positions, cl_float *allWeights, 
 					cl_int numberPoints, cl_int edgewith);
 

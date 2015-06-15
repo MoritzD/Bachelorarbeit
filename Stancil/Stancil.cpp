@@ -7,16 +7,31 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-	
+
+/*	KernelGenerator kGenerator;
+
+	int test_pos[8] = {0,-1, -1,0, 1,0, 0,1};//[8] = {0,-1, -1,0, 1,0, 0,1}; 
+	float test_weights[4] =  {1.0f,1.0f,1.0f,1.0f,};
+	string testkernel = kGenerator.generateKernelString("teststring", test_pos, test_weights, 4, 1);
+	cout << "Created Kernel: \n\n" << testkernel << "\n" << endl;
+*/
+
 	sampleTimer = new SDKTimer();
 	timer = sampleTimer->createTimer();
 
 	if(PROFILE){
 		status = clInitializePerfMarkerAMD();
 		if( status != AP_SUCCESS){
-			cout << "Initilasation of App Profiler failed: " << status << endl;
-			getAppProfilerInitError(status);
+			if( status == AP_APP_PROFILER_NOT_DETECTED ){
+				PROFILE = false;
+			}
+			else{
+				cout << "Initilasation of App Profiler failed: " << status << endl;
+				getAppProfilerInitError(status);
+			}
 		}
+	}
+	if(PROFILE){
 		if(clBeginPerfMarkerAMD( "KernelProfiler", "Group1") != AP_SUCCESS){
 			cout << "Begin of App Profiler failed" << endl;
 		}
@@ -52,14 +67,66 @@ int main(int argc, char* argv[])
 	sampleTimer->resetTimer(timer);
 	sampleTimer->startTimer(timer);
 
-	const char *filename = "Stancil_Kernel.cl";
+	cl_program program;
+	if(kernelVersion != 7){
+		const char *filename = "Stancil_Kernel.cl";
 
-	string KernelSource;
-	status = convertToString(filename, KernelSource);
-	const char *source = KernelSource.c_str();
-	size_t sourceSize[] = { strlen(source) };
-	if (VERBOSEKERNEL){ cout << source << endl; }
-	cl_program program = clCreateProgramWithSource(context, 1, &source, sourceSize, NULL);
+		string KernelSource;
+		status = convertToString(filename, KernelSource);
+		const char *source = KernelSource.c_str();
+		size_t sourceSize[] = { strlen(source) };
+		if (VERBOSEKERNEL){ cout << source << endl; }
+		program = clCreateProgramWithSource(context, 1, &source, sourceSize, NULL);
+	}
+	else{
+		if(stancilDefinition.compare("default") == 0){
+			cout << "no positions specifyed; using the default 5-Point-Stancil" << endl;
+			positions = (cl_int*)malloc(sizeof(cl_int) * 8);
+			positions[0] =  0;	positions[1] = -1;
+			positions[2] = -1;	positions[3] =  0;
+			positions[4] =  1;	positions[5] =  0;
+			positions[6] =  0;	positions[7] =  1;
+		}
+		else{
+			numberPoints = parseStringToPositions(stancilDefinition);
+		}
+
+		if(stancilWeights.compare("default") == 0){
+			cout << "no weights specifyed; assuming there all 1.0" << endl;
+			weights = (cl_float*)malloc(sizeof(cl_float) * numberPoints);
+			fill(weights, weights + numberPoints, 1.0);
+		}
+		else{
+			cl_int numberWeights = parseStringToWeights(stancilWeights);
+
+
+			if(numberWeights == FAILURE){
+				return FAILURE;
+			}
+			if(numberPoints != numberWeights){
+				cout << "ERROR: number of points and number of weights differ!"<< endl;
+				cout << "numberPoints = "<< numberPoints << " and numberWeights = " << numberWeights << endl;
+				return FAILURE;
+			}
+		}
+		cl_int edgewithlocal;
+		/*edgewithlocal = getEdgeWidth();
+		setInputEdgesToOne(edgewithlocal);
+		edgewith = edgewithlocal;
+		*/
+		edgewith = getEdgeWidth();
+
+		KernelGenerator kGenerator;
+
+		//int test_pos[8] = {0,-1, -1,0, 1,0, 0,1};
+		//float test_weights[4] =  {1.0f,1.0f,1.0f,1.0f,};
+		string KernelSource = kGenerator.generateKernelString("createdKernel", positions, weights, numberPoints, edgewith);
+		//cout << "Created Kernel: \n\n" << testkernel << "\n" << endl;
+		const char *source = KernelSource.c_str();
+		size_t sourceSize[] = { strlen(source) };
+		if (VERBOSEKERNEL){ cout << source << endl; }
+		program = clCreateProgramWithSource(context, 1, &source, sourceSize, NULL);
+	}
 
 	if(buildProgram(&program) != SUCCESS) {
 		freeResources();
@@ -230,7 +297,7 @@ void freeResources(){
 	}
 }
 
-void StupidCPUimplementation(float *in, float *out, int width, int height){
+void StupidCPUimplementation(cl_float *in, cl_float *out, int width, int height){
 	for (int num = 0; num < width*height; num++){
 		if (num < width || (num % width) == 0 || (num % width) == width - 1 || num >= (width*height - width)){
 			out[num] = in[num];
@@ -241,7 +308,7 @@ void StupidCPUimplementation(float *in, float *out, int width, int height){
 		}
 	}
 }
-void StupidDynamicCPUImplementation(float *in, float *out, 
+void StupidDynamicCPUImplementation(cl_float *in, cl_float *out, 
 					int width, int height, cl_int *positions, cl_float *allWeights, 
 					cl_int numberPoints){
 
@@ -694,18 +761,18 @@ int readArgs(int argc, char* argv[]){
 	return SUCCESS;
 }
 
-int checkAgainstCpuImplementation(float *origInput, float *clOutput){
+int checkAgainstCpuImplementation(cl_float *origInput, cl_float *clOutput){
 	if(!ComandArgs->quiet){
 		cout << "\nChecking result against referance cpu implementation :" << endl;
 	}
 	double referanceTime = 0;
 
-	float *inout = (float*)malloc(sizeof(float) * width * height);
-	memcpy(inout, origInput, sizeof(float) * width * height);
+	cl_float *inout = (cl_float*)malloc(sizeof(cl_float) * width * height);
+	memcpy(inout, origInput, sizeof(cl_float) * width * height);
 
-	float *workmem = (float*)malloc(sizeof(float) * width * height);
-	//memset(workmem, 0, sizeof(float) * width * height);
-	memcpy(workmem, origInput, sizeof(float) * width * height);
+	cl_float *workmem = (cl_float*)malloc(sizeof(cl_float) * width * height);
+	//memset(workmem, 0, sizeof(cl_float) * width * height);
+	memcpy(workmem, origInput, sizeof(cl_float) * width * height);
 
 
 /*
@@ -719,7 +786,7 @@ int checkAgainstCpuImplementation(float *origInput, float *clOutput){
 	sampleTimer->resetTimer(timer);
 	sampleTimer->startTimer(timer);
 
-	if(kernelVersion == 6){
+	if(kernelVersion == 6 || kernelVersion == 7){
 		for (int e = 0; e < iterations; e++){
 			StupidDynamicCPUImplementation(inout, workmem, width, height, positions, weights, numberPoints);
 			StupidDynamicCPUImplementation(workmem, inout, width, height, positions, weights, numberPoints);
@@ -745,7 +812,7 @@ int checkAgainstCpuImplementation(float *origInput, float *clOutput){
 		}
 	}
 
-	if(memcmp(clOutput, inout , width * height * sizeof(float))==0){
+	if(memcmp(clOutput, inout , width * height * sizeof(cl_float))==0){
 		cout << "\nPassed the test; results are equil.\n" << endl;
 	}
 	else{
@@ -796,17 +863,19 @@ int checkAgainstCpuImplementation(float *origInput, float *clOutput){
 	return SDK_SUCCESS;
 }
 
-int chekMemSimilar(float* openCl, float* referance, int length){
-	float test;
-	float maxDiff = 0;
+int chekMemSimilar(cl_float* openCl, cl_float* referance, int length){
+	cl_float test;
+	float maxDiff = 0, maxprocent = 0;
 	for(int i = 0; i < length;i++){
 		test = openCl[i] - referance[i];
 			if(abs(test) > maxDiff){
 				maxDiff = abs(test);
+				maxprocent = (abs(test)/abs(max(openCl[i],referance[i])))*100;
 			}
 	}
 	cout << "Max difference is: "<< maxDiff << endl;
-	if(maxDiff > 0.00001f){
+	cout << "In Procent: " << maxprocent << "%" << endl;
+	if(maxprocent > 0.0001f){
 		return -1;
 	}
 	return 0;
@@ -863,14 +932,14 @@ cl_int parseStringToPositions(std::string str){
 
 cl_int parseStringToWeights(std::string str){
 
-	cout << " using String for weights: " << str << endl;
+//	cout << " using String for weights: " << str << endl;
 	str.erase(std::remove(str.begin(), str.end(), ' ') 
 		,str.end());
 
-	cout << " String wihtout witespaces: " << str << endl;
+//	cout << " String wihtout witespaces: " << str << endl;
 
 	
-	cl_float *helper = (cl_float*)malloc(sizeof(cl_float) * str.size());
+	cl_float *temp = (cl_float*)malloc(sizeof(cl_float) * str.size());
 
 	cl_int i = 0, e = 0, dotcount;
 	bool negativ, dot;
@@ -912,20 +981,20 @@ cl_int parseStringToWeights(std::string str){
 		} 
 		if (negativ)	result = -result;
 
-		cout << "single number is: " << result <<"and i: " << i << endl;
+//		cout << "single number is: " << result <<"and i: " << i << endl;
 
-		helper[e] = result;
+		temp[e] = result;
 		e++;
 		i++;
 	}
 	weights = (cl_float*)malloc(sizeof(cl_float) * e);
 
-	memcpy(weights, helper, sizeof(cl_float) * e);
+	memcpy(weights, temp, sizeof(cl_float) * e);
 
-	free(helper);
-	cout << " nubmer of weights: "<< e << endl;
-	cout << " first 4 numbers are: " << weights[0] << " " << weights[1] << " " 
-									 << weights[2] << " " << weights[3] << endl;
+	free(temp);
+//	cout << " nubmer of weights: "<< e << endl;
+//	cout << " first 4 numbers are: " << weights[0] << " " << weights[1] << " " 
+//									 << weights[2] << " " << weights[3] << endl;
 
 	return e;
 }
@@ -1098,7 +1167,7 @@ int setupKernelSpesificStuff(cl_uint* work_dim, size_t *global_work_size, size_t
 			*kernel = clCreateKernel(*program, "dynamicStancil1", NULL);
 			*kernelBackwards = clCreateKernel(*program, "dynamicStancil1", NULL); 
 			
-			if(stancilWeights.compare("default") == 0){
+			if(stancilDefinition.compare("default") == 0){
 				cout << "no positions specifyed; using the default 5-Point-Stancil" << endl;
 				positions = (cl_int*)malloc(sizeof(cl_int) * 8);
 				positions[0] =  0;	positions[1] = -1;
@@ -1197,6 +1266,27 @@ int setupKernelSpesificStuff(cl_uint* work_dim, size_t *global_work_size, size_t
 				cout <<" lokal work size:  we "<< *local_work_size << endl;
 			}
 		break;
+		case 7:
+
+			setInputEdgesToOne(edgewith);
+			
+			*kernel = clCreateKernel(*program, "createdKernel", NULL);
+			*kernelBackwards = clCreateKernel(*program, "createdKernel", NULL);
+
+			status = setBufferKernelArgs(kernel, kernelBackwards, context);
+			if(status != SUCCESS){
+				cout << "Abording!" << endl;
+				freeResources();
+				return FAILURE;
+			}
+
+
+			*work_dim = 2;
+			global_work_size[0] = width - 2*edgewith;
+			global_work_size[1] = height - 2*edgewith;
+			*local_work_size = NULL;
+
+		break;
 		default:
 			cout << "FATAL ERROR: specifyed kernel version does not exist! ("<< kernelVersion <<")"<< endl;
 			return FAILURE;
@@ -1235,7 +1325,7 @@ void initilizeHostBuffers(){
 	
 	input = (cl_float*)malloc(sizeof(cl_float) * width * height);
 	fill(input, input + (width*height), 1.0);
-	input[5] = 10;
+	//input[5] = 10;
 	//input[14] = 5;
 	//input[29] = 50;
 	//input[30] = 4;

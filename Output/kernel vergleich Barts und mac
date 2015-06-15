@@ -396,6 +396,46 @@ Bats:
 	Releasing everything: 0.00891699
 
 
+Stancil -we 4034 -he 4034 -i 100 -kv 7
+
+	2.80269e+09 SPS (Stancils Per Second)
+	2.80269e+06 KSPS (Kilo Stancils Per Second)
+	2802.69 MSPS (Mega Stancils Per Second) 
+	2.80269 GSPS (Giga Stancils Per Second) 2.8233 GSPs 	2.73687 GSPs 	2.87092 GSPS
+
+	Finisched!
+
+	Total time: 0.91694	0.909428 0.926995	0.903609
+	Summery times: 
+	Build Program: 0.0398889	0.043606	0.0469121	0.038885
+	Set Kernel Args: 0.266638	0.26338		0.261212	0.275577
+	Kernel executon: 0.58005	0.575817	0.594001	0.566265
+	Get output back to host memory: 0.0225889	0.0188379	0.016707	0.015981
+	Releasing everything: 0.00777417	0.00778711	0.00816284	0.00690088
+
+
+
+
+
+
+KV 2 as comparison
+
+	Total time: 0.78498	0.775378	0.766959	0.791788		avg:	0.77977625
+	Summery times: 
+	Build Program: 0.101055
+	Set Kernel Args: 0.0603301
+	Kernel executon: 0.597447
+	Get output back to host memory: 0.017687
+	Releasing everything: 0.00846094
+
+
+
+
+
+
+
+
+
 ./Stancil/bin/x86_64/Release/Stancil: /lrz/sys/parallel/opencl/nvidia/lib64/libOpenCL.so.1: no version information available (required by ./Stancil/bin/x86_64/Release/Stancil)
 
 
@@ -505,6 +545,11 @@ KV 6 Dynamic kernel (calculating 5-point Stancil) testet on the MAC Tahiti // NO
 
 	// test against specilised CPU algorithm is Byte ok
 	// test against first stupid cpu implementation has some differences but is ok: Max difference is: 2.38419e-06
+
+
+
+
+
 
 
 
