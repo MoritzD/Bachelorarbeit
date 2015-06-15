@@ -414,8 +414,38 @@ KV6:
 	Get output back to host memory: 0.022395	0.0199431	0.0224558	0.018991
 	Releasing everything: 0.0128931	0.0104189	0.016719	0.0119199
 
+Tahiti MAC ATI
+	3.77988e+09 SPS (Stancils Per Second)
+	3.77988e+06 KSPS (Kilo Stancils Per Second)
+	3779.88 MSPS (Mega Stancils Per Second) 
+	3.77988 GSPS (Giga Stancils Per Second) 	3.71921 GSPS 	3.76059 GSPS 	4.03667 GSPS
 
+	Finisched!
 
+	Total time: 0.60382	0.61476	0.604918	0.73714
+	Summery times: 
+	Build Program: 0.0978579	0.0984229	0.097668	0.0982942
+	Set Kernel Args: 0.0515261	0.051093	0.051479	0.051561
+	Kernel executon: 0.430094	0.43711	0.4323	0.402733
+	Get output back to host memory: 0.0140662	0.018002	0.015175	0.171373
+	Releasing everything: 0.0102761	0.0101321	0.00829614	0.013179
+
+Tesla MAC NVD
+
+	2.22981e+09 SPS (Stancils Per Second)
+	2.22981e+06 KSPS (Kilo Stancils Per Second)
+	2229.81 MSPS (Mega Stancils Per Second) 
+	2.22981 GSPS (Giga Stancils Per Second) 2.22904 GSPS 	2.22949 GSPS 	2.22917 GSPS
+
+	Finisched!
+
+	Total time: 0.818113	0.823809	0.819304	0.818177
+	Summery times: 
+	Build Program: 0.00813501	0.0136111	0.00918604	0.0080979
+	Set Kernel Args: 0.0631631	0.0631641	0.063168	0.0630789
+	Kernel executon: 0.729077	0.729327	0.729182	0.729287
+	Get output back to host memory: 0.017543	0.0175239	0.017585	0.0175229
+	Releasing everything: 0.000194824	0.000183105	0.000182861	0.000190186
 
 
 
@@ -450,9 +480,39 @@ KV 2 as comparison
 	Get output back to host memory: 0.017687
 	Releasing everything: 0.00846094
 
-MAC Tahiti:
+Tahiti MAC ATI:
 
+	5.94859e+09 SPS (Stancils Per Second)
+	5.94859e+06 KSPS (Kilo Stancils Per Second)
+	5948.59 MSPS (Mega Stancils Per Second) 
+	5.94859 GSPS (Giga Stancils Per Second) 5.16703 GSPS 	5.60233 GSPs 	5.71391 GSPS
 
+	Finisched!
+
+	Total time: 0.38893	0.428742	0.411657	0.411178
+	Summery times: 
+	Build Program: 0.037166	0.0403032	0.0491721	0.0429829
+	Set Kernel Args: 0.0513721	0.0514561	0.0514138	0.0514871
+	Kernel executon: 0.273292	0.31463	0.290183	0.284517	
+	Get output back to host memory: 0.016425	0.0150608	0.0119712	0.0215059
+	Releasing everything: 0.010675	0.00729199	0.00891699	0.0106851
+
+Tesla MAC NVD
+
+	3.48563e+09 SPS (Stancils Per Second)
+	3.48563e+06 KSPS (Kilo Stancils Per Second)
+	3485.63 MSPS (Mega Stancils Per Second) 
+	3.48563 GSPS (Giga Stancils Per Second) 3.48459 GSPS 	3.48599 GSPS  3.48248 GSPS
+
+	Finisched!
+
+	Total time: 0.556837	0.555766	0.559186	0.553763
+	Summery times: 
+	Build Program: 0.00963501	0.00838403	0.0119648	0.00611206
+	Set Kernel Args: 0.062979	0.063052	0.0630332	0.063011
+	Kernel executon: 0.466401	0.466541	0.466353	0.466823
+	Get output back to host memory: 0.0175491	0.0175259	0.0175671	0.017541
+	Releasing everything: 0.000272949	0.000262939	0.000268066	0.000275879
 
 
 
