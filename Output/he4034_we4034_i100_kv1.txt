@@ -1,0 +1,174 @@
+Platform 0 : Advanced Micro Devices, Inc.
+
+4034 : 4034 Iterations: 100
+using kernel version: 1
+
+number of platformes found: 1 
+number of Devices found: 3
+
+List of Devices found:
+
+GPUs found:
+
+NAME: Tahiti 
+Max Clock Frequency: 900 
+Parallel compute units: 28 
+Hardware version: OpenCL 1.2 AMD-APP (1124.2) 
+CL Driver version: 1124.2 (VM)
+CL Device Max Work Group Size: 
+Max Work Group Size: 0 
+Max work Group size: 18446744073709551586
+
+NAME: Tahiti 
+Max Clock Frequency: 900 
+Parallel compute units: 28 
+Hardware version: OpenCL 1.2 AMD-APP (1124.2) 
+CL Driver version: 1124.2 (VM)
+CL Device Max Work Group Size: 
+Max Work Group Size: 0 
+Max work Group size: 18446744073709551586
+
+CPUs found:
+
+NAME: Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz 
+Max Clock Frequency: 2601 
+Parallel compute units: 32 
+Hardware version: OpenCL 1.2 AMD-APP (1124.2) 
+CL Driver version: 1124.2 (sse2,avx)
+CL Device Max Work Group Size: 
+Max Work Group Size: 0 
+Max work Group size: 18446744073709551586
+
+Total list (correct order):
+0: Tahiti 
+1: Tahiti 
+2: Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz 
+99: Stupid CPU Implementation
+
+Witch Device should be used?
+0
+you selected device number: 0
+Building Programm Sucsessfull
+kernel Arguments are set; starting kernel now!
+Max kernel work gorup size: 256
+Time 		 SPS 
+0.0969971 	 1.67603e+08
+0.00662012 	 2.4557e+09
+0.00820801 	 1.98063e+09
+0.00829712 	 1.95936e+09
+0.0082478 	 1.97107e+09
+0.00722803 	 2.24916e+09
+0.00362695 	 4.48228e+09
+0.00363989 	 4.46635e+09
+0.0036272 	 4.48198e+09
+0.00362793 	 4.48107e+09
+0.00237085 	 6.85705e+09
+0.0022439 	 7.245e+09
+0.00223608 	 7.27031e+09
+0.00229395 	 7.08693e+09
+0.00224194 	 7.25131e+09
+0.00224097 	 7.25447e+09
+0.00225708 	 7.20268e+09
+0.00226196 	 7.18713e+09
+0.00224292 	 7.24815e+09
+0.00225195 	 7.21908e+09
+0.00227686 	 7.14012e+09
+0.00225903 	 7.19645e+09
+0.00226514 	 7.17706e+09
+0.00225293 	 7.21595e+09
+0.00225903 	 7.19645e+09
+0.00229297 	 7.08995e+09
+0.00225806 	 7.19956e+09
+0.00224316 	 7.24736e+09
+0.00225391 	 7.21282e+09
+0.00223901 	 7.2608e+09
+0.00226489 	 7.17783e+09
+0.00224805 	 7.23162e+09
+0.00224902 	 7.22848e+09
+0.00223315 	 7.27985e+09
+0.00223584 	 7.2711e+09
+0.00223901 	 7.2608e+09
+0.00226001 	 7.19334e+09
+0.00223999 	 7.25763e+09
+0.00224487 	 7.24185e+09
+0.00224194 	 7.25131e+09
+0.00225903 	 7.19645e+09
+0.00226001 	 7.19334e+09
+0.00224707 	 7.23476e+09
+0.00226294 	 7.18403e+09
+0.00224512 	 7.24106e+09
+0.00225293 	 7.21595e+09
+0.00225806 	 7.19956e+09
+0.00223804 	 7.26397e+09
+0.00226294 	 7.18403e+09
+0.002271 	 7.15854e+09
+0.00224683 	 7.23555e+09
+0.00231812 	 7.01304e+09
+0.00225513 	 7.20892e+09
+0.00224805 	 7.23162e+09
+0.0022439 	 7.245e+09
+0.00224805 	 7.23162e+09
+0.00229199 	 7.09297e+09
+0.00242603 	 6.70109e+09
+0.00238989 	 6.80241e+09
+0.00228003 	 7.13018e+09
+0.00226099 	 7.19024e+09
+0.00227588 	 7.14318e+09
+0.00223901 	 7.2608e+09
+0.00223291 	 7.28064e+09
+0.00225708 	 7.20268e+09
+0.00223096 	 7.28702e+09
+0.00225 	 7.22534e+09
+0.00229883 	 7.07187e+09
+0.002229 	 7.2934e+09
+0.00223999 	 7.25763e+09
+0.00222217 	 7.31584e+09
+0.0022771 	 7.13936e+09
+0.00222803 	 7.2966e+09
+0.00222607 	 7.303e+09
+0.00224097 	 7.25447e+09
+0.00223682 	 7.26793e+09
+0.0022439 	 7.245e+09
+0.0022439 	 7.245e+09
+0.00223315 	 7.27985e+09
+0.00222998 	 7.29021e+09
+0.00223511 	 7.27349e+09
+0.00222705 	 7.2998e+09
+0.00223706 	 7.26714e+09
+0.00223486 	 7.27428e+09
+0.00222412 	 7.30941e+09
+0.00222412 	 7.30941e+09
+0.00221899 	 7.3263e+09
+0.00223218 	 7.28303e+09
+0.0022251 	 7.30621e+09
+0.00222607 	 7.303e+09
+0.00223999 	 7.25763e+09
+0.00223608 	 7.27031e+09
+0.00223218 	 7.28303e+09
+0.00223096 	 7.28702e+09
+0.00222803 	 7.2966e+09
+0.00222803 	 7.2966e+09
+0.00223706 	 7.26714e+09
+0.00223511 	 7.27349e+09
+0.00223193 	 7.28383e+09
+0.00222485 	 7.30701e+09
+Total executing time: 0.353766
+so for every run thats: 0.00353766
+done; releasinng kernel now
+Testoutput: this should be constant with different iterations!: 0.00353766
+we had: 16257024 single Stancel calculations
+this makes: 
+4.59542e+09 SPS (Stancels Per Second)
+4.59542e+06 KSPS (Kilo Stancels Per Second)
+4595.42 MSPS (Mega Stancels Per Second) 
+4.59542 GSPS (Giga Stancels Per Second) 
+
+Finisched!
+
+Total time: 0.658769
+Summery times: 
+Build Program: 0.0742869
+Set Kernel Args: 0.0513169
+Kernel executon: 0.353766
+Get output back to host memory: 0.17267
+Releasing everything: 0.006729

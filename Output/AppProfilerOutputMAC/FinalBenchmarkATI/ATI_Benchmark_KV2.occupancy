@@ -1,0 +1,12 @@
+# ProfilerVersion=2.5.1804
+# Application=/home/hpc/pr87du/di73xog/Bachelorarbeit/Stancil/bin/x86_64/Release/Stancil
+# ApplicationArg=-we 4034 -he 4034 -i 4 -kv 2 -q -e
+Thread ID,Kernel Name,Device Name,Number of compute units,Max. number of wavefronts per CU,Max. number of work-group per CU,Max. number of VGPR,Max. number of SGPR,Max. amount of LDS,Number of VGPR used,Number of SGPR used,Amount of LDS used,Size of wavefront,Work-group size,Wavefronts per work-group,Max work-group size,Max wavefronts per work-group,Global work size,Maximum global work size,Nbr VGPR-limited waves,Nbr SGPR-limited waves,Nbr LDS-limited waves,Nbr of WG limited waves,Kernel occupancy
+2725,Stancil2,Tahiti,32,40,16,256,512,32768,5,16,0,64,256,4,256,4,16257024,16777216,40,40,40,40,100
+2725,Stancil2,Tahiti,32,40,16,256,512,32768,5,16,0,64,256,4,256,4,16257024,16777216,40,40,40,40,100
+2725,Stancil2,Tahiti,32,40,16,256,512,32768,5,16,0,64,256,4,256,4,16257024,16777216,40,40,40,40,100
+2725,Stancil2,Tahiti,32,40,16,256,512,32768,5,16,0,64,256,4,256,4,16257024,16777216,40,40,40,40,100
+2725,Stancil2,Tahiti,32,40,16,256,512,32768,5,16,0,64,256,4,256,4,16257024,16777216,40,40,40,40,100
+2725,Stancil2,Tahiti,32,40,16,256,512,32768,5,16,0,64,256,4,256,4,16257024,16777216,40,40,40,40,100
+2725,Stancil2,Tahiti,32,40,16,256,512,32768,5,16,0,64,256,4,256,4,16257024,16777216,40,40,40,40,100
+2725,Stancil2,Tahiti,32,40,16,256,512,32768,5,16,0,64,256,4,256,4,16257024,16777216,40,40,40,40,100

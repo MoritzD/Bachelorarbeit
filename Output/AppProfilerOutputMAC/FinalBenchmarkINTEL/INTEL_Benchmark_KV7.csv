@@ -1,0 +1,25 @@
+# ProfilerVersion=2.5.1804
+# Application=/home/hpc/pr87du/di73xog/Bachelorarbeit/Stancil/bin/x86_64/Release/Stancil
+# ApplicationArgs=-we 4034 -he 4034 -i 4 -kv 7 -q -e -d cpu
+# Device Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz PlatformVendor=Advanced Micro Devices, Inc.
+# Device Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz PlatformName=AMD Accelerated Parallel Processing
+# Device Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz PlatformVersion=OpenCL 1.2 AMD-APP (1124.2)
+# Device Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz CLDriverVersion=1124.2 (sse2,avx)
+# Device Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz CLRuntimeVersion=OpenCL 1.2 AMD-APP (1124.2)
+# Device Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz NumberAppAddressBits=64
+# Device Tahiti PlatformVendor=Advanced Micro Devices, Inc.
+# Device Tahiti PlatformName=AMD Accelerated Parallel Processing
+# Device Tahiti PlatformVersion=OpenCL 1.2 AMD-APP (1124.2)
+# Device Tahiti CLDriverVersion=1124.2 (VM)
+# Device Tahiti CLRuntimeVersion=OpenCL 1.2 AMD-APP (1124.2)
+# Device Tahiti NumberAppAddressBits=32
+# OS=
+Method , ExecutionOrder , ThreadID , CallIndex , GlobalWorkSize , WorkGroupSize , Time , LocalMemSize , VGPRs , SGPRs , ScratchRegs , FCStacks
+createdKernel__k1_CPU ,     1 , 5163 , 26 , {   4032    4032       1} , NULL ,        11.28934 ,           0 , NA , NA , NA , NA
+createdKernel__k2_CPU ,     2 , 5163 , 28 , {   4032    4032       1} , NULL ,        11.33276 ,           0 , NA , NA , NA , NA
+createdKernel__k1_CPU ,     3 , 5163 , 30 , {   4032    4032       1} , NULL ,         8.04049 ,           0 , NA , NA , NA , NA
+createdKernel__k2_CPU ,     4 , 5163 , 32 , {   4032    4032       1} , NULL ,        11.86818 ,           0 , NA , NA , NA , NA
+createdKernel__k1_CPU ,     5 , 5163 , 34 , {   4032    4032       1} , NULL ,        11.72526 ,           0 , NA , NA , NA , NA
+createdKernel__k2_CPU ,     6 , 5163 , 36 , {   4032    4032       1} , NULL ,        11.84950 ,           0 , NA , NA , NA , NA
+createdKernel__k1_CPU ,     7 , 5163 , 38 , {   4032    4032       1} , NULL ,        11.57587 ,           0 , NA , NA , NA , NA
+createdKernel__k2_CPU ,     8 , 5163 , 40 , {   4032    4032       1} , NULL ,        11.87813 ,           0 , NA , NA , NA , NA
