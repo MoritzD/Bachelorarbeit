@@ -1,0 +1,25 @@
+# ProfilerVersion=2.5.1804
+# Application=/home/hpc/pr87du/di73xog/Bachelorarbeit/Stancil/bin/x86_64/Release/Stancil
+# ApplicationArgs=-we 4034 -he 4034 -i 4 -kv 6 -q -e
+# Device Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz PlatformVendor=Advanced Micro Devices, Inc.
+# Device Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz PlatformName=AMD Accelerated Parallel Processing
+# Device Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz PlatformVersion=OpenCL 1.2 AMD-APP (1124.2)
+# Device Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz CLDriverVersion=1124.2 (sse2,avx)
+# Device Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz CLRuntimeVersion=OpenCL 1.2 AMD-APP (1124.2)
+# Device Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz NumberAppAddressBits=64
+# Device Tahiti PlatformVendor=Advanced Micro Devices, Inc.
+# Device Tahiti PlatformName=AMD Accelerated Parallel Processing
+# Device Tahiti PlatformVersion=OpenCL 1.2 AMD-APP (1124.2)
+# Device Tahiti CLDriverVersion=1124.2 (VM)
+# Device Tahiti CLRuntimeVersion=OpenCL 1.2 AMD-APP (1124.2)
+# Device Tahiti NumberAppAddressBits=32
+# OS=
+Method , ExecutionOrder , ThreadID , CallIndex , GlobalWorkSize , WorkGroupSize , Time , LocalMemSize , VGPRs , SGPRs , ScratchRegs , FCStacks , Wavefronts , VALUInsts , SALUInsts , VFetchInsts , SFetchInsts , VWriteInsts , LDSInsts , VALUUtilization , VALUBusy , SALUBusy , FetchSize , CacheHit , MemUnitBusy , MemUnitStalled , WriteUnitStalled , LDSBankConflict , WriteSize , GDSInsts
+dynamicStancil1__k1_Tahiti1 ,     1 , 2758 , 36 , {   4032    4032       1} , NULL ,         1.89007 ,           0 ,     4 ,    24 , NA , NA ,    254016.00 ,        53.00 ,        44.00 ,        16.00 ,        13.00 ,         1.00 ,         0.00 ,       100.00 ,        40.43 ,        50.11 ,     63827.88 ,        54.75 ,        82.39 ,         3.03 ,         0.09 ,         0.00 ,     63561.38 ,         0.00
+dynamicStancil1__k2_Tahiti1 ,     2 , 2758 , 38 , {   4032    4032       1} , NULL ,         1.58326 ,           0 ,     4 ,    24 , NA , NA ,    254016.00 ,        53.00 ,        44.00 ,        16.00 ,        13.00 ,         1.00 ,         0.00 ,       100.00 ,        40.60 ,        50.33 ,     63828.69 ,        54.76 ,        82.71 ,         3.05 ,         0.08 ,         0.00 ,     63559.72 ,         0.00
+dynamicStancil1__k1_Tahiti1 ,     3 , 2758 , 40 , {   4032    4032       1} , NULL ,         1.59630 ,           0 ,     4 ,    24 , NA , NA ,    254016.00 ,        53.00 ,        44.00 ,        16.00 ,        13.00 ,         1.00 ,         0.00 ,       100.00 ,        40.31 ,        49.96 ,     63812.69 ,        54.75 ,        82.14 ,         2.99 ,         0.08 ,         0.00 ,     63559.22 ,         0.00
+dynamicStancil1__k2_Tahiti1 ,     4 , 2758 , 42 , {   4032    4032       1} , NULL ,         1.61496 ,           0 ,     4 ,    24 , NA , NA ,    254016.00 ,        53.00 ,        44.00 ,        16.00 ,        13.00 ,         1.00 ,         0.00 ,       100.00 ,        40.51 ,        50.21 ,     63886.94 ,        54.72 ,        82.35 ,         3.02 ,         0.07 ,         0.00 ,     63562.22 ,         0.00
+dynamicStancil1__k1_Tahiti1 ,     5 , 2758 , 44 , {   4032    4032       1} , NULL ,         1.59556 ,           0 ,     4 ,    24 , NA , NA ,    254016.00 ,        53.00 ,        44.00 ,        16.00 ,        13.00 ,         1.00 ,         0.00 ,       100.00 ,        40.38 ,        50.04 ,     63872.50 ,        54.75 ,        82.12 ,         3.01 ,         0.08 ,         0.00 ,     63559.00 ,         0.00
+dynamicStancil1__k2_Tahiti1 ,     6 , 2758 , 46 , {   4032    4032       1} , NULL ,         1.58993 ,           0 ,     4 ,    24 , NA , NA ,    254016.00 ,        53.00 ,        44.00 ,        16.00 ,        13.00 ,         1.00 ,         0.00 ,       100.00 ,        40.33 ,        49.98 ,     63795.38 ,        54.76 ,        82.32 ,         3.00 ,         0.10 ,         0.00 ,     63561.47 ,         0.00
+dynamicStancil1__k1_Tahiti1 ,     7 , 2758 , 48 , {   4032    4032       1} , NULL ,         1.59170 ,           0 ,     4 ,    24 , NA , NA ,    254016.00 ,        53.00 ,        44.00 ,        16.00 ,        13.00 ,         1.00 ,         0.00 ,       100.00 ,        40.48 ,        50.17 ,     63845.88 ,        54.75 ,        82.43 ,         3.01 ,         0.08 ,         0.00 ,     63559.06 ,         0.00
+dynamicStancil1__k2_Tahiti1 ,     8 , 2758 , 50 , {   4032    4032       1} , NULL ,         1.61126 ,           0 ,     4 ,    24 , NA , NA ,    254016.00 ,        53.00 ,        44.00 ,        16.00 ,        13.00 ,         1.00 ,         0.00 ,       100.00 ,        40.46 ,        50.14 ,     63818.50 ,        54.76 ,        82.47 ,         3.02 ,         0.08 ,         0.00 ,     63563.06 ,         0.00

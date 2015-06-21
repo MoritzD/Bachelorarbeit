@@ -1,0 +1,25 @@
+# ProfilerVersion=2.5.1804
+# Application=/home/hpc/pr87du/di73xog/Bachelorarbeit/Stancil/bin/x86_64/Release/Stancil
+# ApplicationArgs=-we 4034 -he 4034 -i 4 -kv 7 -q -e
+# Device Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz PlatformVendor=Advanced Micro Devices, Inc.
+# Device Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz PlatformName=AMD Accelerated Parallel Processing
+# Device Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz PlatformVersion=OpenCL 1.2 AMD-APP (1124.2)
+# Device Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz CLDriverVersion=1124.2 (sse2,avx)
+# Device Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz CLRuntimeVersion=OpenCL 1.2 AMD-APP (1124.2)
+# Device Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz NumberAppAddressBits=64
+# Device Tahiti PlatformVendor=Advanced Micro Devices, Inc.
+# Device Tahiti PlatformName=AMD Accelerated Parallel Processing
+# Device Tahiti PlatformVersion=OpenCL 1.2 AMD-APP (1124.2)
+# Device Tahiti CLDriverVersion=1124.2 (VM)
+# Device Tahiti CLRuntimeVersion=OpenCL 1.2 AMD-APP (1124.2)
+# Device Tahiti NumberAppAddressBits=32
+# OS=
+Method , ExecutionOrder , ThreadID , CallIndex , GlobalWorkSize , WorkGroupSize , Time , LocalMemSize , VGPRs , SGPRs , ScratchRegs , FCStacks , Wavefronts , VALUInsts , SALUInsts , VFetchInsts , SFetchInsts , VWriteInsts , LDSInsts , VALUUtilization , VALUBusy , SALUBusy , FetchSize , CacheHit , MemUnitBusy , MemUnitStalled , WriteUnitStalled , LDSBankConflict , WriteSize , GDSInsts
+createdKernel__k1_Tahiti1 ,     1 , 2767 , 26 , {   4032    4032       1} , NULL ,         1.12237 ,           0 ,     5 ,    16 , NA , NA ,    254016.00 ,        27.00 ,         2.00 ,         4.00 ,         7.00 ,         1.00 ,         0.00 ,       100.00 ,        29.93 ,         3.99 ,     63692.62 ,        54.77 ,        86.93 ,        24.14 ,        28.67 ,         0.00 ,     63546.94 ,         0.00
+createdKernel__k2_Tahiti1 ,     2 , 2767 , 28 , {   4032    4032       1} , NULL ,         1.03956 ,           0 ,     5 ,    16 , NA , NA ,    254016.00 ,        27.00 ,         2.00 ,         4.00 ,         7.00 ,         1.00 ,         0.00 ,       100.00 ,        30.52 ,         4.07 ,     63682.19 ,        54.78 ,        88.85 ,        24.29 ,        28.45 ,         0.00 ,     63548.75 ,         0.00
+createdKernel__k1_Tahiti1 ,     3 , 2767 , 30 , {   4032    4032       1} , NULL ,         0.92533 ,           0 ,     5 ,    16 , NA , NA ,    254016.00 ,        27.00 ,         2.00 ,         4.00 ,         7.00 ,         1.00 ,         0.00 ,       100.00 ,        30.46 ,         4.06 ,     63688.00 ,        54.78 ,        88.59 ,        24.28 ,        29.99 ,         0.00 ,     63547.44 ,         0.00
+createdKernel__k2_Tahiti1 ,     4 , 2767 , 32 , {   4032    4032       1} , NULL ,         0.90563 ,           0 ,     5 ,    16 , NA , NA ,    254016.00 ,        27.00 ,         2.00 ,         4.00 ,         7.00 ,         1.00 ,         0.00 ,       100.00 ,        30.50 ,         4.07 ,     63687.69 ,        54.74 ,        88.89 ,        24.70 ,        30.83 ,         0.00 ,     63548.12 ,         0.00
+createdKernel__k1_Tahiti1 ,     5 , 2767 , 34 , {   4032    4032       1} , NULL ,         0.90089 ,           0 ,     5 ,    16 , NA , NA ,    254016.00 ,        27.00 ,         2.00 ,         4.00 ,         7.00 ,         1.00 ,         0.00 ,       100.00 ,        30.39 ,         4.05 ,     63686.94 ,        54.78 ,        88.54 ,        24.65 ,        29.54 ,         0.00 ,     63549.59 ,         0.00
+createdKernel__k2_Tahiti1 ,     6 , 2767 , 36 , {   4032    4032       1} , NULL ,         0.89763 ,           0 ,     5 ,    16 , NA , NA ,    254016.00 ,        27.00 ,         2.00 ,         4.00 ,         7.00 ,         1.00 ,         0.00 ,       100.00 ,        30.46 ,         4.06 ,     63684.56 ,        54.78 ,        88.80 ,        24.69 ,        30.96 ,         0.00 ,     63548.47 ,         0.00
+createdKernel__k1_Tahiti1 ,     7 , 2767 , 38 , {   4032    4032       1} , NULL ,         0.90445 ,           0 ,     5 ,    16 , NA , NA ,    254016.00 ,        27.00 ,         2.00 ,         4.00 ,         7.00 ,         1.00 ,         0.00 ,       100.00 ,        30.51 ,         4.07 ,     63681.62 ,        54.78 ,        89.03 ,        25.50 ,        34.58 ,         0.00 ,     63546.72 ,         0.00
+createdKernel__k2_Tahiti1 ,     8 , 2767 , 40 , {   4032    4032       1} , NULL ,         0.90504 ,           0 ,     5 ,    16 , NA , NA ,    254016.00 ,        27.00 ,         2.00 ,         4.00 ,         7.00 ,         1.00 ,         0.00 ,       100.00 ,        30.39 ,         4.05 ,     63690.69 ,        54.77 ,        89.14 ,        25.03 ,        32.43 ,         0.00 ,     63546.47 ,         0.00

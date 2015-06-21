@@ -1,0 +1,6 @@
+=====AMD APP Profiler clPerfMarker Output=====
+ProfilerVersion=2.5.1804
+2725
+2
+clBeginPerfMarker   KernelProfiler                                    6476975346701303       Group1
+clEndPerfMarker     6476976285043846    

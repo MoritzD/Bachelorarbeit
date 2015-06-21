@@ -1,0 +1,132 @@
+Benchmark results from: 
+So 21. Jun 17:31:27 CEST 2015
+
+
+Kernel 1:
+Platform 0 : NVIDIA Corporation
+
+2.17078e+08 SPS (Stancils Per Second)
+217078 KSPS (Kilo Stancils Per Second)
+217.078 MSPS (Mega Stancils Per Second) 
+0.217078 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 7.5889
+Summery times: 
+Build Program: 0.0188909
+Set Kernel Args: 0.063147
+Kernel executon: 7.48902
+Get output back to host memory: 0.0176108
+Releasing everything: 0.000226074
+
+
+Kernel 2:
+Platform 0 : NVIDIA Corporation
+
+3.35332e+09 SPS (Stancils Per Second)
+3.35332e+06 KSPS (Kilo Stancils Per Second)
+3353.32 MSPS (Mega Stancils Per Second) 
+3.35332 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 0.573575
+Summery times: 
+Build Program: 0.0083811
+Set Kernel Args: 0.0625088
+Kernel executon: 0.484804
+Get output back to host memory: 0.017615
+Releasing everything: 0.000265869
+
+
+Kernel 3:
+Platform 0 : NVIDIA Corporation
+
+2.70248e+09 SPS (Stancils Per Second)
+2.70248e+06 KSPS (Kilo Stancils Per Second)
+2702.48 MSPS (Mega Stancils Per Second) 
+2.70248 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 0.689474
+Summery times: 
+Build Program: 0.00684595
+Set Kernel Args: 0.063197
+Kernel executon: 0.60156
+Get output back to host memory: 0.0176082
+Releasing everything: 0.000262939
+
+
+Kernel 4:
+Platform 0 : NVIDIA Corporation
+
+2.8612e+09 SPS (Stancils Per Second)
+2.8612e+06 KSPS (Kilo Stancils Per Second)
+2861.2 MSPS (Mega Stancils Per Second) 
+2.8612 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 0.659482
+Summery times: 
+Build Program: 0.0103611
+Set Kernel Args: 0.0630979
+Kernel executon: 0.56819
+Get output back to host memory: 0.0175781
+Releasing everything: 0.000254883
+
+
+Kernel 5:
+Platform 0 : NVIDIA Corporation
+
+3.63367e+10 SPS (Stancils Per Second)
+3.63367e+07 KSPS (Kilo Stancils Per Second)
+36336.7 MSPS (Mega Stancils Per Second) 
+36.3367 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 0.141304
+Summery times: 
+Build Program: 0.0131851
+Set Kernel Args: 0.0631121
+Kernel executon: 0.04474
+Get output back to host memory: 0.0199399
+Releasing everything: 0.000326904
+
+
+Kernel 6:
+Platform 0 : NVIDIA Corporation
+no positions specifyed; using the default 5-Point-Stancil
+no weights specifyed; assuming there all 1.0
+
+2.23618e+09 SPS (Stancils Per Second)
+2.23618e+06 KSPS (Kilo Stancils Per Second)
+2236.18 MSPS (Mega Stancils Per Second) 
+2.23618 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 0.814641
+Summery times: 
+Build Program: 0.00665503
+Set Kernel Args: 0.063196
+Kernel executon: 0.727001
+Get output back to host memory: 0.0176079
+Releasing everything: 0.000180908
+
+
+Kernel 7:
+Platform 0 : NVIDIA Corporation
+no positions specifyed; using the default 5-Point-Stancil
+no weights specifyed; assuming there all 1.0
+
+3.50529e+09 SPS (Stancils Per Second)
+3.50529e+06 KSPS (Kilo Stancils Per Second)
+3505.29 MSPS (Mega Stancils Per Second) 
+3.50529 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 0.569949
+Summery times: 
+Build Program: 0.025165
+Set Kernel Args: 0.0630918
+Kernel executon: 0.463785
+Get output back to host memory: 0.0176538
+Releasing everything: 0.00025293

@@ -1,0 +1,15 @@
+Platform 0 : Advanced Micro Devices, Inc.
+
+4.17161e+09 SPS (Stancils Per Second)
+4.17161e+06 KSPS (Kilo Stancils Per Second)
+4171.61 MSPS (Mega Stancils Per Second) 
+4.17161 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 3.84322
+Summery times: 
+Build Program: 0.0982798
+Set Kernel Args: 0.294018
+Kernel executon: 2.26853
+Get output back to host memory: 1.12298
+Releasing everything: 0.0594192
