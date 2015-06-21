@@ -1,0 +1,396 @@
+Benchmark results from: 
+So 21. Jun 18:32:47 CEST 2015
+
+
+Kernel 1:
+Platform 0 : Advanced Micro Devices, Inc.
+
+8.98712e+07 SPS (Stancils Per Second)
+89871.2 KSPS (Kilo Stancils Per Second)
+89.8712 MSPS (Mega Stancils Per Second) 
+0.0898712 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 18.3348
+Summery times: 
+Build Program: 0.154771
+Set Kernel Args: 0.058978
+Kernel executon: 18.0893
+Get output back to host memory: 0.019052
+Releasing everything: 0.0127839
+
+
+Kernel 2:
+Platform 0 : Advanced Micro Devices, Inc.
+
+3.15862e+09 SPS (Stancils Per Second)
+3.15862e+06 KSPS (Kilo Stancils Per Second)
+3158.62 MSPS (Mega Stancils Per Second) 
+3.15862 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 0.707484
+Summery times: 
+Build Program: 0.102337
+Set Kernel Args: 0.059104
+Kernel executon: 0.514688
+Get output back to host memory: 0.017498
+Releasing everything: 0.0138569
+
+
+Kernel 3:
+Platform 0 : Advanced Micro Devices, Inc.
+
+9.83102e+08 SPS (Stancils Per Second)
+983102 KSPS (Kilo Stancils Per Second)
+983.102 MSPS (Mega Stancils Per Second) 
+0.983102 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 1.83911
+Summery times: 
+Build Program: 0.100628
+Set Kernel Args: 0.059207
+Kernel executon: 1.65365
+Get output back to host memory: 0.018937
+Releasing everything: 0.00669409
+
+
+Kernel 4:
+Platform 0 : Advanced Micro Devices, Inc.
+
+1.97205e+09 SPS (Stancils Per Second)
+1.97205e+06 KSPS (Kilo Stancils Per Second)
+1972.05 MSPS (Mega Stancils Per Second) 
+1.97205 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 1.02071
+Summery times: 
+Build Program: 0.106099
+Set Kernel Args: 0.0587102
+Kernel executon: 0.82437
+Get output back to host memory: 0.0187561
+Releasing everything: 0.0127791
+
+
+Kernel 5:
+Platform 0 : Advanced Micro Devices, Inc.
+
+1.78556e+10 SPS (Stancils Per Second)
+1.78556e+07 KSPS (Kilo Stancils Per Second)
+17855.6 MSPS (Mega Stancils Per Second) 
+17.8556 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 0.27794
+Summery times: 
+Build Program: 0.105197
+Set Kernel Args: 0.0589329
+Kernel executon: 0.0910471
+Get output back to host memory: 0.0143721
+Releasing everything: 0.00839087
+
+
+Kernel 6:
+Platform 0 : Advanced Micro Devices, Inc.
+no positions specifyed; using the default 5-Point-Stancil
+no weights specifyed; assuming there all 1.0
+
+1.01288e+09 SPS (Stancils Per Second)
+1.01288e+06 KSPS (Kilo Stancils Per Second)
+1012.88 MSPS (Mega Stancils Per Second) 
+1.01288 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 1.80227
+Summery times: 
+Build Program: 0.103343
+Set Kernel Args: 0.0594299
+Kernel executon: 1.60504
+Get output back to host memory: 0.018928
+Releasing everything: 0.0155291
+
+
+Kernel 7:
+Platform 0 : Advanced Micro Devices, Inc.
+no positions specifyed; using the default 5-Point-Stancil
+no weights specifyed; assuming there all 1.0
+
+3.11772e+09 SPS (Stancils Per Second)
+3.11772e+06 KSPS (Kilo Stancils Per Second)
+3117.72 MSPS (Mega Stancils Per Second) 
+3.11772 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 0.650885
+Summery times: 
+Build Program: 0.040533
+Set Kernel Args: 0.059554
+Kernel executon: 0.521439
+Get output back to host memory: 0.016502
+Releasing everything: 0.0128569
+Benchmark results from: 
+So 21. Jun 18:35:22 CEST 2015
+
+
+Kernel 1:
+Platform 0 : Advanced Micro Devices, Inc.
+
+8.99428e+07 SPS (Stancils Per Second)
+89942.8 KSPS (Kilo Stancils Per Second)
+89.9428 MSPS (Mega Stancils Per Second) 
+0.0899428 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 18.2712
+Summery times: 
+Build Program: 0.106239
+Set Kernel Args: 0.058823
+Kernel executon: 18.0748
+Get output back to host memory: 0.0184192
+Releasing everything: 0.0128909
+
+
+Kernel 2:
+Platform 0 : Advanced Micro Devices, Inc.
+
+3.13382e+09 SPS (Stancils Per Second)
+3.13382e+06 KSPS (Kilo Stancils Per Second)
+3133.82 MSPS (Mega Stancils Per Second) 
+3.13382 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 0.713282
+Summery times: 
+Build Program: 0.103991
+Set Kernel Args: 0.0592
+Kernel executon: 0.518761
+Get output back to host memory: 0.0173489
+Releasing everything: 0.013981
+
+
+Kernel 3:
+Platform 0 : Advanced Micro Devices, Inc.
+
+9.84367e+08 SPS (Stancils Per Second)
+984367 KSPS (Kilo Stancils Per Second)
+984.367 MSPS (Mega Stancils Per Second) 
+0.984367 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 1.84948
+Summery times: 
+Build Program: 0.107103
+Set Kernel Args: 0.058927
+Kernel executon: 1.65152
+Get output back to host memory: 0.0189851
+Releasing everything: 0.0129431
+
+
+Kernel 4:
+Platform 0 : Advanced Micro Devices, Inc.
+
+1.96697e+09 SPS (Stancils Per Second)
+1.96697e+06 KSPS (Kilo Stancils Per Second)
+1966.97 MSPS (Mega Stancils Per Second) 
+1.96697 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 1.0227
+Summery times: 
+Build Program: 0.105386
+Set Kernel Args: 0.0591689
+Kernel executon: 0.826501
+Get output back to host memory: 0.0188911
+Releasing everything: 0.0127571
+
+
+Kernel 5:
+Platform 0 : Advanced Micro Devices, Inc.
+
+1.75879e+10 SPS (Stancils Per Second)
+1.75879e+07 KSPS (Kilo Stancils Per Second)
+17587.9 MSPS (Mega Stancils Per Second) 
+17.5879 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 0.281022
+Summery times: 
+Build Program: 0.105959
+Set Kernel Args: 0.059241
+Kernel executon: 0.0924331
+Get output back to host memory: 0.0145149
+Releasing everything: 0.00887378
+
+
+Kernel 6:
+Platform 0 : Advanced Micro Devices, Inc.
+no positions specifyed; using the default 5-Point-Stancil
+no weights specifyed; assuming there all 1.0
+
+1.00815e+09 SPS (Stancils Per Second)
+1.00815e+06 KSPS (Kilo Stancils Per Second)
+1008.15 MSPS (Mega Stancils Per Second) 
+1.00815 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 1.80246
+Summery times: 
+Build Program: 0.104353
+Set Kernel Args: 0.0591328
+Kernel executon: 1.61256
+Get output back to host memory: 0.018908
+Releasing everything: 0.00750806
+
+
+Kernel 7:
+Platform 0 : Advanced Micro Devices, Inc.
+no positions specifyed; using the default 5-Point-Stancil
+no weights specifyed; assuming there all 1.0
+
+3.17125e+09 SPS (Stancils Per Second)
+3.17125e+06 KSPS (Kilo Stancils Per Second)
+3171.25 MSPS (Mega Stancils Per Second) 
+3.17125 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 0.645346
+Summery times: 
+Build Program: 0.0435481
+Set Kernel Args: 0.0588142
+Kernel executon: 0.512637
+Get output back to host memory: 0.0174761
+Releasing everything: 0.0128708
+Benchmark results from: 
+So 21. Jun 18:38:24 CEST 2015
+
+
+Kernel 1:
+Platform 0 : Advanced Micro Devices, Inc.
+
+8.98748e+07 SPS (Stancils Per Second)
+89874.8 KSPS (Kilo Stancils Per Second)
+89.8748 MSPS (Mega Stancils Per Second) 
+0.0898748 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 18.2789
+Summery times: 
+Build Program: 0.10243
+Set Kernel Args: 0.0607668
+Kernel executon: 18.0885
+Get output back to host memory: 0.0189441
+Releasing everything: 0.00829199
+
+
+Kernel 2:
+Platform 0 : Advanced Micro Devices, Inc.
+
+3.16684e+09 SPS (Stancils Per Second)
+3.16684e+06 KSPS (Kilo Stancils Per Second)
+3166.84 MSPS (Mega Stancils Per Second) 
+3.16684 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 0.709231
+Summery times: 
+Build Program: 0.107833
+Set Kernel Args: 0.0589919
+Kernel executon: 0.513352
+Get output back to host memory: 0.0211699
+Releasing everything: 0.00788403
+
+
+Kernel 3:
+Platform 0 : Advanced Micro Devices, Inc.
+
+9.82487e+08 SPS (Stancils Per Second)
+982487 KSPS (Kilo Stancils Per Second)
+982.487 MSPS (Mega Stancils Per Second) 
+0.982487 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 1.84895
+Summery times: 
+Build Program: 0.101076
+Set Kernel Args: 0.0588359
+Kernel executon: 1.65468
+Get output back to host memory: 0.019021
+Releasing everything: 0.0153372
+
+
+Kernel 4:
+Platform 0 : Advanced Micro Devices, Inc.
+
+1.97438e+09 SPS (Stancils Per Second)
+1.97438e+06 KSPS (Kilo Stancils Per Second)
+1974.38 MSPS (Mega Stancils Per Second) 
+1.97438 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 1.02163
+Summery times: 
+Build Program: 0.104109
+Set Kernel Args: 0.05896
+Kernel executon: 0.823399
+Get output back to host memory: 0.019345
+Releasing everything: 0.015812
+
+
+Kernel 5:
+Platform 0 : Advanced Micro Devices, Inc.
+
+1.76903e+10 SPS (Stancils Per Second)
+1.76903e+07 KSPS (Kilo Stancils Per Second)
+17690.3 MSPS (Mega Stancils Per Second) 
+17.6903 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 0.284899
+Summery times: 
+Build Program: 0.101667
+Set Kernel Args: 0.0635911
+Kernel executon: 0.0918979
+Get output back to host memory: 0.0150142
+Releasing everything: 0.012729
+
+
+Kernel 6:
+Platform 0 : Advanced Micro Devices, Inc.
+no positions specifyed; using the default 5-Point-Stancil
+no weights specifyed; assuming there all 1.0
+
+1.01099e+09 SPS (Stancils Per Second)
+1.01099e+06 KSPS (Kilo Stancils Per Second)
+1010.99 MSPS (Mega Stancils Per Second) 
+1.01099 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 1.79839
+Summery times: 
+Build Program: 0.104426
+Set Kernel Args: 0.0593682
+Kernel executon: 1.60803
+Get output back to host memory: 0.018938
+Releasing everything: 0.00762305
+
+
+Kernel 7:
+Platform 0 : Advanced Micro Devices, Inc.
+no positions specifyed; using the default 5-Point-Stancil
+no weights specifyed; assuming there all 1.0
+
+3.13599e+09 SPS (Stancils Per Second)
+3.13599e+06 KSPS (Kilo Stancils Per Second)
+3135.99 MSPS (Mega Stancils Per Second) 
+3.13599 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 0.650076
+Summery times: 
+Build Program: 0.0419829
+Set Kernel Args: 0.0590549
+Kernel executon: 0.518402
+Get output back to host memory: 0.017645
+Releasing everything: 0.012991

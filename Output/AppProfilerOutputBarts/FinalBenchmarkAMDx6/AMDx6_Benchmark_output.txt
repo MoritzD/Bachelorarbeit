@@ -1,0 +1,574 @@
+Benchmark results from: 
+So 21. Jun 18:14:54 CEST 2015
+
+
+Kernel 1:
+Platform 0 : Advanced Micro Devices, Inc.
+
+2.76139e+07 SPS (Stancils Per Second)
+27613.9 KSPS (Kilo Stancils Per Second)
+27.6139 MSPS (Mega Stancils Per Second) 
+0.0276139 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 59.0787
+Summery times: 
+Build Program: 0.130247
+Set Kernel Args: 0.0549561
+Kernel executon: 58.8727
+Get output back to host memory: 0.0195391
+Releasing everything: 0.00124805
+
+
+Kernel 2:
+Platform 0 : Advanced Micro Devices, Inc.
+
+2.95786e+08 SPS (Stancils Per Second)
+295786 KSPS (Kilo Stancils Per Second)
+295.786 MSPS (Mega Stancils Per Second) 
+0.295786 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 5.92878
+Summery times: 
+Build Program: 0.353257
+Set Kernel Args: 0.0590911
+Kernel executon: 5.49621
+Get output back to host memory: 0.0192061
+Releasing everything: 0.00102002
+
+
+Kernel 3:
+Platform 0 : Advanced Micro Devices, Inc.
+
+6.60048e+07 SPS (Stancils Per Second)
+66004.8 KSPS (Kilo Stancils Per Second)
+66.0048 MSPS (Mega Stancils Per Second) 
+0.0660048 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 24.8308
+Summery times: 
+Build Program: 0.121269
+Set Kernel Args: 0.0590371
+Kernel executon: 24.6301
+Get output back to host memory: 0.0194041
+Releasing everything: 0.00105908
+
+
+Kernel 4:
+Platform 0 : Advanced Micro Devices, Inc.
+
+1.55611e+08 SPS (Stancils Per Second)
+155611 KSPS (Kilo Stancils Per Second)
+155.611 MSPS (Mega Stancils Per Second) 
+0.155611 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 10.66
+Summery times: 
+Build Program: 0.137074
+Set Kernel Args: 0.0549802
+Kernel executon: 10.4472
+Get output back to host memory: 0.0195811
+Releasing everything: 0.00113013
+
+
+Kernel 5:
+Platform 0 : Advanced Micro Devices, Inc.
+
+4.0285e+10 SPS (Stancils Per Second)
+4.0285e+07 KSPS (Kilo Stancils Per Second)
+40285 MSPS (Mega Stancils Per Second) 
+40.285 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 0.238867
+Summery times: 
+Build Program: 0.118741
+Set Kernel Args: 0.0592471
+Kernel executon: 0.040355
+Get output back to host memory: 0.0194949
+Releasing everything: 0.00102881
+
+
+Kernel 6:
+Platform 0 : Advanced Micro Devices, Inc.
+no positions specifyed; using the default 5-Point-Stancil
+no weights specifyed; assuming there all 1.0
+
+1.56844e+08 SPS (Stancils Per Second)
+156844 KSPS (Kilo Stancils Per Second)
+156.844 MSPS (Mega Stancils Per Second) 
+0.156844 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 10.5706
+Summery times: 
+Build Program: 0.129985
+Set Kernel Args: 0.0552341
+Kernel executon: 10.3651
+Get output back to host memory: 0.019177
+Releasing everything: 0.00109302
+
+
+Kernel 7:
+Platform 0 : Advanced Micro Devices, Inc.
+no positions specifyed; using the default 5-Point-Stancil
+no weights specifyed; assuming there all 1.0
+
+2.87421e+08 SPS (Stancils Per Second)
+287421 KSPS (Kilo Stancils Per Second)
+287.421 MSPS (Mega Stancils Per Second) 
+0.287421 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 5.78958
+Summery times: 
+Build Program: 0.053407
+Set Kernel Args: 0.059543
+Kernel executon: 5.65618
+Get output back to host memory: 0.0193521
+Releasing everything: 0.0010979
+ 
+ 
+ 
+Benchmark results from: 
+So 21. Jun 18:18:23 CEST 2015
+
+
+Kernel 1:
+Platform 0 : Advanced Micro Devices, Inc.
+
+2.78119e+07 SPS (Stancils Per Second)
+27811.9 KSPS (Kilo Stancils Per Second)
+27.8119 MSPS (Mega Stancils Per Second) 
+0.0278119 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 58.6633
+Summery times: 
+Build Program: 0.129367
+Set Kernel Args: 0.060155
+Kernel executon: 58.4535
+Get output back to host memory: 0.0191421
+Releasing everything: 0.00118091
+
+
+Kernel 2:
+Platform 0 : Advanced Micro Devices, Inc.
+
+2.95444e+08 SPS (Stancils Per Second)
+295444 KSPS (Kilo Stancils Per Second)
+295.444 MSPS (Mega Stancils Per Second) 
+0.295444 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 5.70786
+Summery times: 
+Build Program: 0.125838
+Set Kernel Args: 0.059093
+Kernel executon: 5.50258
+Get output back to host memory: 0.019377
+Releasing everything: 0.000979004
+
+
+Kernel 3:
+Platform 0 : Advanced Micro Devices, Inc.
+
+6.59163e+07 SPS (Stancils Per Second)
+65916.3 KSPS (Kilo Stancils Per Second)
+65.9163 MSPS (Mega Stancils Per Second) 
+0.0659163 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 24.8794
+Summery times: 
+Build Program: 0.139234
+Set Kernel Args: 0.05478
+Kernel executon: 24.6631
+Get output back to host memory: 0.0211509
+Releasing everything: 0.00105493
+
+
+Kernel 4:
+Platform 0 : Advanced Micro Devices, Inc.
+
+1.57066e+08 SPS (Stancils Per Second)
+157066 KSPS (Kilo Stancils Per Second)
+157.066 MSPS (Mega Stancils Per Second) 
+0.157066 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 10.5578
+Summery times: 
+Build Program: 0.12804
+Set Kernel Args: 0.0590591
+Kernel executon: 10.3505
+Get output back to host memory: 0.0191841
+Releasing everything: 0.00108398
+
+
+Kernel 5:
+Platform 0 : Advanced Micro Devices, Inc.
+
+4.52425e+10 SPS (Stancils Per Second)
+4.52425e+07 KSPS (Kilo Stancils Per Second)
+45242.5 MSPS (Mega Stancils Per Second) 
+45.2425 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 0.248466
+Summery times: 
+Build Program: 0.1317
+Set Kernel Args: 0.0593308
+Kernel executon: 0.0359331
+Get output back to host memory: 0.020488
+Releasing everything: 0.00101392
+
+
+Kernel 6:
+Platform 0 : Advanced Micro Devices, Inc.
+no positions specifyed; using the default 5-Point-Stancil
+no weights specifyed; assuming there all 1.0
+
+1.58761e+08 SPS (Stancils Per Second)
+158761 KSPS (Kilo Stancils Per Second)
+158.761 MSPS (Mega Stancils Per Second) 
+0.158761 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 10.4424
+Summery times: 
+Build Program: 0.122587
+Set Kernel Args: 0.059115
+Kernel executon: 10.2399
+Get output back to host memory: 0.0190469
+Releasing everything: 0.00176294
+
+
+Kernel 7:
+Platform 0 : Advanced Micro Devices, Inc.
+no positions specifyed; using the default 5-Point-Stancil
+no weights specifyed; assuming there all 1.0
+
+2.86989e+08 SPS (Stancils Per Second)
+286989 KSPS (Kilo Stancils Per Second)
+286.989 MSPS (Mega Stancils Per Second) 
+0.286989 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 5.79993
+Summery times: 
+Build Program: 0.0559719
+Set Kernel Args: 0.058864
+Kernel executon: 5.66469
+Get output back to host memory: 0.019343
+Releasing everything: 0.00105688
+ 
+ 
+ 
+Benchmark results from: 
+So 21. Jun 18:25:57 CEST 2015
+
+
+Kernel 1:
+Platform 0 : Advanced Micro Devices, Inc.
+
+2.7812e+07 SPS (Stancils Per Second)
+27812 KSPS (Kilo Stancils Per Second)
+27.812 MSPS (Mega Stancils Per Second) 
+0.027812 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 58.6611
+Summery times: 
+Build Program: 0.128816
+Set Kernel Args: 0.0587881
+Kernel executon: 58.4533
+Get output back to host memory: 0.019158
+Releasing everything: 0.00107007
+
+
+Kernel 2:
+Platform 0 : Advanced Micro Devices, Inc.
+
+2.97827e+08 SPS (Stancils Per Second)
+297827 KSPS (Kilo Stancils Per Second)
+297.827 MSPS (Mega Stancils Per Second) 
+0.297827 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 5.65863
+Summery times: 
+Build Program: 0.121121
+Set Kernel Args: 0.0587119
+Kernel executon: 5.45855
+Get output back to host memory: 0.0192168
+Releasing everything: 0.00102393
+
+
+Kernel 3:
+Platform 0 : Advanced Micro Devices, Inc.
+
+6.59125e+07 SPS (Stancils Per Second)
+65912.5 KSPS (Kilo Stancils Per Second)
+65.9125 MSPS (Mega Stancils Per Second) 
+0.0659125 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 24.8734
+Summery times: 
+Build Program: 0.127876
+Set Kernel Args: 0.059249
+Kernel executon: 24.6646
+Get output back to host memory: 0.0206162
+Releasing everything: 0.00113989
+
+
+Kernel 4:
+Platform 0 : Advanced Micro Devices, Inc.
+
+1.56997e+08 SPS (Stancils Per Second)
+156997 KSPS (Kilo Stancils Per Second)
+156.997 MSPS (Mega Stancils Per Second) 
+0.156997 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 10.6508
+Summery times: 
+Build Program: 0.216432
+Set Kernel Args: 0.0591399
+Kernel executon: 10.355
+Get output back to host memory: 0.0191941
+Releasing everything: 0.00108203
+
+
+Kernel 5:
+Platform 0 : Advanced Micro Devices, Inc.
+
+4.42874e+10 SPS (Stancils Per Second)
+4.42874e+07 KSPS (Kilo Stancils Per Second)
+44287.4 MSPS (Mega Stancils Per Second) 
+44.2874 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 0.260013
+Summery times: 
+Build Program: 0.142534
+Set Kernel Args: 0.0587029
+Kernel executon: 0.036708
+Get output back to host memory: 0.0210571
+Releasing everything: 0.00101099
+
+
+Kernel 6:
+Platform 0 : Advanced Micro Devices, Inc.
+no positions specifyed; using the default 5-Point-Stancil
+no weights specifyed; assuming there all 1.0
+
+1.58538e+08 SPS (Stancils Per Second)
+158538 KSPS (Kilo Stancils Per Second)
+158.538 MSPS (Mega Stancils Per Second) 
+0.158538 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 10.4648
+Summery times: 
+Build Program: 0.130834
+Set Kernel Args: 0.059134
+Kernel executon: 10.2544
+Get output back to host memory: 0.0193989
+Releasing everything: 0.00109302
+
+
+Kernel 7:
+Platform 0 : Advanced Micro Devices, Inc.
+no positions specifyed; using the default 5-Point-Stancil
+no weights specifyed; assuming there all 1.0
+
+2.88813e+08 SPS (Stancils Per Second)
+288813 KSPS (Kilo Stancils Per Second)
+288.813 MSPS (Mega Stancils Per Second) 
+0.288813 GSPS (Giga Stancils Per Second) 
+
+
+Total time: 5.76721
+Summery times: 
+Build Program: 0.0583882
+Set Kernel Args: 0.059489
+Kernel executon: 5.62891
+Get output back to host memory: 0.0193669
+Releasing everything: 0.00105591
+ 
+ 
+ 
+ 
+processor	: 0
+vendor_id	: AuthenticAMD
+cpu family	: 16
+model		: 10
+model name	: AMD Phenom(tm) II X6 1090T Processor
+stepping	: 0
+microcode	: 0x10000bf
+cpu MHz		: 800.000
+cache size	: 512 KB
+physical id	: 0
+siblings	: 6
+core id		: 0
+cpu cores	: 6
+apicid		: 0
+initial apicid	: 0
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 6
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm 3dnowext 3dnow constant_tsc rep_good nopl nonstop_tsc extd_apicid aperfmperf pni monitor cx16 popcnt lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt nodeid_msr cpb hw_pstate npt lbrv svm_lock nrip_save pausefilter vmmcall
+bugs		: tlb_mmatch apic_c1e fxsave_leak
+bogomips	: 6422.13
+TLB size	: 1024 4K pages
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 48 bits physical, 48 bits virtual
+power management: ts ttp tm stc 100mhzsteps hwpstate cpb
+
+processor	: 1
+vendor_id	: AuthenticAMD
+cpu family	: 16
+model		: 10
+model name	: AMD Phenom(tm) II X6 1090T Processor
+stepping	: 0
+microcode	: 0x10000bf
+cpu MHz		: 800.000
+cache size	: 512 KB
+physical id	: 0
+siblings	: 6
+core id		: 1
+cpu cores	: 6
+apicid		: 1
+initial apicid	: 1
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 6
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm 3dnowext 3dnow constant_tsc rep_good nopl nonstop_tsc extd_apicid aperfmperf pni monitor cx16 popcnt lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt nodeid_msr cpb hw_pstate npt lbrv svm_lock nrip_save pausefilter vmmcall
+bugs		: tlb_mmatch apic_c1e fxsave_leak
+bogomips	: 6422.13
+TLB size	: 1024 4K pages
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 48 bits physical, 48 bits virtual
+power management: ts ttp tm stc 100mhzsteps hwpstate cpb
+
+processor	: 2
+vendor_id	: AuthenticAMD
+cpu family	: 16
+model		: 10
+model name	: AMD Phenom(tm) II X6 1090T Processor
+stepping	: 0
+microcode	: 0x10000bf
+cpu MHz		: 800.000
+cache size	: 512 KB
+physical id	: 0
+siblings	: 6
+core id		: 2
+cpu cores	: 6
+apicid		: 2
+initial apicid	: 2
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 6
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm 3dnowext 3dnow constant_tsc rep_good nopl nonstop_tsc extd_apicid aperfmperf pni monitor cx16 popcnt lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt nodeid_msr cpb hw_pstate npt lbrv svm_lock nrip_save pausefilter vmmcall
+bugs		: tlb_mmatch apic_c1e fxsave_leak
+bogomips	: 6422.13
+TLB size	: 1024 4K pages
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 48 bits physical, 48 bits virtual
+power management: ts ttp tm stc 100mhzsteps hwpstate cpb
+
+processor	: 3
+vendor_id	: AuthenticAMD
+cpu family	: 16
+model		: 10
+model name	: AMD Phenom(tm) II X6 1090T Processor
+stepping	: 0
+microcode	: 0x10000bf
+cpu MHz		: 800.000
+cache size	: 512 KB
+physical id	: 0
+siblings	: 6
+core id		: 3
+cpu cores	: 6
+apicid		: 3
+initial apicid	: 3
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 6
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm 3dnowext 3dnow constant_tsc rep_good nopl nonstop_tsc extd_apicid aperfmperf pni monitor cx16 popcnt lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt nodeid_msr cpb hw_pstate npt lbrv svm_lock nrip_save pausefilter vmmcall
+bugs		: tlb_mmatch apic_c1e fxsave_leak
+bogomips	: 6422.13
+TLB size	: 1024 4K pages
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 48 bits physical, 48 bits virtual
+power management: ts ttp tm stc 100mhzsteps hwpstate cpb
+
+processor	: 4
+vendor_id	: AuthenticAMD
+cpu family	: 16
+model		: 10
+model name	: AMD Phenom(tm) II X6 1090T Processor
+stepping	: 0
+microcode	: 0x10000bf
+cpu MHz		: 800.000
+cache size	: 512 KB
+physical id	: 0
+siblings	: 6
+core id		: 4
+cpu cores	: 6
+apicid		: 4
+initial apicid	: 4
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 6
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm 3dnowext 3dnow constant_tsc rep_good nopl nonstop_tsc extd_apicid aperfmperf pni monitor cx16 popcnt lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt nodeid_msr cpb hw_pstate npt lbrv svm_lock nrip_save pausefilter vmmcall
+bugs		: tlb_mmatch apic_c1e fxsave_leak
+bogomips	: 6422.13
+TLB size	: 1024 4K pages
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 48 bits physical, 48 bits virtual
+power management: ts ttp tm stc 100mhzsteps hwpstate cpb
+
+processor	: 5
+vendor_id	: AuthenticAMD
+cpu family	: 16
+model		: 10
+model name	: AMD Phenom(tm) II X6 1090T Processor
+stepping	: 0
+microcode	: 0x10000bf
+cpu MHz		: 800.000
+cache size	: 512 KB
+physical id	: 0
+siblings	: 6
+core id		: 5
+cpu cores	: 6
+apicid		: 5
+initial apicid	: 5
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 6
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm 3dnowext 3dnow constant_tsc rep_good nopl nonstop_tsc extd_apicid aperfmperf pni monitor cx16 popcnt lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt nodeid_msr cpb hw_pstate npt lbrv svm_lock nrip_save pausefilter vmmcall
+bugs		: tlb_mmatch apic_c1e fxsave_leak
+bogomips	: 6422.13
+TLB size	: 1024 4K pages
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 48 bits physical, 48 bits virtual
+power management: ts ttp tm stc 100mhzsteps hwpstate cpb
+
