@@ -101,7 +101,7 @@ __kernel void Stencil4(__global float* in, __global float* out,
 *	Note: Not working in the moment; i have no idea whats the problem... spent several hours trying to fix it... still no idea
 * Jens version
 */
-
+/*
 __kernel void Stencil4_1(__global float* in, __global float* out, 
 					int width, int height,
 					 __local float* one, __local float* two, 
@@ -138,7 +138,7 @@ __kernel void Stencil4_1(__global float* in, __global float* out,
 	}
 }
 
-
+*/
 __kernel void dynamicStencil1(__global float* in, __global float* out, 
 					int width, int height, __global int* positions, __global float* weights,
 					int numberPoints, int edgewith){
