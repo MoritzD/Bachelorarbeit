@@ -1,5 +1,5 @@
 # ProfilerVersion=2.5.1804
-# Application=/home/hpc/pr87du/di73xog/Bachelorarbeit/Stancil/bin/x86_64/Release/Stancil
+# Application=/home/hpc/pr87du/di73xog/Bachelorarbeit/Stencil/bin/x86_64/Release/Stencil
 # ApplicationArgs=-we 4034 -he 4034 -i 4 -kv 1 -q -e -d cpu
 # Device Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz PlatformVendor=Advanced Micro Devices, Inc.
 # Device Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz PlatformName=AMD Accelerated Parallel Processing
@@ -15,69 +15,69 @@
 # Device Tahiti NumberAppAddressBits=32
 # OS=
 Method , ExecutionOrder , ThreadID , CallIndex , GlobalWorkSize , WorkGroupSize , Time , LocalMemSize , VGPRs , SGPRs , ScratchRegs , FCStacks
-Stancil1__k1_CPU ,     1 , 4699 , 26 , {16273156       1       1} , NULL ,        21.97543 ,           0 , NA , NA , NA , NA
-Stancil1__k2_CPU ,     2 , 4699 , 28 , {16273156       1       1} , NULL ,        24.77370 ,           0 , NA , NA , NA , NA
-Stancil1__k1_CPU ,     3 , 4699 , 30 , {16273156       1       1} , NULL ,        28.56508 ,           0 , NA , NA , NA , NA
-Stancil1__k2_CPU ,     4 , 4699 , 32 , {16273156       1       1} , NULL ,        25.70444 ,           0 , NA , NA , NA , NA
-Stancil1__k1_CPU ,     5 , 4699 , 34 , {16273156       1       1} , NULL ,        25.66388 ,           0 , NA , NA , NA , NA
-Stancil1__k2_CPU ,     6 , 4699 , 36 , {16273156       1       1} , NULL ,        29.17945 ,           0 , NA , NA , NA , NA
-Stancil1__k1_CPU ,     7 , 4699 , 38 , {16273156       1       1} , NULL ,        28.46127 ,           0 , NA , NA , NA , NA
-Stancil1__k2_CPU ,     8 , 4699 , 40 , {16273156       1       1} , NULL ,        24.82655 ,           0 , NA , NA , NA , NA
+Stencil1__k1_CPU ,     1 , 4699 , 26 , {16273156       1       1} , NULL ,        21.97543 ,           0 , NA , NA , NA , NA
+Stencil1__k2_CPU ,     2 , 4699 , 28 , {16273156       1       1} , NULL ,        24.77370 ,           0 , NA , NA , NA , NA
+Stencil1__k1_CPU ,     3 , 4699 , 30 , {16273156       1       1} , NULL ,        28.56508 ,           0 , NA , NA , NA , NA
+Stencil1__k2_CPU ,     4 , 4699 , 32 , {16273156       1       1} , NULL ,        25.70444 ,           0 , NA , NA , NA , NA
+Stencil1__k1_CPU ,     5 , 4699 , 34 , {16273156       1       1} , NULL ,        25.66388 ,           0 , NA , NA , NA , NA
+Stencil1__k2_CPU ,     6 , 4699 , 36 , {16273156       1       1} , NULL ,        29.17945 ,           0 , NA , NA , NA , NA
+Stencil1__k1_CPU ,     7 , 4699 , 38 , {16273156       1       1} , NULL ,        28.46127 ,           0 , NA , NA , NA , NA
+Stencil1__k2_CPU ,     8 , 4699 , 40 , {16273156       1       1} , NULL ,        24.82655 ,           0 , NA , NA , NA , NA
 
 
 Method , ExecutionOrder , ThreadID , CallIndex , GlobalWorkSize , WorkGroupSize , Time , LocalMemSize , VGPRs , SGPRs , ScratchRegs , FCStacks
-Stancil2__k1_CPU ,     1 , 4777 , 26 , {   4032    4032       1} , NULL ,         9.97251 ,           0 , NA , NA , NA , NA
-Stancil2__k2_CPU ,     2 , 4777 , 28 , {   4032    4032       1} , NULL ,         9.84757 ,           0 , NA , NA , NA , NA
-Stancil2__k1_CPU ,     3 , 4777 , 30 , {   4032    4032       1} , NULL ,         9.08812 ,           0 , NA , NA , NA , NA
-Stancil2__k2_CPU ,     4 , 4777 , 32 , {   4032    4032       1} , NULL ,         9.83206 ,           0 , NA , NA , NA , NA
-Stancil2__k1_CPU ,     5 , 4777 , 34 , {   4032    4032       1} , NULL ,         8.51544 ,           0 , NA , NA , NA , NA
-Stancil2__k2_CPU ,     6 , 4777 , 36 , {   4032    4032       1} , NULL ,         8.44583 ,           0 , NA , NA , NA , NA
-Stancil2__k1_CPU ,     7 , 4777 , 38 , {   4032    4032       1} , NULL ,        13.00846 ,           0 , NA , NA , NA , NA
-Stancil2__k2_CPU ,     8 , 4777 , 40 , {   4032    4032       1} , NULL ,         8.35141 ,           0 , NA , NA , NA , NA
+Stencil2__k1_CPU ,     1 , 4777 , 26 , {   4032    4032       1} , NULL ,         9.97251 ,           0 , NA , NA , NA , NA
+Stencil2__k2_CPU ,     2 , 4777 , 28 , {   4032    4032       1} , NULL ,         9.84757 ,           0 , NA , NA , NA , NA
+Stencil2__k1_CPU ,     3 , 4777 , 30 , {   4032    4032       1} , NULL ,         9.08812 ,           0 , NA , NA , NA , NA
+Stencil2__k2_CPU ,     4 , 4777 , 32 , {   4032    4032       1} , NULL ,         9.83206 ,           0 , NA , NA , NA , NA
+Stencil2__k1_CPU ,     5 , 4777 , 34 , {   4032    4032       1} , NULL ,         8.51544 ,           0 , NA , NA , NA , NA
+Stencil2__k2_CPU ,     6 , 4777 , 36 , {   4032    4032       1} , NULL ,         8.44583 ,           0 , NA , NA , NA , NA
+Stencil2__k1_CPU ,     7 , 4777 , 38 , {   4032    4032       1} , NULL ,        13.00846 ,           0 , NA , NA , NA , NA
+Stencil2__k2_CPU ,     8 , 4777 , 40 , {   4032    4032       1} , NULL ,         8.35141 ,           0 , NA , NA , NA , NA
 
 
 Method , ExecutionOrder , ThreadID , CallIndex , GlobalWorkSize , WorkGroupSize , Time , LocalMemSize , VGPRs , SGPRs , ScratchRegs , FCStacks
-Stancil3__k1_CPU ,     1 , 4854 , 28 , {   4032    4032       1} , {   16    16     1} ,        19.13255 ,        1296 , NA , NA , NA , NA
-Stancil3__k2_CPU ,     2 , 4854 , 30 , {   4032    4032       1} , {   16    16     1} ,        23.23937 ,        1296 , NA , NA , NA , NA
-Stancil3__k1_CPU ,     3 , 4854 , 32 , {   4032    4032       1} , {   16    16     1} ,        21.18836 ,        1296 , NA , NA , NA , NA
-Stancil3__k2_CPU ,     4 , 4854 , 34 , {   4032    4032       1} , {   16    16     1} ,        23.38450 ,        1296 , NA , NA , NA , NA
-Stancil3__k1_CPU ,     5 , 4854 , 36 , {   4032    4032       1} , {   16    16     1} ,        19.75818 ,        1296 , NA , NA , NA , NA
-Stancil3__k2_CPU ,     6 , 4854 , 38 , {   4032    4032       1} , {   16    16     1} ,        23.39489 ,        1296 , NA , NA , NA , NA
-Stancil3__k1_CPU ,     7 , 4854 , 40 , {   4032    4032       1} , {   16    16     1} ,        20.44501 ,        1296 , NA , NA , NA , NA
-Stancil3__k2_CPU ,     8 , 4854 , 42 , {   4032    4032       1} , {   16    16     1} ,        23.42933 ,        1296 , NA , NA , NA , NA
+Stencil3__k1_CPU ,     1 , 4854 , 28 , {   4032    4032       1} , {   16    16     1} ,        19.13255 ,        1296 , NA , NA , NA , NA
+Stencil3__k2_CPU ,     2 , 4854 , 30 , {   4032    4032       1} , {   16    16     1} ,        23.23937 ,        1296 , NA , NA , NA , NA
+Stencil3__k1_CPU ,     3 , 4854 , 32 , {   4032    4032       1} , {   16    16     1} ,        21.18836 ,        1296 , NA , NA , NA , NA
+Stencil3__k2_CPU ,     4 , 4854 , 34 , {   4032    4032       1} , {   16    16     1} ,        23.38450 ,        1296 , NA , NA , NA , NA
+Stencil3__k1_CPU ,     5 , 4854 , 36 , {   4032    4032       1} , {   16    16     1} ,        19.75818 ,        1296 , NA , NA , NA , NA
+Stencil3__k2_CPU ,     6 , 4854 , 38 , {   4032    4032       1} , {   16    16     1} ,        23.39489 ,        1296 , NA , NA , NA , NA
+Stencil3__k1_CPU ,     7 , 4854 , 40 , {   4032    4032       1} , {   16    16     1} ,        20.44501 ,        1296 , NA , NA , NA , NA
+Stencil3__k2_CPU ,     8 , 4854 , 42 , {   4032    4032       1} , {   16    16     1} ,        23.42933 ,        1296 , NA , NA , NA , NA
 
 
 Method , ExecutionOrder , ThreadID , CallIndex , GlobalWorkSize , WorkGroupSize , Time , LocalMemSize , VGPRs , SGPRs , ScratchRegs , FCStacks
-Stancil4__k1_CPU ,     1 , 4931 , 26 , {   4032       1       1} , {   64     1     1} ,        17.43386 ,           0 , NA , NA , NA , NA
-Stancil4__k2_CPU ,     2 , 4931 , 28 , {   4032       1       1} , {   64     1     1} ,        13.46145 ,           0 , NA , NA , NA , NA
-Stancil4__k1_CPU ,     3 , 4931 , 30 , {   4032       1       1} , {   64     1     1} ,        13.54248 ,           0 , NA , NA , NA , NA
-Stancil4__k2_CPU ,     4 , 4931 , 32 , {   4032       1       1} , {   64     1     1} ,        13.69215 ,           0 , NA , NA , NA , NA
-Stancil4__k1_CPU ,     5 , 4931 , 34 , {   4032       1       1} , {   64     1     1} ,        14.92701 ,           0 , NA , NA , NA , NA
-Stancil4__k2_CPU ,     6 , 4931 , 36 , {   4032       1       1} , {   64     1     1} ,        16.79176 ,           0 , NA , NA , NA , NA
-Stancil4__k1_CPU ,     7 , 4931 , 38 , {   4032       1       1} , {   64     1     1} ,        16.04772 ,           0 , NA , NA , NA , NA
-Stancil4__k2_CPU ,     8 , 4931 , 40 , {   4032       1       1} , {   64     1     1} ,        17.01572 ,           0 , NA , NA , NA , NA
+Stencil4__k1_CPU ,     1 , 4931 , 26 , {   4032       1       1} , {   64     1     1} ,        17.43386 ,           0 , NA , NA , NA , NA
+Stencil4__k2_CPU ,     2 , 4931 , 28 , {   4032       1       1} , {   64     1     1} ,        13.46145 ,           0 , NA , NA , NA , NA
+Stencil4__k1_CPU ,     3 , 4931 , 30 , {   4032       1       1} , {   64     1     1} ,        13.54248 ,           0 , NA , NA , NA , NA
+Stencil4__k2_CPU ,     4 , 4931 , 32 , {   4032       1       1} , {   64     1     1} ,        13.69215 ,           0 , NA , NA , NA , NA
+Stencil4__k1_CPU ,     5 , 4931 , 34 , {   4032       1       1} , {   64     1     1} ,        14.92701 ,           0 , NA , NA , NA , NA
+Stencil4__k2_CPU ,     6 , 4931 , 36 , {   4032       1       1} , {   64     1     1} ,        16.79176 ,           0 , NA , NA , NA , NA
+Stencil4__k1_CPU ,     7 , 4931 , 38 , {   4032       1       1} , {   64     1     1} ,        16.04772 ,           0 , NA , NA , NA , NA
+Stencil4__k2_CPU ,     8 , 4931 , 40 , {   4032       1       1} , {   64     1     1} ,        17.01572 ,           0 , NA , NA , NA , NA
 
 
 Method , ExecutionOrder , ThreadID , CallIndex , GlobalWorkSize , WorkGroupSize , Time , LocalMemSize , VGPRs , SGPRs , ScratchRegs , FCStacks
-Stancil4_1__k1_CPU ,     1 , 5008 , 36 , {   4032       1       1} , {   64     1     1} ,         0.70743 ,        1544 , NA , NA , NA , NA
-Stancil4_1__k2_CPU ,     2 , 5008 , 38 , {   4032       1       1} , {   64     1     1} ,         0.14841 ,        1544 , NA , NA , NA , NA
-Stancil4_1__k1_CPU ,     3 , 5008 , 40 , {   4032       1       1} , {   64     1     1} ,         0.11127 ,        1544 , NA , NA , NA , NA
-Stancil4_1__k2_CPU ,     4 , 5008 , 42 , {   4032       1       1} , {   64     1     1} ,         0.10593 ,        1544 , NA , NA , NA , NA
-Stancil4_1__k1_CPU ,     5 , 5008 , 44 , {   4032       1       1} , {   64     1     1} ,         0.15565 ,        1544 , NA , NA , NA , NA
-Stancil4_1__k2_CPU ,     6 , 5008 , 46 , {   4032       1       1} , {   64     1     1} ,         0.15908 ,        1544 , NA , NA , NA , NA
-Stancil4_1__k1_CPU ,     7 , 5008 , 48 , {   4032       1       1} , {   64     1     1} ,         0.12717 ,        1544 , NA , NA , NA , NA
-Stancil4_1__k2_CPU ,     8 , 5008 , 50 , {   4032       1       1} , {   64     1     1} ,         0.19682 ,        1544 , NA , NA , NA , NA
+Stencil4_1__k1_CPU ,     1 , 5008 , 36 , {   4032       1       1} , {   64     1     1} ,         0.70743 ,        1544 , NA , NA , NA , NA
+Stencil4_1__k2_CPU ,     2 , 5008 , 38 , {   4032       1       1} , {   64     1     1} ,         0.14841 ,        1544 , NA , NA , NA , NA
+Stencil4_1__k1_CPU ,     3 , 5008 , 40 , {   4032       1       1} , {   64     1     1} ,         0.11127 ,        1544 , NA , NA , NA , NA
+Stencil4_1__k2_CPU ,     4 , 5008 , 42 , {   4032       1       1} , {   64     1     1} ,         0.10593 ,        1544 , NA , NA , NA , NA
+Stencil4_1__k1_CPU ,     5 , 5008 , 44 , {   4032       1       1} , {   64     1     1} ,         0.15565 ,        1544 , NA , NA , NA , NA
+Stencil4_1__k2_CPU ,     6 , 5008 , 46 , {   4032       1       1} , {   64     1     1} ,         0.15908 ,        1544 , NA , NA , NA , NA
+Stencil4_1__k1_CPU ,     7 , 5008 , 48 , {   4032       1       1} , {   64     1     1} ,         0.12717 ,        1544 , NA , NA , NA , NA
+Stencil4_1__k2_CPU ,     8 , 5008 , 50 , {   4032       1       1} , {   64     1     1} ,         0.19682 ,        1544 , NA , NA , NA , NA
 
 
 Method , ExecutionOrder , ThreadID , CallIndex , GlobalWorkSize , WorkGroupSize , Time , LocalMemSize , VGPRs , SGPRs , ScratchRegs , FCStacks
-dynamicStancil1__k1_CPU ,     1 , 5085 , 36 , {   4032    4032       1} , NULL ,        18.03814 ,           0 , NA , NA , NA , NA
-dynamicStancil1__k2_CPU ,     2 , 5085 , 38 , {   4032    4032       1} , NULL ,        17.61057 ,           0 , NA , NA , NA , NA
-dynamicStancil1__k1_CPU ,     3 , 5085 , 40 , {   4032    4032       1} , NULL ,        15.61351 ,           0 , NA , NA , NA , NA
-dynamicStancil1__k2_CPU ,     4 , 5085 , 42 , {   4032    4032       1} , NULL ,        17.29976 ,           0 , NA , NA , NA , NA
-dynamicStancil1__k1_CPU ,     5 , 5085 , 44 , {   4032    4032       1} , NULL ,        15.88824 ,           0 , NA , NA , NA , NA
-dynamicStancil1__k2_CPU ,     6 , 5085 , 46 , {   4032    4032       1} , NULL ,        18.79270 ,           0 , NA , NA , NA , NA
-dynamicStancil1__k1_CPU ,     7 , 5085 , 48 , {   4032    4032       1} , NULL ,        18.77277 ,           0 , NA , NA , NA , NA
-dynamicStancil1__k2_CPU ,     8 , 5085 , 50 , {   4032    4032       1} , NULL ,        18.77687 ,           0 , NA , NA , NA , NA
+dynamicStencil1__k1_CPU ,     1 , 5085 , 36 , {   4032    4032       1} , NULL ,        18.03814 ,           0 , NA , NA , NA , NA
+dynamicStencil1__k2_CPU ,     2 , 5085 , 38 , {   4032    4032       1} , NULL ,        17.61057 ,           0 , NA , NA , NA , NA
+dynamicStencil1__k1_CPU ,     3 , 5085 , 40 , {   4032    4032       1} , NULL ,        15.61351 ,           0 , NA , NA , NA , NA
+dynamicStencil1__k2_CPU ,     4 , 5085 , 42 , {   4032    4032       1} , NULL ,        17.29976 ,           0 , NA , NA , NA , NA
+dynamicStencil1__k1_CPU ,     5 , 5085 , 44 , {   4032    4032       1} , NULL ,        15.88824 ,           0 , NA , NA , NA , NA
+dynamicStencil1__k2_CPU ,     6 , 5085 , 46 , {   4032    4032       1} , NULL ,        18.79270 ,           0 , NA , NA , NA , NA
+dynamicStencil1__k1_CPU ,     7 , 5085 , 48 , {   4032    4032       1} , NULL ,        18.77277 ,           0 , NA , NA , NA , NA
+dynamicStencil1__k2_CPU ,     8 , 5085 , 50 , {   4032    4032       1} , NULL ,        18.77687 ,           0 , NA , NA , NA , NA
 
 
 Method , ExecutionOrder , ThreadID , CallIndex , GlobalWorkSize , WorkGroupSize , Time , LocalMemSize , VGPRs , SGPRs , ScratchRegs , FCStacks

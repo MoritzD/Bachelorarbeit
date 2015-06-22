@@ -1,6 +1,6 @@
 TraceFileVersion=2.5
 ProfilerVersion=2.5.1804
-Application=/home/moe/Dokumente/Bachelorarbeit/Stancil/bin/x86_64/Release/Stancil
+Application=/home/moe/Dokumente/Bachelorarbeit/Stencil/bin/x86_64/Release/Stencil
 ApplicationArgs=-we 4034 -he 4034 -i 4 -kv 7 -q -e
 OsVersion=Ubuntu 15.04 \n \l
 UserTimer=Not Set

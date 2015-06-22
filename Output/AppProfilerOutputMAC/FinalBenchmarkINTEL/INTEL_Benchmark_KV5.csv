@@ -1,5 +1,5 @@
 # ProfilerVersion=2.5.1804
-# Application=/home/hpc/pr87du/di73xog/Bachelorarbeit/Stancil/bin/x86_64/Release/Stancil
+# Application=/home/hpc/pr87du/di73xog/Bachelorarbeit/Stencil/bin/x86_64/Release/Stencil
 # ApplicationArgs=-we 4034 -he 4034 -i 4 -kv 5 -q -e -d cpu
 # Device Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz PlatformVendor=Advanced Micro Devices, Inc.
 # Device Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz PlatformName=AMD Accelerated Parallel Processing
@@ -15,11 +15,11 @@
 # Device Tahiti NumberAppAddressBits=32
 # OS=
 Method , ExecutionOrder , ThreadID , CallIndex , GlobalWorkSize , WorkGroupSize , Time , LocalMemSize , VGPRs , SGPRs , ScratchRegs , FCStacks
-Stancil4_1__k1_CPU ,     1 , 5008 , 36 , {   4032       1       1} , {   64     1     1} ,         0.70743 ,        1544 , NA , NA , NA , NA
-Stancil4_1__k2_CPU ,     2 , 5008 , 38 , {   4032       1       1} , {   64     1     1} ,         0.14841 ,        1544 , NA , NA , NA , NA
-Stancil4_1__k1_CPU ,     3 , 5008 , 40 , {   4032       1       1} , {   64     1     1} ,         0.11127 ,        1544 , NA , NA , NA , NA
-Stancil4_1__k2_CPU ,     4 , 5008 , 42 , {   4032       1       1} , {   64     1     1} ,         0.10593 ,        1544 , NA , NA , NA , NA
-Stancil4_1__k1_CPU ,     5 , 5008 , 44 , {   4032       1       1} , {   64     1     1} ,         0.15565 ,        1544 , NA , NA , NA , NA
-Stancil4_1__k2_CPU ,     6 , 5008 , 46 , {   4032       1       1} , {   64     1     1} ,         0.15908 ,        1544 , NA , NA , NA , NA
-Stancil4_1__k1_CPU ,     7 , 5008 , 48 , {   4032       1       1} , {   64     1     1} ,         0.12717 ,        1544 , NA , NA , NA , NA
-Stancil4_1__k2_CPU ,     8 , 5008 , 50 , {   4032       1       1} , {   64     1     1} ,         0.19682 ,        1544 , NA , NA , NA , NA
+Stencil4_1__k1_CPU ,     1 , 5008 , 36 , {   4032       1       1} , {   64     1     1} ,         0.70743 ,        1544 , NA , NA , NA , NA
+Stencil4_1__k2_CPU ,     2 , 5008 , 38 , {   4032       1       1} , {   64     1     1} ,         0.14841 ,        1544 , NA , NA , NA , NA
+Stencil4_1__k1_CPU ,     3 , 5008 , 40 , {   4032       1       1} , {   64     1     1} ,         0.11127 ,        1544 , NA , NA , NA , NA
+Stencil4_1__k2_CPU ,     4 , 5008 , 42 , {   4032       1       1} , {   64     1     1} ,         0.10593 ,        1544 , NA , NA , NA , NA
+Stencil4_1__k1_CPU ,     5 , 5008 , 44 , {   4032       1       1} , {   64     1     1} ,         0.15565 ,        1544 , NA , NA , NA , NA
+Stencil4_1__k2_CPU ,     6 , 5008 , 46 , {   4032       1       1} , {   64     1     1} ,         0.15908 ,        1544 , NA , NA , NA , NA
+Stencil4_1__k1_CPU ,     7 , 5008 , 48 , {   4032       1       1} , {   64     1     1} ,         0.12717 ,        1544 , NA , NA , NA , NA
+Stencil4_1__k2_CPU ,     8 , 5008 , 50 , {   4032       1       1} , {   64     1     1} ,         0.19682 ,        1544 , NA , NA , NA , NA

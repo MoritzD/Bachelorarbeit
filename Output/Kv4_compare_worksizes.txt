@@ -2,10 +2,10 @@ Mo 1. Jun 18:10:46 CEST 2015
 
 64x4:
 
-2.97289e+09 SPS (Stancils Per Second)
-2.97289e+06 KSPS (Kilo Stancils Per Second)
-2972.89 MSPS (Mega Stancils Per Second) 
-2.97289 GSPS (Giga Stancils Per Second) 
+2.97289e+09 SPS (Stencils Per Second)
+2.97289e+06 KSPS (Kilo Stencils Per Second)
+2972.89 MSPS (Mega Stencils Per Second) 
+2.97289 GSPS (Giga Stencils Per Second) 
 
 
 Total time: 4.75791
@@ -18,10 +18,10 @@ Releasing everything: 0.0593281
 
 64x1:
 
-4.17161e+09 SPS (Stancils Per Second)
-4.17161e+06 KSPS (Kilo Stancils Per Second)
-4171.61 MSPS (Mega Stancils Per Second) 
-4.17161 GSPS (Giga Stancils Per Second) 
+4.17161e+09 SPS (Stencils Per Second)
+4.17161e+06 KSPS (Kilo Stencils Per Second)
+4171.61 MSPS (Mega Stencils Per Second) 
+4.17161 GSPS (Giga Stencils Per Second) 
 
 
 Total time: 3.84322
@@ -34,10 +34,10 @@ Releasing everything: 0.0594192
 
 256x1:
 
-4.15894e+09 SPS (Stancils Per Second)
-4.15894e+06 KSPS (Kilo Stancils Per Second)
-4158.94 MSPS (Mega Stancils Per Second) 
-4.15894 GSPS (Giga Stancils Per Second) 
+4.15894e+09 SPS (Stencils Per Second)
+4.15894e+06 KSPS (Kilo Stencils Per Second)
+4158.94 MSPS (Mega Stencils Per Second) 
+4.15894 GSPS (Giga Stencils Per Second) 
 
 
 Total time: 3.87412

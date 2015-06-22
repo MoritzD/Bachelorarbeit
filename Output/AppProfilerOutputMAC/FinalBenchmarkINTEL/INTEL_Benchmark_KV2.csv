@@ -1,5 +1,5 @@
 # ProfilerVersion=2.5.1804
-# Application=/home/hpc/pr87du/di73xog/Bachelorarbeit/Stancil/bin/x86_64/Release/Stancil
+# Application=/home/hpc/pr87du/di73xog/Bachelorarbeit/Stencil/bin/x86_64/Release/Stencil
 # ApplicationArgs=-we 4034 -he 4034 -i 4 -kv 2 -q -e -d cpu
 # Device Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz PlatformVendor=Advanced Micro Devices, Inc.
 # Device Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz PlatformName=AMD Accelerated Parallel Processing
@@ -15,11 +15,11 @@
 # Device Tahiti NumberAppAddressBits=32
 # OS=
 Method , ExecutionOrder , ThreadID , CallIndex , GlobalWorkSize , WorkGroupSize , Time , LocalMemSize , VGPRs , SGPRs , ScratchRegs , FCStacks
-Stancil2__k1_CPU ,     1 , 4777 , 26 , {   4032    4032       1} , NULL ,         9.97251 ,           0 , NA , NA , NA , NA
-Stancil2__k2_CPU ,     2 , 4777 , 28 , {   4032    4032       1} , NULL ,         9.84757 ,           0 , NA , NA , NA , NA
-Stancil2__k1_CPU ,     3 , 4777 , 30 , {   4032    4032       1} , NULL ,         9.08812 ,           0 , NA , NA , NA , NA
-Stancil2__k2_CPU ,     4 , 4777 , 32 , {   4032    4032       1} , NULL ,         9.83206 ,           0 , NA , NA , NA , NA
-Stancil2__k1_CPU ,     5 , 4777 , 34 , {   4032    4032       1} , NULL ,         8.51544 ,           0 , NA , NA , NA , NA
-Stancil2__k2_CPU ,     6 , 4777 , 36 , {   4032    4032       1} , NULL ,         8.44583 ,           0 , NA , NA , NA , NA
-Stancil2__k1_CPU ,     7 , 4777 , 38 , {   4032    4032       1} , NULL ,        13.00846 ,           0 , NA , NA , NA , NA
-Stancil2__k2_CPU ,     8 , 4777 , 40 , {   4032    4032       1} , NULL ,         8.35141 ,           0 , NA , NA , NA , NA
+Stencil2__k1_CPU ,     1 , 4777 , 26 , {   4032    4032       1} , NULL ,         9.97251 ,           0 , NA , NA , NA , NA
+Stencil2__k2_CPU ,     2 , 4777 , 28 , {   4032    4032       1} , NULL ,         9.84757 ,           0 , NA , NA , NA , NA
+Stencil2__k1_CPU ,     3 , 4777 , 30 , {   4032    4032       1} , NULL ,         9.08812 ,           0 , NA , NA , NA , NA
+Stencil2__k2_CPU ,     4 , 4777 , 32 , {   4032    4032       1} , NULL ,         9.83206 ,           0 , NA , NA , NA , NA
+Stencil2__k1_CPU ,     5 , 4777 , 34 , {   4032    4032       1} , NULL ,         8.51544 ,           0 , NA , NA , NA , NA
+Stencil2__k2_CPU ,     6 , 4777 , 36 , {   4032    4032       1} , NULL ,         8.44583 ,           0 , NA , NA , NA , NA
+Stencil2__k1_CPU ,     7 , 4777 , 38 , {   4032    4032       1} , NULL ,        13.00846 ,           0 , NA , NA , NA , NA
+Stencil2__k2_CPU ,     8 , 4777 , 40 , {   4032    4032       1} , NULL ,         8.35141 ,           0 , NA , NA , NA , NA

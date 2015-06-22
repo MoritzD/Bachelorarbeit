@@ -1,11 +1,11 @@
 Barts:
 
-Stancil -we 4034 -he 4034 -i 100 -e -kv 1 
+Stencil -we 4034 -he 4034 -i 100 -e -kv 1 
 
-	8.56627e+07 SPS (Stancils Per Second)
-	85662.7 KSPS (Kilo Stancils Per Second)
-	85.6627 MSPS (Mega Stancils Per Second) 
-	0.0856627 GSPS (Giga Stancils Per Second) 
+	8.56627e+07 SPS (Stencils Per Second)
+	85662.7 KSPS (Kilo Stencils Per Second)
+	85.6627 MSPS (Mega Stencils Per Second) 
+	0.0856627 GSPS (Giga Stencils Per Second) 
 
 	Finisched!
 
@@ -26,12 +26,12 @@ MAC NVD Tesla:
 Total time: 8.16725		execution: 7.48366		(CPU referance: 16.2811)
 
 
-Stancil -we 4034 -he 4034 -i 100 -e -kv 3
+Stencil -we 4034 -he 4034 -i 100 -e -kv 3
 
-	7.6925e+08 SPS (Stancils Per Second)
-	769250 KSPS (Kilo Stancils Per Second)
-	769.25 MSPS (Mega Stancils Per Second) 
-	0.76925 GSPS (Giga Stancils Per Second) 
+	7.6925e+08 SPS (Stencils Per Second)
+	769250 KSPS (Kilo Stencils Per Second)
+	769.25 MSPS (Mega Stencils Per Second) 
+	0.76925 GSPS (Giga Stencils Per Second) 
 
 	Finisched!
 
@@ -59,12 +59,12 @@ Tesla: 11.79824 times faster!
 
 
 
-Stancil -we 4034 -he 4034 -i 100 -e -kv 4		//with work dim 1 and local work size 64 
+Stencil -we 4034 -he 4034 -i 100 -e -kv 4		//with work dim 1 and local work size 64 
 
-	1.76164e+09 SPS (Stancils Per Second)
-	1.76164e+06 KSPS (Kilo Stancils Per Second)
-	1761.64 MSPS (Mega Stancils Per Second) 
-	1.76164 GSPS (Giga Stancils Per Second) 
+	1.76164e+09 SPS (Stencils Per Second)
+	1.76164e+06 KSPS (Kilo Stencils Per Second)
+	1761.64 MSPS (Mega Stencils Per Second) 
+	1.76164 GSPS (Giga Stencils Per Second) 
 
 	Finisched!
 
@@ -78,10 +78,10 @@ Stancil -we 4034 -he 4034 -i 100 -e -kv 4		//with work dim 1 and local work size
 
 Mac Tahiti:
 
-	2.41606e+09 SPS (Stancils Per Second)
-	2.41606e+06 KSPS (Kilo Stancils Per Second)
-	2416.06 MSPS (Mega Stancils Per Second) 
-	2.41606 GSPS (Giga Stancils Per Second) 
+	2.41606e+09 SPS (Stencils Per Second)
+	2.41606e+06 KSPS (Kilo Stencils Per Second)
+	2416.06 MSPS (Mega Stencils Per Second) 
+	2.41606 GSPS (Giga Stencils Per Second) 
 
 	Finisched!
 
@@ -95,10 +95,10 @@ Mac Tahiti:
 
 Mac Tesla:
 
-	2.88008e+09 SPS (Stancils Per Second)
-	2.88008e+06 KSPS (Kilo Stancils Per Second)
-	2880.08 MSPS (Mega Stancils Per Second) 
-	(2.88008 GSPS) (Giga Stancils Per Second) 2.85531 GSPs 	2.85449 GSPS 	2.84999 GSPS	2.85231 GSPS
+	2.88008e+09 SPS (Stencils Per Second)
+	2.88008e+06 KSPS (Kilo Stencils Per Second)
+	2880.08 MSPS (Mega Stencils Per Second) 
+	(2.88008 GSPS) (Giga Stencils Per Second) 2.85531 GSPs 	2.85449 GSPS 	2.84999 GSPS	2.85231 GSPS
 
 	Finisched!
 
@@ -114,12 +114,12 @@ Mac Tesla:
 
 
 
-Stancil -we 4034 -he 4034 -i 100  -kv 4		//with work dim 2 local work size: 64*4
+Stencil -we 4034 -he 4034 -i 100  -kv 4		//with work dim 2 local work size: 64*4
 
-	2.47004e+09 SPS (Stancils Per Second)
-	2.47004e+06 KSPS (Kilo Stancils Per Second)
-	2470.04 MSPS (Mega Stancils Per Second) 
-	2.47004 GSPS (Giga Stancils Per Second) 
+	2.47004e+09 SPS (Stencils Per Second)
+	2.47004e+06 KSPS (Kilo Stencils Per Second)
+	2470.04 MSPS (Mega Stencils Per Second) 
+	2.47004 GSPS (Giga Stencils Per Second) 
 
 	Finisched!
 
@@ -135,10 +135,10 @@ Stancil -we 4034 -he 4034 -i 100  -kv 4		//with work dim 2 local work size: 64*4
 
 on MAC ATI 04 (Tahiti) :
 
-	4.82109e+09 SPS (Stancils Per Second)
-	4.82109e+06 KSPS (Kilo Stancils Per Second)
-	4821.09 MSPS (Mega Stancils Per Second) 
-	4.82109 GSPS (Giga Stancils Per Second) 
+	4.82109e+09 SPS (Stencils Per Second)
+	4.82109e+06 KSPS (Kilo Stencils Per Second)
+	4821.09 MSPS (Mega Stencils Per Second) 
+	4.82109 GSPS (Giga Stencils Per Second) 
 
 	Finisched!
 
@@ -152,10 +152,10 @@ on MAC ATI 04 (Tahiti) :
 
 MAC NVD 04 (Tesla):
 
-	2.01356e+09 SPS (Stancils Per Second)
-	2.01356e+06 KSPS (Kilo Stancils Per Second)
-	2013.56 MSPS (Mega Stancils Per Second) 
-	2.01356 GSPS (Giga Stancils Per Second) 2.01146 GSPS 2.01594 GSPS 	2.01455 GSPS
+	2.01356e+09 SPS (Stencils Per Second)
+	2.01356e+06 KSPS (Kilo Stencils Per Second)
+	2013.56 MSPS (Mega Stencils Per Second) 
+	2.01356 GSPS (Giga Stencils Per Second) 2.01146 GSPS 2.01594 GSPS 	2.01455 GSPS
 
 	Finisched!
 
@@ -178,12 +178,12 @@ Tahiti:	0,9897486 times as fast.  ~ 4 is as fast as 1
 
 
 
-Stancil -we 4034 -he 4034 -i 100 -e -kv 5				// Using Kernel 4_1  work dim 1 and local work size 64 with loading to local mem
+Stencil -we 4034 -he 4034 -i 100 -e -kv 5				// Using Kernel 4_1  work dim 1 and local work size 64 with loading to local mem
 
-	7.56614e+08 SPS (Stancils Per Second)
-	756614 KSPS (Kilo Stancils Per Second)
-	756.614 MSPS (Mega Stancils Per Second) 
-	0.756614 GSPS (Giga Stancils Per Second) 
+	7.56614e+08 SPS (Stencils Per Second)
+	756614 KSPS (Kilo Stencils Per Second)
+	756.614 MSPS (Mega Stencils Per Second) 
+	0.756614 GSPS (Giga Stencils Per Second) 
 
 	Finisched!
 
@@ -202,10 +202,10 @@ Stancil -we 4034 -he 4034 -i 100 -e -kv 5				// Using Kernel 4_1  work dim 1 and
 
 MAC Tahiti:
 
-	1.43545e+09 SPS (Stancils Per Second)
-	1.43545e+06 KSPS (Kilo Stancils Per Second)
-	1435.45 MSPS (Mega Stancils Per Second) 
-	1.43545 GSPS (Giga Stancils Per Second) 
+	1.43545e+09 SPS (Stencils Per Second)
+	1.43545e+06 KSPS (Kilo Stencils Per Second)
+	1435.45 MSPS (Mega Stencils Per Second) 
+	1.43545 GSPS (Giga Stencils Per Second) 
 
 	Finisched!
 
@@ -224,12 +224,12 @@ MAC Tesla: unfortunatly Kernel5 Broken at the moment... not realy shure why...
 
 
 
-	Stancil -we 4034 -he 4034 -i 100 -e -kv 4
+	Stencil -we 4034 -he 4034 -i 100 -e -kv 4
 
-	1.65828e+09 SPS (Stancils Per Second)
-	1.65828e+06 KSPS (Kilo Stancils Per Second)
-	1658.28 MSPS (Mega Stancils Per Second) 
-	1.65828 GSPS (Giga Stancils Per Second) 
+	1.65828e+09 SPS (Stencils Per Second)
+	1.65828e+06 KSPS (Kilo Stencils Per Second)
+	1658.28 MSPS (Mega Stencils Per Second) 
+	1.65828 GSPS (Giga Stencils Per Second) 
 
 	Finisched!
 
@@ -246,10 +246,10 @@ MAC Tesla: unfortunatly Kernel5 Broken at the moment... not realy shure why...
 
 Barts KV 2 // Global work space width-2 X heiht-2 no local work space!
 
-	2.72108e+09 SPS (Stancils Per Second)
-	2.72108e+06 KSPS (Kilo Stancils Per Second)
-	2721.08 MSPS (Mega Stancils Per Second) 
-	2.72108 GSPS (Giga Stancils Per Second) 
+	2.72108e+09 SPS (Stencils Per Second)
+	2.72108e+06 KSPS (Kilo Stencils Per Second)
+	2721.08 MSPS (Mega Stencils Per Second) 
+	2.72108 GSPS (Giga Stencils Per Second) 
 
 	Finisched!
 
@@ -264,27 +264,48 @@ Barts KV 2 // Global work space width-2 X heiht-2 no local work space!
 
 MAC Tahiti: KV2
 
-	6.83258e+09 SPS (Stancils Per Second)
-	6.83258e+06 KSPS (Kilo Stancils Per Second)
-	6832.58 MSPS (Mega Stancils Per Second) 
-	6.83258 GSPS (Giga Stancils Per Second) 
+					6.83258e+09 SPS (Stencils Per Second)
+					6.83258e+06 KSPS (Kilo Stencils Per Second)
+					6832.58 MSPS (Mega Stencils Per Second) 
+					6.83258 GSPS (Giga Stencils Per Second) 
+
+					Finisched!
+
+					Total time: 0.463107	0.420902	0.432269	0.416002
+					Summery times: 
+					Build Program: 0.157622
+					Set Kernel Args: 0.0513059
+					Kernel executon: 0.237934
+					Get output back to host memory: 0.0106191
+					Releasing everything: 0.00562598
+
+
+	5.22963e+09 SPS (Stencils Per Second)
+	5.22963e+06 KSPS (Kilo Stencils Per Second)
+	5229.63 MSPS (Mega Stencils Per Second) 
+	5.22963 GSPS (Giga Stencils Per Second)  5.24131 GSPs 	5.19444 GSPS 	5.21264 GSPS
 
 	Finisched!
 
-	Total time: 0.463107	0.420902	0.432269	0.416002
+	Total time: 0.481526	0.482208	0.4843		0.483932
 	Summery times: 
-	Build Program: 0.157622
-	Set Kernel Args: 0.0513059
-	Kernel executon: 0.237934
-	Get output back to host memory: 0.0106191
-	Releasing everything: 0.00562598
+	Build Program: 0.097739	0.098218	0.0975129	0.0988579
+	Set Kernel Args: 0.0512139	0.0513728	0.05126	0.0514441
+	Kernel executon: 0.310864	0.310171	0.31297	0.311877
+	Get output back to host memory: 0.0127629	0.013519	0.0136931	0.012699
+	Releasing everything: 0.00894604	0.008927	0.00886377	0.00905396
+
+
+
+
+
 
 MAC Tesla: KV2
 
-3.34028e+09 SPS (Stancils Per Second)
-3.34028e+06 KSPS (Kilo Stancils Per Second)
-3340.28 MSPS (Mega Stancils Per Second) 
-3.34028 GSPS (Giga Stancils Per Second) 3.34108 GSPs 	3.33607 GSPs 	3.33492 GSPS
+3.34028e+09 SPS (Stencils Per Second)
+3.34028e+06 KSPS (Kilo Stencils Per Second)
+3340.28 MSPS (Mega Stencils Per Second) 
+3.34028 GSPS (Giga Stencils Per Second) 3.34108 GSPs 	3.33607 GSPs 	3.33492 GSPS
 
 Finisched!
 
@@ -344,12 +365,12 @@ kv4 (256)
 4,22954 GSPS
 
 				KV6:
-				Tahiti MAC cluster    Stancil -we 4034 -he 4034 -i 100 -kv 6		OLD VALUES!
+				Tahiti MAC cluster    Stencil -we 4034 -he 4034 -i 100 -kv 6		OLD VALUES!
 
-					3.2118e+09 SPS (Stancils Per Second)
-					3.2118e+06 KSPS (Kilo Stancils Per Second)
-					3211.8 MSPS (Mega Stancils Per Second) 
-					3.2118 GSPS (Giga Stancils Per Second) 	3.39012 GSPS 	3.24621 GSPS 	3.25011 GSPS
+					3.2118e+09 SPS (Stencils Per Second)
+					3.2118e+06 KSPS (Kilo Stencils Per Second)
+					3211.8 MSPS (Mega Stencils Per Second) 
+					3.2118 GSPS (Giga Stencils Per Second) 	3.39012 GSPS 	3.24621 GSPS 	3.25011 GSPS
 
 					Finisched!
 
@@ -363,10 +384,10 @@ kv4 (256)
 
 				Tesla MAC cluster:
 
-					2.2326e+09 SPS (Stancils Per Second)
-					2.2326e+06 KSPS (Kilo Stancils Per Second)
-					2232.6 MSPS (Mega Stancils Per Second) 
-					2.2326 GSPS (Giga Stancils Per Second) 2.23164 GSPS 	2.2322 GSPs 	2.23178 GSPS
+					2.2326e+09 SPS (Stencils Per Second)
+					2.2326e+06 KSPS (Kilo Stencils Per Second)
+					2232.6 MSPS (Mega Stencils Per Second) 
+					2.2326 GSPS (Giga Stencils Per Second) 2.23164 GSPS 	2.2322 GSPs 	2.23178 GSPS
 
 					Finisched!
 
@@ -380,10 +401,10 @@ kv4 (256)
 
 				Bats:
 
-					8.26045e+08 SPS (Stancils Per Second)
-					826045 KSPS (Kilo Stancils Per Second)
-					826.045 MSPS (Mega Stancils Per Second) 
-					0.826045 GSPS (Giga Stancils Per Second) 	0.82276 GSPS 	0.831475 GSPS 	0.832828 GSPS
+					8.26045e+08 SPS (Stencils Per Second)
+					826045 KSPS (Kilo Stencils Per Second)
+					826.045 MSPS (Mega Stencils Per Second) 
+					0.826045 GSPS (Giga Stencils Per Second) 	0.82276 GSPS 	0.831475 GSPS 	0.832828 GSPS
 
 					Finisched!
 
@@ -397,12 +418,12 @@ kv4 (256)
 
 
 KV6:
-	Barts    Stancil -we 4034 -he 4034 -i 100 -kv 6 Performance IMPROVED version (for default stancil only10)
+	Barts    Stencil -we 4034 -he 4034 -i 100 -kv 6 Performance IMPROVED version (for default Stencil only10)
 
-	7.22009e+08 SPS (Stancils Per Second)
-	722009 KSPS (Kilo Stancils Per Second)
-	722.009 MSPS (Mega Stancils Per Second) 
-	0.722009 GSPS (Giga Stancils Per Second) 	0.794159 GSPS 	0.795563 GSPS 	0.790121 GSPS
+	7.22009e+08 SPS (Stencils Per Second)
+	722009 KSPS (Kilo Stencils Per Second)
+	722.009 MSPS (Mega Stencils Per Second) 
+	0.722009 GSPS (Giga Stencils Per Second) 	0.794159 GSPS 	0.795563 GSPS 	0.790121 GSPS
 
 	Finisched!
 
@@ -415,10 +436,10 @@ KV6:
 	Releasing everything: 0.0128931	0.0104189	0.016719	0.0119199
 
 Tahiti MAC ATI
-	3.77988e+09 SPS (Stancils Per Second)
-	3.77988e+06 KSPS (Kilo Stancils Per Second)
-	3779.88 MSPS (Mega Stancils Per Second) 
-	3.77988 GSPS (Giga Stancils Per Second) 	3.71921 GSPS 	3.76059 GSPS 	4.03667 GSPS
+	3.77988e+09 SPS (Stencils Per Second)
+	3.77988e+06 KSPS (Kilo Stencils Per Second)
+	3779.88 MSPS (Mega Stencils Per Second) 
+	3.77988 GSPS (Giga Stencils Per Second) 	3.71921 GSPS 	3.76059 GSPS 	4.03667 GSPS
 
 	Finisched!
 
@@ -432,10 +453,10 @@ Tahiti MAC ATI
 
 Tesla MAC NVD
 
-	2.22981e+09 SPS (Stancils Per Second)
-	2.22981e+06 KSPS (Kilo Stancils Per Second)
-	2229.81 MSPS (Mega Stancils Per Second) 
-	2.22981 GSPS (Giga Stancils Per Second) 2.22904 GSPS 	2.22949 GSPS 	2.22917 GSPS
+	2.22981e+09 SPS (Stencils Per Second)
+	2.22981e+06 KSPS (Kilo Stencils Per Second)
+	2229.81 MSPS (Mega Stencils Per Second) 
+	2.22981 GSPS (Giga Stencils Per Second) 2.22904 GSPS 	2.22949 GSPS 	2.22917 GSPS
 
 	Finisched!
 
@@ -452,12 +473,12 @@ Tesla MAC NVD
 
 
 BARTS:
-Stancil -we 4034 -he 4034 -i 100 -kv 7
+Stencil -we 4034 -he 4034 -i 100 -kv 7
 
-	2.78492e+09 SPS (Stancils Per Second)
-	2.78492e+06 KSPS (Kilo Stancils Per Second)
-	2784.92 MSPS (Mega Stancils Per Second) 
-	2.78492 GSPS (Giga Stancils Per Second) 2.71566 GSPs 	2.71721 GSPs	2.73853 GSPS
+	2.78492e+09 SPS (Stencils Per Second)
+	2.78492e+06 KSPS (Kilo Stencils Per Second)
+	2784.92 MSPS (Mega Stencils Per Second) 
+	2.78492 GSPS (Giga Stencils Per Second) 2.71566 GSPs 	2.71721 GSPs	2.73853 GSPS
 
 	Finisched!
 
@@ -482,10 +503,10 @@ KV 2 as comparison
 
 Tahiti MAC ATI:
 
-	5.94859e+09 SPS (Stancils Per Second)
-	5.94859e+06 KSPS (Kilo Stancils Per Second)
-	5948.59 MSPS (Mega Stancils Per Second) 
-	5.94859 GSPS (Giga Stancils Per Second) 5.16703 GSPS 	5.60233 GSPs 	5.71391 GSPS
+	5.94859e+09 SPS (Stencils Per Second)
+	5.94859e+06 KSPS (Kilo Stencils Per Second)
+	5948.59 MSPS (Mega Stencils Per Second) 
+	5.94859 GSPS (Giga Stencils Per Second) 5.16703 GSPS 	5.60233 GSPs 	5.71391 GSPS
 
 	Finisched!
 
@@ -499,10 +520,10 @@ Tahiti MAC ATI:
 
 Tesla MAC NVD
 
-	3.48563e+09 SPS (Stancils Per Second)
-	3.48563e+06 KSPS (Kilo Stancils Per Second)
-	3485.63 MSPS (Mega Stancils Per Second) 
-	3.48563 GSPS (Giga Stancils Per Second) 3.48459 GSPS 	3.48599 GSPS  3.48248 GSPS
+	3.48563e+09 SPS (Stencils Per Second)
+	3.48563e+06 KSPS (Kilo Stencils Per Second)
+	3485.63 MSPS (Mega Stencils Per Second) 
+	3.48563 GSPS (Giga Stencils Per Second) 3.48459 GSPS 	3.48599 GSPS  3.48248 GSPS
 
 	Finisched!
 
@@ -518,7 +539,7 @@ Tesla MAC NVD
 
 
 
-./Stancil/bin/x86_64/Release/Stancil: /lrz/sys/parallel/opencl/nvidia/lib64/libOpenCL.so.1: no version information available (required by ./Stancil/bin/x86_64/Release/Stancil)
+./Stencil/bin/x86_64/Release/Stencil: /lrz/sys/parallel/opencl/nvidia/lib64/libOpenCL.so.1: no version information available (required by ./Stencil/bin/x86_64/Release/Stencil)
 
 
 NAME: Tahiti 
@@ -589,7 +610,7 @@ Time             SPS
 
 Interresannt:
 
-dynamischer Stancil: es wird der klassische stancil berechnet, beim vergleich mit der angepassten CPU Refferance 
+dynamischer Stencil: es wird der klassische Stencil berechnet, beim vergleich mit der angepassten CPU Refferance 
 stimmen die ergebnisse byteweise überein, also jedes einzelne byte!
 wenn nun gegen die standard berechnung geprüft wird gibt es geringfügige unterschiede, und die bytweise überprüfung 
 scheitert; nun greift die selbst implementierte differenz überprüfung, die den größten unterschied ausgibt, und 
@@ -608,12 +629,12 @@ Passed the test; results are equil.
 
 
 
-KV 6 Dynamic kernel (calculating 5-point Stancil) testet on the MAC Tahiti // NOT optimized version (including if/else blocks!)
+KV 6 Dynamic kernel (calculating 5-point Stencil) testet on the MAC Tahiti // NOT optimized version (including if/else blocks!)
 
-	2.70144e+09 SPS (Stancils Per Second)
-	2.70144e+06 KSPS (Kilo Stancils Per Second)
-	2701.44 MSPS (Mega Stancils Per Second) 
-	2.70144 GSPS (Giga Stancils Per Second) 2.57728 GSPs 	2.74695 GSPs 	2.72133 GSPS
+	2.70144e+09 SPS (Stencils Per Second)
+	2.70144e+06 KSPS (Kilo Stencils Per Second)
+	2701.44 MSPS (Mega Stencils Per Second) 
+	2.70144 GSPS (Giga Stencils Per Second) 2.57728 GSPs 	2.74695 GSPs 	2.72133 GSPS
 
 	Finisched!
 
@@ -648,7 +669,7 @@ KV 6 Dynamic kernel (calculating 5-point Stancil) testet on the MAC Tahiti // NO
 	*	size_t local_work_size [1] = {global_work_size[0]/(height-2)};		//{2};				//{width - 2}; 
 	*	
 	*	//global_work_size[2] = width -2;
-	*/																// first approach: every single Stancil by itself
+	*/																// first approach: every single Stencil by itself
 																	// second approach: one line a a time; as one local work goup (making tourble with big matrices, as soon as it gets bigger than what can be managed as one work item)
 																	// third approach: picking 16 by 16 blocks (or what ever the hadware can handle) and calculate these at the same time. thervor using a work_dim of 2 (global and local) another benefit: posebilety to load buffer from global to local mem to gain performance
 	/* Approach 3 (I feel like this is it ;) )*/					// whats better? deviding Matrix in equaly sized blocks (with might not have optimal size) or bilding optimal sized blocks and check in rightmost block for out of bounce?

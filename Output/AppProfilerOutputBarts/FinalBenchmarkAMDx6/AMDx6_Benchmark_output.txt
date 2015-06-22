@@ -5,10 +5,10 @@ So 21. Jun 18:14:54 CEST 2015
 Kernel 1:
 Platform 0 : Advanced Micro Devices, Inc.
 
-2.76139e+07 SPS (Stancils Per Second)
-27613.9 KSPS (Kilo Stancils Per Second)
-27.6139 MSPS (Mega Stancils Per Second) 
-0.0276139 GSPS (Giga Stancils Per Second) 
+2.76139e+07 SPS (Stencils Per Second)
+27613.9 KSPS (Kilo Stencils Per Second)
+27.6139 MSPS (Mega Stencils Per Second) 
+0.0276139 GSPS (Giga Stencils Per Second) 
 
 
 Total time: 59.0787
@@ -23,10 +23,10 @@ Releasing everything: 0.00124805
 Kernel 2:
 Platform 0 : Advanced Micro Devices, Inc.
 
-2.95786e+08 SPS (Stancils Per Second)
-295786 KSPS (Kilo Stancils Per Second)
-295.786 MSPS (Mega Stancils Per Second) 
-0.295786 GSPS (Giga Stancils Per Second) 
+2.95786e+08 SPS (Stencils Per Second)
+295786 KSPS (Kilo Stencils Per Second)
+295.786 MSPS (Mega Stencils Per Second) 
+0.295786 GSPS (Giga Stencils Per Second) 
 
 
 Total time: 5.92878
@@ -41,10 +41,10 @@ Releasing everything: 0.00102002
 Kernel 3:
 Platform 0 : Advanced Micro Devices, Inc.
 
-6.60048e+07 SPS (Stancils Per Second)
-66004.8 KSPS (Kilo Stancils Per Second)
-66.0048 MSPS (Mega Stancils Per Second) 
-0.0660048 GSPS (Giga Stancils Per Second) 
+6.60048e+07 SPS (Stencils Per Second)
+66004.8 KSPS (Kilo Stencils Per Second)
+66.0048 MSPS (Mega Stencils Per Second) 
+0.0660048 GSPS (Giga Stencils Per Second) 
 
 
 Total time: 24.8308
@@ -59,10 +59,10 @@ Releasing everything: 0.00105908
 Kernel 4:
 Platform 0 : Advanced Micro Devices, Inc.
 
-1.55611e+08 SPS (Stancils Per Second)
-155611 KSPS (Kilo Stancils Per Second)
-155.611 MSPS (Mega Stancils Per Second) 
-0.155611 GSPS (Giga Stancils Per Second) 
+1.55611e+08 SPS (Stencils Per Second)
+155611 KSPS (Kilo Stencils Per Second)
+155.611 MSPS (Mega Stencils Per Second) 
+0.155611 GSPS (Giga Stencils Per Second) 
 
 
 Total time: 10.66
@@ -77,10 +77,10 @@ Releasing everything: 0.00113013
 Kernel 5:
 Platform 0 : Advanced Micro Devices, Inc.
 
-4.0285e+10 SPS (Stancils Per Second)
-4.0285e+07 KSPS (Kilo Stancils Per Second)
-40285 MSPS (Mega Stancils Per Second) 
-40.285 GSPS (Giga Stancils Per Second) 
+4.0285e+10 SPS (Stencils Per Second)
+4.0285e+07 KSPS (Kilo Stencils Per Second)
+40285 MSPS (Mega Stencils Per Second) 
+40.285 GSPS (Giga Stencils Per Second) 
 
 
 Total time: 0.238867
@@ -94,13 +94,13 @@ Releasing everything: 0.00102881
 
 Kernel 6:
 Platform 0 : Advanced Micro Devices, Inc.
-no positions specifyed; using the default 5-Point-Stancil
+no positions specifyed; using the default 5-Point-Stencil
 no weights specifyed; assuming there all 1.0
 
-1.56844e+08 SPS (Stancils Per Second)
-156844 KSPS (Kilo Stancils Per Second)
-156.844 MSPS (Mega Stancils Per Second) 
-0.156844 GSPS (Giga Stancils Per Second) 
+1.56844e+08 SPS (Stencils Per Second)
+156844 KSPS (Kilo Stencils Per Second)
+156.844 MSPS (Mega Stencils Per Second) 
+0.156844 GSPS (Giga Stencils Per Second) 
 
 
 Total time: 10.5706
@@ -114,13 +114,13 @@ Releasing everything: 0.00109302
 
 Kernel 7:
 Platform 0 : Advanced Micro Devices, Inc.
-no positions specifyed; using the default 5-Point-Stancil
+no positions specifyed; using the default 5-Point-Stencil
 no weights specifyed; assuming there all 1.0
 
-2.87421e+08 SPS (Stancils Per Second)
-287421 KSPS (Kilo Stancils Per Second)
-287.421 MSPS (Mega Stancils Per Second) 
-0.287421 GSPS (Giga Stancils Per Second) 
+2.87421e+08 SPS (Stencils Per Second)
+287421 KSPS (Kilo Stencils Per Second)
+287.421 MSPS (Mega Stencils Per Second) 
+0.287421 GSPS (Giga Stencils Per Second) 
 
 
 Total time: 5.78958
@@ -140,10 +140,10 @@ So 21. Jun 18:18:23 CEST 2015
 Kernel 1:
 Platform 0 : Advanced Micro Devices, Inc.
 
-2.78119e+07 SPS (Stancils Per Second)
-27811.9 KSPS (Kilo Stancils Per Second)
-27.8119 MSPS (Mega Stancils Per Second) 
-0.0278119 GSPS (Giga Stancils Per Second) 
+2.78119e+07 SPS (Stencils Per Second)
+27811.9 KSPS (Kilo Stencils Per Second)
+27.8119 MSPS (Mega Stencils Per Second) 
+0.0278119 GSPS (Giga Stencils Per Second) 
 
 
 Total time: 58.6633
@@ -158,10 +158,10 @@ Releasing everything: 0.00118091
 Kernel 2:
 Platform 0 : Advanced Micro Devices, Inc.
 
-2.95444e+08 SPS (Stancils Per Second)
-295444 KSPS (Kilo Stancils Per Second)
-295.444 MSPS (Mega Stancils Per Second) 
-0.295444 GSPS (Giga Stancils Per Second) 
+2.95444e+08 SPS (Stencils Per Second)
+295444 KSPS (Kilo Stencils Per Second)
+295.444 MSPS (Mega Stencils Per Second) 
+0.295444 GSPS (Giga Stencils Per Second) 
 
 
 Total time: 5.70786
@@ -176,10 +176,10 @@ Releasing everything: 0.000979004
 Kernel 3:
 Platform 0 : Advanced Micro Devices, Inc.
 
-6.59163e+07 SPS (Stancils Per Second)
-65916.3 KSPS (Kilo Stancils Per Second)
-65.9163 MSPS (Mega Stancils Per Second) 
-0.0659163 GSPS (Giga Stancils Per Second) 
+6.59163e+07 SPS (Stencils Per Second)
+65916.3 KSPS (Kilo Stencils Per Second)
+65.9163 MSPS (Mega Stencils Per Second) 
+0.0659163 GSPS (Giga Stencils Per Second) 
 
 
 Total time: 24.8794
@@ -194,10 +194,10 @@ Releasing everything: 0.00105493
 Kernel 4:
 Platform 0 : Advanced Micro Devices, Inc.
 
-1.57066e+08 SPS (Stancils Per Second)
-157066 KSPS (Kilo Stancils Per Second)
-157.066 MSPS (Mega Stancils Per Second) 
-0.157066 GSPS (Giga Stancils Per Second) 
+1.57066e+08 SPS (Stencils Per Second)
+157066 KSPS (Kilo Stencils Per Second)
+157.066 MSPS (Mega Stencils Per Second) 
+0.157066 GSPS (Giga Stencils Per Second) 
 
 
 Total time: 10.5578
@@ -212,10 +212,10 @@ Releasing everything: 0.00108398
 Kernel 5:
 Platform 0 : Advanced Micro Devices, Inc.
 
-4.52425e+10 SPS (Stancils Per Second)
-4.52425e+07 KSPS (Kilo Stancils Per Second)
-45242.5 MSPS (Mega Stancils Per Second) 
-45.2425 GSPS (Giga Stancils Per Second) 
+4.52425e+10 SPS (Stencils Per Second)
+4.52425e+07 KSPS (Kilo Stencils Per Second)
+45242.5 MSPS (Mega Stencils Per Second) 
+45.2425 GSPS (Giga Stencils Per Second) 
 
 
 Total time: 0.248466
@@ -229,13 +229,13 @@ Releasing everything: 0.00101392
 
 Kernel 6:
 Platform 0 : Advanced Micro Devices, Inc.
-no positions specifyed; using the default 5-Point-Stancil
+no positions specifyed; using the default 5-Point-Stencil
 no weights specifyed; assuming there all 1.0
 
-1.58761e+08 SPS (Stancils Per Second)
-158761 KSPS (Kilo Stancils Per Second)
-158.761 MSPS (Mega Stancils Per Second) 
-0.158761 GSPS (Giga Stancils Per Second) 
+1.58761e+08 SPS (Stencils Per Second)
+158761 KSPS (Kilo Stencils Per Second)
+158.761 MSPS (Mega Stencils Per Second) 
+0.158761 GSPS (Giga Stencils Per Second) 
 
 
 Total time: 10.4424
@@ -249,13 +249,13 @@ Releasing everything: 0.00176294
 
 Kernel 7:
 Platform 0 : Advanced Micro Devices, Inc.
-no positions specifyed; using the default 5-Point-Stancil
+no positions specifyed; using the default 5-Point-Stencil
 no weights specifyed; assuming there all 1.0
 
-2.86989e+08 SPS (Stancils Per Second)
-286989 KSPS (Kilo Stancils Per Second)
-286.989 MSPS (Mega Stancils Per Second) 
-0.286989 GSPS (Giga Stancils Per Second) 
+2.86989e+08 SPS (Stencils Per Second)
+286989 KSPS (Kilo Stencils Per Second)
+286.989 MSPS (Mega Stencils Per Second) 
+0.286989 GSPS (Giga Stencils Per Second) 
 
 
 Total time: 5.79993
@@ -275,10 +275,10 @@ So 21. Jun 18:25:57 CEST 2015
 Kernel 1:
 Platform 0 : Advanced Micro Devices, Inc.
 
-2.7812e+07 SPS (Stancils Per Second)
-27812 KSPS (Kilo Stancils Per Second)
-27.812 MSPS (Mega Stancils Per Second) 
-0.027812 GSPS (Giga Stancils Per Second) 
+2.7812e+07 SPS (Stencils Per Second)
+27812 KSPS (Kilo Stencils Per Second)
+27.812 MSPS (Mega Stencils Per Second) 
+0.027812 GSPS (Giga Stencils Per Second) 
 
 
 Total time: 58.6611
@@ -293,10 +293,10 @@ Releasing everything: 0.00107007
 Kernel 2:
 Platform 0 : Advanced Micro Devices, Inc.
 
-2.97827e+08 SPS (Stancils Per Second)
-297827 KSPS (Kilo Stancils Per Second)
-297.827 MSPS (Mega Stancils Per Second) 
-0.297827 GSPS (Giga Stancils Per Second) 
+2.97827e+08 SPS (Stencils Per Second)
+297827 KSPS (Kilo Stencils Per Second)
+297.827 MSPS (Mega Stencils Per Second) 
+0.297827 GSPS (Giga Stencils Per Second) 
 
 
 Total time: 5.65863
@@ -311,10 +311,10 @@ Releasing everything: 0.00102393
 Kernel 3:
 Platform 0 : Advanced Micro Devices, Inc.
 
-6.59125e+07 SPS (Stancils Per Second)
-65912.5 KSPS (Kilo Stancils Per Second)
-65.9125 MSPS (Mega Stancils Per Second) 
-0.0659125 GSPS (Giga Stancils Per Second) 
+6.59125e+07 SPS (Stencils Per Second)
+65912.5 KSPS (Kilo Stencils Per Second)
+65.9125 MSPS (Mega Stencils Per Second) 
+0.0659125 GSPS (Giga Stencils Per Second) 
 
 
 Total time: 24.8734
@@ -329,10 +329,10 @@ Releasing everything: 0.00113989
 Kernel 4:
 Platform 0 : Advanced Micro Devices, Inc.
 
-1.56997e+08 SPS (Stancils Per Second)
-156997 KSPS (Kilo Stancils Per Second)
-156.997 MSPS (Mega Stancils Per Second) 
-0.156997 GSPS (Giga Stancils Per Second) 
+1.56997e+08 SPS (Stencils Per Second)
+156997 KSPS (Kilo Stencils Per Second)
+156.997 MSPS (Mega Stencils Per Second) 
+0.156997 GSPS (Giga Stencils Per Second) 
 
 
 Total time: 10.6508
@@ -347,10 +347,10 @@ Releasing everything: 0.00108203
 Kernel 5:
 Platform 0 : Advanced Micro Devices, Inc.
 
-4.42874e+10 SPS (Stancils Per Second)
-4.42874e+07 KSPS (Kilo Stancils Per Second)
-44287.4 MSPS (Mega Stancils Per Second) 
-44.2874 GSPS (Giga Stancils Per Second) 
+4.42874e+10 SPS (Stencils Per Second)
+4.42874e+07 KSPS (Kilo Stencils Per Second)
+44287.4 MSPS (Mega Stencils Per Second) 
+44.2874 GSPS (Giga Stencils Per Second) 
 
 
 Total time: 0.260013
@@ -364,13 +364,13 @@ Releasing everything: 0.00101099
 
 Kernel 6:
 Platform 0 : Advanced Micro Devices, Inc.
-no positions specifyed; using the default 5-Point-Stancil
+no positions specifyed; using the default 5-Point-Stencil
 no weights specifyed; assuming there all 1.0
 
-1.58538e+08 SPS (Stancils Per Second)
-158538 KSPS (Kilo Stancils Per Second)
-158.538 MSPS (Mega Stancils Per Second) 
-0.158538 GSPS (Giga Stancils Per Second) 
+1.58538e+08 SPS (Stencils Per Second)
+158538 KSPS (Kilo Stencils Per Second)
+158.538 MSPS (Mega Stencils Per Second) 
+0.158538 GSPS (Giga Stencils Per Second) 
 
 
 Total time: 10.4648
@@ -384,13 +384,13 @@ Releasing everything: 0.00109302
 
 Kernel 7:
 Platform 0 : Advanced Micro Devices, Inc.
-no positions specifyed; using the default 5-Point-Stancil
+no positions specifyed; using the default 5-Point-Stencil
 no weights specifyed; assuming there all 1.0
 
-2.88813e+08 SPS (Stancils Per Second)
-288813 KSPS (Kilo Stancils Per Second)
-288.813 MSPS (Mega Stancils Per Second) 
-0.288813 GSPS (Giga Stancils Per Second) 
+2.88813e+08 SPS (Stencils Per Second)
+288813 KSPS (Kilo Stencils Per Second)
+288.813 MSPS (Mega Stencils Per Second) 
+0.288813 GSPS (Giga Stencils Per Second) 
 
 
 Total time: 5.76721

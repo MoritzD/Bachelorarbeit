@@ -1,6 +1,6 @@
 TraceFileVersion=2.5
 ProfilerVersion=2.5.1804
-Application=/home/hpc/pr87du/di73xog/Bachelorarbeit/Stancil/bin/x86_64/Release/Stancil
+Application=/home/hpc/pr87du/di73xog/Bachelorarbeit/Stencil/bin/x86_64/Release/Stencil
 ApplicationArgs=-we 4034 -he 4034 -i 4 -kv 4 -q -e -d cpu
 OsVersion=
 UserTimer=Not Set
@@ -21,8 +21,8 @@ CL_SUCCESS = clGetDeviceIDs ( 0x2ae11e70fe80;CL_DEVICE_TYPE_CPU;1;[0x1201350];NU
 0x12cf6f0 = clCreateCommandQueue ( 0xd72340;0x1201350;0;NULL )
 0xd8d170 = clCreateProgramWithSource ( 0xd72340;1;0x7fff4de314d0;0x7fff4de31490;NULL )
 CL_SUCCESS = clBuildProgram ( 0xd8d170;1;[0x1201350];NULL;NULL;NULL )
-0x1172eb0 = clCreateKernel ( 0xd8d170;"Stancil4";NULL )
-0x100e710 = clCreateKernel ( 0xd8d170;"Stancil4";NULL )
+0x1172eb0 = clCreateKernel ( 0xd8d170;"Stencil4";NULL )
+0x100e710 = clCreateKernel ( 0xd8d170;"Stencil4";NULL )
 0x10280c0 = clCreateBuffer ( 0xd72340;CL_MEM_READ_WRITE|CL_MEM_COPY_HOST_PTR;65092624;0x2ae138000010;[CL_SUCCESS] )
 0x100f800 = clCreateBuffer ( 0xd72340;CL_MEM_READ_WRITE|CL_MEM_COPY_HOST_PTR;65092624;0x2ae138000010;[CL_SUCCESS] )
 CL_SUCCESS = clSetKernelArg ( 0x1172eb0;0;8;[0x10280c0] )
@@ -115,47 +115,47 @@ CL_SUCCESS = clReleaseContext ( 0xd72340 )
 39   clSetKernelArg                               6478870478948893     6478870478948939     
 39   clSetKernelArg                               6478870478949607     6478870478949652     
 39   clSetKernelArg                               6478870478950157     6478870478950193     
-66   clEnqueueNDRangeKernel                       6478870478965352     6478870479009376     4592    CL_COMMAND_NDRANGE_KERNEL               6478870478979962     6478870479052152     6478870479088605     6478870493102486     0         0x12cf6f0                1         0xd72340                 CPU_Device                    0x1172eb0                Stancil4      {4032}     {64}
+66   clEnqueueNDRangeKernel                       6478870478965352     6478870479009376     4592    CL_COMMAND_NDRANGE_KERNEL               6478870478979962     6478870479052152     6478870479088605     6478870493102486     0         0x12cf6f0                1         0xd72340                 CPU_Device                    0x1172eb0                Stencil4      {4032}     {64}
 50   clFlush                                      6478870479042653     6478870479044087     
 43   clGetEventInfo                               6478870479046153     6478870479049884     
 43   clGetEventInfo                               6478870479053586     6478870479079785     
 43   clGetEventInfo                               6478870480037698     6478870493102011     
 43   clGetEventInfo                               6478870493102232     6478870493102651     
-66   clEnqueueNDRangeKernel                       6478870493104975     6478870493125203     4592    CL_COMMAND_NDRANGE_KERNEL               6478870493114064     6478870493170412     6478870493199807     6478870506145184     0         0x12cf6f0                1         0xd72340                 CPU_Device                    0x100e710                Stancil4      {4032}     {64}
+66   clEnqueueNDRangeKernel                       6478870493104975     6478870493125203     4592    CL_COMMAND_NDRANGE_KERNEL               6478870493114064     6478870493170412     6478870493199807     6478870506145184     0         0x12cf6f0                1         0xd72340                 CPU_Device                    0x100e710                Stencil4      {4032}     {64}
 50   clFlush                                      6478870493138164     6478870493139476     
 43   clGetEventInfo                               6478870493139844     6478870493169101     
 43   clGetEventInfo                               6478870493170161     6478870493197814     
 43   clGetEventInfo                               6478870493210989     6478870506144488     
 43   clGetEventInfo                               6478870506144863     6478870506145213     
-66   clEnqueueNDRangeKernel                       6478870506149105     6478870506168318     4592    CL_COMMAND_NDRANGE_KERNEL               6478870506158344     6478870506176888     6478870506226538     6478870519254096     0         0x12cf6f0                1         0xd72340                 CPU_Device                    0x1172eb0                Stancil4      {4032}     {64}
+66   clEnqueueNDRangeKernel                       6478870506149105     6478870506168318     4592    CL_COMMAND_NDRANGE_KERNEL               6478870506158344     6478870506176888     6478870506226538     6478870519254096     0         0x12cf6f0                1         0xd72340                 CPU_Device                    0x1172eb0                Stencil4      {4032}     {64}
 50   clFlush                                      6478870506172641     6478870506173424     
 43   clGetEventInfo                               6478870506173943     6478870506176122     
 43   clGetEventInfo                               6478870506176599     6478870506226051     
 43   clGetEventInfo                               6478870506226412     6478870519253572     
 43   clGetEventInfo                               6478870519253850     6478870519253975     
-66   clEnqueueNDRangeKernel                       6478870519259267     6478870519292126     4592    CL_COMMAND_NDRANGE_KERNEL               6478870519273060     6478870519315108     6478870519352044     6478870532448613     0         0x12cf6f0                1         0xd72340                 CPU_Device                    0x100e710                Stancil4      {4032}     {64}
+66   clEnqueueNDRangeKernel                       6478870519259267     6478870519292126     4592    CL_COMMAND_NDRANGE_KERNEL               6478870519273060     6478870519315108     6478870519352044     6478870532448613     0         0x12cf6f0                1         0xd72340                 CPU_Device                    0x100e710                Stencil4      {4032}     {64}
 50   clFlush                                      6478870519300773     6478870519303302     
 43   clGetEventInfo                               6478870519304090     6478870519314589     
 43   clGetEventInfo                               6478870519315620     6478870519346199     
 43   clGetEventInfo                               6478870526517918     6478870532448544     
 43   clGetEventInfo                               6478870532448819     6478870532448907     
-66   clEnqueueNDRangeKernel                       6478870532456305     6478870532489279     4592    CL_COMMAND_NDRANGE_KERNEL               6478870532470572     6478870532503347     6478870532537011     6478870545707802     0         0x12cf6f0                1         0xd72340                 CPU_Device                    0x1172eb0                Stancil4      {4032}     {64}
+66   clEnqueueNDRangeKernel                       6478870532456305     6478870532489279     4592    CL_COMMAND_NDRANGE_KERNEL               6478870532470572     6478870532503347     6478870532537011     6478870545707802     0         0x12cf6f0                1         0xd72340                 CPU_Device                    0x1172eb0                Stencil4      {4032}     {64}
 50   clFlush                                      6478870532498700     6478870532501338     
 43   clGetEventInfo                               6478870532502215     6478870532532842     
 43   clGetEventInfo                               6478870539637887     6478870545707571     
 43   clGetEventInfo                               6478870545707791     6478870545707861     
-66   clEnqueueNDRangeKernel                       6478870545712104     6478870545752605     4592    CL_COMMAND_NDRANGE_KERNEL               6478870545724533     6478870545764903     6478870545808338     6478870558263719     0         0x12cf6f0                1         0xd72340                 CPU_Device                    0x100e710                Stancil4      {4032}     {64}
+66   clEnqueueNDRangeKernel                       6478870545712104     6478870545752605     4592    CL_COMMAND_NDRANGE_KERNEL               6478870545724533     6478870545764903     6478870545808338     6478870558263719     0         0x12cf6f0                1         0xd72340                 CPU_Device                    0x100e710                Stencil4      {4032}     {64}
 50   clFlush                                      6478870545760942     6478870545762283     
 43   clGetEventInfo                               6478870545762664     6478870545763350     
 43   clGetEventInfo                               6478870545764876     6478870545808158     
 43   clGetEventInfo                               6478870545808481     6478870558263555     
 43   clGetEventInfo                               6478870558263779     6478870558263846     
-66   clEnqueueNDRangeKernel                       6478870558269876     6478870558310659     4592    CL_COMMAND_NDRANGE_KERNEL               6478870558281933     6478870558321545     6478870558362471     6478870570769664     0         0x12cf6f0                1         0xd72340                 CPU_Device                    0x1172eb0                Stancil4      {4032}     {64}
+66   clEnqueueNDRangeKernel                       6478870558269876     6478870558310659     4592    CL_COMMAND_NDRANGE_KERNEL               6478870558281933     6478870558321545     6478870558362471     6478870570769664     0         0x12cf6f0                1         0xd72340                 CPU_Device                    0x1172eb0                Stencil4      {4032}     {64}
 50   clFlush                                      6478870558318512     6478870558319962     
 43   clGetEventInfo                               6478870558320941     6478870558347579     
 43   clGetEventInfo                               6478870565288790     6478870570769629     
 43   clGetEventInfo                               6478870570769853     6478870570769927     
-66   clEnqueueNDRangeKernel                       6478870570772515     6478870570795373     4592    CL_COMMAND_NDRANGE_KERNEL               6478870570782882     6478870570809652     6478870570832771     6478870583305063     0         0x12cf6f0                1         0xd72340                 CPU_Device                    0x100e710                Stancil4      {4032}     {64}
+66   clEnqueueNDRangeKernel                       6478870570772515     6478870570795373     4592    CL_COMMAND_NDRANGE_KERNEL               6478870570782882     6478870570809652     6478870570832771     6478870583305063     0         0x12cf6f0                1         0xd72340                 CPU_Device                    0x100e710                Stencil4      {4032}     {64}
 50   clFlush                                      6478870570801071     6478870570802898     
 43   clGetEventInfo                               6478870570803466     6478870570809453     
 43   clGetEventInfo                               6478870570809769     6478870570832627     

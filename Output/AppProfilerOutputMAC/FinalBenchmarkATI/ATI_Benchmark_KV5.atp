@@ -1,6 +1,6 @@
 TraceFileVersion=2.5
 ProfilerVersion=2.5.1804
-Application=/home/hpc/pr87du/di73xog/Bachelorarbeit/Stancil/bin/x86_64/Release/Stancil
+Application=/home/hpc/pr87du/di73xog/Bachelorarbeit/Stencil/bin/x86_64/Release/Stencil
 ApplicationArgs=-we 4034 -he 4034 -i 4 -kv 5 -q -e
 OsVersion=
 UserTimer=Not Set
@@ -21,8 +21,8 @@ CL_SUCCESS = clGetDeviceIDs ( 0x2ac0bdddee80;CL_DEVICE_TYPE_GPU;2;[0xccbff0,0xda
 0x12cf6f0 = clCreateCommandQueue ( 0x617470;0xccbff0;0;NULL )
 0x135b910 = clCreateProgramWithSource ( 0x617470;1;0x7fff286ea280;0x7fff286ea240;NULL )
 CL_SUCCESS = clBuildProgram ( 0x135b910;1;[0xccbff0];NULL;NULL;NULL )
-0x2ac0c4034dc0 = clCreateKernel ( 0x135b910;"Stancil4_1";NULL )
-0x2ac0c401fba0 = clCreateKernel ( 0x135b910;"Stancil4_1";NULL )
+0x2ac0c4034dc0 = clCreateKernel ( 0x135b910;"Stencil4_1";NULL )
+0x2ac0c401fba0 = clCreateKernel ( 0x135b910;"Stencil4_1";NULL )
 0x2ac0c4004620 = clCreateBuffer ( 0x617470;CL_MEM_READ_WRITE|CL_MEM_COPY_HOST_PTR;65092624;0x2ac0c8000010;[CL_SUCCESS] )
 0x2ac0c4017ba0 = clCreateBuffer ( 0x617470;CL_MEM_READ_WRITE|CL_MEM_COPY_HOST_PTR;65092624;0x2ac0c8000010;[CL_SUCCESS] )
 CL_SUCCESS = clSetKernelArg ( 0x2ac0c4034dc0;0;8;[0xffffffffc4004620] )
@@ -131,43 +131,43 @@ CL_SUCCESS = clReleaseContext ( 0x617470 )
 39   clSetKernelArg                               6476984203580019     6476984203580054     
 39   clSetKernelArg                               6476984203580709     6476984203580746     
 39   clSetKernelArg                               6476984203581243     6476984203581280     
-66   clEnqueueNDRangeKernel                       6476984203595491     6476984284190714     4592    CL_COMMAND_NDRANGE_KERNEL               6476984284112261     6476984284193159     6476984285410949     6476984285427393     0         0x12cf6f0                1         0x617470                 Tahiti                        0x2ac0c4034dc0           Stancil4_1      {4032}     {64}
+66   clEnqueueNDRangeKernel                       6476984203595491     6476984284190714     4592    CL_COMMAND_NDRANGE_KERNEL               6476984284112261     6476984284193159     6476984285410949     6476984285427393     0         0x12cf6f0                1         0x617470                 Tahiti                        0x2ac0c4034dc0           Stencil4_1      {4032}     {64}
 50   clFlush                                      6476984284228715     6476984284230930     
 43   clGetEventInfo                               6476984284233730     6476984285427500     
 43   clGetEventInfo                               6476984285427750     6476984285431969     
 43   clGetEventInfo                               6476984285432332     6476984285432509     
-66   clEnqueueNDRangeKernel                       6476984285433812     6476984285515352     4592    CL_COMMAND_NDRANGE_KERNEL               6476984285439678     6476984285541658     6476984285697484     6476984285710817     0         0x12cf6f0                1         0x617470                 Tahiti                        0x2ac0c401fba0           Stancil4_1      {4032}     {64}
+66   clEnqueueNDRangeKernel                       6476984285433812     6476984285515352     4592    CL_COMMAND_NDRANGE_KERNEL               6476984285439678     6476984285541658     6476984285697484     6476984285710817     0         0x12cf6f0                1         0x617470                 Tahiti                        0x2ac0c401fba0           Stencil4_1      {4032}     {64}
 50   clFlush                                      6476984285522949     6476984285524427     
 43   clGetEventInfo                               6476984285524889     6476984285541717     
 43   clGetEventInfo                               6476984285541969     6476984285711566     
 43   clGetEventInfo                               6476984285711828     6476984285715608     
 43   clGetEventInfo                               6476984285715854     6476984285716038     
-66   clEnqueueNDRangeKernel                       6476984285719200     6476984285729665     4592    CL_COMMAND_NDRANGE_KERNEL               6476984285722470     6476984285729422     6476984285810930     6476984285823078     0         0x12cf6f0                1         0x617470                 Tahiti                        0x2ac0c4034dc0           Stancil4_1      {4032}     {64}
+66   clEnqueueNDRangeKernel                       6476984285719200     6476984285729665     4592    CL_COMMAND_NDRANGE_KERNEL               6476984285722470     6476984285729422     6476984285810930     6476984285823078     0         0x12cf6f0                1         0x617470                 Tahiti                        0x2ac0c4034dc0           Stencil4_1      {4032}     {64}
 50   clFlush                                      6476984285732137     6476984285733058     
 43   clGetEventInfo                               6476984285733317     6476984285823434     
 43   clGetEventInfo                               6476984285823789     6476984285825781     
 43   clGetEventInfo                               6476984285826262     6476984285826442     
-66   clEnqueueNDRangeKernel                       6476984285827043     6476984285835682     4592    CL_COMMAND_NDRANGE_KERNEL               6476984285830080     6476984285836080     6476984285920887     6476984285932443     0         0x12cf6f0                1         0x617470                 Tahiti                        0x2ac0c401fba0           Stancil4_1      {4032}     {64}
+66   clEnqueueNDRangeKernel                       6476984285827043     6476984285835682     4592    CL_COMMAND_NDRANGE_KERNEL               6476984285830080     6476984285836080     6476984285920887     6476984285932443     0         0x12cf6f0                1         0x617470                 Tahiti                        0x2ac0c401fba0           Stencil4_1      {4032}     {64}
 50   clFlush                                      6476984285837943     6476984285838748     
 43   clGetEventInfo                               6476984285838966     6476984285929403     
 43   clGetEventInfo                               6476984285943733     6476984285944028     
-66   clEnqueueNDRangeKernel                       6476984285947658     6476984285956207     4592    CL_COMMAND_NDRANGE_KERNEL               6476984285950664     6476984285954058     6476984286074082     6476984286085785     0         0x12cf6f0                1         0x617470                 Tahiti                        0x2ac0c4034dc0           Stancil4_1      {4032}     {64}
+66   clEnqueueNDRangeKernel                       6476984285947658     6476984285956207     4592    CL_COMMAND_NDRANGE_KERNEL               6476984285950664     6476984285954058     6476984286074082     6476984286085785     0         0x12cf6f0                1         0x617470                 Tahiti                        0x2ac0c4034dc0           Stencil4_1      {4032}     {64}
 50   clFlush                                      6476984285959002     6476984285960086     
 43   clGetEventInfo                               6476984285960665     6476984286086600     
 43   clGetEventInfo                               6476984286086828     6476984286090348     
 43   clGetEventInfo                               6476984286090581     6476984286090778     
-66   clEnqueueNDRangeKernel                       6476984286091865     6476984286102106     4592    CL_COMMAND_NDRANGE_KERNEL               6476984286095189     6476984286114022     6476984286246595     6476984286258150     0         0x12cf6f0                1         0x617470                 Tahiti                        0x2ac0c401fba0           Stancil4_1      {4032}     {64}
+66   clEnqueueNDRangeKernel                       6476984286091865     6476984286102106     4592    CL_COMMAND_NDRANGE_KERNEL               6476984286095189     6476984286114022     6476984286246595     6476984286258150     0         0x12cf6f0                1         0x617470                 Tahiti                        0x2ac0c401fba0           Stencil4_1      {4032}     {64}
 50   clFlush                                      6476984286104500     6476984286105845     
 43   clGetEventInfo                               6476984286106089     6476984286113632     
 43   clGetEventInfo                               6476984286114051     6476984286258800     
 43   clGetEventInfo                               6476984286259023     6476984286262880     
 43   clGetEventInfo                               6476984286263103     6476984286263291     
-66   clEnqueueNDRangeKernel                       6476984286264793     6476984286277882     4592    CL_COMMAND_NDRANGE_KERNEL               6476984286268982     6476984286276492     6476984286415850     6476984286427702     0         0x12cf6f0                1         0x617470                 Tahiti                        0x2ac0c4034dc0           Stancil4_1      {4032}     {64}
+66   clEnqueueNDRangeKernel                       6476984286264793     6476984286277882     4592    CL_COMMAND_NDRANGE_KERNEL               6476984286268982     6476984286276492     6476984286415850     6476984286427702     0         0x12cf6f0                1         0x617470                 Tahiti                        0x2ac0c4034dc0           Stencil4_1      {4032}     {64}
 50   clFlush                                      6476984286280656     6476984286281695     
 43   clGetEventInfo                               6476984286282021     6476984286428371     
 43   clGetEventInfo                               6476984286428589     6476984286434815     
 43   clGetEventInfo                               6476984286435030     6476984286435218     
-66   clEnqueueNDRangeKernel                       6476984286435940     6476984286445793     4592    CL_COMMAND_NDRANGE_KERNEL               6476984286437464     6476984286452577     6476984286590315     6476984286601723     0         0x12cf6f0                1         0x617470                 Tahiti                        0x2ac0c401fba0           Stancil4_1      {4032}     {64}
+66   clEnqueueNDRangeKernel                       6476984286435940     6476984286445793     4592    CL_COMMAND_NDRANGE_KERNEL               6476984286437464     6476984286452577     6476984286590315     6476984286601723     0         0x12cf6f0                1         0x617470                 Tahiti                        0x2ac0c401fba0           Stencil4_1      {4032}     {64}
 50   clFlush                                      6476984286447858     6476984286449082     
 43   clGetEventInfo                               6476984286450345     6476984286452616     
 43   clGetEventInfo                               6476984286453355     6476984286602380     

@@ -1,9 +1,9 @@
 Platform 0 : Advanced Micro Devices, Inc.
 
-2.97289e+09 SPS (Stancils Per Second)
-2.97289e+06 KSPS (Kilo Stancils Per Second)
-2972.89 MSPS (Mega Stancils Per Second) 
-2.97289 GSPS (Giga Stancils Per Second) 
+2.97289e+09 SPS (Stencils Per Second)
+2.97289e+06 KSPS (Kilo Stencils Per Second)
+2972.89 MSPS (Mega Stencils Per Second) 
+2.97289 GSPS (Giga Stencils Per Second) 
 
 
 Total time: 4.75791

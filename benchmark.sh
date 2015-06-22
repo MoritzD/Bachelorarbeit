@@ -11,11 +11,11 @@ fi
 echo "Benchmarking script; writing to file: "$1
 
 
-if [ ! -e Stancil/bin/x86_64/Release/Stancil ]
+if [ ! -e Stencil/bin/x86_64/Release/Stencil ]
 	then
 		echo "Executable not found, try to compile it"
 		make
-		if [ ! -e Stancil/bin/x86_64/Release/Stancil ]
+		if [ ! -e Stencil/bin/x86_64/Release/Stencil ]
 			then
 				echo "compiling faild still can't find the Executable; Abording"
 				exit 0
@@ -33,10 +33,10 @@ if [  $# -eq 2 ]
 			elif [ $2 == profile ]
 				then
 					echo "Creating full profiling of all kernels"
-					for i in `seq 1 6`
+					for i in `seq 1 7`
 					do
-./include/x86_64/sprofile -o "/home/hpc/pr87du/di73xog/Bachelorarbeit/$1_KV$i.csv" "Stancil/bin/x86_64/Release/Stancil" -we 4034 -he 4034 -i 4 -kv $i -q -e
-					./include/x86_64/sprofile -o "$1_KV$i.atp" -t -O "Stancil/bin/x86_64/Release/Stancil" -we 4034 -he 4034 -i 4 -kv $i -q -e
+./include/x86_64/sprofile -o "/home/moe/Dokumente/Bachelorarbeit/$1_KV$i.csv" "Stencil/bin/x86_64/Release/Stencil" -we 4034 -he 4034 -i 4 -kv $i -q -e
+					./include/x86_64/sprofile -o "$1_KV$i.atp" -t -O "Stencil/bin/x86_64/Release/Stencil" -we 4034 -he 4034 -i 4 -kv $i -q -e
 					./include/x86_64/sprofile -a "$1_KV$i.atp" -T
 					done
 					echo "Done."
@@ -52,13 +52,13 @@ if [  $# -eq 2 ]
 		date >> $1
 fi
 
-for i in `seq 1 6`
+for i in `seq 1 7`
 do
 	echo "Calculating kernel "$i
 	echo "" >> $1
 	echo "" >> $1
 	echo "Kernel "$i":" >> $1
-	./Stancil/bin/x86_64/Release/Stancil -we 4034 -he 4034 -i 100 -e -kv $i -q >> $1
+	./Stencil/bin/x86_64/Release/Stencil -we 4034 -he 4034 -i 100 -e -kv $i -q >> $1
 done
 
 exit 0

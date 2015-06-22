@@ -1,4 +1,4 @@
-# Stancil 
+# Stencil 
 ## calculations for OpenCL
 
 ### Required software:
@@ -9,12 +9,12 @@
 ### How to Compile:
 from the base directroy of this project:
 
-1. create the Makefile using cmake: run cmake -G "Unix Makefiles" Stancil/
+1. create the Makefile using cmake: run cmake -G "Unix Makefiles" Stencil/
 2. Built the project by runing: make
 
 ### Example Call:
 
-./Stancil -we 4034 -he 4034 -i 100 -kv 2
+./Stencil -we 4034 -he 4034 -i 100 -kv 2
 	using Matrix of size 4034 x 4034 
 	run 100 iterrations
 	using kernel 2
@@ -51,23 +51,23 @@ from the base directroy of this project:
 			witch version of the kernel shold be used
 			accepted values:
 			1,2,3,4,5,6
-			where: 1-5: 5-Point Stancil
+			where: 1-5: 5-Point Stencil
 			2 is Fastest Standard implementation
 			5 is not working at the moment
-			6: Dynamic Stancil
+			6: Dynamic Stencil
 
--st, --stancil
+-st, --Stencil
 			
 			define what kind of stanil should be used (only needed for kernel 6; will be discarded otherwise)
-			e.g.: -st "-1,0, 0,-1, 0,1, 1,0" for the 5-Point-Stancil
+			e.g.: -st "-1,0, 0,-1, 0,1, 1,0" for the 5-Point-Stencil
 			every 2 numbers are grouped together as a (x,y)-coordinate relative to the center point.
 			expects a String with the numbers seperated by ','
 
-			if not specifyed and kernel 6 is used the default is 5-Point-Stancil
+			if not specifyed and kernel 6 is used the default is 5-Point-Stencil
 
 -w, --weights
 			
-			define weights for every point in the dynamic stancil
+			define weights for every point in the dynamic Stencil
 			e.g. -w "1.0, -2.4, 12.34, 0.5"
 			a String with the weights for the points. Seperatet by ','
 

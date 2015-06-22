@@ -1,6 +1,6 @@
 TraceFileVersion=2.5
 ProfilerVersion=2.5.1804
-Application=/home/hpc/pr87du/di73xog/Bachelorarbeit/Stancil/bin/x86_64/Release/Stancil
+Application=/home/hpc/pr87du/di73xog/Bachelorarbeit/Stencil/bin/x86_64/Release/Stencil
 ApplicationArgs=-we 20 -he 20 -i 4 -kv 2 -q
 OsVersion=
 UserTimer=Not Set
@@ -26,8 +26,8 @@ CL_SUCCESS = clGetCommandQueueInfo ( 0xdab3d0;CL_QUEUE_DEVICE;8;[0xcca040];NULL 
 0xdab3d0 = clCreateCommandQueue ( 0xcd54f0;0xcca040;0;NULL )
 0x1369030 = clCreateProgramWithSource ( 0xcd54f0;1;0x7fff4fd86e98;0x7fff4fd86e90;NULL )
 CL_SUCCESS = clBuildProgram ( 0x1369030;1;[0xcca040];NULL;NULL;NULL )
-0x2b9dc8027320 = clCreateKernel ( 0x1369030;"Stancil2";NULL )
-0x2b9dc8000ba0 = clCreateKernel ( 0x1369030;"Stancil2";NULL )
+0x2b9dc8027320 = clCreateKernel ( 0x1369030;"Stencil2";NULL )
+0x2b9dc8000ba0 = clCreateKernel ( 0x1369030;"Stencil2";NULL )
 0x2b9dc8026150 = clCreateBuffer ( 0xcd54f0;CL_MEM_READ_WRITE|CL_MEM_COPY_HOST_PTR;1600;0x2b9dc803bfa0;[CL_SUCCESS] )
 0x2b9dc8036410 = clCreateBuffer ( 0xcd54f0;CL_MEM_READ_WRITE|CL_MEM_COPY_HOST_PTR;1600;0x2b9dc803bfa0;[CL_SUCCESS] )
 CL_SUCCESS = clSetKernelArg ( 0x2b9dc8027320;0;8;[0xffffffffc8026150] )
@@ -535,7 +535,7 @@ CL_SUCCESS = clReleaseContext ( 0xcd54f0 )
 42   clWaitForEvents                              4830966499100505     4830966499100594     
 42   clWaitForEvents                              4830966499100914     4830966499101003     
 42   clWaitForEvents                              4830966499101308     4830966499101397     
-66   clEnqueueNDRangeKernel                       4830966495473913     4830966501683058     4592    CL_COMMAND_NDRANGE_KERNEL               4830966498864598     4830966498910239     4830966499061026     4830966499078655     0         0xdab3d0                 1         0xcd54f0                 Tahiti                        0x2b9dc8027320           Stancil2      {18,18}     {NULL}
+66   clEnqueueNDRangeKernel                       4830966495473913     4830966501683058     4592    CL_COMMAND_NDRANGE_KERNEL               4830966498864598     4830966498910239     4830966499061026     4830966499078655     0         0xdab3d0                 1         0xcd54f0                 Tahiti                        0x2b9dc8027320           Stencil2      {18,18}     {NULL}
 50   clFlush                                      4830966501708310     4830966501712214     
 43   clGetEventInfo                               4830966501715100     4830966501715984     
 12   clGetCommandQueueInfo                        4830966501744770     4830966501745315     
@@ -586,7 +586,7 @@ CL_SUCCESS = clReleaseContext ( 0xcd54f0 )
 42   clWaitForEvents                              4830966504038064     4830966504038153     
 42   clWaitForEvents                              4830966504038453     4830966504038541     
 42   clWaitForEvents                              4830966504038844     4830966504038932     
-66   clEnqueueNDRangeKernel                       4830966501721133     4830966505020496     4592    CL_COMMAND_NDRANGE_KERNEL               4830966503796354     4830966503840702     4830966503998754     4830966504016384     0         0xdab3d0                 1         0xcd54f0                 Tahiti                        0x2b9dc8000ba0           Stancil2      {18,18}     {NULL}
+66   clEnqueueNDRangeKernel                       4830966501721133     4830966505020496     4592    CL_COMMAND_NDRANGE_KERNEL               4830966503796354     4830966503840702     4830966503998754     4830966504016384     0         0xdab3d0                 1         0xcd54f0                 Tahiti                        0x2b9dc8000ba0           Stencil2      {18,18}     {NULL}
 50   clFlush                                      4830966505023341     4830966505026574     
 43   clGetEventInfo                               4830966505027207     4830966505027983     
 12   clGetCommandQueueInfo                        4830966505052331     4830966505052856     
@@ -637,7 +637,7 @@ CL_SUCCESS = clReleaseContext ( 0xcd54f0 )
 42   clWaitForEvents                              4830966507323619     4830966507323708     
 42   clWaitForEvents                              4830966507324076     4830966507324166     
 42   clWaitForEvents                              4830966507324511     4830966507324599     
-66   clEnqueueNDRangeKernel                       4830966505029653     4830966508141279     4592    CL_COMMAND_NDRANGE_KERNEL               4830966507087558     4830966507132463     4830966507284117     4830966507302043     0         0xdab3d0                 1         0xcd54f0                 Tahiti                        0x2b9dc8027320           Stancil2      {18,18}     {NULL}
+66   clEnqueueNDRangeKernel                       4830966505029653     4830966508141279     4592    CL_COMMAND_NDRANGE_KERNEL               4830966507087558     4830966507132463     4830966507284117     4830966507302043     0         0xdab3d0                 1         0xcd54f0                 Tahiti                        0x2b9dc8027320           Stencil2      {18,18}     {NULL}
 50   clFlush                                      4830966508144154     4830966508147475     
 43   clGetEventInfo                               4830966508148129     4830966508148842     
 12   clGetCommandQueueInfo                        4830966508176839     4830966508177383     
@@ -688,7 +688,7 @@ CL_SUCCESS = clReleaseContext ( 0xcd54f0 )
 42   clWaitForEvents                              4830966510455765     4830966510455852     
 42   clWaitForEvents                              4830966510456189     4830966510456276     
 42   clWaitForEvents                              4830966510456586     4830966510456672     
-66   clEnqueueNDRangeKernel                       4830966508150594     4830966513171326     4592    CL_COMMAND_NDRANGE_KERNEL               4830966510222260     4830966510266442     4830966510417273     4830966510435051     0         0xdab3d0                 1         0xcd54f0                 Tahiti                        0x2b9dc8000ba0           Stancil2      {18,18}     {NULL}
+66   clEnqueueNDRangeKernel                       4830966508150594     4830966513171326     4592    CL_COMMAND_NDRANGE_KERNEL               4830966510222260     4830966510266442     4830966510417273     4830966510435051     0         0xdab3d0                 1         0xcd54f0                 Tahiti                        0x2b9dc8000ba0           Stencil2      {18,18}     {NULL}
 50   clFlush                                      4830966513174567     4830966513178286     
 43   clGetEventInfo                               4830966513178895     4830966513179818     
 12   clGetCommandQueueInfo                        4830966513212554     4830966513213160     
@@ -739,7 +739,7 @@ CL_SUCCESS = clReleaseContext ( 0xcd54f0 )
 42   clWaitForEvents                              4830966515624935     4830966515625026     
 42   clWaitForEvents                              4830966515625412     4830966515625500     
 42   clWaitForEvents                              4830966515625800     4830966515625889     
-66   clEnqueueNDRangeKernel                       4830966513181439     4830966516763979     4592    CL_COMMAND_NDRANGE_KERNEL               4830966515387470     4830966515432507     4830966515585760     4830966515603389     0         0xdab3d0                 1         0xcd54f0                 Tahiti                        0x2b9dc8027320           Stancil2      {18,18}     {NULL}
+66   clEnqueueNDRangeKernel                       4830966513181439     4830966516763979     4592    CL_COMMAND_NDRANGE_KERNEL               4830966515387470     4830966515432507     4830966515585760     4830966515603389     0         0xdab3d0                 1         0xcd54f0                 Tahiti                        0x2b9dc8027320           Stencil2      {18,18}     {NULL}
 50   clFlush                                      4830966516766940     4830966516770276     
 43   clGetEventInfo                               4830966516770859     4830966516771583     
 12   clGetCommandQueueInfo                        4830966516802590     4830966516803162     
@@ -790,7 +790,7 @@ CL_SUCCESS = clReleaseContext ( 0xcd54f0 )
 42   clWaitForEvents                              4830966519098050     4830966519098139     
 42   clWaitForEvents                              4830966519098470     4830966519098560     
 42   clWaitForEvents                              4830966519098897     4830966519098985     
-66   clEnqueueNDRangeKernel                       4830966516772801     4830966519966427     4592    CL_COMMAND_NDRANGE_KERNEL               4830966518862953     4830966518907400     4830966519059898     4830966519077380     0         0xdab3d0                 1         0xcd54f0                 Tahiti                        0x2b9dc8000ba0           Stancil2      {18,18}     {NULL}
+66   clEnqueueNDRangeKernel                       4830966516772801     4830966519966427     4592    CL_COMMAND_NDRANGE_KERNEL               4830966518862953     4830966518907400     4830966519059898     4830966519077380     0         0xdab3d0                 1         0xcd54f0                 Tahiti                        0x2b9dc8000ba0           Stencil2      {18,18}     {NULL}
 50   clFlush                                      4830966519969290     4830966519972508     
 43   clGetEventInfo                               4830966519973186     4830966519973865     
 12   clGetCommandQueueInfo                        4830966520016839     4830966520017406     
@@ -841,7 +841,7 @@ CL_SUCCESS = clReleaseContext ( 0xcd54f0 )
 42   clWaitForEvents                              4830966522289559     4830966522289644     
 42   clWaitForEvents                              4830966522289996     4830966522290083     
 42   clWaitForEvents                              4830966522290434     4830966522290520     
-66   clEnqueueNDRangeKernel                       4830966519975382     4830966523315945     4592    CL_COMMAND_NDRANGE_KERNEL               4830966522054362     4830966522099311     4830966522251067     4830966522268697     0         0xdab3d0                 1         0xcd54f0                 Tahiti                        0x2b9dc8027320           Stancil2      {18,18}     {NULL}
+66   clEnqueueNDRangeKernel                       4830966519975382     4830966523315945     4592    CL_COMMAND_NDRANGE_KERNEL               4830966522054362     4830966522099311     4830966522251067     4830966522268697     0         0xdab3d0                 1         0xcd54f0                 Tahiti                        0x2b9dc8027320           Stencil2      {18,18}     {NULL}
 50   clFlush                                      4830966523318870     4830966523322083     
 43   clGetEventInfo                               4830966523322731     4830966523323620     
 12   clGetCommandQueueInfo                        4830966523354626     4830966523355229     
@@ -892,7 +892,7 @@ CL_SUCCESS = clReleaseContext ( 0xcd54f0 )
 42   clWaitForEvents                              4830966525657850     4830966525657936     
 42   clWaitForEvents                              4830966525658244     4830966525658330     
 42   clWaitForEvents                              4830966525658655     4830966525658740     
-66   clEnqueueNDRangeKernel                       4830966523324695     4830966526478804     4592    CL_COMMAND_NDRANGE_KERNEL               4830966525422153     4830966525466457     4830966525619389     4830966525637018     0         0xdab3d0                 1         0xcd54f0                 Tahiti                        0x2b9dc8000ba0           Stancil2      {18,18}     {NULL}
+66   clEnqueueNDRangeKernel                       4830966523324695     4830966526478804     4592    CL_COMMAND_NDRANGE_KERNEL               4830966525422153     4830966525466457     4830966525619389     4830966525637018     0         0xdab3d0                 1         0xcd54f0                 Tahiti                        0x2b9dc8000ba0           Stencil2      {18,18}     {NULL}
 50   clFlush                                      4830966526481746     4830966526484963     
 43   clGetEventInfo                               4830966526485570     4830966526486297     
 52   clEnqueueReadBuffer                          4830966526496309     4830966526801040     4595    CL_COMMAND_READ_BUFFER                  4830966526497850     4830966526501599     4830966526653704     4830966526795704     0         0xdab3d0                 1         0xcd54f0                 Tahiti                        1600                
