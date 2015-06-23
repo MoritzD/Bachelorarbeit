@@ -9,6 +9,7 @@
 //#include <ctime>
 //#include "CLUtil.hpp"
 #include <algorithm>
+#include <math.h>
 //#include "error_handling_methods.cpp"
 //#include "CLPerfMarker.h"
 
