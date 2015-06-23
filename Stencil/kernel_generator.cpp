@@ -306,7 +306,13 @@ string KernelGenerator::generateKernelString(string name, int *positions, float 
 			}
 		}
 	}
-	kernelString << ") / " << numberPoints << ";\n";
+
+	int sumOfWeights = 0;
+	for(int e = 0; e < numberPoints; e++){
+		sumOfWeights += weights[e];
+	}
+
+	kernelString << ") / " << sumOfWeights << ";\n";
 
 	
 	kernelString << "}" ;
