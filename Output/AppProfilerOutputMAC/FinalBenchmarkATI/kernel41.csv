@@ -1,0 +1,25 @@
+# ProfilerVersion=2.5.1804
+# Application=/home/hpc/pr87du/di73xog/Bachelorarbeit/Stencil/bin/x86_64/Release/Stencil
+# ApplicationArgs=-we 4034 -he 4034 -i 4 -kv 4 -e -q
+# Device Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz PlatformVendor=Advanced Micro Devices, Inc.
+# Device Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz PlatformName=AMD Accelerated Parallel Processing
+# Device Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz PlatformVersion=OpenCL 1.2 AMD-APP (1124.2)
+# Device Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz CLDriverVersion=1124.2 (sse2,avx)
+# Device Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz CLRuntimeVersion=OpenCL 1.2 AMD-APP (1124.2)
+# Device Intel(R) Xeon(R) CPU E5-2670 0 @ 2.60GHz NumberAppAddressBits=64
+# Device Tahiti PlatformVendor=Advanced Micro Devices, Inc.
+# Device Tahiti PlatformName=AMD Accelerated Parallel Processing
+# Device Tahiti PlatformVersion=OpenCL 1.2 AMD-APP (1124.2)
+# Device Tahiti CLDriverVersion=1124.2 (VM)
+# Device Tahiti CLRuntimeVersion=OpenCL 1.2 AMD-APP (1124.2)
+# Device Tahiti NumberAppAddressBits=32
+# OS=
+Method , ExecutionOrder , ThreadID , CallIndex , GlobalWorkSize , WorkGroupSize , Time , LocalMemSize , VGPRs , SGPRs , ScratchRegs , FCStacks , Wavefronts , VALUInsts , SALUInsts , VFetchInsts , SFetchInsts , VWriteInsts , LDSInsts , VALUUtilization , VALUBusy , SALUBusy , FetchSize , CacheHit , MemUnitBusy , MemUnitStalled , WriteUnitStalled , LDSBankConflict , WriteSize , GDSInsts
+Stencil4__k1_Tahiti1 ,     1 , 17387 , 26 , {   4032       4       1} , {   64     4     1} ,         1.32385 ,           0 ,    12 ,    18 , NA , NA ,       252.00 ,     11120.00 ,      1014.00 ,      4032.00 ,         6.00 ,      1008.00 ,         0.00 ,       100.00 ,         7.57 ,         1.38 ,     67233.94 ,        17.66 ,        58.53 ,         5.27 ,        71.15 ,         0.00 ,     67388.31 ,         0.00
+Stencil4__k2_Tahiti1 ,     2 , 17387 , 28 , {   4032       4       1} , {   64     4     1} ,         1.36311 ,           0 ,    12 ,    18 , NA , NA ,       252.00 ,     11120.00 ,      1014.00 ,      4032.00 ,         6.00 ,      1008.00 ,         0.00 ,       100.00 ,         7.22 ,         1.31 ,     69642.44 ,        14.64 ,        57.22 ,         5.29 ,        32.12 ,         0.00 ,     67179.25 ,         0.00
+Stencil4__k1_Tahiti1 ,     3 , 17387 , 30 , {   4032       4       1} , {   64     4     1} ,         1.31511 ,           0 ,    12 ,    18 , NA , NA ,       252.00 ,     11120.00 ,      1014.00 ,      4032.00 ,         6.00 ,      1008.00 ,         0.00 ,       100.00 ,         7.39 ,         1.35 ,     68386.19 ,        16.19 ,        58.48 ,         5.63 ,        54.20 ,         0.00 ,     67125.72 ,         0.00
+Stencil4__k2_Tahiti1 ,     4 , 17387 , 32 , {   4032       4       1} , {   64     4     1} ,         1.35082 ,           0 ,    12 ,    18 , NA , NA ,       252.00 ,     11120.00 ,      1014.00 ,      4032.00 ,         6.00 ,      1008.00 ,         0.00 ,       100.00 ,         7.17 ,         1.31 ,     69626.75 ,        14.64 ,        56.91 ,         5.18 ,        70.91 ,         0.00 ,     67880.09 ,         0.00
+Stencil4__k1_Tahiti1 ,     5 , 17387 , 34 , {   4032       4       1} , {   64     4     1} ,         1.29408 ,           0 ,    12 ,    18 , NA , NA ,       252.00 ,     11120.00 ,      1014.00 ,      4032.00 ,         6.00 ,      1008.00 ,         0.00 ,       100.00 ,         7.24 ,         1.32 ,     69007.31 ,        15.17 ,        57.40 ,         5.54 ,        70.72 ,         0.00 ,     68078.62 ,         0.00
+Stencil4__k2_Tahiti1 ,     6 , 17387 , 36 , {   4032       4       1} , {   64     4     1} ,         1.34785 ,           0 ,    12 ,    18 , NA , NA ,       252.00 ,     11120.00 ,      1014.00 ,      4032.00 ,         6.00 ,      1008.00 ,         0.00 ,       100.00 ,         7.48 ,         1.36 ,     67707.69 ,        16.94 ,        59.32 ,         5.65 ,        71.89 ,         0.00 ,     67683.84 ,         0.00
+Stencil4__k1_Tahiti1 ,     7 , 17387 , 38 , {   4032       4       1} , {   64     4     1} ,         1.37541 ,           0 ,    12 ,    18 , NA , NA ,       252.00 ,     11120.00 ,      1014.00 ,      4032.00 ,         6.00 ,      1008.00 ,         0.00 ,       100.00 ,         7.59 ,         1.38 ,     66733.44 ,        18.22 ,        59.91 ,         5.57 ,        54.19 ,         0.00 ,     67608.66 ,         0.00
+Stencil4__k2_Tahiti1 ,     8 , 17387 , 40 , {   4032       4       1} , {   64     4     1} ,         1.32296 ,           0 ,    12 ,    18 , NA , NA ,       252.00 ,     11120.00 ,      1014.00 ,      4032.00 ,         6.00 ,      1008.00 ,         0.00 ,       100.00 ,         7.26 ,         1.32 ,     69101.19 ,        15.34 ,        57.68 ,         5.37 ,        57.90 ,         0.00 ,     67760.94 ,         0.00
