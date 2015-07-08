@@ -1103,6 +1103,12 @@ int setupKernelSpesificStuff(cl_uint* work_dim, size_t *global_work_size, size_t
 			}
 		break;
 		case 5:
+
+			cout << "Kernel 5 not available at the moment; sorry" << endl;
+				freeResources();
+				return FAILURE;
+
+
 			*kernel = clCreateKernel(*program, "Stencil4_1", NULL);
 			*kernelBackwards = clCreateKernel(*program, "Stencil4_1", NULL); 
 

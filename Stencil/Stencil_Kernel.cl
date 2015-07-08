@@ -7,7 +7,7 @@ __kernel void Stencil1(__global float* in, __global float* out,
 	int num = get_global_id(0);
 
 	if(num < width ||(num % width) == 0  || (num % width) == width-1 || num >= (width*height-width)){
-	out[num] = in [num];
+		out[num] = in [num];
 	}
 	else{
 		out[num] = (in[num-1]+in[num+1]+in[num-width]+in[num+width])/4;								//-4*in[num]+in[num-1]+in[num+1]+in[num-width]+in[num+width]; 
@@ -53,10 +53,11 @@ __kernel void Stencil3(__global float* in, __global float* out,
 	barrier(CLK_LOCAL_MEM_FENCE);
 
 	out[pos] = (Buffer[localPos-1] + Buffer[localPos+1] + Buffer[localPos-(localSize.x+2)] + Buffer[localPos+(localSize.x+2)])/4;           //-4*Buffer[localPos] + Buffer[localPos-1] + Buffer[localPos+1] + Buffer[localPos-(localSizex+2)] + Buffer[localPos+(localSizex+2)]; //loadIndex;//(localSizex+2); //(globalSize/localSizex); //group + group2 * (globalSize/localSizex); //-4*in[pos]+in[pos-1]+in[pos+1]+in[pos-width]+in[pos+width]; 	
-
+	//out[pos] = (in[pos-1]+in[pos+1]+in[pos-width]+in[pos+width])/4;	
 }
 /*
-*	First approach of a more optimized kernel but it's not working to good (and jutst to matrix sizes of 258)
+*	Modification of first kernel, producing best results: highest performance; lowest execution time. 
+*	-- nothings working better --
 */
 __kernel void Stencil2(__global float* in, __global float* out, 
 					int width, int height)
