@@ -112,15 +112,15 @@ int main(int argc, char* argv[])
 		cl_int edgewithlocal;
 		/*edgewithlocal = getEdgeWidth();
 		setInputEdgesToOne(edgewithlocal);
-		edgewith = edgewithlocal;
+		edgewidth = edgewithlocal;
 		*/
-		edgewith = getEdgeWidth();
+		edgewidth = getEdgeWidth();
 
 		KernelGenerator kGenerator;
 
 		//int test_pos[8] = {0,-1, -1,0, 1,0, 0,1};
 		//float test_weights[4] =  {1.0f,1.0f,1.0f,1.0f,};
-		string KernelSource = kGenerator.generateKernelString("createdKernel", positions, weights, numberPoints, edgewith);
+		string KernelSource = kGenerator.generateKernelString("createdKernel", positions, weights, numberPoints, edgewidth);
 		//cout << "Created Kernel: \n\n" << testkernel << "\n" << endl;
 		const char *source = KernelSource.c_str();
 		size_t sourceSize[] = { strlen(source) };
@@ -322,10 +322,10 @@ void StupidDynamicCPUImplementation(cl_float *in, cl_float *out,
 	
 	for (int num = 0; num < width*height; num++){
 
-		if(num/width < edgewith || num/width > height - edgewith - 1){
+		if(num/width < edgewidth || num/width > height - edgewidth - 1){
 			continue;
 		}
-		if(num%width < edgewith || num%width > width - edgewith - 1){
+		if(num%width < edgewidth || num%width > width - edgewidth - 1){
 			continue;	
 		}
 
@@ -1215,7 +1215,7 @@ float sumOfWeights = 0;
 			cl_int edgewithlocal;
 			edgewithlocal = getEdgeWidth();
 			setInputEdgesToOne(edgewithlocal);
-			edgewith = edgewithlocal;
+			edgewidth = edgewithlocal;
 
 			
 			for(int e = 0; e < numberPoints; e++){
@@ -1230,8 +1230,8 @@ float sumOfWeights = 0;
 			}
 
 			*work_dim = 2;
-			global_work_size[0] = width - 2*edgewith;
-			global_work_size[1] = height - 2*edgewith;
+			global_work_size[0] = width - 2*edgewidth;
+			global_work_size[1] = height - 2*edgewidth;
 			//free(local_work_size);
 			*local_work_size = NULL;//min((cl_uint)64,(width-2));
 
@@ -1269,13 +1269,13 @@ float sumOfWeights = 0;
 			status = clSetKernelArg(*kernel, 5, sizeof(cl_mem), (void *)&BufferWeights);
 			status = clSetKernelArg(*kernel, 6, sizeof(cl_int), (void *)&numberPoints);
 			status = clSetKernelArg(*kernel, 7, sizeof(cl_int), (void *)&sumOfWeights);
-			status = clSetKernelArg(*kernel, 8, sizeof(cl_int), (void *)&edgewith);
+			status = clSetKernelArg(*kernel, 8, sizeof(cl_int), (void *)&edgewidth);
 
 			status = clSetKernelArg(*kernelBackwards, 4, sizeof(cl_mem), (void *)&BufferPositions);
 			status = clSetKernelArg(*kernelBackwards, 5, sizeof(cl_mem), (void *)&BufferWeights);
 			status = clSetKernelArg(*kernelBackwards, 6, sizeof(cl_int), (void *)&numberPoints);
 			status = clSetKernelArg(*kernelBackwards, 7, sizeof(cl_int), (void *)&sumOfWeights);
-			status = clSetKernelArg(*kernelBackwards, 8, sizeof(cl_int), (void *)&edgewith);
+			status = clSetKernelArg(*kernelBackwards, 8, sizeof(cl_int), (void *)&edgewidth);
 			
 			if(VERBOSE){
 				cout <<" working dimension: " << *work_dim << endl;
@@ -1288,7 +1288,7 @@ float sumOfWeights = 0;
 		break;
 		case 7:
 
-			setInputEdgesToOne(edgewith);
+			setInputEdgesToOne(edgewidth);
 			
 			*kernel = clCreateKernel(*program, "createdKernel", NULL);
 			*kernelBackwards = clCreateKernel(*program, "createdKernel", NULL);
@@ -1302,8 +1302,8 @@ float sumOfWeights = 0;
 
 
 			*work_dim = 2;
-			global_work_size[0] = width - 2*edgewith;
-			global_work_size[1] = height - 2*edgewith;
+			global_work_size[0] = width - 2*edgewidth;
+			global_work_size[1] = height - 2*edgewidth;
 			*local_work_size = NULL;
 
 		break;
@@ -1327,14 +1327,14 @@ cl_int getEdgeWidth(){
 	return maximum;
 }
 
-void setInputEdgesToOne(cl_int edgewith){
-	if(edgewith == 1){return;}
+void setInputEdgesToOne(cl_int edgewidth){
+	if(edgewidth == 1){return;}
 	for (int i = 0; i < height*width; i++){
-		if(i/width < edgewith || i/width > height - edgewith - 1){
+		if(i/width < edgewidth || i/width > height - edgewidth - 1){
 			input[i] = 1;
 			output[i] = 1;
 		}
-		else if(i%width < edgewith || i%width > width - edgewith - 1){
+		else if(i%width < edgewidth || i%width > width - edgewidth - 1){
 			input[i] = 1;
 			output[i] = 1;
 		}

@@ -51,7 +51,7 @@ cl_uint iterations = ITERATIONS;
 cl_uint kernelVersion = 2;
 std::string StencilDefinition = "default";
 std::string StencilWeights = "default";
-cl_int edgewith = 1;
+cl_int edgewidth = 1;
 std::string device = "gpu";
 bool VERBOSE = false;
 bool VERBOSEMATRIX = false;
@@ -94,7 +94,7 @@ void StupidCPUimplementation(cl_float *in, cl_float *out, int width, int height)
 
 void StupidDynamicCPUImplementation(cl_float *in, cl_float *out, int width, int height, 
 					cl_int *positions, cl_float *allWeights, 
-					cl_int numberPoints, cl_int edgewith);
+					cl_int numberPoints, cl_int edgewidth);
 
 int getPlatforms(void);
 
@@ -130,7 +130,7 @@ int setupKernelSpesificStuff(cl_uint* work_dim, size_t *global_work_size, size_t
 
 cl_int getEdgeWidth();
 
-void setInputEdgesToOne(cl_int edgewith);
+void setInputEdgesToOne(cl_int edgewidth);
 
 void initilizeHostBuffers();
 
