@@ -314,6 +314,12 @@ void StupidDynamicCPUImplementation(cl_float *in, cl_float *out,
 
 	cl_float sum;
 	int lookAt;
+	float sumOfWeights = 0;
+
+	for(int e = 0; e < numberPoints; e++){
+		sumOfWeights += fabs(allWeights[e]); 
+	}
+	
 	for (int num = 0; num < width*height; num++){
 
 		if(num/width < edgewith || num/width > height - edgewith - 1){
@@ -331,7 +337,7 @@ void StupidDynamicCPUImplementation(cl_float *in, cl_float *out,
 			sum += in[lookAt] * allWeights[i/2];
 		}
 		
-		out[num] = sum/numberPoints;
+		out[num] = sum/sumOfWeights;
 	}
 }
 
@@ -1001,6 +1007,7 @@ cl_int parseStringToWeights(std::string str){
 
 int setupKernelSpesificStuff(cl_uint* work_dim, size_t *global_work_size, size_t **local_work_size, 
 				cl_context* context, cl_kernel* kernel, cl_kernel* kernelBackwards, cl_program* program){
+float sumOfWeights = 0;
 
 	switch (kernelVersion){
 		case 1:
@@ -1204,6 +1211,11 @@ int setupKernelSpesificStuff(cl_uint* work_dim, size_t *global_work_size, size_t
 			setInputEdgesToOne(edgewithlocal);
 			edgewith = edgewithlocal;
 
+			
+			for(int e = 0; e < numberPoints; e++){
+				sumOfWeights += fabs(weights[e]); 
+			}
+
 			status = setBufferKernelArgs(kernel, kernelBackwards, context);
 			if(status != SUCCESS){
 				cout << "Abording!" << endl;
@@ -1250,12 +1262,14 @@ int setupKernelSpesificStuff(cl_uint* work_dim, size_t *global_work_size, size_t
 			status = clSetKernelArg(*kernel, 4, sizeof(cl_mem), (void *)&BufferPositions);
 			status = clSetKernelArg(*kernel, 5, sizeof(cl_mem), (void *)&BufferWeights);
 			status = clSetKernelArg(*kernel, 6, sizeof(cl_int), (void *)&numberPoints);
-			status = clSetKernelArg(*kernel, 7, sizeof(cl_int), (void *)&edgewith);
+			status = clSetKernelArg(*kernel, 7, sizeof(cl_int), (void *)&sumOfWeights);
+			status = clSetKernelArg(*kernel, 8, sizeof(cl_int), (void *)&edgewith);
 
 			status = clSetKernelArg(*kernelBackwards, 4, sizeof(cl_mem), (void *)&BufferPositions);
 			status = clSetKernelArg(*kernelBackwards, 5, sizeof(cl_mem), (void *)&BufferWeights);
 			status = clSetKernelArg(*kernelBackwards, 6, sizeof(cl_int), (void *)&numberPoints);
-			status = clSetKernelArg(*kernelBackwards, 7, sizeof(cl_int), (void *)&edgewith);
+			status = clSetKernelArg(*kernelBackwards, 7, sizeof(cl_int), (void *)&sumOfWeights);
+			status = clSetKernelArg(*kernelBackwards, 8, sizeof(cl_int), (void *)&edgewith);
 			
 			if(VERBOSE){
 				cout <<" working dimension: " << *work_dim << endl;

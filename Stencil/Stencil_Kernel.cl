@@ -141,7 +141,7 @@ __kernel void Stencil4_1(__global float* in, __global float* out,
 */
 __kernel void dynamicStencil1(__global float* in, __global float* out, 
 					int width, int height, __global int* positions, __global float* weights,
-					int numberPoints, int edgewith){
+					int numberPoints, float sumOfWeights,int edgewith){
 /*
 *	__global int* positions, __global float* weights, int numberPoints)
 *	Problem with the way the positions are handeld: when is a possition allowet to be in anoter line and when not?
@@ -175,11 +175,11 @@ Psoydo code:
 		lookAt = pos + positions[i] + positions[i+1]*width;
 		sum += in[lookAt] * weights[i/2];
 	}
-	out[pos] = sum/numberPoints;
+	out[pos] = sum/sumOfWeights;//numberPoints;
 }
 
 /*
-*	Not doing any aktual work; just vor testing.
+*	Not doing any aktual work; just for testing.
 */
 
 __kernel void dynamicStencil1_Copy_kernel(__global float* in, __global float* out, 
